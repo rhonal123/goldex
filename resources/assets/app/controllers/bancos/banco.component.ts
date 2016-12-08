@@ -7,7 +7,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'banco-component',
-  templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.component.html',
+  templateUrl: 'app/templates/bancos/banco.component.html',
   providers: [BancoService]
 })
 export class BancoComponent implements OnInit {

@@ -20,7 +20,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'bancos-component',
-  templateUrl: 'resources/assets/app/controllers/templates/bancos/bancos.component.html',
+  templateUrl: 'app/templates/bancos/bancos.component.html',
   providers: [BancoService]
 })
 export class BancosComponent implements OnInit  , AfterViewInit {

@@ -21,7 +21,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-component',
-            templateUrl: 'resources/assets/app/controllers/templates/app.component.html',
+            templateUrl: 'app/templates/app.component.html',
             providers: []
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef])

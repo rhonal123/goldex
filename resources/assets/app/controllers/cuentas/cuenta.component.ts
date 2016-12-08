@@ -7,7 +7,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'cuenta-component',
-  templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuenta.component.html',
+  templateUrl: 'app/templates/cuentas/cuenta.component.html',
   providers: [CuentaService]
 })
 export class CuentaComponent implements OnInit {

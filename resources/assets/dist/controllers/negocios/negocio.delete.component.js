@@ -48,7 +48,7 @@ __decorate([
 NegocioDeleteComponent = __decorate([
     core_1.Component({
         selector: 'negocio-delete-component',
-        templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.delete.component.html',
+        templateUrl: 'app/templates/negocios/negocio.delete.component.html',
         providers: [negocio_service_1.NegocioService]
     }),
     __metadata("design:paramtypes", [negocio_service_1.NegocioService])

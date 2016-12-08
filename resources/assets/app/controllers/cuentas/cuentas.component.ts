@@ -19,7 +19,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'cuentas-component',
-  templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuentas.component.html',
+  templateUrl: 'app/templates/cuentas/cuentas.component.html',
   providers: [CuentaService]
 })
 export class CuentasComponent implements OnInit  , AfterViewInit {

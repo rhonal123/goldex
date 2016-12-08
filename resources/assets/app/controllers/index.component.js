@@ -20,7 +20,7 @@ var IndexComponent = (function () {
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'index-component',
-            templateUrl: 'resources/assets/app/controllers/templates/index.component.html'
+            templateUrl: 'app/templates/index.component.html'
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef])
     ], IndexComponent);

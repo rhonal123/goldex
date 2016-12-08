@@ -15,7 +15,7 @@ require('rxjs/add/operator/toPromise');
 var NegocioService = (function () {
     function NegocioService(http) {
         this.http = http;
-        this.negociosUrl = '/laravel/helloworld/public/sistema/negocios';
+        this.negociosUrl = 'sistema/negocios';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     NegocioService.prototype.getNegocios = function (page, searchs) {

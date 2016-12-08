@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'index-component',
-  templateUrl: 'resources/assets/app/controllers/templates/index.component.html'
+  templateUrl: 'app/templates/index.component.html'
 })
 export class IndexComponent implements OnInit {
 

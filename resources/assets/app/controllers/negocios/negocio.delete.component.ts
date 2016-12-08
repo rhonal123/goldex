@@ -7,7 +7,7 @@ import { NegociosComponent } from './negocios.component';
 
 @Component({
   selector: 'negocio-delete-component',
-  templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.delete.component.html',
+  templateUrl: 'app/templates/negocios/negocio.delete.component.html',
   providers: [NegocioService]
 })
 export class NegocioDeleteComponent implements OnInit {

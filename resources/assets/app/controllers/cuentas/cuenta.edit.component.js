@@ -74,7 +74,7 @@ var CuentaEditComponent = (function () {
             }
             _this.bancoSelect = $("#banco_id").select2({
                 ajax: {
-                    url: "http://localhost/laravel/helloworld/public/sistema/bancos",
+                    url: "http://localhostsistema/bancos",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -139,7 +139,7 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-edit-component',
-            templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuenta.edit.component.html',
+            templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService, banco_service_1.BancoService, forms_1.FormBuilder])

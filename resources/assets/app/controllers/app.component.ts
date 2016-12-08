@@ -4,7 +4,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'app-component',
-  templateUrl: 'resources/assets/app/controllers/templates/app.component.html',
+  templateUrl: 'app/templates/app.component.html',
   providers: []
 })
 export class AppComponent  implements OnInit  {

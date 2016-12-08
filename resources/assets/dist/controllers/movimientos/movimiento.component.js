@@ -37,7 +37,7 @@ __decorate([
 MovimientoComponent = __decorate([
     core_1.Component({
         selector: 'movimiento-component',
-        templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.component.html',
+        templateUrl: 'app/templates/movimientos/movimiento.component.html',
         providers: [movimiento_service_1.MovimientoService]
     }),
     __metadata("design:paramtypes", [movimiento_service_1.MovimientoService])

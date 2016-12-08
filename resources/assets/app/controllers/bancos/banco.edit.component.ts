@@ -9,7 +9,7 @@ import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/f
 
 @Component({
   selector: 'banco-edit-component',
-  templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.edit.component.html',
+  templateUrl: 'app/templates/bancos/banco.edit.component.html',
   providers: [BancoService]
 })
 export class BancoEditComponent implements OnInit {

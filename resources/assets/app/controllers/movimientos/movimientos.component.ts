@@ -20,7 +20,7 @@ declare var $: any;
 
 @Component({
   selector: 'movimientos-component',
-  templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimientos.component.html',
+  templateUrl: 'app/templates/movimientos/movimientos.component.html',
   providers: [MovimientoService]
 })
 export class MovimientosComponent implements OnInit  , AfterViewInit {

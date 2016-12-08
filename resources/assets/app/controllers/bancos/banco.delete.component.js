@@ -46,7 +46,7 @@ var BancoDeleteComponent = (function () {
     BancoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'banco-delete-component',
-            templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.detele.component.html',
+            templateUrl: 'app/templates/bancos/banco.detele.component.html',
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService])

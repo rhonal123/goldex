@@ -21,7 +21,7 @@ declare var $: any;
 
 @Component({
   selector: 'cuenta-edit-component',
-  templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuenta.edit.component.html',
+  templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
   providers: [CuentaService]
 })
 export class CuentaEditComponent implements OnInit {
@@ -102,7 +102,7 @@ element.appendChild(para);
 
       this.bancoSelect = ($("#banco_id") as any ).select2({
         ajax: {
-          url: "http://localhost/laravel/helloworld/public/sistema/bancos",
+          url: "http://localhostsistema/bancos",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {

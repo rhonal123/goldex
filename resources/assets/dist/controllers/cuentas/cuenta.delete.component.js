@@ -48,7 +48,7 @@ __decorate([
 CuentaDeleteComponent = __decorate([
     core_1.Component({
         selector: 'cuenta-delete-component',
-        templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuenta.detele.component.html',
+        templateUrl: 'app/templates/cuentas/cuenta.detele.component.html',
         providers: [cuenta_service_1.CuentaService]
     }),
     __metadata("design:paramtypes", [cuenta_service_1.CuentaService])

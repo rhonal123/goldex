@@ -90,7 +90,7 @@ var NegocioEditComponent = (function () {
     NegocioEditComponent = __decorate([
         core_1.Component({
             selector: 'negocio-edit-component',
-            templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.edit.component.html',
+            templateUrl: 'app/templates/negocios/negocio.edit.component.html',
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService, forms_1.FormBuilder])

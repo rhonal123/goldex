@@ -7,7 +7,7 @@ import { BancosComponent } from './bancos.component';
 
 @Component({
   selector: 'banco-delete-component',
-  templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.detele.component.html',
+  templateUrl: 'app/templates/bancos/banco.detele.component.html',
   providers: [BancoService]
 })
 export class BancoDeleteComponent implements OnInit {

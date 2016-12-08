@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.config({
+            defaultJSExtensions: true,
+            map: {
+              "moment": "node_modules/moment/moment.js",
+              "ng2-bootstrap": "node_modules/ng2-bootstrap",
+            },
+          });
+          System.import('app').catch(function(err){ console.error(err); });
+      </script>
+  </head>
+      <!-- 3. Display the application -->
+  <body>
+    <app-component>
+        <div class="container-fluid"> 
+          <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="progress" style="margin-top: 30%;">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                 <span>Cargando......</span>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </app-component>
+  </body>
+</html>
+
+ 

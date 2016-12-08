@@ -1,0 +1,69 @@
+<div class="panel panel-default">
+<div class="panel-body">
+    <div class="row">
+      <div class="col-md-2 ">
+        <button type="button" class="btn btn-sm btn-default" (click)="agregar()">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-default" (click)="loadTable()">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+      </div>
+      <!-- ****************************************************  -->
+      <div class="col-md-10" align="right">
+        <div class="form-inline">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="search" class="form-control col-md-6" 
+                              placeholder="buscar" (keyup)="loadTable()"  >
+            <button type="button" class="btn  btn-default"
+             (click)="loadTable()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <div class="table-responsive">
+      <table class="table table-striped">
+      <thead>
+        <tr><th>Id</th><th>Nuemro</th><th>Banco</th><th></th></tr>
+      </thead>
+      <tbody class="cuentas">
+        <tr *ngFor="let cuenta of cuentas" 
+            [class.active]="cuenta === selectedCuenta">
+          <td ><span>{{cuenta.id}}</span></td>
+          <td ><span>{{cuenta.numero}}</span></td>
+          <td ><span>{{cuenta.banco.nombre}}</span></td>
+          <td align="right">
+          <span  dropdown >
+            <span class="glyphicon glyphicon-th" aria-hidden="true" dropdownToggle ></span>
+            <ul class="dropdown-menu dropdown-menu-right " dropdownMenu  role="menu" aria-labelledby="split-button">
+              <li  role="menuitem" (click)="onSelect(cuenta)" >
+                <a class="dropdown-item" >Mostrar</a>
+              </li>
+              <li role="menuitem" (click)="onEditar(cuenta)">
+                <a class="dropdown-item" >Editar</a>
+              </li>
+              <li role="menuitem" (click)="onEliminar(cuenta)">
+                <a class="dropdown-item" >Eliminar</a>
+              </li>
+            </ul>
+          </span>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <div align="right">
+        <pagination [totalItems]="total" [(ngModel)]="current_page"  [itemsPerPage]="per_page"
+                  (pageChanged)="pageChanged($event)" [boundaryLinks]="true" [maxSize]="10" [rotate]="false"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+        <p> <strong>Pagina: {{current_page}} Total de Cuentas {{total}}</strong> </p> 
+      </div>
+      </div> <!-- en responsive -->
+      </div>
+    </div>
+</div>
+</div>  
+<cuenta-delete-component></cuenta-delete-component>
+<cuenta-component></cuenta-component>
+<cuenta-edit-component></cuenta-edit-component> 

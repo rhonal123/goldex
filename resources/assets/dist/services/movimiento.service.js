@@ -15,7 +15,7 @@ require("rxjs/add/operator/toPromise");
 var MovimientoService = (function () {
     function MovimientoService(http) {
         this.http = http;
-        this.movimientosUrl = '/laravel/helloworld/public/sistema/movimientos';
+        this.movimientosUrl = 'sistema/movimientos';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     MovimientoService.prototype.getMovimientos = function (page, searchs) {

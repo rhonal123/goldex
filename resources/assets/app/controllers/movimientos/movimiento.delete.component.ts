@@ -7,7 +7,7 @@ import { MovimientosComponent } from './movimientos.component';
 
 @Component({
   selector: 'movimiento-delete-component',
-  templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.detele.component.html',
+  templateUrl: 'app/templates/movimientos/movimiento.detele.component.html',
   providers: [MovimientoService]
 })
 export class MovimientoDeleteComponent implements OnInit {

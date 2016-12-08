@@ -145,7 +145,7 @@ var MovimientosComponent = (function () {
     MovimientosComponent = __decorate([
         core_1.Component({
             selector: 'movimientos-component',
-            templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimientos.component.html',
+            templateUrl: 'app/templates/movimientos/movimientos.component.html',
             providers: [movimiento_service_1.MovimientoService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, movimiento_service_1.MovimientoService, core_2.ChangeDetectorRef])

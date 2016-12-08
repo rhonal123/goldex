@@ -35,7 +35,7 @@ var NegocioComponent = (function () {
     NegocioComponent = __decorate([
         core_1.Component({
             selector: 'negocio-component',
-            templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.component.html',
+            templateUrl: 'app/templates/negocios/negocio.component.html',
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService])

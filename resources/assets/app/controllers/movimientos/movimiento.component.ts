@@ -7,7 +7,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'movimiento-component',
-  templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.component.html',
+  templateUrl: 'app/templates/movimientos/movimiento.component.html',
   providers: [MovimientoService]
 })
 export class MovimientoComponent implements OnInit {

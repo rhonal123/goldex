@@ -123,7 +123,7 @@ __decorate([
 NegociosComponent = __decorate([
     core_1.Component({
         selector: 'negocios-component',
-        templateUrl: 'resources/assets/app/controllers/templates/negocios/negocios.component.html',
+        templateUrl: 'app/templates/negocios/negocios.component.html',
         providers: [negocio_service_1.NegocioService]
     }),
     __metadata("design:paramtypes", [router_1.Router, negocio_service_1.NegocioService, core_2.ChangeDetectorRef])

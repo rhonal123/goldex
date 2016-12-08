@@ -12,7 +12,13 @@
     "serve": "http-server . -p 5556",
     "build": "npm run clean && tsc",
     "build_prod": "npm run build && browserify -s main dist/main.js > dist/bundle.js && npm run minify",
-    "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js"
+    "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js",
+
+    "bundle_public": "cp -r dist/bundle.js ../../public/assets/javascripts/",
+    "templates": "cp -r app/templates ../../public/app/templates",
+    "images": "cp -r app/images ../../public/app/",
+    "style": "lessc style.less style.css && cp style.css ../../public/assets/stylesheets",
+    "to_public": "npm run build_prod && npm run bundle_public &&  npm run templates &&  npm  run images && npm run style "
   },
   "license": "ISC",
   "dependencies": {

@@ -90,7 +90,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jbancoDestino = $("#banco_destino_id").select2({
                 ajax: {
-                    url: "http://localhost/laravel/helloworld/public/sistema/bancos",
+                    url: "http://localhostsistema/bancos",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -125,7 +125,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jcuenta = $("#cuenta_id").select2({
                 ajax: {
-                    url: "http://localhost/laravel/helloworld/public/sistema/cuentas",
+                    url: "http://localhostsistema/cuentas",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -160,7 +160,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jnegocio = $("#negocio_id").select2({
                 ajax: {
-                    url: "http://localhost/laravel/helloworld/public/sistema/negocios",
+                    url: "http://localhostsistema/negocios",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -242,7 +242,7 @@ var MovimientoEditComponent = (function () {
     MovimientoEditComponent = __decorate([
         core_1.Component({
             selector: 'movimiento-edit-component',
-            templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.edit.component.html',
+            templateUrl: 'app/templates/movimientos/movimiento.edit.component.html',
             providers: [movimiento_service_1.MovimientoService]
         }), 
         __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])

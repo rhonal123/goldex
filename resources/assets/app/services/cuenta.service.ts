@@ -14,7 +14,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CuentaService {
-	private cuentasUrl = '/laravel/helloworld/public/sistema/cuentas'; 
+	private cuentasUrl = 'sistema/cuentas'; 
   private headers = new Headers({ 'Content-Type': 'application/json' });
  
 	constructor(private http: Http) { }

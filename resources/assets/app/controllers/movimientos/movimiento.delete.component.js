@@ -46,7 +46,7 @@ var MovimientoDeleteComponent = (function () {
     MovimientoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'movimiento-delete-component',
-            templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.detele.component.html',
+            templateUrl: 'app/templates/movimientos/movimiento.detele.component.html',
             providers: [movimiento_service_1.MovimientoService]
         }), 
         __metadata('design:paramtypes', [movimiento_service_1.MovimientoService])

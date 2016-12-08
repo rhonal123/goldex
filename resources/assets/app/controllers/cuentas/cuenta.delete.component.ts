@@ -7,7 +7,7 @@ import { CuentasComponent } from './cuentas.component';
 
 @Component({
   selector: 'cuenta-delete-component',
-  templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuenta.detele.component.html',
+  templateUrl: 'app/templates/cuentas/cuenta.detele.component.html',
   providers: [CuentaService]
 })
 export class CuentaDeleteComponent implements OnInit {

@@ -15,7 +15,7 @@ require("rxjs/add/operator/toPromise");
 var BancoService = (function () {
     function BancoService(http) {
         this.http = http;
-        this.bancosUrl = '/laravel/helloworld/public/sistema/bancos';
+        this.bancosUrl = 'sistema/bancos';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     BancoService.prototype.getBancos = function (page, searchs) {

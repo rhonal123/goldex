@@ -9,7 +9,7 @@ import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/f
 
 @Component({
   selector: 'negocio-edit-component',
-  templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.edit.component.html',
+  templateUrl: 'app/templates/negocios/negocio.edit.component.html',
   providers: [NegocioService]
 })
 export class NegocioEditComponent implements OnInit {

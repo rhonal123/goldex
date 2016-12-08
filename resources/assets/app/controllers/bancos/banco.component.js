@@ -35,7 +35,7 @@ var BancoComponent = (function () {
     BancoComponent = __decorate([
         core_1.Component({
             selector: 'banco-component',
-            templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.component.html',
+            templateUrl: 'app/templates/bancos/banco.component.html',
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService])

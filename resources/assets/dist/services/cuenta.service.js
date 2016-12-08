@@ -15,7 +15,7 @@ require("rxjs/add/operator/toPromise");
 var CuentaService = (function () {
     function CuentaService(http) {
         this.http = http;
-        this.cuentasUrl = '/laravel/helloworld/public/sistema/cuentas';
+        this.cuentasUrl = 'sistema/cuentas';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     CuentaService.prototype.getCuentas = function (page, searchs) {

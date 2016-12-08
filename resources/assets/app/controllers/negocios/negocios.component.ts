@@ -20,7 +20,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'negocios-component',
-  templateUrl: 'resources/assets/app/controllers/templates/negocios/negocios.component.html',
+  templateUrl: 'app/templates/negocios/negocios.component.html',
   providers: [NegocioService]
 })
 export class NegociosComponent implements OnInit  , AfterViewInit {

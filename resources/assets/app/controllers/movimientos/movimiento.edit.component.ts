@@ -11,7 +11,7 @@ declare var $: any;
 
 @Component({
   selector: 'movimiento-edit-component',
-  templateUrl: 'resources/assets/app/controllers/templates/movimientos/movimiento.edit.component.html',
+  templateUrl: 'app/templates/movimientos/movimiento.edit.component.html',
   providers: [MovimientoService]
 })
 export class MovimientoEditComponent implements OnInit {
@@ -116,7 +116,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jbancoDestino = ($("#banco_destino_id") as any ).select2({
         ajax: {
-          url: "http://localhost/laravel/helloworld/public/sistema/bancos",
+          url: "http://localhostsistema/bancos",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {
@@ -153,7 +153,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jcuenta = ($("#cuenta_id") as any ).select2({
         ajax: {
-          url: "http://localhost/laravel/helloworld/public/sistema/cuentas",
+          url: "http://localhostsistema/cuentas",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {
@@ -190,7 +190,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jnegocio = ($("#negocio_id") as any).select2({
         ajax: {
-          url: "http://localhost/laravel/helloworld/public/sistema/negocios",
+          url: "http://localhostsistema/negocios",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {

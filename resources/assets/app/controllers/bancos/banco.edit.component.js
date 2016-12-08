@@ -75,7 +75,7 @@ var BancoEditComponent = (function () {
     BancoEditComponent = __decorate([
         core_1.Component({
             selector: 'banco-edit-component',
-            templateUrl: 'resources/assets/app/controllers/templates/bancos/banco.edit.component.html',
+            templateUrl: 'app/templates/bancos/banco.edit.component.html',
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService, forms_1.FormBuilder])

@@ -7,7 +7,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'negocio-component',
-  templateUrl: 'resources/assets/app/controllers/templates/negocios/negocio.component.html',
+  templateUrl: 'app/templates/negocios/negocio.component.html',
   providers: [NegocioService]
 })
 export class NegocioComponent implements OnInit {

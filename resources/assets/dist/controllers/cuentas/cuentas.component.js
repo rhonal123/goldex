@@ -124,7 +124,7 @@ __decorate([
 CuentasComponent = __decorate([
     core_1.Component({
         selector: 'cuentas-component',
-        templateUrl: 'resources/assets/app/controllers/templates/cuentas/cuentas.component.html',
+        templateUrl: 'app/templates/cuentas/cuentas.component.html',
         providers: [cuenta_service_1.CuentaService]
     }),
     __metadata("design:paramtypes", [router_1.Router, cuenta_service_1.CuentaService, core_2.ChangeDetectorRef])
