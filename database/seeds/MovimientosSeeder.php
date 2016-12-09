@@ -3163,7 +3163,8 @@ class MovimientosSeeder extends Seeder
 	  'puro' => 15400,
 	  'cuenta_destino' => '01548791894767867858947',
 	  'banco_destino_id' =>   26  ));
-  
+  /*
+
 
   Movimiento::create(array(
 	  'negocio_id' =>   16,
@@ -3458,7 +3459,6 @@ class MovimientosSeeder extends Seeder
 	  'cuenta_destino' => '01548791894767867858947',
 	  'banco_destino_id' =>   14  ));
   
-
   Movimiento::create(array(
 	  'negocio_id' =>   92,
 	  'monto' =>  518000,
@@ -14015,4 +14015,6 @@ class MovimientosSeeder extends Seeder
 	  'banco_destino_id' =>   25  ));
   
     }
+
+    */
 }
