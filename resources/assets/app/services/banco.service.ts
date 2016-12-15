@@ -12,8 +12,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class BancoService {
 
-	private bancosUrl = 'sistema/bancos'; 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+	bancosUrl = '/sistema/bancos'; 
+  headers = new Headers({ 'Content-Type': 'application/json' });
  
 	constructor(private http: Http) { }
 

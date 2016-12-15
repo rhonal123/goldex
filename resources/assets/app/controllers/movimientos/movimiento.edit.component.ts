@@ -116,7 +116,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jbancoDestino = ($("#banco_destino_id") as any ).select2({
         ajax: {
-          url: "http://localhostsistema/bancos",
+          url: "/sistema/bancos",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {
@@ -153,7 +153,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jcuenta = ($("#cuenta_id") as any ).select2({
         ajax: {
-          url: "http://localhostsistema/cuentas",
+          url: "/sistema/cuentas",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {
@@ -190,7 +190,7 @@ export class MovimientoEditComponent implements OnInit {
 
       this.jnegocio = ($("#negocio_id") as any).select2({
         ajax: {
-          url: "http://localhostsistema/negocios",
+          url: "/sistema/negocios",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {

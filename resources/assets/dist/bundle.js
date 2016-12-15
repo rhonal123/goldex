@@ -1076,7 +1076,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jbancoDestino = $("#banco_destino_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/bancos",
+                    url: "/sistema/bancos",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -1110,7 +1110,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jcuenta = $("#cuenta_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/cuentas",
+                    url: "/sistema/cuentas",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -1144,7 +1144,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jnegocio = $("#negocio_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/negocios",
+                    url: "/sistema/negocios",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -1914,7 +1914,7 @@ require("rxjs/add/operator/toPromise");
 var BancoService = (function () {
     function BancoService(http) {
         this.http = http;
-        this.bancosUrl = 'sistema/bancos';
+        this.bancosUrl = '/sistema/bancos';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     BancoService.prototype.getBancos = function (page, searchs) {
@@ -1990,7 +1990,7 @@ require("rxjs/add/operator/toPromise");
 var CuentaService = (function () {
     function CuentaService(http) {
         this.http = http;
-        this.cuentasUrl = 'sistema/cuentas';
+        this.cuentasUrl = '/sistema/cuentas';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     CuentaService.prototype.getCuentas = function (page, searchs) {
@@ -2066,7 +2066,7 @@ require("rxjs/add/operator/toPromise");
 var MovimientoService = (function () {
     function MovimientoService(http) {
         this.http = http;
-        this.movimientosUrl = 'sistema/movimientos';
+        this.movimientosUrl = '/sistema/movimientos';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     MovimientoService.prototype.getMovimientos = function (page, searchs) {
@@ -2142,7 +2142,7 @@ require("rxjs/add/operator/toPromise");
 var NegocioService = (function () {
     function NegocioService(http) {
         this.http = http;
-        this.negociosUrl = 'sistema/negocios';
+        this.negociosUrl = '/sistema/negocios';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     NegocioService.prototype.getNegocios = function (page, searchs) {

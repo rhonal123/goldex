@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MovimientoService {
 
-	private movimientosUrl = 'sistema/movimientos'; 
+	private movimientosUrl = '/sistema/movimientos'; 
   private headers = new Headers({ 'Content-Type': 'application/json' });
  
 	constructor(private http: Http) { }

@@ -89,7 +89,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jbancoDestino = $("#banco_destino_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/bancos",
+                    url: "/sistema/bancos",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -123,7 +123,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jcuenta = $("#cuenta_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/cuentas",
+                    url: "/sistema/cuentas",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -157,7 +157,7 @@ var MovimientoEditComponent = (function () {
             }
             _this.jnegocio = $("#negocio_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/negocios",
+                    url: "/sistema/negocios",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
