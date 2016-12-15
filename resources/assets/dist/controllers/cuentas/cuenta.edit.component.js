@@ -64,7 +64,7 @@ var CuentaEditComponent = (function () {
             }
             _this.bancoSelect = $("#banco_id").select2({
                 ajax: {
-                    url: "http://localhostsistema/bancos",
+                    url: "/sistema/bancos",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {

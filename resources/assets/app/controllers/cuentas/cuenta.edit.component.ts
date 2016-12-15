@@ -102,7 +102,7 @@ element.appendChild(para);
 
       this.bancoSelect = ($("#banco_id") as any ).select2({
         ajax: {
-          url: "http://localhostsistema/bancos",
+          url: "/sistema/bancos",
           dataType: 'json',
           delay: 250,
           data: function (params: any) {
