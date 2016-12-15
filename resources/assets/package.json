@@ -14,7 +14,7 @@
     "build_prod": "npm run build && browserify -s main dist/main.js > dist/bundle.js && npm run minify",
     "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js",
 
-    "bundle_public": "cp -r dist/bundle.js ../../public/assets/javascripts/",
+    "bundle_public": "cp -r dist/bundle.js ../../public/assets/javascripts/bundle14-12-2016.js",
     "templates": "cp -r app/templates ../../public/app/templates",
     "images": "cp -r app/images ../../public/app/",
     "style": "lessc style.less style.css && cp style.css ../../public/assets/stylesheets",
