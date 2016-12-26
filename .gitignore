@@ -3,6 +3,7 @@
 /public/storage
 
 /resources/assets/node_modules
+/resources/assets/dist
 /resources/assets/typings
 
 Homestead.yaml
