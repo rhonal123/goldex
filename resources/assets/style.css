@@ -6808,15 +6808,9 @@ html {
 app-component {
   height: 100%;
 }
-.cuerpo {
-  height: 70%;
-}
 .sidenav {
   background-color: #fff;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 .table-responsive th,
 td {
@@ -6834,9 +6828,6 @@ td {
 .headerrow {
   background-color: #337ab7;
 }
-.headerprincipal {
-  margin: 20px 0;
-}
 .page-header {
   margin: 15px 0 5px;
 }
@@ -6847,4 +6838,28 @@ td {
 .label-danger {
   font-size: 100%;
   margin-right: 20px;
+}
+.form-horizontal .form-group {
+  margin-top: 10px;
+}
+list-group-item {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.list-group-item:last-child {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.panel-heading {
+  border-bottom: 0px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.cabezera {
+  height: 60px;
+  background-color: #337ab7;
 }

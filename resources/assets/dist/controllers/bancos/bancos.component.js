@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var banco_1 = require("./../../models/banco");
-var banco_service_1 = require("./../../services/banco.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var http_1 = require("@angular/http");
-var banco_edit_component_1 = require("./banco.edit.component");
-var banco_delete_component_1 = require("./banco.delete.component");
-var banco_component_1 = require("./banco.component");
-var core_2 = require("@angular/core");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var banco_1 = require('./../../models/banco');
+var banco_service_1 = require('./../../services/banco.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var http_1 = require('@angular/http');
+var banco_edit_component_1 = require('./banco.edit.component');
+var banco_delete_component_1 = require('./banco.delete.component');
+var banco_component_1 = require('./banco.component');
+var core_2 = require('@angular/core');
 var BancosComponent = (function () {
     function BancosComponent(route, bancoService, _changeDetectionRef) {
         this.route = route;
@@ -105,31 +105,31 @@ var BancosComponent = (function () {
     BancosComponent.prototype.onActive = function (banco) {
         this.activeBanco = banco;
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], BancosComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(banco_component_1.BancoComponent), 
+        __metadata('design:type', banco_component_1.BancoComponent)
+    ], BancosComponent.prototype, "bancoComponent", void 0);
+    __decorate([
+        core_1.ViewChild(banco_edit_component_1.BancoEditComponent), 
+        __metadata('design:type', banco_edit_component_1.BancoEditComponent)
+    ], BancosComponent.prototype, "bancoEditComponent", void 0);
+    __decorate([
+        core_1.ViewChild(banco_delete_component_1.BancoDeleteComponent), 
+        __metadata('design:type', banco_delete_component_1.BancoDeleteComponent)
+    ], BancosComponent.prototype, "bancoDeleteComponent", void 0);
+    BancosComponent = __decorate([
+        core_1.Component({
+            selector: 'bancos-component',
+            templateUrl: 'app/templates/bancos/bancos.component.html',
+            providers: [banco_service_1.BancoService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, banco_service_1.BancoService, core_2.ChangeDetectorRef])
+    ], BancosComponent);
     return BancosComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], BancosComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.ViewChild(banco_component_1.BancoComponent),
-    __metadata("design:type", banco_component_1.BancoComponent)
-], BancosComponent.prototype, "bancoComponent", void 0);
-__decorate([
-    core_1.ViewChild(banco_edit_component_1.BancoEditComponent),
-    __metadata("design:type", banco_edit_component_1.BancoEditComponent)
-], BancosComponent.prototype, "bancoEditComponent", void 0);
-__decorate([
-    core_1.ViewChild(banco_delete_component_1.BancoDeleteComponent),
-    __metadata("design:type", banco_delete_component_1.BancoDeleteComponent)
-], BancosComponent.prototype, "bancoDeleteComponent", void 0);
-BancosComponent = __decorate([
-    core_1.Component({
-        selector: 'bancos-component',
-        templateUrl: 'app/templates/bancos/bancos.component.html',
-        providers: [banco_service_1.BancoService]
-    }),
-    __metadata("design:paramtypes", [router_1.Router, banco_service_1.BancoService, core_2.ChangeDetectorRef])
-], BancosComponent);
 exports.BancosComponent = BancosComponent;
 //# sourceMappingURL=bancos.component.js.map

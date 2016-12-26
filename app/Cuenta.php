@@ -11,6 +11,7 @@ class Cuenta extends Model
 
   protected $fillable = ['numero','banco_id'];
   protected $guarded = ['id'];
+  protected $hidden = ['created_at','updated_at'];
 
   public static $val = [
   		"numero" => 'required|max:70|unique:cuentas',
@@ -27,16 +28,11 @@ class Cuenta extends Model
   private $banco; 
 
  	public static function buscar($numero) {
-  	if($numero) {
-			/*Log::info("<--------");
-			Log::info($numero);
-			Log::info(Cuenta::where('numero','like',$numero)->toSql());*/
-	    $bancos = Cuenta::with('banco')->where('numero', 'ilike',"%".$numero."%")->paginate(15);
-		}
-		else{
-	    $bancos = Cuenta::with('banco')->paginate(15);
-		}
-    return $bancos;
+    $query =  Cuenta::with('banco');
+    if($numero){
+      $query->join('bancos', 'bancos.id', '=', 'banco_id')->where('numero', 'ilike',"%".$numero."%")->orWhere('bancos.nombre', 'ilike',"%".$numero."%");
+    }
+    return $query->paginate(15);
   }
 
 

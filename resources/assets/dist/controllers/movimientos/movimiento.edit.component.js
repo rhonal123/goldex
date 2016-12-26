@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var movimiento_1 = require("./../../models/movimiento");
-var movimiento_service_1 = require("./../../services/movimiento.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var forms_1 = require("@angular/forms");
+var core_1 = require('@angular/core');
+var movimiento_1 = require('./../../models/movimiento');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var forms_1 = require('@angular/forms');
 var MovimientoEditComponent = (function () {
     function MovimientoEditComponent(movimientoService, fB) {
         this.movimientoService = movimientoService;
@@ -47,9 +47,6 @@ var MovimientoEditComponent = (function () {
         this.movimiento.banco_destino_id = this.jbancoDestino.val();
         this.movimiento.negocio_id = this.jnegocio.val();
         this.movimiento.fecha = this.jfecha.val();
-        console.log("------------------------------------");
-        console.log(this.jfecha.val());
-        console.log(this.movimiento);
         this.movimientoService.guardar(this.movimiento).then(function (movimiento) {
             _this.component.changeTable(movimiento);
             _this.hideModal();
@@ -228,23 +225,23 @@ var MovimientoEditComponent = (function () {
         this.component = component;
         this.modal.show();
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientoEditComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', movimiento_1.Movimiento)
+    ], MovimientoEditComponent.prototype, "movimiento", void 0);
+    MovimientoEditComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-edit-component',
+            templateUrl: 'app/templates/movimientos/movimiento.edit.component.html',
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
+    ], MovimientoEditComponent);
     return MovimientoEditComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], MovimientoEditComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", movimiento_1.Movimiento)
-], MovimientoEditComponent.prototype, "movimiento", void 0);
-MovimientoEditComponent = __decorate([
-    core_1.Component({
-        selector: 'movimiento-edit-component',
-        templateUrl: 'app/templates/movimientos/movimiento.edit.component.html',
-        providers: [movimiento_service_1.MovimientoService]
-    }),
-    __metadata("design:paramtypes", [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
-], MovimientoEditComponent);
 exports.MovimientoEditComponent = MovimientoEditComponent;
 //# sourceMappingURL=movimiento.edit.component.js.map

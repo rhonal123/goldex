@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var banco_1 = require("./../../models/banco");
-var banco_service_1 = require("./../../services/banco.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
+var core_1 = require('@angular/core');
+var banco_1 = require('./../../models/banco');
+var banco_service_1 = require('./../../services/banco.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
 var BancoDeleteComponent = (function () {
     function BancoDeleteComponent(bancoService) {
         this.bancoService = bancoService;
@@ -35,23 +35,23 @@ var BancoDeleteComponent = (function () {
             _this.mensaje = error.cuentas;
         });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', banco_1.Banco)
+    ], BancoDeleteComponent.prototype, "banco", void 0);
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], BancoDeleteComponent.prototype, "modal", void 0);
+    BancoDeleteComponent = __decorate([
+        core_1.Component({
+            selector: 'banco-delete-component',
+            templateUrl: 'app/templates/bancos/banco.detele.component.html',
+            providers: [banco_service_1.BancoService]
+        }), 
+        __metadata('design:paramtypes', [banco_service_1.BancoService])
+    ], BancoDeleteComponent);
     return BancoDeleteComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", banco_1.Banco)
-], BancoDeleteComponent.prototype, "banco", void 0);
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], BancoDeleteComponent.prototype, "modal", void 0);
-BancoDeleteComponent = __decorate([
-    core_1.Component({
-        selector: 'banco-delete-component',
-        templateUrl: 'app/templates/bancos/banco.detele.component.html',
-        providers: [banco_service_1.BancoService]
-    }),
-    __metadata("design:paramtypes", [banco_service_1.BancoService])
-], BancoDeleteComponent);
 exports.BancoDeleteComponent = BancoDeleteComponent;
 //# sourceMappingURL=banco.delete.component.js.map

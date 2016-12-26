@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var cuenta_1 = require("./../../models/cuenta");
-var cuenta_service_1 = require("./../../services/cuenta.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var http_1 = require("@angular/http");
-var cuenta_edit_component_1 = require("./cuenta.edit.component");
-var cuenta_delete_component_1 = require("./cuenta.delete.component");
-var cuenta_component_1 = require("./cuenta.component");
-var core_2 = require("@angular/core");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var cuenta_1 = require('./../../models/cuenta');
+var cuenta_service_1 = require('./../../services/cuenta.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var http_1 = require('@angular/http');
+var cuenta_edit_component_1 = require('./cuenta.edit.component');
+var cuenta_delete_component_1 = require('./cuenta.delete.component');
+var cuenta_component_1 = require('./cuenta.component');
+var core_2 = require('@angular/core');
 var CuentasComponent = (function () {
     function CuentasComponent(route, cuentaService, _changeDetectionRef) {
         this.route = route;
@@ -103,31 +103,31 @@ var CuentasComponent = (function () {
         this._changeDetectionRef.detectChanges();
         this.loadTable();
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CuentasComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(cuenta_component_1.CuentaComponent), 
+        __metadata('design:type', cuenta_component_1.CuentaComponent)
+    ], CuentasComponent.prototype, "cuentaComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cuenta_edit_component_1.CuentaEditComponent), 
+        __metadata('design:type', cuenta_edit_component_1.CuentaEditComponent)
+    ], CuentasComponent.prototype, "cuentaEditComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cuenta_delete_component_1.CuentaDeleteComponent), 
+        __metadata('design:type', cuenta_delete_component_1.CuentaDeleteComponent)
+    ], CuentasComponent.prototype, "cuentaDeleteComponent", void 0);
+    CuentasComponent = __decorate([
+        core_1.Component({
+            selector: 'cuentas-component',
+            templateUrl: 'app/templates/cuentas/cuentas.component.html',
+            providers: [cuenta_service_1.CuentaService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, cuenta_service_1.CuentaService, core_2.ChangeDetectorRef])
+    ], CuentasComponent);
     return CuentasComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], CuentasComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.ViewChild(cuenta_component_1.CuentaComponent),
-    __metadata("design:type", cuenta_component_1.CuentaComponent)
-], CuentasComponent.prototype, "cuentaComponent", void 0);
-__decorate([
-    core_1.ViewChild(cuenta_edit_component_1.CuentaEditComponent),
-    __metadata("design:type", cuenta_edit_component_1.CuentaEditComponent)
-], CuentasComponent.prototype, "cuentaEditComponent", void 0);
-__decorate([
-    core_1.ViewChild(cuenta_delete_component_1.CuentaDeleteComponent),
-    __metadata("design:type", cuenta_delete_component_1.CuentaDeleteComponent)
-], CuentasComponent.prototype, "cuentaDeleteComponent", void 0);
-CuentasComponent = __decorate([
-    core_1.Component({
-        selector: 'cuentas-component',
-        templateUrl: 'app/templates/cuentas/cuentas.component.html',
-        providers: [cuenta_service_1.CuentaService]
-    }),
-    __metadata("design:paramtypes", [router_1.Router, cuenta_service_1.CuentaService, core_2.ChangeDetectorRef])
-], CuentasComponent);
 exports.CuentasComponent = CuentasComponent;
 //# sourceMappingURL=cuentas.component.js.map

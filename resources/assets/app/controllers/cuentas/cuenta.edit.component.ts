@@ -137,12 +137,8 @@ element.appendChild(para);
   formBuilder(): void 
   {
     this.cuentaForm = this.fB.group({
-      'id': '',
       'numero': '',
       'banco_id': '',
-      'banco': null,
-      'created_at': '',
-      'updated_at': ''
     });
    this.cuentaForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }
@@ -153,7 +149,10 @@ element.appendChild(para);
 
   setModel(cuenta: Cuenta): void {
     this.cuenta = cuenta;
-    this.cuentaForm.setValue(Cuenta.clone(cuenta));
+    this.cuentaForm.setValue({
+      'numero': cuenta.numero,
+      'banco_id': cuenta.banco_id
+    });
 
 
 

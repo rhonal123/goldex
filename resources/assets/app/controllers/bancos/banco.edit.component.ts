@@ -60,9 +60,7 @@ export class BancoEditComponent implements OnInit {
   {
     this.bancoForm = this.fB.group({
       'id': '',
-      'nombre': '',
-      'created_at': '',
-      'updated_at': ''
+      'nombre': ''
     });
    this.bancoForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }
@@ -73,7 +71,10 @@ export class BancoEditComponent implements OnInit {
 
   setModel(banco: Banco): void {
     this.banco = banco;
-    this.bancoForm.setValue(Banco.clone(banco));
+    this.bancoForm.setValue({
+      'id': banco.id,
+      'nombre':banco.nombre
+    });
   }
 
   openModal(component: BancosComponent) :void {

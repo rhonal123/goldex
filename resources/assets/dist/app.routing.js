@@ -1,10 +1,11 @@
 "use strict";
-var router_1 = require("@angular/router");
-var index_component_1 = require("./controllers/index.component");
-var bancos_component_1 = require("./controllers/bancos/bancos.component");
-var cuentas_component_1 = require("./controllers/cuentas/cuentas.component");
-var negocios_component_1 = require("./controllers/negocios/negocios.component");
-var movimientos_component_1 = require("./controllers/movimientos/movimientos.component");
+var router_1 = require('@angular/router');
+var index_component_1 = require('./controllers/index.component');
+var bancos_component_1 = require('./controllers/bancos/bancos.component');
+var cuentas_component_1 = require('./controllers/cuentas/cuentas.component');
+var negocios_component_1 = require('./controllers/negocios/negocios.component');
+var movimientos_component_1 = require('./controllers/movimientos/movimientos.component');
+var prestamos_component_1 = require('./controllers/prestamos/prestamos.component');
 var appRoutes = [
     {
         path: '',
@@ -30,6 +31,10 @@ var appRoutes = [
     {
         path: 'movimientos',
         component: movimientos_component_1.MovimientosComponent
+    },
+    {
+        path: 'prestamos',
+        component: prestamos_component_1.PrestamosComponent
     },
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

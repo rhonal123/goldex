@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var IndexComponent = (function () {
     function IndexComponent(route, viewContainerRef) {
         this.route = route;
@@ -17,14 +17,14 @@ var IndexComponent = (function () {
     }
     IndexComponent.prototype.ngOnInit = function () {
     };
+    IndexComponent = __decorate([
+        core_1.Component({
+            selector: 'index-component',
+            templateUrl: 'app/templates/index.component.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef])
+    ], IndexComponent);
     return IndexComponent;
 }());
-IndexComponent = __decorate([
-    core_1.Component({
-        selector: 'index-component',
-        templateUrl: 'app/templates/index.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, core_1.ViewContainerRef])
-], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

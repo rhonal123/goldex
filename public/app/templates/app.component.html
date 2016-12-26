@@ -1,24 +1,39 @@
-<section class="titulo container-fluid">
-  <div class="row headerrow">
-    <div class="headerprincipal">
-      <img src="app/images/indice.png" alt="..." class="img-rounded iconoprincipal">
-    </div>
-  </div>
+<section class="container-fluid cabezera">
+
 </section>
-<section class="cuerpo container-fluid">
-      <div class="col-md-2 sidenav panel-body  ">
+
+<section class="container-fluid">
+  <div class="col-md-2 sidenav well well-sm  ">
+    <accordion role="tablist" aria-multiselectable="true" > 
+        <accordion-group heading="Midinero" panelClass="panel-default acordion-item" >
         <ul class="list-group">
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="miMoney" >Mi Dinero</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="bancos" >Bancos</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="cuentas">Cuentas</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="negocios">Negocios</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="movimientos">Movimientos</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="usuarios">Usuario</a></li>
-          <li class="list-group-item" routerLinkActive="active"><a routerLink="cierres">Cierres</a></li>
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="miMoney" >Dashboard</a></li>
         </ul>
-      </div>
-      <div class="col-md-10 sidenav  panel-body ">
-          <router-outlet>
-          </router-outlet>
-      </div>
+        </accordion-group>
+        <accordion-group heading="Bancos" panelClass="panel-default acordion-item" >
+        <ul class="list-group">
+          <li class="list-group-item" routerLinkActive="active"   ><a routerLink="bancos">Bancos</a></li>
+          <li class="list-group-item" routerLinkActive="active" ><a routerLink="cuentas" >Cuentas</a></li>
+        </ul>
+        </accordion-group>
+        <accordion-group heading="Negocios" panelClass="panel-default acordion-item">
+        <ul class="list-group">
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="negocios">Negocios</a></li>
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="prestamos">Prestamos</a></li>
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="abonos">Abonos</a></li>
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="cierres" >Cierres</a></li>
+        </ul>
+        </accordion-group>
+
+        <accordion-group heading="Cierres Globales" panelClass="panel-default acordion-item">
+        <ul class="list-group">
+          <li class="list-group-item" routerLinkActive="active"><a routerLink="servicios" >Cierres</a></li>
+        </ul>
+        </accordion-group>
+    </accordion>
+  </div>
+  <div class="col-md-10 sidenav well well-sm">
+    <router-outlet>
+    </router-outlet>
+  </div>
 </section>

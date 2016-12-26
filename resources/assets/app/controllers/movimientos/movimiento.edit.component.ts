@@ -8,7 +8,6 @@ import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/f
 
 declare var $: any;
 
-
 @Component({
   selector: 'movimiento-edit-component',
   templateUrl: 'app/templates/movimientos/movimiento.edit.component.html',
@@ -64,9 +63,6 @@ export class MovimientoEditComponent implements OnInit {
     this.movimiento.banco_destino_id =this.jbancoDestino.val();
     this.movimiento.negocio_id =  this.jnegocio.val();
     this.movimiento.fecha =  this.jfecha.val();
-    console.log("------------------------------------");
-    console.log(this.jfecha.val());
-    console.log(this.movimiento);
     this.movimientoService.guardar(this.movimiento).then(movimiento => {
       this.component.changeTable(movimiento);
       this.hideModal();

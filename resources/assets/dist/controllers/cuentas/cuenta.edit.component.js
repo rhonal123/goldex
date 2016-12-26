@@ -8,13 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var cuenta_1 = require("./../../models/cuenta");
-var cuenta_service_1 = require("./../../services/cuenta.service");
-var banco_service_1 = require("./../../services/banco.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var core_2 = require("@angular/core");
-var forms_1 = require("@angular/forms");
+var core_1 = require('@angular/core');
+var cuenta_1 = require('./../../models/cuenta');
+var cuenta_service_1 = require('./../../services/cuenta.service');
+var banco_service_1 = require('./../../services/banco.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var core_2 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var CuentaEditComponent = (function () {
     function CuentaEditComponent(cuentaService, bancoService, fB) {
         this.cuentaService = cuentaService;
@@ -94,12 +94,8 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent.prototype.formBuilder = function () {
         var _this = this;
         this.cuentaForm = this.fB.group({
-            'id': '',
             'numero': '',
             'banco_id': '',
-            'banco': null,
-            'created_at': '',
-            'updated_at': ''
         });
         this.cuentaForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
     };
@@ -108,33 +104,36 @@ var CuentaEditComponent = (function () {
     };
     CuentaEditComponent.prototype.setModel = function (cuenta) {
         this.cuenta = cuenta;
-        this.cuentaForm.setValue(cuenta_1.Cuenta.clone(cuenta));
+        this.cuentaForm.setValue({
+            'numero': cuenta.numero,
+            'banco_id': cuenta.banco_id
+        });
     };
     CuentaEditComponent.prototype.openModal = function (component) {
         this.component = component;
         this.modal.show();
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CuentaEditComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_2.EventEmitter)
+    ], CuentaEditComponent.prototype, "onShown", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', cuenta_1.Cuenta)
+    ], CuentaEditComponent.prototype, "cuenta", void 0);
+    CuentaEditComponent = __decorate([
+        core_1.Component({
+            selector: 'cuenta-edit-component',
+            templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
+            providers: [cuenta_service_1.CuentaService]
+        }), 
+        __metadata('design:paramtypes', [cuenta_service_1.CuentaService, banco_service_1.BancoService, forms_1.FormBuilder])
+    ], CuentaEditComponent);
     return CuentaEditComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], CuentaEditComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_2.EventEmitter)
-], CuentaEditComponent.prototype, "onShown", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", cuenta_1.Cuenta)
-], CuentaEditComponent.prototype, "cuenta", void 0);
-CuentaEditComponent = __decorate([
-    core_1.Component({
-        selector: 'cuenta-edit-component',
-        templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
-        providers: [cuenta_service_1.CuentaService]
-    }),
-    __metadata("design:paramtypes", [cuenta_service_1.CuentaService, banco_service_1.BancoService, forms_1.FormBuilder])
-], CuentaEditComponent);
 exports.CuentaEditComponent = CuentaEditComponent;
 //# sourceMappingURL=cuenta.edit.component.js.map

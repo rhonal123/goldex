@@ -16,8 +16,9 @@ class BancosController extends Controller
 {
 
 	public function show($id){
-		$banco = Banco::findOrFail($id);///->first();
-		return $banco;
+ 
+		return Banco::findOrFail($id);
+
 	}
 
 	public function delete($id){
@@ -63,7 +64,7 @@ class BancosController extends Controller
 			return Banco::create(['nombre' => $bancoRequest['nombre']]);
 		}
 	}
-
+ 
 
 	public function index(Request $request){
  		///$page = $request->input('page');

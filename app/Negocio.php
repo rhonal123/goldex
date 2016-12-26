@@ -10,6 +10,7 @@ class Negocio extends Model
     //
   protected $fillable = ['nombre','rif','descripcion','direccion','encargado','telefono'];
   protected $guarded = ['id'];
+  protected $hidden = ['created_at','updated_at'];
 
   public static $val = [
   	"nombre"=> 'required|max:100',

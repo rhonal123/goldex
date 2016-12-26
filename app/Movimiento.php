@@ -8,11 +8,23 @@ use Validator;
 
 class Movimiento extends Model
 {
-    // tipo = efectivo,transferencia 
+  // tipo = EFECTIVO,TRANSFERENCIA 
 
-	protected $fillable = ['negocio_id','monto','fecha','descripcion','tipo','clasificacion','cuenta_id','user_id','puro','cuenta_destino','banco_destino_id'];
+	protected $fillable = [ 
+		'negocio_id',
+		'monto',
+		'fecha',
+		'descripcion',
+		'tipo',
+		'clasificacion',
+		'cuenta_id',
+		'user_id',
+		'puro',
+		'cuenta_destino',
+		'banco_destino_id'
+		];
+
   protected $guarded = ['id'];
-
 
   public static $val = [
   	"negocio_id"=> 'required',
@@ -78,9 +90,7 @@ class Movimiento extends Model
   }
 
   public static function validador($values){
-
-
-/*$validator->after(function ($validator) {
+		/*$validator->after(function ($validator) {
     if ($this->somethingElseIsInvalid()) {
         $validator->errors()->add('field', 'Something is wrong with this field!');
     	}

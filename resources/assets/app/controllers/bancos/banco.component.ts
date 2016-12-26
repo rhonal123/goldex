@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Banco } from './../../models/banco';
+import { Prestamo } from './../../models/prestamo';
+
 import { BancoService } from './../../services/banco.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
-
 
 @Component({
   selector: 'banco-component',
@@ -18,7 +19,7 @@ export class BancoComponent implements OnInit {
 
 
   constructor(private bancoService: BancoService) {
-
+    
   }
   ngOnInit(): void {
 		

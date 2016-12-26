@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var banco_1 = require("./../../models/banco");
-var banco_service_1 = require("./../../services/banco.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var forms_1 = require("@angular/forms");
+var core_1 = require('@angular/core');
+var banco_1 = require('./../../models/banco');
+var banco_service_1 = require('./../../services/banco.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var forms_1 = require('@angular/forms');
 var BancoEditComponent = (function () {
     function BancoEditComponent(bancoService, fB) {
         this.bancoService = bancoService;
@@ -45,9 +45,7 @@ var BancoEditComponent = (function () {
         var _this = this;
         this.bancoForm = this.fB.group({
             'id': '',
-            'nombre': '',
-            'created_at': '',
-            'updated_at': ''
+            'nombre': ''
         });
         this.bancoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
     };
@@ -56,29 +54,32 @@ var BancoEditComponent = (function () {
     };
     BancoEditComponent.prototype.setModel = function (banco) {
         this.banco = banco;
-        this.bancoForm.setValue(banco_1.Banco.clone(banco));
+        this.bancoForm.setValue({
+            'id': banco.id,
+            'nombre': banco.nombre
+        });
     };
     BancoEditComponent.prototype.openModal = function (component) {
         this.component = component;
         this.modal.show();
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], BancoEditComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', banco_1.Banco)
+    ], BancoEditComponent.prototype, "banco", void 0);
+    BancoEditComponent = __decorate([
+        core_1.Component({
+            selector: 'banco-edit-component',
+            templateUrl: 'app/templates/bancos/banco.edit.component.html',
+            providers: [banco_service_1.BancoService]
+        }), 
+        __metadata('design:paramtypes', [banco_service_1.BancoService, forms_1.FormBuilder])
+    ], BancoEditComponent);
     return BancoEditComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], BancoEditComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", banco_1.Banco)
-], BancoEditComponent.prototype, "banco", void 0);
-BancoEditComponent = __decorate([
-    core_1.Component({
-        selector: 'banco-edit-component',
-        templateUrl: 'app/templates/bancos/banco.edit.component.html',
-        providers: [banco_service_1.BancoService]
-    }),
-    __metadata("design:paramtypes", [banco_service_1.BancoService, forms_1.FormBuilder])
-], BancoEditComponent);
 exports.BancoEditComponent = BancoEditComponent;
 //# sourceMappingURL=banco.edit.component.js.map

@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var movimiento_1 = require("./../../models/movimiento");
-var movimiento_service_1 = require("./../../services/movimiento.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
-var http_1 = require("@angular/http");
-var movimiento_edit_component_1 = require("./movimiento.edit.component");
-var movimiento_delete_component_1 = require("./movimiento.delete.component");
-var movimiento_component_1 = require("./movimiento.component");
-var core_2 = require("@angular/core");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var movimiento_1 = require('./../../models/movimiento');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var http_1 = require('@angular/http');
+var movimiento_edit_component_1 = require('./movimiento.edit.component');
+var movimiento_delete_component_1 = require('./movimiento.delete.component');
+var movimiento_component_1 = require('./movimiento.component');
+var core_2 = require('@angular/core');
 var MovimientosComponent = (function () {
     function MovimientosComponent(route, movimientoService, _changeDetectionRef) {
         this.route = route;
@@ -126,31 +126,31 @@ var MovimientosComponent = (function () {
     MovimientosComponent.prototype.hideModal = function () {
         this.modal.hide();
     };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientosComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_component_1.MovimientoComponent), 
+        __metadata('design:type', movimiento_component_1.MovimientoComponent)
+    ], MovimientosComponent.prototype, "movimientoComponent", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_edit_component_1.MovimientoEditComponent), 
+        __metadata('design:type', movimiento_edit_component_1.MovimientoEditComponent)
+    ], MovimientosComponent.prototype, "movimientoEditComponent", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_delete_component_1.MovimientoDeleteComponent), 
+        __metadata('design:type', movimiento_delete_component_1.MovimientoDeleteComponent)
+    ], MovimientosComponent.prototype, "movimientoDeleteComponent", void 0);
+    MovimientosComponent = __decorate([
+        core_1.Component({
+            selector: 'movimientos-component',
+            templateUrl: 'app/templates/movimientos/movimientos.component.html',
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, movimiento_service_1.MovimientoService, core_2.ChangeDetectorRef])
+    ], MovimientosComponent);
     return MovimientosComponent;
 }());
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], MovimientosComponent.prototype, "modal", void 0);
-__decorate([
-    core_1.ViewChild(movimiento_component_1.MovimientoComponent),
-    __metadata("design:type", movimiento_component_1.MovimientoComponent)
-], MovimientosComponent.prototype, "movimientoComponent", void 0);
-__decorate([
-    core_1.ViewChild(movimiento_edit_component_1.MovimientoEditComponent),
-    __metadata("design:type", movimiento_edit_component_1.MovimientoEditComponent)
-], MovimientosComponent.prototype, "movimientoEditComponent", void 0);
-__decorate([
-    core_1.ViewChild(movimiento_delete_component_1.MovimientoDeleteComponent),
-    __metadata("design:type", movimiento_delete_component_1.MovimientoDeleteComponent)
-], MovimientosComponent.prototype, "movimientoDeleteComponent", void 0);
-MovimientosComponent = __decorate([
-    core_1.Component({
-        selector: 'movimientos-component',
-        templateUrl: 'app/templates/movimientos/movimientos.component.html',
-        providers: [movimiento_service_1.MovimientoService]
-    }),
-    __metadata("design:paramtypes", [router_1.Router, movimiento_service_1.MovimientoService, core_2.ChangeDetectorRef])
-], MovimientosComponent);
 exports.MovimientosComponent = MovimientosComponent;
 //# sourceMappingURL=movimientos.component.js.map

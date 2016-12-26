@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var negocio_1 = require("./../../models/negocio");
-var negocio_service_1 = require("./../../services/negocio.service");
-var modal_component_1 = require("ng2-bootstrap/components/modal/modal.component");
+var core_1 = require('@angular/core');
+var negocio_1 = require('./../../models/negocio');
+var negocio_service_1 = require('./../../services/negocio.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
 var NegocioDeleteComponent = (function () {
     function NegocioDeleteComponent(negocioService) {
         this.negocioService = negocioService;
@@ -35,23 +35,23 @@ var NegocioDeleteComponent = (function () {
             _this.mensaje = error.mensaje;
         });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', negocio_1.Negocio)
+    ], NegocioDeleteComponent.prototype, "negocio", void 0);
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], NegocioDeleteComponent.prototype, "modal", void 0);
+    NegocioDeleteComponent = __decorate([
+        core_1.Component({
+            selector: 'negocio-delete-component',
+            templateUrl: 'app/templates/negocios/negocio.delete.component.html',
+            providers: [negocio_service_1.NegocioService]
+        }), 
+        __metadata('design:paramtypes', [negocio_service_1.NegocioService])
+    ], NegocioDeleteComponent);
     return NegocioDeleteComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", negocio_1.Negocio)
-], NegocioDeleteComponent.prototype, "negocio", void 0);
-__decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", modal_component_1.ModalDirective)
-], NegocioDeleteComponent.prototype, "modal", void 0);
-NegocioDeleteComponent = __decorate([
-    core_1.Component({
-        selector: 'negocio-delete-component',
-        templateUrl: 'app/templates/negocios/negocio.delete.component.html',
-        providers: [negocio_service_1.NegocioService]
-    }),
-    __metadata("design:paramtypes", [negocio_service_1.NegocioService])
-], NegocioDeleteComponent);
 exports.NegocioDeleteComponent = NegocioDeleteComponent;
 //# sourceMappingURL=negocio.delete.component.js.map

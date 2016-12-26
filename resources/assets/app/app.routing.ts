@@ -10,7 +10,7 @@ import {BancosComponent} from './controllers/bancos/bancos.component';
 import {CuentasComponent} from './controllers/cuentas/cuentas.component';
 import {NegociosComponent} from './controllers/negocios/negocios.component';
 import {MovimientosComponent} from './controllers/movimientos/movimientos.component';
-
+import { PrestamosComponent } from './controllers/prestamos/prestamos.component';
 
 const appRoutes: Routes = [
   {
@@ -38,6 +38,12 @@ const appRoutes: Routes = [
     path: 'movimientos',
     component: MovimientosComponent 
   },
+  {
+    path: 'prestamos',
+    component: PrestamosComponent 
+  },
+
+
 
 ];
 
