@@ -50,8 +50,11 @@ class PrestamosController extends Controller
 		else {
 			$prestamo->update($values);
 			$prestamo->negocio->nombre;
-			$prestamo->cuenta->numero;
 			$prestamo->user->id;
+			if($prestamo->tipo != "efectivo")
+			{
+				$prestamo->cuenta->numero;
+			}	
 			return $prestamo; 
 		}
 	}
@@ -69,8 +72,12 @@ class PrestamosController extends Controller
 			$values['user_id'] = $user->id;
 			$prestamo =Prestamo::create($values);
 			$prestamo->negocio->nombre;
-			$prestamo->cuenta->numero;
 			$prestamo->user->id;
+			if($prestamo->tipo != "efectivo")
+			{
+				$prestamo->cuenta->numero;
+			}	
+
 			return $prestamo;
 		}
 	}

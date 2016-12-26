@@ -5,10 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MiDinero</title>   
-		<link href="{{ asset('assets/stylesheets/style.css') }}" rel="stylesheet" type="text/css" >
-		<link href="{{ asset('assets/stylesheets/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css" >
-		<link href="{{ asset('assets/stylesheets/select2.min.css') }}" rel="stylesheet" type="text/css" >
-		<link href="{{ asset('assets/stylesheets/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" >
+
+    {{ Html::style('assets/stylesheets/style.css') }}
+    {{ Html::style('assets/stylesheets/bootstrap-datepicker3.css') }}
+    {{ Html::style('assets/stylesheets/select2.min.css') }}
+    {{ Html::style('assets/stylesheets/select2-bootstrap.css') }}
+
+    {{ Html::script('assets/javascripts/jquery3.min.js') }}
+    {{ Html::script('assets/javascripts/Reflect.js') }}
+    {{ Html::script('assets/javascripts/zone.js') }}
+    {{ Html::script('assets/javascripts/datepicker.js') }}
+    {{ Html::script('assets/javascripts/select2.min.js') }}
+    {{ Html::script('assets/javascripts/bundle.min.js') }}
+
 </head>
 <body>
     @yield('content')
