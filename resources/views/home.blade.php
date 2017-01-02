@@ -8,7 +8,7 @@
   
     <title>MiDinero</title>   
 
-    {{ Html::style('assets/stylesheets/style2017-01-02.css') }}
+    {{ Html::style('assets/stylesheets/style.2017-01-02.css') }}
     {{ Html::style('assets/stylesheets/bootstrap-datepicker3.css') }}
     {{ Html::style('assets/stylesheets/select2.min.css') }}
     {{ Html::style('assets/stylesheets/select2-bootstrap.css') }}
