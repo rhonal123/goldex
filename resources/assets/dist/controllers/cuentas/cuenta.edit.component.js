@@ -8,19 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var forms_1 = require('@angular/forms');
 var core_1 = require('@angular/core');
-var cuenta_1 = require('./../../models/cuenta');
 var cuenta_service_1 = require('./../../services/cuenta.service');
 var banco_service_1 = require('./../../services/banco.service');
 var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
-var core_2 = require('@angular/core');
-var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
 var CuentaEditComponent = (function () {
     function CuentaEditComponent(cuentaService, bancoService, fB) {
         this.cuentaService = cuentaService;
         this.bancoService = bancoService;
         this.fB = fB;
-        this.onShown = new core_2.EventEmitter();
         this.formErrors = {
             'nombre': ''
         };
@@ -46,54 +44,17 @@ var CuentaEditComponent = (function () {
             _this.formErrors['banco_id'] = errores.banco_id;
         });
     };
-    CuentaEditComponent.prototype.ngAfterViewInit = function () {
-    };
     CuentaEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.formBuilder();
-        var formato = function presentacion(banco) {
-            return banco.nombre || banco.text;
-        };
         this.modal.onShown.subscribe(function (event) {
-            if (_this.cuenta.id) {
-                var op = document.createElement("option");
-                op.setAttribute("value", _this.cuenta.banco.id.toString());
-                op.appendChild(document.createTextNode(_this.cuenta.banco.nombre));
-                $("#banco_id").empty();
-                $("#banco_id").append(op);
-            }
-            _this.bancoSelect = $("#banco_id").select2({
-                ajax: {
-                    url: "/sistema/bancos",
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            search: params.term,
-                            page: params.page
-                        };
-                    },
-                    processResults: function (data, params) {
-                        params.page = params.page || 1;
-                        return {
-                            results: data.data,
-                            pagination: {
-                                more: (params.page * data.per_page) < data.total
-                            }
-                        };
-                    }
-                },
-                placeholder: 'Seleccione un Banco ',
-                escapeMarkup: function (markup) { console.log(markup); return markup; },
-                minimumInputLength: 0,
-                templateSelection: formato,
-                templateResult: formato,
-            });
+            _this.bancoSelect = jquery_component_1.JqueryComponent.bancos("form #banco_id", _this.cuenta.banco);
         });
     };
     CuentaEditComponent.prototype.formBuilder = function () {
         var _this = this;
         this.cuentaForm = this.fB.group({
+            'id': '',
             'numero': '',
             'banco_id': '',
         });
@@ -105,6 +66,7 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent.prototype.setModel = function (cuenta) {
         this.cuenta = cuenta;
         this.cuentaForm.setValue({
+            'id': cuenta.id,
             'numero': cuenta.numero,
             'banco_id': cuenta.banco_id
         });
@@ -117,14 +79,6 @@ var CuentaEditComponent = (function () {
         core_1.ViewChild('modal'), 
         __metadata('design:type', modal_component_1.ModalDirective)
     ], CuentaEditComponent.prototype, "modal", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_2.EventEmitter)
-    ], CuentaEditComponent.prototype, "onShown", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', cuenta_1.Cuenta)
-    ], CuentaEditComponent.prototype, "cuenta", void 0);
     CuentaEditComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-edit-component',

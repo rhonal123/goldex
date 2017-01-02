@@ -29,4 +29,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->assertTrue(!$fails,$errors);
     }
 
+
+    public function validarformularioError($valid){
+        $fails =$valid->fails();
+        $this->assertTrue($fails," Erroro el Formulario no posee errores");
+    }
 }

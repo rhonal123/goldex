@@ -10,19 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var current_usuario_service_1 = require('./../services/current.usuario.service');
 var IndexComponent = (function () {
-    function IndexComponent(route, viewContainerRef) {
+    function IndexComponent(route, currentUsuario) {
         this.route = route;
-        this.viewContainerRef = viewContainerRef;
+        this.currentUsuario = currentUsuario;
     }
     IndexComponent.prototype.ngOnInit = function () {
+        this.user = this.currentUsuario.user;
+        console.log("blalblabla-->", this.user);
     };
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'index-component',
-            templateUrl: 'app/templates/index.component.html'
+            templateUrl: 'app/templates/index.component.html',
+            providers: [current_usuario_service_1.CurrentUsuario]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef])
+        __metadata('design:paramtypes', [router_1.Router, current_usuario_service_1.CurrentUsuario])
     ], IndexComponent);
     return IndexComponent;
 }());

@@ -18,7 +18,7 @@
 
 <div class="col-md-12">
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-striped">
       <thead>
         <tr>
         <th>Id</th><th>Negocio</th><th>Descripcion</th><th>Precio Material</th><th>Monto</th><th>Referencia</th><th>Fecha</th><th>Tipo</th><th></th>
@@ -27,7 +27,7 @@
       <tbody class="prestamos">
         <tr *ngFor="let prestamo of prestamos" [class.active]="prestamo === activeMovimiento" (click)="onActive(prestamo)">
           <td>{{prestamo.id}}</td>
-          <td>{{prestamo.negocio.nombre}}</td>
+          <td>{{prestamo.negocio|detalleNegocio}}</td>
           <td>{{prestamo.descripcion}}</td>
           <td>{{prestamo.precio_material}}</td>
           <td>{{prestamo.monto}}</td>
@@ -106,5 +106,3 @@
 </div>
 </div>
 </div>
- 
- 

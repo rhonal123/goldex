@@ -35,7 +35,6 @@ var NegociosComponent = (function () {
         }
         this.observable = this.negocioService.getNegocios(this.current_page.toString(), this.serach());
         this.obser = this.observable.subscribe(function (data) {
-            data = data;
             _this.negocios = data.data;
             _this.per_page = data.per_page;
             _this.total = data.total;

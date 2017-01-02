@@ -7,14 +7,14 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { Observable }     from 'rxjs/Observable';
 import {URLSearchParams} from '@angular/http';  
 
+import { Paginacion } from './../../models/paginacion';
 
 import { PrestamoEditComponent } from './prestamo.edit.component';
 import { PrestamoDeleteComponent } from './prestamo.delete.component';
 import { PrestamoComponent } from './prestamo.component';
-
-
 import { ChangeDetectorRef } from '@angular/core';
-declare var $: any;
+import { JqueryComponent } from './../jquery.component';
+
 
 
 @Component({
@@ -38,12 +38,13 @@ export class PrestamosComponent implements OnInit  , AfterViewInit {
   private search_desde: string;
   private search_hasta: string;
 
-  private observable:  Observable<any>;
+  private observable:  Observable<Paginacion>;
   private obser: any;
 
   private jDesde:any;
   private jHasta: any;
   private jnegocio: any;
+
 
   @ViewChild('modal') modal: ModalDirective;
  
@@ -89,38 +90,9 @@ export class PrestamosComponent implements OnInit  , AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.jDesde =  ($("#search_desde") as any ).datepicker({format: "yyyy/mm/dd"});
-    this.jHasta = ($("#search_hasta") as any).datepicker({format: "yyyy/mm/dd"});
-
-    let formato = (obj: any): string => {return obj.nombre;};
-
-    this.jnegocio = ($("#negocio_id") as any).select2({
-        ajax: {
-          url: "/sistema/negocios",
-          dataType: 'json',
-          delay: 250,
-          data:  (params: any) => {
-            return {
-              search: params.term, // search term
-              page: params.page
-            };
-          },
-          processResults: (data: any, params: any) => {
-            params.page = params.page || 1;
-            return {
-              results: data.data,
-              pagination: {
-                more: (params.page * data.per_page) < data.total
-              }
-            };
-          }
-        },
-        placeholder: 'Seleccione un Negocio ',
-        escapeMarkup: function (markup: any) {    return markup; }, // let our custom formatter work
-        minimumInputLength: 0,
-        templateSelection: formato,
-        templateResult: formato,
-    });
+    this.jDesde = JqueryComponent.fecha("#search_desde");
+    this.jHasta = JqueryComponent.fecha("#search_hasta");
+    this.jnegocio =JqueryComponent.negocios("#negocio_id");
     this.loadTable(); 
   }
 

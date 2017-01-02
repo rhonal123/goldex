@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var banco_1 = require('./../../models/banco');
 var banco_service_1 = require('./../../services/banco.service');
 var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
 var BancoComponent = (function () {
@@ -24,10 +23,6 @@ var BancoComponent = (function () {
     BancoComponent.prototype.openModal = function () {
         this.modal.show();
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', banco_1.Banco)
-    ], BancoComponent.prototype, "banco", void 0);
     __decorate([
         core_1.ViewChild('modal'), 
         __metadata('design:type', modal_component_1.ModalDirective)

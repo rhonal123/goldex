@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ViewChild,   AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cuenta } from './../../models/cuenta';
-import { Cuentas } from './../../models/cuentas';
+
+import { Paginacion } from './../../models/paginacion';
 
 import { CuentaService } from './../../services/cuenta.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
@@ -34,7 +35,7 @@ export class CuentasComponent implements OnInit  , AfterViewInit {
   private last_page: number;
   private search: string;
   private sort: string = "id";
-  private observable:  Observable<Cuentas>;
+  private observable:  Observable<Paginacion>;
   private obser: any;
   //private loading: boolean;;
  
@@ -69,7 +70,7 @@ export class CuentasComponent implements OnInit  , AfterViewInit {
     }
     this.observable = this.cuentaService.getCuentas(this.current_page.toString(),this.serach());
     this.obser = this.observable.subscribe(data =>{
-        data = data as Cuentas;
+ 
         this.cuentas = data.data;
         this.per_page= data.per_page;
         this.total= data.total;

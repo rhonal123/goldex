@@ -1,7 +1,3 @@
-
-
- 
-
 export class Negocio {
   id: number;
   nombre: string;
@@ -38,7 +34,6 @@ export class Negocio {
  		_negocio.updated_at = negocio.updated_at;
     return _negocio;
   }
-
 
 }
 

@@ -1,5 +1,3 @@
- 
-
 import { Banco } from './banco';
 import { Negocio } from './negocio';
 import { Cuenta } from './cuenta';
@@ -38,11 +36,11 @@ export class Prestamo {
 	  this.fecha = null;
 	  this.tipo = "efectivo";
   }
-
+/*
   public static strFecha(prestamo: Prestamo) :string {
   	prestamo.fecha = new Date(prestamo.fecha.toString());
     return prestamo.fecha.getFullYear()+"/"+(prestamo.fecha.getMonth()+1)+"/"+prestamo.fecha.getDate();
   }
-
+*/
 }
 

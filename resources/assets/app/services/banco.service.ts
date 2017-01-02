@@ -1,76 +1,59 @@
+import { Headers, Http , RequestOptions, Response,  HttpModule, URLSearchParams } from '@angular/http';
 import { Injectable,  ViewChild, ElementRef } from '@angular/core';
-
-import { Banco } from '../models/banco';
-import { Bancos } from '../models/bancos';
-
-import { Headers, Http , RequestOptions, Response } from '@angular/http';
-import { HttpModule } from '@angular/http';
-import { URLSearchParams } from '@angular/http';
+import { GeneralServicio } from './general.servicio'; 
+import { Paginacion } from '../models/paginacion';
 import { Observable }     from 'rxjs/Observable';
+import { Banco } from '../models/banco';
+
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class BancoService {
+export class BancoService extends GeneralServicio {
 
-	bancosUrl = '/sistema/bancos'; 
-  headers = new Headers({ 'Content-Type': 'application/json' });
- 
-	constructor(private http: Http) { }
+	url = '/sistema/bancos';  
 
-  getBancos(page :any,searchs? :URLSearchParams):  Observable<Bancos> {
-    searchs = (searchs? searchs: new URLSearchParams());
-    searchs.set("page",page);
-    return this.http.get(this.bancosUrl,{search: searchs}).
-      map((res:Response) => res.json());
+	constructor(private http: Http) {
+    super()
   }
 
+  getBancos(page :any,searchs? :URLSearchParams):  Observable<Paginacion> {
+    searchs = (searchs? searchs: new URLSearchParams());
+    searchs.set("page",page);
+    return this.http.get(this.url,{search: searchs}).
+      map((res:Response) => res.json())
+      .catch(this.handleError);
+  }
 
   create(banco: Banco ): Promise<Banco> {
-    let headers = new Headers({ 'Content-Type': 'application/json',
-          'Accept' :'application/json, text/javascript, */*; q=0.01' });
-    let options = new RequestOptions({ headers: headers });
     return this.http
-      .post(this.bancosUrl,JSON.stringify({banco: banco}),options)
+      .post(this.url,JSON.stringify({banco: banco}),this.options)
       .toPromise()
       .then(res => res.json() as Banco )
       .catch(this.handleError);
   }
 
   delete(banco: Banco): Promise<Banco> {
-    let headers = new Headers({ 'Content-Type': 'application/json',
-          'Accept' :'application/json, text/javascript, */*; q=0.01' });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.delete(this.bancosUrl+"/"+banco.id,options)
+    return this.http.delete(this.url+"/"+banco.id,this.options)
       .toPromise()
       .then(res => res.json() as Banco )
       .catch(this.handleError);
   }
 
   update(banco: Banco ): Promise<Banco> {
-    let headers = new Headers({ 'Content-Type': 'application/json',
-          'Accept' :'application/json, text/javascript, */*; q=0.01' });
-    let options = new RequestOptions({ headers: headers });
     return this.http
-      .patch(this.bancosUrl+"/"+banco.id,JSON.stringify({banco: banco}),options)
+      .patch(this.url+"/"+banco.id,JSON.stringify({banco: banco}),this.options)
       .toPromise()
       .then(res => res.json() as Banco )
       .catch(this.handleError);
   }
 
   guardar(banco: Banco ): Promise<Banco> {
-    if(banco.id)
-    {
+    if(banco.id) {
       return this.update(banco);
     }
-    else
-    {
+    else {
       return this.create(banco);
     }
   }
-
-	private handleError(error: Response): Promise<any> {
-  	console.error('Ocurrio un Error ', error.status, error.text); // for demo purposes only
-  	return Promise.reject(error.json());
-	}
 
 }

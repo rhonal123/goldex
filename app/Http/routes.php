@@ -33,7 +33,21 @@ Route::get('/', function () {
 });
 
 */
+
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 Route::group(array('before' => 'auth'), function() {
+    
+    Route::get('current_user', function(){
+        return Auth::user();
+    })->middleware('auth');
+
+    Route::group(['prefix' => 'webservices/','before' => 'auth'], function () {
+        Route::get('tipos','ServiciosController@tipos')->middleware('auth');
+
+    });
+
 	Route::group(['prefix' => 'sistema','before' => 'auth'], function () {
 
         Route::get('bancos','BancosController@index')->middleware('auth');
@@ -53,6 +67,10 @@ Route::group(array('before' => 'auth'), function() {
         Route::post('negocios','NegociosController@create')->middleware('auth');
         Route::delete('negocios/{id}','NegociosController@delete')->middleware('auth');
         Route::patch('negocios/{id}','NegociosController@update')->middleware('auth');
+        Route::patch('negocios/{id}/prestamos','NegociosController@prestamos')->middleware('auth');
+        Route::patch('negocios/{id}/abonos','NegociosController@abonos')->middleware('auth');
+        Route::patch('negocios/{id}/cierres','NegociosController@cierres')->middleware('auth');
+
 
         Route::group(array('prefix' => 'negocios/{id}/'), function() {
             Route::get('movimientos','NegociosController@movimientos')->middleware('auth');
@@ -63,7 +81,37 @@ Route::group(array('before' => 'auth'), function() {
         Route::post('prestamos','PrestamosController@create')->middleware('auth');
         Route::delete('prestamos/{id}','PrestamosController@delete')->middleware('auth');
         Route::patch('prestamos/{id}','PrestamosController@update')->middleware('auth');
+        Route::get('prestamos/{negocio_id}/nocerrados','PrestamosController@nocerrados')->middleware('auth');
 
+        Route::get('abonos','AbonosController@index')->middleware('auth');
+        Route::get('abonos/{id}','AbonosController@show')->middleware('auth');
+        Route::post('abonos','AbonosController@create')->middleware('auth');
+        Route::delete('abonos/{id}','AbonosController@delete')->middleware('auth');
+        Route::patch('abonos/{id}','AbonosController@update')->middleware('auth');
+        Route::get('abonos/{negocio_id}/nocerrados','AbonosController@nocerrados')->middleware('auth');
+
+        Route::get('tipos','TiposController@index')->middleware('auth');
+        Route::get('tipos/{id}','TiposController@show')->middleware('auth');
+        Route::post('tipos','TiposController@create')->middleware('auth');
+        Route::delete('tipos/{id}','TiposController@delete')->middleware('auth');
+        Route::patch('tipos/{id}','TiposController@update')->middleware('auth');
+
+        Route::get('usuarios','UsuariosController@index')->middleware('auth');
+        Route::get('usuarios/{id}','UsuariosController@show')->middleware('auth');
+        Route::get('usuarios/{id}/permisos','UsuariosController@permisos')->middleware('auth');
+        Route::post('usuarios','UsuariosController@create')->middleware('auth');
+        Route::patch('usuarios/{id}','UsuariosController@update')->middleware('auth');
+        Route::patch('usuarios/{id}','UsuariosController@update')->middleware('auth');
+        Route::patch('usuarios/{id}/password','UsuariosController@password')->middleware('auth');
+        Route::patch('usuarios/{id}/permisos','UsuariosController@agregarPermiso')->middleware('auth');
+        Route::delete('usuarios/{id}','UsuariosController@delete')->middleware('auth');
+        Route::delete('usuarios/{id}/permisos/{permiso}','UsuariosController@quitarPermiso')->middleware('auth');
+
+        Route::get('cierres','CierresController@index')->middleware('auth');
+        Route::get('cierres/{id}','CierresController@show')->middleware('auth');
+        Route::post('cierres','CierresController@create')->middleware('auth');
+        Route::delete('cierres/{id}','CierresController@delete')->middleware('auth');
+        Route::patch('cierres/{id}','CierresController@update')->middleware('auth');
 	});
 });
 

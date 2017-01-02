@@ -1,6 +1,4 @@
-
 export class Paginacion {
-
 	total: number;
 	per_page: number;
 	current_page: number;
@@ -10,7 +8,4 @@ export class Paginacion {
 	from: number;
 	to: number;
 	data: any[];
-
 }
-
- 

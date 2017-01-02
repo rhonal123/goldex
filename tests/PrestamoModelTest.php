@@ -18,7 +18,7 @@ class PrestamoModelTest extends TestCase
     $value = [
       'negocio_id' => 01, 
       'cuenta_id' =>  null,
-      'user_id' => 01 , 
+      'user_id' =>  1 , 
       'fecha' => '24/12/2016',
       'comision' => 1,   // en caso de ser efectivo 
       'precio_material' => 225,
@@ -27,7 +27,7 @@ class PrestamoModelTest extends TestCase
       'tipo'  => 'efectivo',
       'monto' => 4500
     ];
-    $valid = Prestamo::validator($value);
+    $valid = Prestamo::validador($value);
     $this->validarformulario($valid);
     $prestamo = Prestamo::create($value);
     $this->assertNotEmpty($prestamo->id);
@@ -39,14 +39,14 @@ class PrestamoModelTest extends TestCase
       "negocio_id"  =>  null,
       "cuenta_id"  => null,
       "monto"  => 0,
-      "comision"  => 0,
-      "precio_material"  => 0,
+      "comision"  => null,
+      "precio_material"  => null,
       "referencia"  => null,
       "descripcion"  => null,
       "fecha"  => null,
       "tipo"  => "efectivo"
     ];
-    $valid = Prestamo::validator($value);
+    $valid = Prestamo::validador($value);
     $this->assertTrue($valid->fails());
     $this->assertSame(['Seleccione un Negocio.'],$valid->errors()->get('negocio_id'));
     $this->assertSame(['Ingrese la comision aplicada al efectivo'],$valid->errors()->get('comision'));
@@ -67,7 +67,7 @@ class PrestamoModelTest extends TestCase
       'tipo'  => 'transferencia',
       'monto' => 4500
     ];
-    $valid = Prestamo::validator($value);
+    $valid = Prestamo::validador($value);
     $this->validarformulario($valid);
     $prestamo = Prestamo::create($value);
     $this->assertNotEmpty($prestamo->id);
@@ -86,7 +86,7 @@ class PrestamoModelTest extends TestCase
       'tipo'  => 'transferencia',
       'monto' => 4500
     ];
-    $valid = Prestamo::validator($value);
+    $valid = Prestamo::validador($value);
     $this->assertTrue($valid->fails());
     $this->assertSame(['Seleccione un Negocio.'],$valid->errors()->get('negocio_id'));
     $this->assertSame(['Seleccione la Cuenta'],$valid->errors()->get('cuenta_id'));

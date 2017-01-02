@@ -13,17 +13,6 @@ class Cuenta extends Model
   protected $guarded = ['id'];
   protected $hidden = ['created_at','updated_at'];
 
-  public static $val = [
-  		"numero" => 'required|max:70|unique:cuentas',
-  		"banco_id" => 'required'
-  	];
-
-  public static $message = [
-    	'numero.required' => 'Introduzca una numero valido !',
-    	'numero.max' => 'El valor maximo son 70 caracteres !',
-    	'numero.unique' => 'Este numero ah sido utilizado!',
-    	'banco_id' => "Seleccione un Banco "
-	];
 
   private $banco; 
 
@@ -35,10 +24,26 @@ class Cuenta extends Model
     return $query->paginate(15);
   }
 
-
-  public static function validador($values){
-   	return Validator::make($values,self::$val,self::$message);
+  public static function validador($values,$cuenta=null){
+    if($cuenta) {
+      $val = [
+        "numero" => 'required|max:70|unique:cuentas,numero,'.$cuenta->id,
+        "banco_id" => 'required'];
+    }
+    else {
+      $val = [
+        "numero" => 'required|max:70|unique:cuentas',
+        "banco_id" => 'required'];
+    }
+    $message = [
+      'numero.required' => 'Introduzca una numero valido !',
+      'numero.max' => 'El valor maximo son 70 caracteres !',
+      'numero.unique' => 'Este numero ah sido utilizado!',
+      'banco_id' => "Seleccione un Banco "
+    ];
+    return Validator::make($values,$val,$message);
   }
+
 
 
 	public function banco() {

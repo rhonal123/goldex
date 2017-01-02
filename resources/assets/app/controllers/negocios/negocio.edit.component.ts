@@ -75,8 +75,6 @@ export class NegocioEditComponent implements OnInit {
       'direccion':'',
       'encargado':'',
       'telefono':'',
-      'created_at': '',
-      'updated_at': ''
     });
    this.negocioForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }

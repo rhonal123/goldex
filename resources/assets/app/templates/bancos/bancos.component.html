@@ -9,19 +9,26 @@
 <div class="col-md-10" align="right">
   <div class="form-inline">
     <div class="form-group">
-      <input type="text" [(ngModel)]="search" class="form-control col-md-6" placeholder="buscar" (keyup)="loadTable()">
+      <input type="text" [(ngModel)]="search" class="form-control col-md-6" placeholder="buscar" (keyup.enter)="loadTable()">
       <button type="button" class="btn  btn-default" (click)="loadTable()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
     </div>
   </div>
 </div>
 
-<div class="col-md-12">
+<div *ngIf="mensaje">
+  <p class="bg-warning">{{mensaje}}</p>
+</div>
+<div class="col-md-12" *ngIf="isLoading$ | async">
+  <p class="text-primary">Cargando Información ...........</p>
+</div>
+
+<div class="col-md-12"> 
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-striped">
       <thead>
         <tr><th>Id</th><th>Marca</th><th></th></tr>
       </thead>
-      <tbody class="bancos">
+      <tbody class="bancos" >
         <tr *ngFor="let banco of bancos" [class.active]="banco === activeBanco" (click)="onActive(banco)">
           <td ><span>{{banco.id}}</span></td>
           <td ><span>{{banco.nombre}}</span></td>

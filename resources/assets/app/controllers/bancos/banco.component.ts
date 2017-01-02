@@ -12,7 +12,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
   providers: [BancoService]
 })
 export class BancoComponent implements OnInit {
-  @Input()
+
   banco: Banco;
 
   @ViewChild('modal') modal: ModalDirective;

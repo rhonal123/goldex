@@ -5,8 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Log;
- 
-
 
 use DB;
 use Validator;
@@ -29,9 +27,9 @@ class Banco extends Model
     return $query->paginate(15);
   }
 
-  public static function validador($values,$user= null){
-    if($user){
-       $val = ["nombre"=> 'required|max:50|unique:bancos,nombre,'.$user->id];
+  public static function validador($values,$banco){
+    if($banco){
+       $val = ["nombre"=> 'required|max:50|unique:bancos,nombre,'.$banco->id];
     }
     else {
       $val = ["nombre"=> 'required|max:50|unique:bancos'];

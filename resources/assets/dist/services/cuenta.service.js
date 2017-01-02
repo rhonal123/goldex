@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,47 +13,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var http_2 = require('@angular/http');
+var core_1 = require('@angular/core');
+var general_servicio_1 = require('./general.servicio');
 require('rxjs/add/operator/toPromise');
-var CuentaService = (function () {
+var CuentaService = (function (_super) {
+    __extends(CuentaService, _super);
     function CuentaService(http) {
+        _super.call(this);
         this.http = http;
-        this.cuentasUrl = '/sistema/cuentas';
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.url = '/sistema/cuentas';
     }
     CuentaService.prototype.getCuentas = function (page, searchs) {
-        searchs = (searchs ? searchs : new http_2.URLSearchParams());
+        searchs = (searchs ? searchs : new http_1.URLSearchParams());
         searchs.set("page", page);
-        return this.http.get(this.cuentasUrl, { search: searchs }).
-            map(function (res) { return res.json(); });
+        return this.http
+            .get(this.url, { search: searchs })
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
     };
     CuentaService.prototype.create = function (cuenta) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json',
-            'Accept': 'application/json, text/javascript, */*; q=0.01' });
-        var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .post(this.cuentasUrl, JSON.stringify({ cuenta: cuenta }), options)
+            .post(this.url, JSON.stringify({ cuenta: cuenta }), this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     CuentaService.prototype.delete = function (cuenta) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json',
-            'Accept': 'application/json, text/javascript, */*; q=0.01' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.delete(this.cuentasUrl + "/" + cuenta.id, options)
+        return this.http
+            .delete(this.url + "/" + cuenta.id, this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     CuentaService.prototype.update = function (cuenta) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json',
-            'Accept': 'application/json, text/javascript, */*; q=0.01' });
-        var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .patch(this.cuentasUrl + "/" + cuenta.id, JSON.stringify({ cuenta: cuenta }), options)
+            .patch(this.url + "/" + cuenta.id, JSON.stringify({ cuenta: cuenta }), this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
@@ -61,15 +61,11 @@ var CuentaService = (function () {
             return this.create(cuenta);
         }
     };
-    CuentaService.prototype.handleError = function (error) {
-        console.error('Ocurrio un Error ', error.status, error.text);
-        return Promise.reject(error.json());
-    };
     CuentaService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
     ], CuentaService);
     return CuentaService;
-}());
+}(general_servicio_1.GeneralServicio));
 exports.CuentaService = CuentaService;
 //# sourceMappingURL=cuenta.service.js.map

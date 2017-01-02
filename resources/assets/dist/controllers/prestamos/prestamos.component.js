@@ -18,6 +18,7 @@ var prestamo_edit_component_1 = require('./prestamo.edit.component');
 var prestamo_delete_component_1 = require('./prestamo.delete.component');
 var prestamo_component_1 = require('./prestamo.component');
 var core_2 = require('@angular/core');
+var jquery_component_1 = require('./../jquery.component');
 var PrestamosComponent = (function () {
     function PrestamosComponent(route, prestamoService, _changeDetectionRef) {
         this.route = route;
@@ -43,36 +44,9 @@ var PrestamosComponent = (function () {
         });
     };
     PrestamosComponent.prototype.ngOnInit = function () {
-        this.jDesde = $("#search_desde").datepicker({ format: "yyyy/mm/dd" });
-        this.jHasta = $("#search_hasta").datepicker({ format: "yyyy/mm/dd" });
-        var formato = function (obj) { return obj.nombre; };
-        this.jnegocio = $("#negocio_id").select2({
-            ajax: {
-                url: "/sistema/negocios",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        search: params.term,
-                        page: params.page
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-                    return {
-                        results: data.data,
-                        pagination: {
-                            more: (params.page * data.per_page) < data.total
-                        }
-                    };
-                }
-            },
-            placeholder: 'Seleccione un Negocio ',
-            escapeMarkup: function (markup) { return markup; },
-            minimumInputLength: 0,
-            templateSelection: formato,
-            templateResult: formato,
-        });
+        this.jDesde = jquery_component_1.JqueryComponent.fecha("#search_desde");
+        this.jHasta = jquery_component_1.JqueryComponent.fecha("#search_hasta");
+        this.jnegocio = jquery_component_1.JqueryComponent.negocios("#negocio_id");
         this.loadTable();
     };
     PrestamosComponent.prototype.agregar = function () {

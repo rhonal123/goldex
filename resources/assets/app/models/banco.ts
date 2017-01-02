@@ -9,14 +9,8 @@ export class Banco {
   	this.id= id;
   	this.created_at = (created_at? created_at: null );
  		this.updated_at = (updated_at? updated_at: null );
-
   }
-
  	static clone(banco: Banco): Banco {
     return new Banco(banco.id,banco.nombre,banco.created_at,banco.updated_at);
   }
-
-
 }
-
- 

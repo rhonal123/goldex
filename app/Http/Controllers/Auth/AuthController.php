@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use Auth;
-
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -75,5 +75,31 @@ class AuthController extends Controller
         ]);
     }
  
+    protected function sendFailedLoginResponse(Request $request)
+    {
+    return response()->json(['email' => ["Usuario o contraseña invalida"]], 422);    
+    } 
+
+    protected function handleUserWasAuthenticated(Request $request, $throttles)
+    {
+        if ($throttles) {
+            $this->clearLoginAttempts($request);
+        }
+        if (method_exists($this, 'authenticated')) {
+            return $this->authenticated($request, Auth::guard($this->getGuard())->user());
+        }
+        return  Auth::user();
+    }
+
+
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->secondsRemainingOnLockout($request);
+        return  Auth::user();
+    }
+
+
+ 
+
 
 }

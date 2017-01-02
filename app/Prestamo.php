@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 
 use DB;
 use Validator;
@@ -20,6 +20,7 @@ class Prestamo extends Model
    ];
 
   protected $hidden = ['created_at','updated_at'];
+ /// protected $appends = ['user','negocio','cuenta'];
 
 
 
@@ -34,6 +35,22 @@ class Prestamo extends Model
     return $this->belongsTo('App\User');
   }
  
+
+
+  public static function nocerrados($negocio_id) {
+    return Prestamo::with('negocio','cuenta.banco','user')
+    		->where('negocio_id', '=',$negocio_id)
+    		->whereNull('cierre_id')
+    		->get();
+  }
+
+  public static function nocerrados_total_saldo($negocio_id){
+    return Prestamo::where('negocio_id', '=',$negocio_id)
+        ->whereNull('cierre_id')
+        ->sum('monto');
+  }
+
+
 
 	/**************************  Buscar *******************************************/
 
@@ -73,7 +90,7 @@ class Prestamo extends Model
 			'monto' => 'required|numeric|min:1',
 			'cuenta_id' =>  'required_if:tipo,transferencia,cheque',    
 			'tipo' => 'required|in:transferencia,efectivo,cheque',   
-			'precio_material'  =>'required|numeric|min:1' ,  
+			'precio_material'  =>'required|numeric|min:0' ,  
 			'fecha' => 	'required',		
 			'referencia' =>  'required_if:tipo,transferencia,cheque', 
 			'comision'=>  'required_if:tipo,efectivo|numeric|min:0', 
@@ -97,4 +114,8 @@ class Prestamo extends Model
   	return Validator::make($values,$validator,$message);
   }
 
+  public function getFechaAttribute()
+  {
+		return (new Carbon($this->attributes['fecha']))->format("Y/m/d");
+  }
 }

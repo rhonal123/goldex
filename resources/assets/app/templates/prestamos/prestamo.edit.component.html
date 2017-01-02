@@ -8,9 +8,9 @@
   <h4 class="modal-title">Prestamo</h4>
 </div>
 <div class="modal-body" *ngIf="prestamo">
-  <div class="panel-body" *ngIf="prestamo">
+  <div class="panel-body" >
     <h4 class="page-header" *ngIf="prestamo.id"><strong> Editar Prestamo :</strong></h4>
-    <h4 class="page-header" *ngIf="!prestamo.id"><strong> Agregar Nuevo Prestamo:</strong></h4>
+    <h4 class="page-header" *ngIf="!prestamo.id"><strong> Agregar Nuevo Prestamo :</strong></h4>
     <form [formGroup]="prestamoForm" (ngSubmit)="guardar()" class="form-horizontal">
 
       <div [ngClass]="{'form-group': true, 'col-md-6': true,'has-error': formErrors.negocio_id}">

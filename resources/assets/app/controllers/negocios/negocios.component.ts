@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, ViewChild,   AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from './../../models/negocio';
-import { Negocios } from './../../models/negocios';
 
 import { NegocioService } from './../../services/negocio.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
 import { Observable }     from 'rxjs/Observable';
 import {URLSearchParams} from '@angular/http';  
 
+import { Paginacion } from './../../models/paginacion';
 
 import { NegocioEditComponent } from './negocio.edit.component';
 import { NegocioDeleteComponent } from './negocio.delete.component';
@@ -35,7 +35,7 @@ export class NegociosComponent implements OnInit  , AfterViewInit {
   private last_page: number;
   private search: string;
   private sort: string = "id";
-  private observable:  Observable<Negocios>;
+  private observable:  Observable<Paginacion>;
   private obser: any;
   //private loading: boolean;;
  
@@ -68,7 +68,7 @@ export class NegociosComponent implements OnInit  , AfterViewInit {
     }
     this.observable = this.negocioService.getNegocios(this.current_page.toString(),this.serach());
     this.obser = this.observable.subscribe(data =>{
-        data = data as Negocios;
+  
         this.negocios = data.data;
         this.per_page= data.per_page;
         this.total= data.total;

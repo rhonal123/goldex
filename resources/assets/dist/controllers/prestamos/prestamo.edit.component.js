@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var prestamo_1 = require('./../../models/prestamo');
 var prestamo_service_1 = require('./../../services/prestamo.service');
 var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
 var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
 var PrestamoEditComponent = (function () {
     function PrestamoEditComponent(prestamoService, fB) {
         this.prestamoService = prestamoService;
@@ -65,56 +65,9 @@ var PrestamoEditComponent = (function () {
         var _this = this;
         this.formBuilder();
         this.modal.onShown.subscribe(function (event) {
-            _this.jfecha = $("#fecha").datepicker({ format: "yyyy/mm/dd" });
-            if (_this.prestamo.fecha) {
-            }
-            _this.jfecha = $("#fecha").datepicker({ format: "yyyy/mm/dd" });
-            if (_this.prestamo.fecha) {
-                _this.jfecha.val(prestamo_1.Prestamo.strFecha(_this.prestamo));
-            }
-            if (_this.prestamo.id && _this.prestamo.cuenta) {
-                var op = document.createElement("option");
-                op.setAttribute("value", _this.prestamo.cuenta.id.toString());
-                op.appendChild(document.createTextNode(_this.prestamo.cuenta.numero));
-                $("#cuenta_id").empty();
-                $("#cuenta_id").append(op);
-            }
-            _this.jcuenta = _this.select2Cuentas();
-            if (_this.prestamo.id && _this.prestamo.negocio) {
-                var op = document.createElement("option");
-                op.setAttribute("value", _this.prestamo.negocio.id.toString());
-                op.setAttribute("selected", "selected");
-                op.appendChild(document.createTextNode(_this.prestamo.negocio.nombre));
-                $("#negocio_id").empty();
-                $("#negocio_id").append(op);
-            }
-            _this.jnegocio = $("#negocio_id").select2({
-                ajax: {
-                    url: "/sistema/negocios",
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            search: params.term,
-                            page: params.page
-                        };
-                    },
-                    processResults: function (data, params) {
-                        params.page = params.page || 1;
-                        return {
-                            results: data.data,
-                            pagination: {
-                                more: (params.page * data.per_page) < data.total
-                            }
-                        };
-                    }
-                },
-                placeholder: 'Seleccione un Negocio ',
-                escapeMarkup: function (markup) { return markup; },
-                minimumInputLength: 0,
-                templateSelection: function (data) { return data.nombre || data.text; },
-                templateResult: function (data) { return data.nombre || data.text; },
-            });
+            _this.jfecha = jquery_component_1.JqueryComponent.fecha("form #fecha", _this.prestamo.fecha);
+            _this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", _this.prestamo.cuenta);
+            _this.jnegocio = jquery_component_1.JqueryComponent.negocios("form #negocio_id", _this.prestamo.negocio);
         });
     };
     PrestamoEditComponent.prototype.formBuilder = function () {
@@ -159,50 +112,9 @@ var PrestamoEditComponent = (function () {
         this.component = component;
         this.modal.show();
     };
-    PrestamoEditComponent.prototype.select2Cuentas = function () {
-        return $("#cuenta_id").select2({
-            ajax: {
-                url: "/sistema/cuentas",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        search: params.term,
-                        page: params.page
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-                    return {
-                        results: data.data,
-                        pagination: {
-                            more: (params.page * data.per_page) < data.total
-                        }
-                    };
-                }
-            },
-            placeholder: 'Seleccione una Cuenta ',
-            escapeMarkup: function (markup) { return markup; },
-            minimumInputLength: 0,
-            templateSelection: function (data) {
-                console.log(data);
-                if (data.banco != undefined) {
-                    return data.banco.nombre + " -- " + data.numero;
-                }
-                return "";
-            },
-            templateResult: function (data) {
-                console.log(data);
-                if (data.banco != undefined) {
-                    return data.banco.nombre + " -- " + data.numero;
-                }
-                return "";
-            },
-        });
-    };
     PrestamoEditComponent.prototype.cambiarTipo = function () {
         if (this.tipo != "efectivo") {
-            this.jcuenta = this.select2Cuentas();
+            this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id");
         }
     };
     PrestamoEditComponent.prototype.calcularPuro = function () {
@@ -217,10 +129,6 @@ var PrestamoEditComponent = (function () {
         core_1.ViewChild('modal'), 
         __metadata('design:type', modal_component_1.ModalDirective)
     ], PrestamoEditComponent.prototype, "modal", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', prestamo_1.Prestamo)
-    ], PrestamoEditComponent.prototype, "prestamo", void 0);
     PrestamoEditComponent = __decorate([
         core_1.Component({
             selector: 'prestamo-edit-component',

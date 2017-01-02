@@ -1,22 +1,19 @@
 import { Component, Input, OnInit, ViewChild,   AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Banco } from './../../models/banco';
-import { Bancos } from './../../models/bancos';
+import { Paginacion } from './../../models/paginacion';
 
 import { BancoService } from './../../services/banco.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
 import { Observable }     from 'rxjs/Observable';
-import {URLSearchParams} from '@angular/http';  
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { URLSearchParams} from '@angular/http';  
 
-
+import {Subscription} from 'rxjs';
 import { BancoEditComponent } from './banco.edit.component';
 import { BancoDeleteComponent } from './banco.delete.component';
 import { BancoComponent } from './banco.component';
-
-
 import { ChangeDetectorRef } from '@angular/core';
-
-
 
 @Component({
   selector: 'bancos-component',
@@ -29,18 +26,16 @@ export class BancosComponent implements OnInit  , AfterViewInit {
   private bancos: Banco[];
   private banco: Banco;
   private activeBanco:  Banco;
-
-
+  private isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private per_page :number;
   private total :number;
   private current_page :number = 1;
   private last_page: number;
   private search: string;
   private sort: string = "id";
-  private observable:  Observable<Bancos>;
-  private obser: any;
-  //private loading: boolean;;
- 
+  private mensaje: string = "";
+  private observable:  Observable<Paginacion>;
+  private subscription: Subscription;
  
 
   @ViewChild('modal') modal: ModalDirective;
@@ -65,17 +60,24 @@ export class BancosComponent implements OnInit  , AfterViewInit {
   }
 
   loadTable(): void {
-    if(this.obser != undefined){
-      this.obser.unsubscribe();
+    this.mensaje = ""
+    this.isLoading$.next(true);
+    if(this.subscription != undefined){
+      this.subscription.unsubscribe();
+      this.isLoading$.next(false);
     }
     this.observable = this.bancoService.getBancos(this.current_page.toString(),this.serach());
-    this.obser = this.observable.subscribe(data =>{
-        data = data as Bancos;
+    this.subscription = this.observable.subscribe(data =>{
         this.bancos = data.data;
         this.per_page= data.per_page;
         this.total= data.total;
         this.current_page= data.current_page;
-        this.obser = undefined;
+        this.subscription = undefined;
+    },
+    (erro) => {
+      this.isLoading$.next(false);
+    },()=>{
+      this.isLoading$.next(false);
     });
 
   }

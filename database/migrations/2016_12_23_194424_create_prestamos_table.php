@@ -41,6 +41,6 @@ class CreatePrestamosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('prestamos');
+        Schema::dropIfExists('prestamos');
     }
 }

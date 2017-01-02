@@ -9,19 +9,27 @@ use App\Http\Requests;
 use App\Banco;
 use Validator;
 use DB;
+use Gate;
 
 use Illuminate\Validation\Rule;
 
+/*
+ * 'codigo' => 'A01' , 'accion' => 'BancoController@show'
+ * 'codigo' => 'A02' , 'accion' => 'BancoController@delete'
+ * 'codigo' => 'A03' , 'accion' => 'BancoController@update'
+ * 'codigo' => 'A04' , 'accion' => 'BancoController@create'
+ * 'codigo' => 'A05' , 'accion' => 'BancoController@index'
+*/
 class BancosController extends Controller
 {
 
 	public function show($id){
- 
+		$this->authorize('A01');
 		return Banco::findOrFail($id);
-
 	}
 
 	public function delete($id){
+		$this->authorize('A02');
 		$banco = Banco::findOrFail($id);
 		try {
 					$banco->delete();
@@ -31,15 +39,9 @@ class BancosController extends Controller
 		return $banco;
 	}
 
-			/*$nro = $banco->cuentas->count();
-		$errors = $banco->eliminar();
-		if(count($errors) != 0 ){
-			return response()->json($errors,423);
-		}*/
-
-
 	public function update(Request $request,$id){
-		$banco = Banco::findOrFail($id);///->first();
+		$this->authorize('A03');
+		$banco = Banco::findOrFail($id); 
   	$values = $request->all()['banco']; 
 		$validator = Banco::validador($values,$banco);
 		if ($validator->fails()) {
@@ -49,11 +51,12 @@ class BancosController extends Controller
 			$bancoRequest = $values;
 			$banco->nombre = $bancoRequest['nombre'];
 			$banco->save();
-			return $banco;//Banco::create(['nombre' => $bancoRequest['nombre']]);
+			return $banco;
 		}
 	}
 
 	public function create(Request $request){
+		$this->authorize('A04');
   	$values = $request->all()['banco']; 
 		$validator = Banco::validador($values);
 		if ($validator->fails()) {
@@ -64,21 +67,13 @@ class BancosController extends Controller
 			return Banco::create(['nombre' => $bancoRequest['nombre']]);
 		}
 	}
- 
 
 	public function index(Request $request){
- 		///$page = $request->input('page');
-    ///DB::enableQueryLog();
+		$this->authorize('A05');
 		$nombre = $request->input('search');
 		$bancos = Banco::buscar($nombre);
-    ///$query2 = DB::getQueryLog();
-    ///print_r($query2);
 		return $bancos;
 	}
 
+	
 }
-
-/*
-	$values = $request->json()->all(); 
-  $validator = Validator::make( );
-*/

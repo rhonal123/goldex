@@ -1,22 +1,19 @@
-
-
+import { Permiso } from './permiso';
 
 export class User {
-
 
   id: number;
   name: string;
   email: string;
-  created_at: string;
-  updated_at: string;
+  administrador: boolean;
+  permisos: Permiso[];
   
   constructor( ) {
   	this.name = null;
   	this.id= null;
     this.email = null;
-  	this.created_at = null;
- 		this.updated_at = null;
-
+    this.administrador= false;
+    this.permisos = [];
   }
 
  	static clone(user: User): User {
@@ -24,12 +21,6 @@ export class User {
      _user.id = user.id;
      _user.name = user.name;
      _user.email = user.email;
-     _user.created_at = user.created_at;
-     _user.updated_at = user.updated_at;
     return _user;
   }
-
-
 }
-
- 

@@ -63,8 +63,6 @@ var NegocioEditComponent = (function () {
             'direccion': '',
             'encargado': '',
             'telefono': '',
-            'created_at': '',
-            'updated_at': ''
         });
         this.negocioForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
     };

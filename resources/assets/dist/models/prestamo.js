@@ -16,10 +16,6 @@ var Prestamo = (function () {
         this.fecha = null;
         this.tipo = "efectivo";
     }
-    Prestamo.strFecha = function (prestamo) {
-        prestamo.fecha = new Date(prestamo.fecha.toString());
-        return prestamo.fecha.getFullYear() + "/" + (prestamo.fecha.getMonth() + 1) + "/" + prestamo.fecha.getDate();
-    };
     return Prestamo;
 }());
 exports.Prestamo = Prestamo;

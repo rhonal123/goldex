@@ -5,6 +5,7 @@ import { PrestamoService } from './../../services/prestamo.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
 import { PrestamosComponent } from './prestamos.component';
 import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/forms';
+import { JqueryComponent } from './../jquery.component';
 
 declare var $: any;
 
@@ -26,12 +27,11 @@ export class PrestamoEditComponent implements OnInit {
   jnegocio: any;
   jfecha: any;
 
-
   puro: number = 0;
   monto: number = 0;
   cantidad: number = 0;
 
-  @Input() prestamo: Prestamo;
+  prestamo: Prestamo;
 
   private formErrors: any = {
     'tipo': '',
@@ -81,94 +81,9 @@ export class PrestamoEditComponent implements OnInit {
   ngOnInit(): void {
     this.formBuilder();
     this.modal.onShown.subscribe((event : any) => {
-  
-      this.jfecha = ($("#fecha") as any).datepicker({format: "yyyy/mm/dd"});
-      if(this.prestamo.fecha) {
-       /// this.jfecha.val();
-      }
-
-      this.jfecha = ($("#fecha") as any).datepicker({format: "yyyy/mm/dd"});
-      if(this.prestamo.fecha) {
-        this.jfecha.val(Prestamo.strFecha(this.prestamo));
-      }
-  
-     if(this.prestamo.id && this.prestamo.cuenta)
-      {
-        let op =  document.createElement("option");
-        op.setAttribute("value",this.prestamo.cuenta.id.toString());
-        op.appendChild(document.createTextNode(this.prestamo.cuenta.numero));
-        $("#cuenta_id").empty();
-        $("#cuenta_id").append(op);
-      }
-      this.jcuenta = this.select2Cuentas();
-
-      /*
-      this.jcuenta = ($("#cuenta_id") as any ).select2({
-        ajax: {
-          url: "/sistema/cuentas",
-          dataType: 'json',
-          delay: 250,
-          data: (params: any) => {
-            return {
-              search: params.term, // search term
-              page: params.page
-            };
-          },
-          processResults: (data : any, params : any ) => {
-            params.page = params.page || 1;
-            return {
-              results: data.data,
-              pagination: {
-                more: (params.page * data.per_page) < data.total
-              }
-            };
-          }
-        },
-        placeholder: 'Seleccione una Cuenta ',
-        escapeMarkup: function (markup : any) {     return markup; }, // let our custom formatter work
-        minimumInputLength: 0,
-        templateSelection: (data: any) =>  data.numero || data.text,
-        templateResult: (data: any) => data.numero || data.text,
-      });
-      */
-     /********************** Negocio *******************************************************/
-     if(this.prestamo.id && this.prestamo.negocio )
-      {
-        let op =  document.createElement("option");
-        op.setAttribute("value",this.prestamo.negocio.id.toString());
-        op.setAttribute("selected","selected"); 
-        op.appendChild(document.createTextNode(this.prestamo.negocio.nombre));
-        $("#negocio_id").empty();
-        $("#negocio_id").append(op);
-      } 
-
-      this.jnegocio = ($("#negocio_id") as any).select2({
-        ajax: {
-          url: "/sistema/negocios",
-          dataType: 'json',
-          delay: 250,
-          data:  (params: any) => {
-            return {
-              search: params.term, // search term
-              page: params.page
-            };
-          },
-          processResults:  (data: any, params: any)=>  {
-            params.page = params.page || 1;
-            return {
-              results: data.data,
-              pagination: {
-                more: (params.page * data.per_page) < data.total
-              }
-            };
-          }
-        },
-        placeholder: 'Seleccione un Negocio ',
-        escapeMarkup: (markup: any) => {    return markup; }, // let our custom formatter work
-        minimumInputLength: 0,
-        templateSelection: (data: any) => data.nombre || data.text,
-        templateResult: (data: any) => data.nombre || data.text,
-      });
+      this.jfecha = JqueryComponent.fecha("form #fecha",this.prestamo.fecha);
+      this.jcuenta =  JqueryComponent.cuentas("form #cuenta_id",this.prestamo.cuenta);
+      this.jnegocio = JqueryComponent.negocios("form #negocio_id",this.prestamo.negocio);
     });
   }
 
@@ -217,52 +132,10 @@ export class PrestamoEditComponent implements OnInit {
     this.component = component;
     this.modal.show();
   }
-
-  select2Cuentas() :any {
-    return  ($("#cuenta_id") as any ).select2({
-      ajax: {
-        url: "/sistema/cuentas",
-        dataType: 'json',
-        delay: 250,
-        data: (params: any) => {
-          return {
-            search: params.term, // search term
-            page: params.page
-          };
-        },
-        processResults: (data : any, params : any ) => {
-          params.page = params.page || 1;
-          return {
-            results: data.data,
-            pagination: {
-              more: (params.page * data.per_page) < data.total
-            }
-          };
-        }
-      },
-      placeholder: 'Seleccione una Cuenta ',
-      escapeMarkup: function (markup : any) {     return markup; }, // let our custom formatter work
-      minimumInputLength: 0,
-      templateSelection: (data: any) => {
-        console.log(data);
-          if(data.banco  != undefined){
-            return  data.banco.nombre+" -- "+data.numero;
-          }
-          return "";
-      },
-      templateResult: (data: any) => {
-        console.log(data);
-        if(data.banco  != undefined){
-          return  data.banco.nombre+" -- "+data.numero;
-        }
-          return "";
-      },
-    }); 
-  }
-
+ 
   cambiarTipo(): void{
     if(this.tipo != "efectivo"){
-      this.jcuenta =  this.select2Cuentas();
+      this.jcuenta =  JqueryComponent.cuentas("form #cuenta_id");
     }
   }
 

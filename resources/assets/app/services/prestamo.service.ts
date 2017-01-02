@@ -1,29 +1,29 @@
 
 import { Injectable,  ViewChild, ElementRef } from '@angular/core';
 import { Prestamo } from '../models/prestamo';
-import { Headers, Http , RequestOptions, Response } from '@angular/http';
-import { HttpModule } from '@angular/http';
-import { URLSearchParams } from '@angular/http';
+import { Headers, Http , RequestOptions, Response, HttpModule, URLSearchParams } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
+import { GeneralServicio } from './general.servicio'; 
+import { Paginacion } from '../models/paginacion';
+
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class PrestamoService {
+export class PrestamoService extends GeneralServicio  {
 
   url = '/sistema/prestamos'; 
-  options = new RequestOptions({ 
-      headers: new Headers({ 
-      'Content-Type': 'application/json',
-      'Accept' :'application/json, text/javascript, */*; q=0.01'
-      })
-  });
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    super()
+  }
 
-  getPrestamos(page :any,searchs? :URLSearchParams):  Observable<any> {
+  getPrestamos(page :any,searchs? :URLSearchParams):  Observable<Paginacion> {
     searchs = (searchs? searchs: new URLSearchParams());
     searchs.set("page",page);
-    return this.http.get(this.url,{search: searchs}).map((res:Response) => res.json());
+    return this.http
+    .get(this.url,{search: searchs})
+    .map((res:Response) => res.json())
+    .catch(this.handleError);
   }
 
   create(prestamo: Prestamo ): Promise<Prestamo> {
@@ -35,7 +35,8 @@ export class PrestamoService {
   }
 
   delete(prestamo: Prestamo): Promise<Prestamo> {
-    return this.http.delete(this.url+"/"+prestamo.id)
+    return this.http
+      .delete(this.url+"/"+prestamo.id)
       .toPromise()
       .then(res => res.json() as Prestamo )
       .catch(this.handleError);
@@ -58,8 +59,4 @@ export class PrestamoService {
     }
   }
 
-  private handleError(error: Response): Promise<any> {
-    console.error('Ocurrio un Error ', error.status, error.text); 
-    return Promise.reject(error.json());
-  }
 }

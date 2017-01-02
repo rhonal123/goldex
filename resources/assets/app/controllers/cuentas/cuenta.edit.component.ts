@@ -1,21 +1,14 @@
-import { Component, Input,Output, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/forms';
+import { Component, Input,Output, OnInit, ViewChild , EventEmitter, Injectable } from '@angular/core';
 import { Cuenta } from './../../models/cuenta';
 import { Banco } from './../../models/banco';
-import { Bancos } from './../../models/bancos';
-
 import { CuentaService } from './../../services/cuenta.service';
 import { BancoService } from './../../services/banco.service';
-
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
-
-import { EventEmitter, Injectable } from '@angular/core';
-
 import { CuentasComponent } from './cuentas.component';
-import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
-///<reference path="./jquery.d.ts" />
-
+import { JqueryComponent } from './../jquery.component';
 declare var $: any;
 
 
@@ -31,14 +24,7 @@ export class CuentaEditComponent implements OnInit {
   private cuentaForm: FormGroup;
   private component : CuentasComponent; 
   private bancoSelect :any;
-
-
-  @Output() public onShown:  EventEmitter<CuentaEditComponent> = new EventEmitter();
-
-
-  @Input() cuenta: Cuenta;
- 
-
+  private cuenta: Cuenta;
   private formErrors: any = {
     'nombre':''
   };
@@ -65,78 +51,20 @@ export class CuentaEditComponent implements OnInit {
        this.formErrors['numero'] =  errores.numero
        this.formErrors['banco_id'] =  errores.banco_id
     });
-
-
-
   }
-
-  ngAfterViewInit() {
-    /// $("#banco_id").trigger('change');
-  }
-
-
-/*
-var para = document.createElement("p");
-var node = document.createTextNode("This is new.");
-para.appendChild(node);
-
-var element = document.getElementById("div1");
-element.appendChild(para);
-*/
+ 
 
   ngOnInit(): void {
 		this.formBuilder();
-    let formato = function presentacion(banco :any){
-      return banco.nombre || banco.text;
-    }; 
- 
     this.modal.onShown.subscribe((event : any) => {
-     if(this.cuenta.id)
-      {
-        let op =  document.createElement("option");
-        op.setAttribute("value",this.cuenta.banco.id.toString());
-        op.appendChild(document.createTextNode(this.cuenta.banco.nombre));
-        $("#banco_id").empty();
-        $("#banco_id").append(op);
-      }
-
-      this.bancoSelect = ($("#banco_id") as any ).select2({
-        ajax: {
-          url: "/sistema/bancos",
-          dataType: 'json',
-          delay: 250,
-          data: function (params: any) {
-            return {
-              search: params.term, // search term
-              page: params.page
-            };
-          },
-          processResults: function (data: any, params: any) {
-            params.page = params.page || 1;
-            return {
-              results: data.data,
-              pagination: {
-                more: (params.page * data.per_page) < data.total
-              }
-            };
-          }
-        },
-        placeholder: 'Seleccione un Banco ',
-        escapeMarkup: function (markup: any) {  console.log(markup);  return markup; }, // let our custom formatter work
-        minimumInputLength: 0,
-        templateSelection: formato,
-        templateResult: formato,
-      });
-    
+      this.bancoSelect = JqueryComponent.bancos("form #banco_id",this.cuenta.banco);
     });
-
-  
-
   }
 
   formBuilder(): void 
   {
     this.cuentaForm = this.fB.group({
+      'id': '',
       'numero': '',
       'banco_id': '',
     });
@@ -150,12 +78,10 @@ element.appendChild(para);
   setModel(cuenta: Cuenta): void {
     this.cuenta = cuenta;
     this.cuentaForm.setValue({
+      'id': cuenta.id,
       'numero': cuenta.numero,
       'banco_id': cuenta.banco_id
     });
-
-
-
   }
 
   openModal(component: CuentasComponent) :void {

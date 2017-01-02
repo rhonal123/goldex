@@ -36,7 +36,6 @@ var CuentasComponent = (function () {
         }
         this.observable = this.cuentaService.getCuentas(this.current_page.toString(), this.serach());
         this.obser = this.observable.subscribe(function (data) {
-            data = data;
             _this.cuentas = data.data;
             _this.per_page = data.per_page;
             _this.total = data.total;

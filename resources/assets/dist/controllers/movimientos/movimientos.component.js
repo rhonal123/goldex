@@ -35,7 +35,6 @@ var MovimientosComponent = (function () {
         }
         this.observable = this.movimientoService.getMovimientos(this.current_page.toString(), this.serach());
         this.obser = this.observable.subscribe(function (data) {
-            data = data;
             _this.movimientos = data.data;
             _this.per_page = data.per_page;
             _this.total = data.total;

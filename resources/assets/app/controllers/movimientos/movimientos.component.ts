@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild,   AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movimiento } from './../../models/movimiento';
-import { Movimientos } from './../../models/movimientos';
+import { Paginacion } from './../../models/paginacion';
 
 import { MovimientoService } from './../../services/movimiento.service';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'; 
@@ -38,7 +38,7 @@ export class MovimientosComponent implements OnInit  , AfterViewInit {
   private clasificacion: string
 
 
-  private observable:  Observable<Movimientos>;
+  private observable:  Observable<Paginacion>;
   private obser: any;
 
   private jDesde:any;
@@ -79,7 +79,7 @@ export class MovimientosComponent implements OnInit  , AfterViewInit {
     );
     
     this.obser = this.observable.subscribe(data =>{
-        data = data as Movimientos;
+         
         this.movimientos = data.data;
         this.per_page= data.per_page;
         this.total= data.total;

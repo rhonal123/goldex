@@ -26,6 +26,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
+        //        $this->registerPolicies($gate);
+        ///$gate->define('bancos', 'BancosController@index');
+        $gate->before(function ($user, $ability) {
+           return $user->puede($ability);
+           ///return $user->hasPermiso($ability);
+        });
         //
+
     }
 }

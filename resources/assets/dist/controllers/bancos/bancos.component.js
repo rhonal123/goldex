@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var banco_1 = require('./../../models/banco');
 var banco_service_1 = require('./../../services/banco.service');
 var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
 var http_1 = require('@angular/http');
 var banco_edit_component_1 = require('./banco.edit.component');
 var banco_delete_component_1 = require('./banco.delete.component');
@@ -23,24 +24,32 @@ var BancosComponent = (function () {
         this.route = route;
         this.bancoService = bancoService;
         this._changeDetectionRef = _changeDetectionRef;
+        this.isLoading$ = new BehaviorSubject_1.BehaviorSubject(false);
         this.current_page = 1;
         this.sort = "id";
+        this.mensaje = "";
     }
     BancosComponent.prototype.ngAfterViewInit = function () {
     };
     BancosComponent.prototype.loadTable = function () {
         var _this = this;
-        if (this.obser != undefined) {
-            this.obser.unsubscribe();
+        this.mensaje = "";
+        this.isLoading$.next(true);
+        if (this.subscription != undefined) {
+            this.subscription.unsubscribe();
+            this.isLoading$.next(false);
         }
         this.observable = this.bancoService.getBancos(this.current_page.toString(), this.serach());
-        this.obser = this.observable.subscribe(function (data) {
-            data = data;
+        this.subscription = this.observable.subscribe(function (data) {
             _this.bancos = data.data;
             _this.per_page = data.per_page;
             _this.total = data.total;
             _this.current_page = data.current_page;
-            _this.obser = undefined;
+            _this.subscription = undefined;
+        }, function (erro) {
+            _this.isLoading$.next(false);
+        }, function () {
+            _this.isLoading$.next(false);
         });
     };
     BancosComponent.prototype.ngOnInit = function () {

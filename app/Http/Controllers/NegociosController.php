@@ -14,17 +14,24 @@ use App\Negocio;
 use Validator;
 
 use Illuminate\Validation\Rule;
-
+/*
+ *  'codigo' => 'C01' , 'accion' => 'NegociosController@show'
+ *  'codigo' => 'C02' , 'accion' => 'NegociosController@delete'
+ *  'codigo' => 'C03' , 'accion' => 'NegociosController@update'
+ *  'codigo' => 'C04' , 'accion' => 'NegociosController@create'
+ *  'codigo' => 'C05' , 'accion' => 'NegociosController@index'
+ */
 class NegociosController extends Controller
 {
 
-
 	public function show($id){
-		$negocio = Negocio::findOrFail($id);///->first();
+		$this->authorize('C01');
+		$negocio = Negocio::findOrFail($id);
 		return $negocio;
 	}
 
 	public function delete($id){
+		$this->authorize('C02');
 		$negocio = Negocio::findOrFail($id);///->first();
 		try {
 			$negocio->delete();
@@ -34,9 +41,8 @@ class NegociosController extends Controller
 		return $negocio;
 	}
 
-
-
 	public function update(Request $request,$id){
+		$this->authorize('C03');
 		$negocio = Negocio::findOrFail($id);///->first();
   	$values = $request->all()['negocio']; 
 		$validator = Negocio::validador($values);
@@ -57,6 +63,7 @@ class NegociosController extends Controller
 	}
 
 	public function create(Request $request){
+		$this->authorize('C04');
   	$values = $request->all()['negocio']; 
 		$validator = Negocio::validador($values);
 		if ($validator->fails()) {
@@ -65,19 +72,18 @@ class NegociosController extends Controller
 		else {
 			$negocioRequest = $values;
 			return Negocio::create([
-					'nombre' => $negocioRequest['nombre'],
-					'rif' => $negocioRequest['rif'],
-					'descripcion' => $negocioRequest['descripcion'],
-					'direccion' => $negocioRequest['direccion'],
-					'encargado' => $negocioRequest['encargado'],
-					'telefono' => $negocioRequest['telefono'],
-					]);
+				'nombre' => $negocioRequest['nombre'],
+				'rif' => $negocioRequest['rif'],
+				'descripcion' => $negocioRequest['descripcion'],
+				'direccion' => $negocioRequest['direccion'],
+				'encargado' => $negocioRequest['encargado'],
+				'telefono' => $negocioRequest['telefono'],
+			]);
 		}
 	}
 
-
 	public function index(Request $request){
- 		///$page = $request->input('page');
+		$this->authorize('C05');
 		$nombre = $request->input('search');
 		$negocios = Negocio::buscar($nombre);
 		return $negocios->toArray();
