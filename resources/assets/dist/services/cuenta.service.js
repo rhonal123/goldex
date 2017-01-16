@@ -32,6 +32,13 @@ var CuentaService = (function (_super) {
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
+    CuentaService.prototype.getCuenta = function (id) {
+        return this.http
+            .get(this.url + "/" + id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     CuentaService.prototype.create = function (cuenta) {
         return this.http
             .post(this.url, JSON.stringify({ cuenta: cuenta }), this.options)

@@ -14,7 +14,7 @@ class CreateAbonosTable extends Migration
     {
         Schema::create('abonos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            ///$table->integer('user_id')->unsigned();
             $table->integer('tipo_id')->unsigned();
             $table->double('monto',35,2);
             $table->double('saldo',35,2)->default(0);
@@ -25,13 +25,13 @@ class CreateAbonosTable extends Migration
             $table->date('fecha');
             $table->integer('negocio_id')->unsigned();
             $table->double('cantidad',35,2)->default('0');
-            $table->string('estado')->default('activo'); // consumido, activo 
+            $table->string('estado')->default('ACTIVO'); // CONSUMIDO, ACTIVO 
             $table->timestamps();
 
             $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->foreign('negocio_id')->references('id')->on('negocios');
             $table->foreign('cuenta_id')->references('id')->on('cuentas');
-            $table->foreign('user_id')->references('id')->on('users');
+            ///$table->foreign('user_id')->references('id')->on('users');
         });
     } 
     /**

@@ -1,6 +1,7 @@
 import { Pipe  } from '@angular/core';
 import { Abono } from './../models/abono';
 import { Negocio } from './../models/negocio';
+import { Cuenta } from './../models/cuenta';
 
 let capitalize= (cadena: string ) => cadena.replace(/\b\w/g,(e:string)=> e.toUpperCase());
 
@@ -43,6 +44,17 @@ export class MontoBsPipe {
   }
 }
  
+
+
+
+@Pipe({
+  name: 'detalleCuenta'
+})
+export class DetalleCuentaPipe {
+  transform(value: Cuenta ) : string {
+    return capitalize(` ${value.numero} ${value.banco.nombre}`);
+  }
+}
 
 
 @Pipe({

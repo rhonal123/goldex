@@ -13,7 +13,6 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
     <detalle [nombre]="'Simbo :'" [contenido]="tipo.simbolo"></detalle>
     <detalle [nombre]="'Tasa :'" [contenido]="tipo.tasa"></detalle>
     <detalle [nombre]="'Divisa :'" [contenido]="tipo.divisa|divisa"></detalle>
-
   `
 })
 export class TipoDetalleComponent {

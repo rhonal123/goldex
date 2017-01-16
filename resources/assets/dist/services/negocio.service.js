@@ -33,6 +33,18 @@ var NegocioService = (function (_super) {
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
+    NegocioService.prototype.movimientos_creados = function (id) {
+        return this.http
+            .get("/sistema/negocios/" + id + "/movimientos")
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    NegocioService.prototype.abonos_creados = function (id) {
+        return this.http
+            .get("/sistema/negocios/" + id + "/abonos")
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     NegocioService.prototype.create = function (negocio) {
         return this.http
             .post(this.negociosUrl, JSON.stringify({ negocio: negocio }), this.options)

@@ -33,7 +33,7 @@ var AppComponent = (function () {
         this.usuarioContrasenaComponent.setModel(this.user);
         this.usuarioContrasenaComponent.openModal(this);
     };
-    AppComponent.prototype.cerrarSession = function () {
+    AppComponent.prototype.cerrarSesion = function () {
         this.currentUsuario.logout();
     };
     AppComponent.prototype.canToDo = function (operacion) {
@@ -46,7 +46,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-component',
-            templateUrl: 'app/templates/app.component.html',
+            templateUrl: 'assets/app.component.html',
             providers: [current_usuario_service_1.CurrentUsuario]
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef, current_usuario_service_1.CurrentUsuario])

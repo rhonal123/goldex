@@ -18,12 +18,11 @@ var IndexComponent = (function () {
     }
     IndexComponent.prototype.ngOnInit = function () {
         this.user = this.currentUsuario.user;
-        console.log("blalblabla-->", this.user);
     };
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'index-component',
-            templateUrl: 'app/templates/index.component.html',
+            template: "\n<div class=\"col-md-12 \">\n</div>  \n  ",
             providers: [current_usuario_service_1.CurrentUsuario]
         }), 
         __metadata('design:paramtypes', [router_1.Router, current_usuario_service_1.CurrentUsuario])

@@ -25,20 +25,23 @@ var banco_edit_component_1 = require('./controllers/bancos/banco.edit.component'
 var banco_service_1 = require('./services/banco.service');
 var cuentas_component_1 = require('./controllers/cuentas/cuentas.component');
 var cuenta_component_1 = require('./controllers/cuentas/cuenta.component');
+var cuenta_detalle_component_1 = require('./controllers/cuentas/cuenta.detalle.component');
 var cuenta_delete_component_1 = require('./controllers/cuentas/cuenta.delete.component');
 var cuenta_edit_component_1 = require('./controllers/cuentas/cuenta.edit.component');
 var cuenta_service_1 = require('./services/cuenta.service');
 var negocios_component_1 = require('./controllers/negocios/negocios.component');
 var negocio_component_1 = require('./controllers/negocios/negocio.component');
+var negocio_detalle_component_1 = require('./controllers/negocios/negocio.detalle.component');
 var negocio_delete_component_1 = require('./controllers/negocios/negocio.delete.component');
 var negocio_edit_component_1 = require('./controllers/negocios/negocio.edit.component');
 var negocio_service_1 = require('./services/negocio.service');
-var prestamos_component_1 = require('./controllers/prestamos/prestamos.component');
-var prestamo_component_1 = require('./controllers/prestamos/prestamo.component');
-var prestamo_detalle_component_1 = require('./controllers/prestamos/prestamo.detalle.component');
-var prestamo_delete_component_1 = require('./controllers/prestamos/prestamo.delete.component');
-var prestamo_edit_component_1 = require('./controllers/prestamos/prestamo.edit.component');
-var prestamo_service_1 = require('./services/prestamo.service');
+var movimientos_component_1 = require('./controllers/movimientos/movimientos.component');
+var movimiento_component_1 = require('./controllers/movimientos/movimiento.component');
+var movimiento_delete_component_1 = require('./controllers/movimientos/movimiento.delete.component');
+var movimiento_edit_component_1 = require('./controllers/movimientos/movimiento.edit.component');
+var movimiento_precio_puro_component_1 = require('./controllers/movimientos/movimiento.precio.puro.component');
+var movimiento_detalle_component_1 = require('./controllers/movimientos/movimiento.detalle.component');
+var movimiento_service_1 = require('./services/movimiento.service');
 var abonos_component_1 = require('./controllers/abonos/abonos.component');
 var abono_component_1 = require('./controllers/abonos/abono.component');
 var abono_detalle_component_1 = require('./controllers/abonos/abono.detalle.component');
@@ -58,6 +61,16 @@ var tipo_detalle_component_1 = require('./controllers/tipos/tipo.detalle.compone
 var tipo_delete_component_1 = require('./controllers/tipos/tipo.delete.component');
 var tipo_edit_component_1 = require('./controllers/tipos/tipo.edit.component');
 var tipo_service_1 = require('./services/tipo.service');
+var cierres_component_1 = require('./controllers/cierres/cierres.component');
+var cierre_component_1 = require('./controllers/cierres/cierre.component');
+var cierre_detalle_component_1 = require('./controllers/cierres/cierre.detalle.component');
+var cierre_delete_component_1 = require('./controllers/cierres/cierre.delete.component');
+var cierre_edit_component_1 = require('./controllers/cierres/cierre.edit.component');
+var cierre_edit_abono_component_1 = require('./controllers/cierres/cierre.edit.abono.component');
+var cierre_edit_movimiento_component_1 = require('./controllers/cierres/cierre.edit.movimiento.component');
+var cierre_edit_asignar_precio_movimiento_component_1 = require('./controllers/cierres/cierre.edit.asignar.precio.movimiento.component');
+var cierre_service_1 = require('./services/cierre.service');
+var servicios_service_1 = require('./services/servicios.service');
 var current_usuario_service_1 = require('./services/current.usuario.service');
 var pipes_1 = require('./pipes/pipes');
 var login_component_1 = require('./controllers/login.component');
@@ -79,11 +92,13 @@ var AppModule = (function () {
                 banco_service_1.BancoService,
                 cuenta_service_1.CuentaService,
                 negocio_service_1.NegocioService,
-                prestamo_service_1.PrestamoService,
                 current_usuario_service_1.CurrentUsuario,
                 usuario_service_1.UsuarioService,
                 tipo_service_1.TipoService,
                 abono_service_1.AbonoService,
+                servicios_service_1.ServiciosService,
+                movimiento_service_1.MovimientoService,
+                cierre_service_1.CierreService,
                 {
                     provide: common_1.LocationStrategy,
                     useClass: common_1.HashLocationStrategy
@@ -92,15 +107,16 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent, index_component_1.IndexComponent,
                 bancos_component_1.BancosComponent, banco_component_1.BancoComponent, banco_delete_component_1.BancoDeleteComponent, banco_edit_component_1.BancoEditComponent,
-                cuentas_component_1.CuentasComponent, cuenta_component_1.CuentaComponent, cuenta_delete_component_1.CuentaDeleteComponent, cuenta_edit_component_1.CuentaEditComponent,
-                negocios_component_1.NegociosComponent, negocio_component_1.NegocioComponent, negocio_delete_component_1.NegocioDeleteComponent, negocio_edit_component_1.NegocioEditComponent,
-                pipes_1.TruncatePipe, pipes_1.AdministradorPipe, pipes_1.CantidadAbonoPipe, pipes_1.MontoBsPipe, pipes_1.FechaPipe, pipes_1.DetalleNegocioPipe, pipes_1.DivisaPipe,
-                prestamos_component_1.PrestamosComponent, prestamo_component_1.PrestamoComponent, prestamo_delete_component_1.PrestamoDeleteComponent, prestamo_edit_component_1.PrestamoEditComponent, prestamo_detalle_component_1.PrestamoDetalleComponent,
+                cuentas_component_1.CuentasComponent, cuenta_component_1.CuentaComponent, cuenta_delete_component_1.CuentaDeleteComponent, cuenta_edit_component_1.CuentaEditComponent, cuenta_component_1.CuentaComponent, cuenta_detalle_component_1.CuentaDetalleComponent,
+                negocios_component_1.NegociosComponent, negocio_component_1.NegocioComponent, negocio_delete_component_1.NegocioDeleteComponent, negocio_edit_component_1.NegocioEditComponent, negocio_detalle_component_1.NegocioDetalleComponent,
+                pipes_1.TruncatePipe, pipes_1.AdministradorPipe, pipes_1.CantidadAbonoPipe, pipes_1.MontoBsPipe, pipes_1.FechaPipe, pipes_1.DetalleNegocioPipe, pipes_1.DivisaPipe, pipes_1.DetalleCuentaPipe,
                 login_component_1.LoginComponent,
                 usuarios_component_1.UsuariosComponent, usuario_component_1.UsuarioComponent, usuario_delete_component_1.UsuarioDeleteComponent, usuario_edit_component_1.UsuarioEditComponent, usuario_contrasena_component_1.UsuarioContrasenaComponent, usuario_permisos_component_1.UsuarioPermisosComponent,
                 abonos_component_1.AbonosComponent, abono_component_1.AbonoComponent, abono_delete_component_1.AbonoDeleteComponent, abono_edit_component_1.AbonoEditComponent, abono_detalle_component_1.AbonoDetalleComponent,
                 detalle_component_1.DetalleComponent,
-                tipos_component_1.TiposComponent, tipo_component_1.TipoComponent, tipo_delete_component_1.TipoDeleteComponent, tipo_edit_component_1.TipoEditComponent, tipo_detalle_component_1.TipoDetalleComponent
+                movimientos_component_1.MovimientosComponent, movimiento_component_1.MovimientoComponent, movimiento_delete_component_1.MovimientoDeleteComponent, movimiento_edit_component_1.MovimientoEditComponent, movimiento_detalle_component_1.MovimientoDetalleComponent, movimiento_precio_puro_component_1.MovimientoPrecioPuroComponent,
+                tipos_component_1.TiposComponent, tipo_component_1.TipoComponent, tipo_delete_component_1.TipoDeleteComponent, tipo_edit_component_1.TipoEditComponent, tipo_detalle_component_1.TipoDetalleComponent,
+                cierres_component_1.CierresComponent, cierre_component_1.CierreComponent, cierre_detalle_component_1.CierreDetalleComponent, cierre_delete_component_1.CierreDeleteComponent, cierre_edit_component_1.CierreEditComponent, cierre_edit_abono_component_1.CierreEditAbonoComponent, cierre_edit_movimiento_component_1.CierreEditMovimientoComponent, cierre_edit_asignar_precio_movimiento_component_1.CierreEditAsignarPrecioMovimientoComponent,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
@@ -110,15 +126,16 @@ var AppModule = (function () {
 }());
 exports.AppModule = AppModule;
 
-},{"./app.routing":2,"./controllers/abonos/abono.component":3,"./controllers/abonos/abono.delete.component":4,"./controllers/abonos/abono.detalle.component":5,"./controllers/abonos/abono.edit.component":6,"./controllers/abonos/abonos.component":7,"./controllers/app.component":8,"./controllers/bancos/banco.component":9,"./controllers/bancos/banco.delete.component":10,"./controllers/bancos/banco.edit.component":11,"./controllers/bancos/bancos.component":12,"./controllers/cuentas/cuenta.component":13,"./controllers/cuentas/cuenta.delete.component":14,"./controllers/cuentas/cuenta.edit.component":15,"./controllers/cuentas/cuentas.component":16,"./controllers/detalle.component":17,"./controllers/index.component":18,"./controllers/login.component":20,"./controllers/negocios/negocio.component":21,"./controllers/negocios/negocio.delete.component":22,"./controllers/negocios/negocio.edit.component":23,"./controllers/negocios/negocios.component":24,"./controllers/prestamos/prestamo.component":25,"./controllers/prestamos/prestamo.delete.component":26,"./controllers/prestamos/prestamo.detalle.component":27,"./controllers/prestamos/prestamo.edit.component":28,"./controllers/prestamos/prestamos.component":29,"./controllers/tipos/tipo.component":30,"./controllers/tipos/tipo.delete.component":31,"./controllers/tipos/tipo.detalle.component":32,"./controllers/tipos/tipo.edit.component":33,"./controllers/tipos/tipos.component":34,"./controllers/usuarios/usuario.component":35,"./controllers/usuarios/usuario.contrasena.component":36,"./controllers/usuarios/usuario.delete.component":37,"./controllers/usuarios/usuario.edit.component":38,"./controllers/usuarios/usuario.permisos.component":39,"./controllers/usuarios/usuarios.component":40,"./pipes/pipes":49,"./services/abono.service":50,"./services/banco.service":51,"./services/cuenta.service":52,"./services/current.usuario.service":53,"./services/negocio.service":55,"./services/prestamo.service":56,"./services/tipo.service":57,"./services/usuario.service":58,"@angular/common":59,"@angular/core":61,"@angular/forms":62,"@angular/http":63,"@angular/platform-browser":65,"ng2-bootstrap/ng2-bootstrap":144}],2:[function(require,module,exports){
+},{"./app.routing":2,"./controllers/abonos/abono.component":3,"./controllers/abonos/abono.delete.component":4,"./controllers/abonos/abono.detalle.component":5,"./controllers/abonos/abono.edit.component":6,"./controllers/abonos/abonos.component":7,"./controllers/app.component":8,"./controllers/bancos/banco.component":9,"./controllers/bancos/banco.delete.component":10,"./controllers/bancos/banco.edit.component":11,"./controllers/bancos/bancos.component":12,"./controllers/cierres/cierre.component":13,"./controllers/cierres/cierre.delete.component":14,"./controllers/cierres/cierre.detalle.component":15,"./controllers/cierres/cierre.edit.abono.component":16,"./controllers/cierres/cierre.edit.asignar.precio.movimiento.component":17,"./controllers/cierres/cierre.edit.component":18,"./controllers/cierres/cierre.edit.movimiento.component":19,"./controllers/cierres/cierres.component":20,"./controllers/cuentas/cuenta.component":21,"./controllers/cuentas/cuenta.delete.component":22,"./controllers/cuentas/cuenta.detalle.component":23,"./controllers/cuentas/cuenta.edit.component":24,"./controllers/cuentas/cuentas.component":25,"./controllers/detalle.component":26,"./controllers/index.component":27,"./controllers/login.component":29,"./controllers/movimientos/movimiento.component":30,"./controllers/movimientos/movimiento.delete.component":31,"./controllers/movimientos/movimiento.detalle.component":32,"./controllers/movimientos/movimiento.edit.component":33,"./controllers/movimientos/movimiento.precio.puro.component":34,"./controllers/movimientos/movimientos.component":35,"./controllers/negocios/negocio.component":36,"./controllers/negocios/negocio.delete.component":37,"./controllers/negocios/negocio.detalle.component":38,"./controllers/negocios/negocio.edit.component":39,"./controllers/negocios/negocios.component":40,"./controllers/tipos/tipo.component":41,"./controllers/tipos/tipo.delete.component":42,"./controllers/tipos/tipo.detalle.component":43,"./controllers/tipos/tipo.edit.component":44,"./controllers/tipos/tipos.component":45,"./controllers/usuarios/usuario.component":46,"./controllers/usuarios/usuario.contrasena.component":47,"./controllers/usuarios/usuario.delete.component":48,"./controllers/usuarios/usuario.edit.component":49,"./controllers/usuarios/usuario.permisos.component":50,"./controllers/usuarios/usuarios.component":51,"./pipes/pipes":61,"./services/abono.service":62,"./services/banco.service":63,"./services/cierre.service":64,"./services/cuenta.service":65,"./services/current.usuario.service":66,"./services/movimiento.service":68,"./services/negocio.service":69,"./services/servicios.service":70,"./services/tipo.service":71,"./services/usuario.service":72,"@angular/common":73,"@angular/core":75,"@angular/forms":76,"@angular/http":77,"@angular/platform-browser":79,"ng2-bootstrap/ng2-bootstrap":158}],2:[function(require,module,exports){
 "use strict";
 var router_1 = require('@angular/router');
 var index_component_1 = require('./controllers/index.component');
 var current_usuario_service_1 = require('./services/current.usuario.service');
 var bancos_component_1 = require('./controllers/bancos/bancos.component');
+var cierres_component_1 = require('./controllers/cierres/cierres.component');
 var cuentas_component_1 = require('./controllers/cuentas/cuentas.component');
 var negocios_component_1 = require('./controllers/negocios/negocios.component');
-var prestamos_component_1 = require('./controllers/prestamos/prestamos.component');
+var movimientos_component_1 = require('./controllers/movimientos/movimientos.component');
 var usuarios_component_1 = require('./controllers/usuarios/usuarios.component');
 var abonos_component_1 = require('./controllers/abonos/abonos.component');
 var tipos_component_1 = require('./controllers/tipos/tipos.component');
@@ -150,11 +167,6 @@ var appRoutes = [
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {
-        path: 'prestamos',
-        component: prestamos_component_1.PrestamosComponent,
-        canActivate: [current_usuario_service_1.CurrentUsuario]
-    },
-    {
         path: 'usuarios',
         component: usuarios_component_1.UsuariosComponent,
         canActivate: [current_usuario_service_1.CurrentUsuario]
@@ -165,8 +177,18 @@ var appRoutes = [
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {
+        path: 'movimientos',
+        component: movimientos_component_1.MovimientosComponent,
+        canActivate: [current_usuario_service_1.CurrentUsuario]
+    },
+    {
         path: 'tipos',
         component: tipos_component_1.TiposComponent,
+        canActivate: [current_usuario_service_1.CurrentUsuario]
+    },
+    {
+        path: 'cierres',
+        component: cierres_component_1.CierresComponent,
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {
@@ -176,7 +198,7 @@ var appRoutes = [
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);
 
-},{"./controllers/abonos/abonos.component":7,"./controllers/bancos/bancos.component":12,"./controllers/cuentas/cuentas.component":16,"./controllers/index.component":18,"./controllers/login.component":20,"./controllers/negocios/negocios.component":24,"./controllers/prestamos/prestamos.component":29,"./controllers/tipos/tipos.component":34,"./controllers/usuarios/usuarios.component":40,"./services/current.usuario.service":53,"@angular/router":66}],3:[function(require,module,exports){
+},{"./controllers/abonos/abonos.component":7,"./controllers/bancos/bancos.component":12,"./controllers/cierres/cierres.component":20,"./controllers/cuentas/cuentas.component":25,"./controllers/index.component":27,"./controllers/login.component":29,"./controllers/movimientos/movimientos.component":35,"./controllers/negocios/negocios.component":40,"./controllers/tipos/tipos.component":45,"./controllers/usuarios/usuarios.component":51,"./services/current.usuario.service":66,"@angular/router":80}],3:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -209,7 +231,7 @@ var AbonoComponent = (function () {
     AbonoComponent = __decorate([
         core_1.Component({
             selector: 'abono-component',
-            templateUrl: 'app/templates/abonos/abono.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"abono\">\n  <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Detalle Abono {{abono.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n      <abono-detalle-component [abono]=\"abono\"></abono-detalle-component>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [abono_service_1.AbonoService]
         }), 
         __metadata('design:paramtypes', [abono_service_1.AbonoService])
@@ -218,7 +240,7 @@ var AbonoComponent = (function () {
 }());
 exports.AbonoComponent = AbonoComponent;
 
-},{"./../../services/abono.service":50,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],4:[function(require,module,exports){
+},{"./../../services/abono.service":62,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],4:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -267,7 +289,7 @@ var AbonoDeleteComponent = (function () {
     AbonoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'abono-delete-component',
-            templateUrl: 'app/templates/abonos/abono.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"abono\">\n  <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Eliminar  Abono {{abono.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <abono-detalle-component [abono]=\"abono\"></abono-detalle-component>\n        <div class=\"col-md-12\" align=\"right\">\n          <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>\n            <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n          </div>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [abono_service_1.AbonoService]
         }), 
         __metadata('design:paramtypes', [abono_service_1.AbonoService])
@@ -276,7 +298,7 @@ var AbonoDeleteComponent = (function () {
 }());
 exports.AbonoDeleteComponent = AbonoDeleteComponent;
 
-},{"./../../models/abono":42,"./../../services/abono.service":50,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],5:[function(require,module,exports){
+},{"./../../models/abono":53,"./../../services/abono.service":62,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],5:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -299,7 +321,7 @@ var AbonoDetalleComponent = (function () {
     AbonoDetalleComponent = __decorate([
         core_1.Component({
             selector: 'abono-detalle-component',
-            template: "\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"abono.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"abono.tipo.tipo\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"abono.fecha|fecha\" ></detalle>\n    <detalle [nombre]=\"'Estado :'\" [contenido]=\"abono.estado\" ></detalle>\n    <detalle [nombre]=\"'Usuario :'\" [contenido]=\"abono.user.name\" ></detalle>\n    <div class=\"col-md-12\">\n      <div class=\"col-md-6 row\" *ngIf=\"abono.afecta_banco == true\">\n        <blockquote>\n          <label><strong>Datos Banco :</strong></label>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong>  Banco :</strong></td>\n              <td style=\"text-align: left\"><strong>  {{abono.cuenta.banco.nombre}}</strong></td>\n            </tr>\n\n            <tr>\n              <td style=\"text-align: right;\"><strong> Cuenta </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.cuenta.numero}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Nro Referencia :</strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.referencia}}</strong></td>\n            </tr>\n          </table>\n        </blockquote>\n      </div>       \n      <div class=\"col-md-6 row  pull-right\">\n        <blockquote>\n          <label><strong>Totales :</strong></label>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Cantidad: </strong></td>\n              <td style=\"text-align: left\"><strong> {{abono.cantidad|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Monto: </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.monto|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Saldo: </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.saldo|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n          </table>\n        </blockquote>\n      </div>\n    </div>\n  "
+            template: "\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"abono.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"abono.tipo.tipo\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"abono.fecha|fecha\" ></detalle>\n    <detalle [nombre]=\"'Estado :'\" [contenido]=\"abono.estado\" ></detalle>\n    <div class=\"col-md-12\">\n      <div class=\"col-md-6 row\" *ngIf=\"abono.afecta_banco == true\">\n        <blockquote>\n          <label><strong>Datos Banco :</strong></label>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong>  Banco :</strong></td>\n              <td style=\"text-align: left\"><strong>  {{abono.cuenta.banco.nombre}}</strong></td>\n            </tr>\n\n            <tr>\n              <td style=\"text-align: right;\"><strong> Cuenta </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.cuenta.numero}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Nro Referencia :</strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.referencia}}</strong></td>\n            </tr>\n          </table>\n        </blockquote>\n      </div>       \n      <div class=\"col-md-6 row  pull-right\">\n        <blockquote>\n          <label><strong>Totales :</strong></label>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Cantidad: </strong></td>\n              <td style=\"text-align: left\"><strong> {{abono.cantidad|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Monto: </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.monto|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Saldo: </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{abono.saldo|number:'1.2-2'|montoBs}}</strong></td>\n            </tr>\n          </table>\n        </blockquote>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AbonoDetalleComponent);
@@ -307,7 +329,7 @@ var AbonoDetalleComponent = (function () {
 }());
 exports.AbonoDetalleComponent = AbonoDetalleComponent;
 
-},{"./../../models/abono":42,"@angular/core":61}],6:[function(require,module,exports){
+},{"./../../models/abono":53,"@angular/core":75}],6:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -468,7 +490,7 @@ var AbonoEditComponent = (function () {
     AbonoEditComponent = __decorate([
         core_1.Component({
             selector: 'abono-edit-component',
-            templateUrl: 'app/templates/abonos/abono.edit.component.html',
+            template: "\n\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n    <h4 class=\"modal-title\">Editar Abono</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"abono\">\n      <h4 class=\"page-header\" *ngIf=\"abono.id\"><strong> Editar Abono :</strong></h4>\n      <h4 class=\"page-header\" *ngIf=\"!abono.id\"><strong> Agregar Nuevo Abono :</strong></h4>\n\n      <form [formGroup]=\"abonoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n        \n      <div [ngClass]=\"{'form-group': true, 'col-md-6': true,'has-error': formErrors.negocio_id}\">\n        <label for=\"negocio_id\" class=\"col-md-2 control-label\" for=\"negocio_id\">Negocio :</label>\n        <div class=\"col-md-10\">\n          <select id=\"negocio_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.negocio_id\" class=\"help-block\">{{ formErrors.negocio_id}}</span>\n        </div> \n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tipo_id}\">\n        <label for=\"tipo_id\" class=\"col-md-2 control-label\" for=\"tipo_id\">Tipo :</label>\n        <div class=\"col-md-10\">\n          <select id=\"tipo_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.tipo_id\" class=\"help-block\">{{ formErrors.tipo_id}}</span>\n        </div> \n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.fecha}\">\n        <label for=\"fecha\" class=\"col-md-2 control-label\" for=\"tipo\">Fecha</label>\n        <div class=\"col-md-10\">\n          <input id=\"fecha\" type=\"text\" data-provide=\"datepicker\" class=\"form-control \" >\n          <span  *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tasa}\">\n        <label for=\"tasa\" class=\"col-md-2 control-label\" for=\"tasa\"> Tasa </label>\n        <div class=\"col-md-8\">\n          <input id=\"tasa\" type=\"number\" class=\"form-control\" formControlName=\"tasa\" placeholder=\"000.000,00\" [(ngModel)]=\"tasa\" (keyup)=\"calcularMonto()\" >\n          <span  *ngIf=\"formErrors.tasa\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tasa}}</span>\n        </div>\n        <label class=\"col-md-2\" style=\"padding-left: 0px;padding-top: 10px;\">Bs.</label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.afecta_banco}\" *ngIf=\"divisa\">\n        <label for=\"afecta_banco\" class=\"col-md-2 control-label\" for=\"tipo\">Afecta Banco</label>\n        <div class=\"col-md-10\">\n          <select id=\"afecta_banco\" formControlName=\"afecta_banco\" class=\"form-control\" [(ngModel)]=\"afecta_banco\" (click)=\"cambiarAfectaBanco()\" > \n            <option value=\"false\">Efectivo</option>\n            <option value=\"true\">Afecta Banco</option>\n          </select>\n          <span *ngIf=\"formErrors.tipo\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tipo}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cantidad}\">\n        <label for=\"cantidad\" class=\"col-md-2 control-label\" for=\"cantidad\"> Cantidad </label>\n        <div class=\"col-md-8\">\n          <input  id=\"cantidad\" type=\"number\" class=\"form-control\" formControlName=\"cantidad\" placeholder=\"000.000,00\" [(ngModel)]=\"cantidad\" (keyup)=\"calcularMonto()\">\n          <span  *ngIf=\"formErrors.cantidad\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cantidad}}</span>\n        </div>\n        <label class=\"col-md-2\" style=\"padding-left: 0px;padding-top: 10px;\">{{simbolo}}</label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cuenta_id}\" *ngIf=\"afecta_banco == 'true'\">\n        <label for=\"cuenta_id\" class=\"col-md-2 control-label\" for=\"tipo\">Cuenta</label>\n        <div class=\"col-md-10\">\n          <select id=\"cuenta_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.cuenta_id\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cuenta_id}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.referencia}\" *ngIf=\"afecta_banco  == 'true'\" >\n        <label for=\"referencia\" class=\"col-md-2 control-label\" for=\"referencia\"> Referencia </label>\n        <div class=\"col-md-10\" align=\"right\">\n          <input  id=\"referencia\" type=\"text\" class=\"form-control\" formControlName=\"referencia\">\n          <span  *ngIf=\"formErrors.referencia\" id=\"errornombre\" class=\"help-block\">{{ formErrors.referencia}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-12': true,'has-error': formErrors.descripcion}\" >\n        <div class=\"col-md-5 pull-right\" >\n          <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Monto : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{monto|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Saldo : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n\n          </table>\n        </div>\n        <div class=\"col-md-12\"  >\n          <input type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"guardar()\" value=\"Guardar\">\n        </div>\n      </div>  \n\n      </form>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n ",
             providers: [abono_service_1.AbonoService]
         }), 
         __metadata('design:paramtypes', [abono_service_1.AbonoService, forms_1.FormBuilder, core_1.ChangeDetectorRef])
@@ -477,7 +499,7 @@ var AbonoEditComponent = (function () {
 }());
 exports.AbonoEditComponent = AbonoEditComponent;
 
-},{"./../../services/abono.service":50,"./../jquery.component":19,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],7:[function(require,module,exports){
+},{"./../../services/abono.service":62,"./../jquery.component":28,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],7:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -533,8 +555,8 @@ var AbonosComponent = (function () {
         });
     };
     AbonosComponent.prototype.ngOnInit = function () {
-        this.jDesde = jquery_component_1.JqueryComponent.fecha("#search_desde");
-        this.jHasta = jquery_component_1.JqueryComponent.fecha("#search_hasta");
+        this.jDesde = jquery_component_1.JqueryComponent.fechaSinValorIncial("#search_desde");
+        this.jHasta = jquery_component_1.JqueryComponent.fechaSinValorIncial("#search_hasta");
         this.jnegocio = jquery_component_1.JqueryComponent.negocios("#negocio_id");
         this.jtipo = jquery_component_1.JqueryComponent.tipos("#tipo_id");
         this.loadTable();
@@ -635,7 +657,7 @@ var AbonosComponent = (function () {
     AbonosComponent = __decorate([
         core_1.Component({
             selector: 'abonos-component',
-            templateUrl: 'app/templates/abonos/abonos.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"loadTable()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"openModal()\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"mensaje\">\n  <p class=\"bg-warning\">{{mensaje}}</p>\n</div>\n<div class=\"col-md-12\" *ngIf=\"isLoading$ | async\">\n  <p class=\"text-primary\">Cargando Informaci\u00F3n ...........</p>\n</div>\n\n<div class=\"col-md-12\">  \n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Negocio</th><th>Tipo</th><th>Cantidad</th><th>Monto</th><th>Fecha</th><th></th></tr>\n      </thead>\n      <tbody class=\"abonos\" >\n        <tr *ngFor=\"let abono of abonos\" [class.active]=\"abono === activeAbono\" (click)=\"onActive(abono)\">\n          <td ><span>{{abono.id}}</span></td>\n          <td ><span>{{abono.negocio|detalleNegocio}}</span></td>\n          <td ><span>{{abono.tipo.tipo}}</span></td>\n          <td ><span>{{abono|cantidadAbono}}</span></td>\n          <td ><span>{{abono.monto|number:'1.2-2'|montoBs}}</span></td>\n          <td ><span>{{abono.fecha|fecha}}</span></td>\n          <td align=\"right\">\n            <span  dropdown >\n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(abono)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(abono)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEliminar(abono)\">\n                  <a class=\"dropdown-item\" >Eliminar</a>\n                </li>\n              </ul>\n            </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Abonos {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n\n<abono-delete-component></abono-delete-component>\n<abono-component></abono-component>\n<abono-edit-component></abono-edit-component> \n\n\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n    <h4 class=\"modal-title\">Filtar </h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n     <div class=\"form-horizontal\">\n        <div class=\"form-group\">\n          <label for=\"search_desde\" class=\"col-md-2 control-label\">Desde</label>\n          <div class=\"col-md-4\">\n            <input id=\"search_desde\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          </div>\n          <label for=\"search_hasta\" class=\"col-md-2 control-label\">Hasta</label>\n          <div class=\"col-md-4\">\n            <input id=\"search_hasta\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          </div>\n        </div>\n\n        <div  class=\"form-group\">\n          <label for=\"negocio_id\" class=\"col-sm-2 control-label\" for=\"estado\">Negocio</label>\n          <div class=\"col-sm-10\">\n            <select id=\"negocio_id\" class=\"form-control\" style=\"width: 100%;\"></select>\n          </div> \n        </div>\n\n        <div  class=\"form-group\">\n          <label for=\"tipo_id\" class=\"col-sm-2 control-label\" for=\"estado\">Tipo</label>\n          <div class=\"col-sm-10\">\n            <select id=\"tipo_id\" class=\"form-control\" style=\"width: 100%;\"></select>\n          </div> \n        </div>\n        \n        <div class=\"form-group\">\n          <div class=\"col-sm-offset-10 col-sm-2\">\n            <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"> Filtrar <span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span></button>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [abono_service_1.AbonoService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, abono_service_1.AbonoService, core_1.ChangeDetectorRef])
@@ -644,7 +666,7 @@ var AbonosComponent = (function () {
 }());
 exports.AbonosComponent = AbonosComponent;
 
-},{"./../../models/abono":42,"./../../services/abono.service":50,"./../jquery.component":19,"./abono.component":3,"./abono.delete.component":4,"./abono.edit.component":6,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105,"rxjs/BehaviorSubject":145}],8:[function(require,module,exports){
+},{"./../../models/abono":53,"./../../services/abono.service":62,"./../jquery.component":28,"./abono.component":3,"./abono.delete.component":4,"./abono.edit.component":6,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119,"rxjs/BehaviorSubject":159}],8:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -680,7 +702,7 @@ var AppComponent = (function () {
         this.usuarioContrasenaComponent.setModel(this.user);
         this.usuarioContrasenaComponent.openModal(this);
     };
-    AppComponent.prototype.cerrarSession = function () {
+    AppComponent.prototype.cerrarSesion = function () {
         this.currentUsuario.logout();
     };
     AppComponent.prototype.canToDo = function (operacion) {
@@ -693,7 +715,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-component',
-            templateUrl: 'app/templates/app.component.html',
+            templateUrl: 'assets/app.component.html',
             providers: [current_usuario_service_1.CurrentUsuario]
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_1.ViewContainerRef, current_usuario_service_1.CurrentUsuario])
@@ -702,7 +724,7 @@ var AppComponent = (function () {
 }());
 exports.AppComponent = AppComponent;
 
-},{"./../services/current.usuario.service":53,"./usuarios/usuario.contrasena.component":36,"@angular/core":61,"@angular/router":66,"rxjs/add/operator/catch":157}],9:[function(require,module,exports){
+},{"./../services/current.usuario.service":66,"./usuarios/usuario.contrasena.component":47,"@angular/core":75,"@angular/router":80,"rxjs/add/operator/catch":171}],9:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -735,7 +757,7 @@ var BancoComponent = (function () {
     BancoComponent = __decorate([
         core_1.Component({
             selector: 'banco-component',
-            templateUrl: 'app/templates/bancos/banco.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"banco\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Detalle Banco {{banco.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <detalle [nombre]=\"'Banco :'\" [contenido]=\"banco.nombre\" ></detalle>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService])
@@ -744,7 +766,7 @@ var BancoComponent = (function () {
 }());
 exports.BancoComponent = BancoComponent;
 
-},{"./../../services/banco.service":51,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],10:[function(require,module,exports){
+},{"./../../services/banco.service":63,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],10:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -793,7 +815,7 @@ var BancoDeleteComponent = (function () {
     BancoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'banco-delete-component',
-            templateUrl: 'app/templates/bancos/banco.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"banco\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Eliminar Banco {{banco.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <detalle [nombre]=\"'Banco :'\" [contenido]=\"banco.nombre\" ></detalle>\n      </div>\n    </div>\n    <div class=\"col-md-12\" align=\"right\">\n      <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>\n      <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService])
@@ -802,7 +824,7 @@ var BancoDeleteComponent = (function () {
 }());
 exports.BancoDeleteComponent = BancoDeleteComponent;
 
-},{"./../../models/banco":43,"./../../services/banco.service":51,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],11:[function(require,module,exports){
+},{"./../../models/banco":54,"./../../services/banco.service":63,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],11:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -860,8 +882,8 @@ var BancoEditComponent = (function () {
     BancoEditComponent.prototype.setModel = function (banco) {
         this.banco = banco;
         this.bancoForm.setValue({
-            'id': banco.id,
-            'nombre': banco.nombre
+            'id': banco.id || '',
+            'nombre': banco.nombre || ''
         });
     };
     BancoEditComponent.prototype.openModal = function (component) {
@@ -879,7 +901,7 @@ var BancoEditComponent = (function () {
     BancoEditComponent = __decorate([
         core_1.Component({
             selector: 'banco-edit-component',
-            templateUrl: 'app/templates/bancos/banco.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Editar Banco</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"banco\">\n    <form [formGroup]=\"bancoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n      <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.nombre}\"  >\n        <label for=\"nombre\" class=\"col-sm-2 control-label\" for=\"nombre\">Nombre</label>\n        <div class=\"col-sm-10\">\n           <input type=\"text\" class=\"form-control\" formControlName=\"nombre\" aria-describedby=\"errornombre\" placeholder=\"Nombre del banco\">\n          <span *ngIf=\"formErrors.nombre\" id=\"errornombre\" class=\"help-block\">{{formErrors.nombre}}</span>\n        </div>\n      </div>\n      <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n      </div>\n    </form>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService, forms_1.FormBuilder])
@@ -888,7 +910,7 @@ var BancoEditComponent = (function () {
 }());
 exports.BancoEditComponent = BancoEditComponent;
 
-},{"./../../models/banco":43,"./../../services/banco.service":51,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],12:[function(require,module,exports){
+},{"./../../models/banco":54,"./../../services/banco.service":63,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],12:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -947,7 +969,7 @@ var BancosComponent = (function () {
         this.loadTable();
     };
     BancosComponent.prototype.agregar = function () {
-        var banco = new banco_1.Banco(null, null, null, null);
+        var banco = new banco_1.Banco();
         this.banco = banco;
         this.bancoEditComponent.setModel(banco);
         this.bancoEditComponent.openModal(this);
@@ -1002,9 +1024,6 @@ var BancosComponent = (function () {
         this._changeDetectionRef.detectChanges();
         this.loadTable();
     };
-    BancosComponent.prototype.onActive = function (banco) {
-        this.activeBanco = banco;
-    };
     __decorate([
         core_1.ViewChild('modal'), 
         __metadata('design:type', modal_component_1.ModalDirective)
@@ -1024,7 +1043,7 @@ var BancosComponent = (function () {
     BancosComponent = __decorate([
         core_1.Component({
             selector: 'bancos-component',
-            templateUrl: 'app/templates/bancos/bancos.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"loadTable()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup.enter)=\"loadTable()\">\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"mensaje\">\n  <p class=\"bg-warning\">{{mensaje}}</p>\n</div>\n\n<div class=\"col-md-12\" *ngIf=\"isLoading$ | async\">\n  <p class=\"text-primary\">Cargando Informaci\u00F3n ...........</p>\n</div>\n\n<div class=\"col-md-12\"> \n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Marca</th><th></th></tr>\n      </thead>\n      <tbody class=\"bancos\" >\n        <tr *ngFor=\"let banco of bancos\">\n          <td ><span>{{banco.id}}</span></td>\n          <td ><span>{{banco.nombre}}</span></td>\n          <td align=\"right\">\n            <span  dropdown >\n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(banco)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(banco)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEliminar(banco)\">\n                  <a class=\"dropdown-item\" >Eliminar</a>\n                </li>\n              </ul>\n            </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Bancos {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n\n<banco-delete-component></banco-delete-component>\n<banco-component></banco-component>\n<banco-edit-component></banco-edit-component> \n",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, banco_service_1.BancoService, core_2.ChangeDetectorRef])
@@ -1033,7 +1052,1046 @@ var BancosComponent = (function () {
 }());
 exports.BancosComponent = BancosComponent;
 
-},{"./../../models/banco":43,"./../../services/banco.service":51,"./banco.component":9,"./banco.delete.component":10,"./banco.edit.component":11,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105,"rxjs/BehaviorSubject":145}],13:[function(require,module,exports){
+},{"./../../models/banco":54,"./../../services/banco.service":63,"./banco.component":9,"./banco.delete.component":10,"./banco.edit.component":11,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119,"rxjs/BehaviorSubject":159}],13:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var cierre_service_1 = require('./../../services/cierre.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var CierreComponent = (function () {
+    function CierreComponent(cierreService) {
+        this.cierreService = cierreService;
+        this.movimientos = [];
+        this.abonos = [];
+    }
+    CierreComponent.prototype.ngOnInit = function () {
+    };
+    CierreComponent.prototype.setModel = function (cierre) {
+        var _this = this;
+        this.cierre = cierre;
+        this.movimientos = [];
+        this.abonos = [];
+        this.cierreService.getCierre(cierre.id).then(function (c) {
+            _this.cierre = c;
+            _this.abonos = c.abonos;
+            _this.movimientos = c.movimientos;
+        });
+    };
+    CierreComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    CierreComponent.prototype.openModal = function () {
+        this.modal.show();
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CierreComponent.prototype, "modal", void 0);
+    CierreComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"cierre\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Cierre {{cierre.id}}</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\">\n    <div class=\"col-md-12\">\n      <cierre-detalle-component  [cierre]=\"cierre\" [movimientos]=\"movimientos\" [abonos]=\"abonos\" ></cierre-detalle-component>\n  </div>\n</div> <!-- end  modal-body --> \n</div>\n</div>\n</div>\n",
+            providers: [cierre_service_1.CierreService]
+        }), 
+        __metadata('design:paramtypes', [cierre_service_1.CierreService])
+    ], CierreComponent);
+    return CierreComponent;
+}());
+exports.CierreComponent = CierreComponent;
+
+},{"./../../services/cierre.service":64,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],14:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var cierre_1 = require('./../../models/cierre');
+var cierre_service_1 = require('./../../services/cierre.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var CierreDeleteComponent = (function () {
+    function CierreDeleteComponent(cierreService) {
+        this.cierreService = cierreService;
+    }
+    CierreDeleteComponent.prototype.ngOnInit = function () {
+    };
+    CierreDeleteComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    CierreDeleteComponent.prototype.openModal = function (component) {
+        this.component = component;
+        this.mensaje = "";
+        this.modal.show();
+    };
+    CierreDeleteComponent.prototype.eliminar = function () {
+        var _this = this;
+        this.cierreService.delete(this.cierre).then(function (cierre) {
+            _this.hideModal();
+            _this.component.eliminar(cierre);
+        }).catch(function (error) {
+            _this.mensaje = error.cuentas;
+        });
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', cierre_1.Cierre)
+    ], CierreDeleteComponent.prototype, "cierre", void 0);
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CierreDeleteComponent.prototype, "modal", void 0);
+    CierreDeleteComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-delete-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"cierre\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Eliminar Cierre {{cierre.id}}</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\"  >\n    <div class=\"col-md-12\">\n      <cierre-detalle-component  [cierre]=\"cierre\"></cierre-detalle-component>\n      <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label> \n      <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n</div>\n",
+            providers: [cierre_service_1.CierreService]
+        }), 
+        __metadata('design:paramtypes', [cierre_service_1.CierreService])
+    ], CierreDeleteComponent);
+    return CierreDeleteComponent;
+}());
+exports.CierreDeleteComponent = CierreDeleteComponent;
+
+},{"./../../models/cierre":55,"./../../services/cierre.service":64,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],15:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var cierre_1 = require('./../../models/cierre');
+var CierreDetalleComponent = (function () {
+    function CierreDetalleComponent() {
+        this.movimientos = [];
+        this.abonos = [];
+    }
+    CierreDetalleComponent.prototype.countAbono = function () {
+        return " Total de Abonos " + this.abonos.length;
+    };
+    CierreDetalleComponent.prototype.countMovimientos = function () {
+        return " Total de Movimientos " + this.movimientos.length;
+    };
+    CierreDetalleComponent.prototype.isTransferencia = function (movimiento) {
+        return movimiento.tipo === "TRANSFERENCIA";
+    };
+    CierreDetalleComponent.prototype.isEfectivo = function (movimiento) {
+        return movimiento.tipo === "EFECTIVO";
+    };
+    CierreDetalleComponent.prototype.totalGramo = function (movimiento) {
+        if (movimiento.precio_puro === 0 || movimiento.precio_puro == undefined) {
+            return 0;
+        }
+        else {
+            return movimiento.saldo / movimiento.precio_puro;
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', cierre_1.Cierre)
+    ], CierreDetalleComponent.prototype, "cierre", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], CierreDetalleComponent.prototype, "movimientos", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], CierreDetalleComponent.prototype, "abonos", void 0);
+    CierreDetalleComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-detalle-component',
+            template: "\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"cierre.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"cierre.fecha\" ></detalle>\n    <detalle [nombre]=\"'Estado :'\" [contenido]=\"cierre.estado\" ></detalle>\n    <div class=\"col-md-12\">\n\t     <tabset>\n\t\t    <tab [heading]=\"countAbono()\"> \n          <div class=\"list-group-item\" *ngFor=\"let abono of abonos\" >\n            <h4 class=\"list-group-item-heading\">\n              <strong>{{abono.tipo.tipo}}</strong>\n              <span *ngIf=\"abono.afecta_banco\">{{abono.referencia}}</span>\n              <span *ngIf=\"abono.afecta_banco\">{{abono.cuenta.banco.nombre}}</span>\n              <span *ngIf=\"abono.afecta_banco\">{{abono.cuenta.numero}}</span>\n              <span> Fecha {{abono.fecha}}</span>\n            </h4>\n            <div class=\"row\">\n              <div class=\"col-md-6\" align=\"center\">\n                <label> Tasa</label>\n                <span>{{abono.tasa}}%</span>\n              </div>\n              <div class=\"col-md-6\" align=\"right\"> \n                <label> Cantidad </label>\n                <span>{{abono.cantidad|number:'1.2-2'}}{{abono.tipo.simbolo}}</span>\n              </div>\n              <div class=\"col-md-6\" align=\"right\"> \n                <label> Total </label>\n                <span>{{abono.saldo|number:'1.2-2'}}</span>\n              </div>\n            </div>\n          </div>\n\t\t    </tab>\n\t\t    <tab [heading]=\"countMovimientos()\">\n\t\t    \t<div class=\"list-group-item\" *ngFor=\"let movimiento of movimientos\" >\n          \t<h4 class=\"list-group-item-heading\">\n            \t<strong>{{movimiento.tipo}}</strong>\n             \t<span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.referencia}}</span>\n             \t<span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.cuenta.banco.nombre}}</span>\n             \t<span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.cuenta.numero}}</span>\n             \t<span> Fecha {{movimiento.fecha}}</span>\n          \t</h4>\n          \t<div class=\"row\">\n          \t\t<div class=\"col-md-4\"> \n            \t\t<label>Monto</label>\n            \t\t<span>{{movimiento.monto|number:'1.2-2'}}</span>\n          \t\t</div>\n          \t\t<div class=\"col-md-4\" align=\"center\" *ngIf=\"isEfectivo(movimiento)\">\n            \t\t<label>Comision</label>\n            \t\t<span>{{movimiento.comision}}%</span>\n          \t\t</div>\n          \t\t<div [ngClass]=\"{'col-md-4': isEfectivo(movimiento),'col-md-8': isTransferencia(movimiento)}\"  align=\"right\"> \n            \t\t<label>Total </label>\n            \t\t<span>{{movimiento.saldo|number:'1.2-2'}}</span>\n          \t\t</div>\n          \t\t<div class=\"col-md-6\" align=\"right\"> \n            \t\t<label>Precio Gramo </label>\n            \t\t<span>{{movimiento.precio_puro|number:'1.2-2'}}</span>\n          \t\t</div>\n          \t\t<div class=\"col-md-6\" align=\"right\"> \n            \t\t<label>Total Gramo </label>\n            \t\t<span>{{totalGramo(movimiento)|number:'1.2-2'}}</span>\n          \t\t</div>\n          \t</div>\n\t        </div>\n\t\t    </tab> <!-- End TAB  -->\n\t\t  </tabset>\n    </div>\n    <div class=\"col-md-6 col-md-offset-6\" style=\"margin-top: 40px;\">\n        <blockquote>\n        <label><strong>Totales :</strong></label>\n        <table class=\"table table-hover\">\n          <tr>\n            <td style=\"text-align: right;\"><strong> Prestamo : </strong></td>\n            <td style=\"text-align: left\"><strong> {{cierre.prestamo|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n          <tr>\n            <td style=\"text-align: right;\"><strong> Abono : </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{cierre.abono|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n\n          <tr>\n            <td style=\"text-align: right;\"><strong> Total: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{cierre.saldo|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n\n        </table>\n        </blockquote>\n    </div>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CierreDetalleComponent);
+    return CierreDetalleComponent;
+}());
+exports.CierreDetalleComponent = CierreDetalleComponent;
+
+},{"./../../models/cierre":55,"@angular/core":75}],16:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var abono_1 = require('./../../models/abono');
+var abono_service_1 = require('./../../services/abono.service');
+var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
+var CierreEditAbonoComponent = (function () {
+    function CierreEditAbonoComponent(abonoService, fB, _changeDetectionRef) {
+        this.abonoService = abonoService;
+        this.fB = fB;
+        this._changeDetectionRef = _changeDetectionRef;
+        this.divisa = false;
+        this.afecta_banco = 'false';
+        this.tasa = 0.0;
+        this.cantidad = 0.0;
+        this.saldo = 0.0;
+        this.formErrors = {
+            'referencia': '',
+            'cantidad': '',
+            'tasa': '',
+            'tipo_id': '',
+            'afecta_banco': '',
+            'cuenta_id': '',
+            'fecha': '',
+        };
+    }
+    CierreEditAbonoComponent.prototype.onValueChanged = function (data) {
+        if (this.abonoForm) {
+            this.formErrors.tipo_id = '';
+            this.formErrors.monto = '';
+            this.formErrors.saldo = '';
+            this.formErrors.cuenta_id = '';
+            this.formErrors.referencia = '';
+            this.formErrors.fecha = '';
+            this.formErrors.negocio_id = '';
+            this.formErrors.cantidad = '';
+            this.formErrors.estado = '';
+            this._changeDetectionRef.detectChanges();
+        }
+    };
+    CierreEditAbonoComponent.prototype.onGuardar = function () {
+        var _this = this;
+        var abono = this.abonoForm.value;
+        abono.tipo_id = this.jtipo.val();
+        abono.cuenta_id = (this.jcuenta ? this.jcuenta.val() : undefined);
+        abono.fecha = this.jfecha.val();
+        abono.afecta_banco = (this.afecta_banco === "true" ? true : false);
+        this.abonoService.guardar(abono).then(function (abono) {
+            _this.cierreEditComponent.agregarEditarAbono(abono);
+        }).catch(function (errores) {
+            _this.formErrors['tipo_id'] = errores.tipo_id;
+            _this.formErrors['monto'] = errores.monto;
+            _this.formErrors['saldo'] = errores.saldo;
+            _this.formErrors['cuenta_id'] = errores.cuenta_id;
+            _this.formErrors['referencia'] = errores.referencia;
+            _this.formErrors['fecha'] = errores.fecha;
+            _this.formErrors['negocio_id'] = errores.negocio_id;
+            _this.formErrors['cantidad'] = errores.cantidad;
+            _this.formErrors['estado'] = errores.estado;
+            _this.formErrors['tasa'] = errores.tasa;
+            _this._changeDetectionRef.detectChanges();
+        });
+    };
+    CierreEditAbonoComponent.prototype.ngOnInit = function () {
+        this.formBuilder();
+        this.setModel(new abono_1.Abono(), null);
+    };
+    CierreEditAbonoComponent.prototype.formBuilder = function () {
+        var _this = this;
+        this.abonoForm = this.fB.group({
+            'id': '',
+            'referencia': '',
+            'cantidad': '',
+            'tasa': '',
+            'tipo_id': '',
+            'afecta_banco': '',
+            'cuenta_id': '',
+            'fecha': '',
+            'negocio_id': ''
+        });
+        this.abonoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
+    };
+    CierreEditAbonoComponent.prototype.setModel = function (abono, cierreEditComponent) {
+        var _this = this;
+        this.abono = abono;
+        this.cierreEditComponent = cierreEditComponent;
+        this.abonoForm.setValue({
+            'id': abono.id || '',
+            'referencia': abono.referencia || '',
+            'cantidad': abono.cantidad || '',
+            'tasa': abono.tasa || '',
+            'tipo_id': abono.tipo_id || '',
+            'afecta_banco': abono.afecta_banco || '',
+            'cuenta_id': abono.cuenta_id || '',
+            'fecha': abono.fecha || '',
+            'negocio_id': abono.negocio_id || ''
+        });
+        this.jtipo = jquery_component_1.JqueryComponent.tipos("form #tipo_id", this.abono.tipo);
+        this.jtipo.on('select2:select', function (e) {
+            _this.simbolo = e.params.data.simbolo;
+            _this.tasa = e.params.data.tasa;
+            _this.divisa = e.params.data.divisa;
+            _this.calcularMonto();
+            if (!_this.divisa) {
+                _this.afecta_banco = 'false';
+            }
+        });
+        this.jfecha = jquery_component_1.JqueryComponent.fecha("form #fecha", this.abono.fecha);
+        this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", this.abono.cuenta);
+        if (abono.id != undefined) {
+            this.afecta_banco = (abono.afecta_banco ? "true" : "false");
+            this.simbolo = abono.tipo.simbolo;
+            this.tasa = abono.tasa;
+            this.cantidad = abono.cantidad;
+            this.saldo = abono.saldo;
+        }
+    };
+    CierreEditAbonoComponent.prototype.calcularMonto = function () {
+        this.saldo = this.tasa * this.cantidad;
+    };
+    CierreEditAbonoComponent.prototype.cambiarAfectaBanco = function () {
+        if (this.afecta_banco === 'true') {
+            this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id");
+        }
+    };
+    CierreEditAbonoComponent.prototype.onCancelar = function () {
+        this.cierreEditComponent.onActivarCierre();
+    };
+    CierreEditAbonoComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-edit-abono-component',
+            template: "\n<div class=\"panel-body\">\n  <h4 class=\"page-header\" *ngIf=\"abono.id\"><strong> Editar Abono :</strong></h4>\n  <h4 class=\"page-header\" *ngIf=\"!abono.id\"><strong> Agregar Nuevo Abono :</strong></h4>\n  <form [formGroup]=\"abonoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tipo_id}\">\n      <label for=\"tipo_id\" class=\"col-md-2 control-label\" for=\"tipo_id\">Tipo :</label>\n      <div class=\"col-md-10\">\n        <select id=\"tipo_id\" class=\"form-control\"></select>\n        <span  *ngIf=\"formErrors.tipo_id\" class=\"help-block\">{{ formErrors.tipo_id}}</span>\n      </div> \n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.fecha}\">\n      <label for=\"fecha\" class=\"col-md-2 control-label\" for=\"tipo\">Fecha</label>\n      <div class=\"col-md-10\">\n        <input id=\"fecha\" type=\"text\" data-provide=\"datepicker\" class=\"form-control \" >\n        <span  *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n      </div>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tasa}\">\n      <label for=\"tasa\" class=\"col-md-2 control-label\" for=\"tasa\"> Tasa </label>\n      <div class=\"col-md-8\">\n        <input id=\"tasa\" type=\"number\" class=\"form-control\" formControlName=\"tasa\" placeholder=\"000.000,00\" [(ngModel)]=\"tasa\" (keyup)=\"calcularMonto()\" >\n        <span  *ngIf=\"formErrors.tasa\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tasa}}</span>\n      </div>\n      <label class=\"col-md-2\" style=\"padding-left: 0px;padding-top: 10px;\">Bs.</label>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.afecta_banco}\" *ngIf=\"divisa\">\n      <label for=\"afecta_banco\" class=\"col-md-2 control-label\" for=\"tipo\">Afecta Banco</label>\n      <div class=\"col-md-10\">\n        <select id=\"afecta_banco\" formControlName=\"afecta_banco\" class=\"form-control\" [(ngModel)]=\"afecta_banco\" (click)=\"cambiarAfectaBanco()\" > \n          <option value=\"false\">Efectivo</option>\n          <option value=\"true\">Afecta Banco</option>\n        </select>\n        <span *ngIf=\"formErrors.tipo\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tipo}}</span>\n      </div>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cantidad}\">\n      <label for=\"cantidad\" class=\"col-md-2 control-label\" for=\"cantidad\"> Cantidad </label>\n      <div class=\"col-md-8\">\n        <input  id=\"cantidad\" type=\"number\" class=\"form-control\" formControlName=\"cantidad\" placeholder=\"000.000,00\" [(ngModel)]=\"cantidad\" (keyup)=\"calcularMonto()\">\n        <span  *ngIf=\"formErrors.cantidad\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cantidad}}</span>\n      </div>\n      <label class=\"col-md-2\" style=\"padding-left: 0px;padding-top: 10px;\">{{simbolo}}</label>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cuenta_id}\" *ngIf=\"afecta_banco == 'true'\">\n      <label for=\"cuenta_id\" class=\"col-md-2 control-label\" for=\"tipo\">Cuenta</label>\n      <div class=\"col-md-10\">\n        <select id=\"cuenta_id\" class=\"form-control\"></select>\n        <span  *ngIf=\"formErrors.cuenta_id\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cuenta_id}}</span>\n      </div>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.referencia}\" *ngIf=\"afecta_banco  == 'true'\" >\n      <label for=\"referencia\" class=\"col-md-2 control-label\" for=\"referencia\"> Referencia </label>\n      <div class=\"col-md-10\" align=\"right\">\n        <input  id=\"referencia\" type=\"text\" class=\"form-control\" formControlName=\"referencia\">\n        <span  *ngIf=\"formErrors.referencia\" id=\"errornombre\" class=\"help-block\">{{ formErrors.referencia}}</span>\n      </div>\n    </div>\n    <div [ngClass]=\"{'form-group': true,'col-md-12': true,'has-error': formErrors.descripcion}\" >\n      <div class=\"col-md-5 pull-right\" >\n        <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n        <table class=\"table table-hover\">\n          <tr>\n            <td style=\"text-align: right;\"><strong> Saldo : </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n         </table>\n      </div>\n      <div class=\"col-md-12\">\n        <div class=\"btn-group  pull-right\">\n          <input type=\"button\" class=\"btn btn-danger\" (click)=\"onCancelar()\" value=\"Cancelar\">\n          <input type=\"button\" class=\"btn btn-primary\" (click)=\"onGuardar()\" value=\"Guardar\">\n        </div>\n      </div>\n    </div>  \n  </form>\n</div>",
+            providers: [abono_service_1.AbonoService]
+        }), 
+        __metadata('design:paramtypes', [abono_service_1.AbonoService, forms_1.FormBuilder, core_1.ChangeDetectorRef])
+    ], CierreEditAbonoComponent);
+    return CierreEditAbonoComponent;
+}());
+exports.CierreEditAbonoComponent = CierreEditAbonoComponent;
+
+},{"./../../models/abono":53,"./../../services/abono.service":62,"./../jquery.component":28,"@angular/core":75,"@angular/forms":76}],17:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var forms_1 = require('@angular/forms');
+var CierreEditAsignarPrecioMovimientoComponent = (function () {
+    function CierreEditAsignarPrecioMovimientoComponent(movimientoService, fB) {
+        this.movimientoService = movimientoService;
+        this.fB = fB;
+        this.saldo = 0.0;
+        this.monto = 0.0;
+        this.gramos = 0.0;
+        this.precio_puro = 0.0;
+        this.formErrors = {
+            'id': '',
+            'monto': '',
+            'precio_puro': ''
+        };
+    }
+    CierreEditAsignarPrecioMovimientoComponent.prototype.onValueChanged = function (data) {
+        if (!this.movimientoForm) {
+            return;
+        }
+        for (var field in this.formErrors) {
+            this.formErrors[field] = '';
+        }
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.onGuardar = function () {
+        var _this = this;
+        var movimiento = this.movimientoForm.value;
+        this.movimientoService.actualizarPrecioPuro(movimiento).then(function (movimiento) {
+            _this.cierreEditComponent.agregarEditarMovimiento(movimiento);
+        }).catch(function (errores) {
+            _this.formErrors['id'] = errores.id;
+            _this.formErrors['monto'] = errores.monto;
+            _this.formErrors['precio_puro'] = errores.precio_puro;
+        });
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.ngOnInit = function () {
+        this.formBuilder();
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.formBuilder = function () {
+        var _this = this;
+        this.movimientoForm = this.fB.group({
+            'id': '',
+            'monto': '',
+            'precio_puro': ''
+        });
+        this.movimientoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.setModel = function (movimiento, cierreEditComponent) {
+        this.cierreEditComponent = cierreEditComponent;
+        this.movimiento = movimiento;
+        this.saldo = this.movimiento.saldo || 0;
+        this.monto = this.movimiento.monto || 0;
+        this.precio_puro = this.movimiento.precio_puro || 0;
+        if (this.precio_puro == 0) {
+            this.gramos = 0.0;
+        }
+        else {
+            this.gramos = this.saldo / this.precio_puro;
+        }
+        this.movimientoForm.setValue({
+            'id': movimiento.id || '',
+            'monto': movimiento.monto || '',
+            'precio_puro': movimiento.precio_puro || '',
+        });
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.actualizarSaldo = function () {
+        this.saldo = ((this.movimiento.comision / 100) + 1) * this.monto;
+        this.gramos = (this.saldo / this.precio_puro);
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.transferencia = function () {
+        return (this.movimiento.tipo === "TRANSFERENCIA" ? true : false);
+    };
+    CierreEditAsignarPrecioMovimientoComponent.prototype.onCancelar = function () {
+        this.cierreEditComponent.onActivarCierre();
+    };
+    CierreEditAsignarPrecioMovimientoComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-edit-asignar-precio-movimiento-component',
+            template: "\n<div class=\"modal-body\">\n  <div class=\"panel-body\" *ngIf=\"movimiento\">\n    <div class=\"col-md-12\">\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"movimiento.fecha\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"movimiento.tipo\" ></detalle>\n    <detalle [nombre]=\"'Referencia :'\" [contenido]=\"movimiento.referencia\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Cuenta  :'\" [contenido]=\"movimiento.cuenta|detalleCuenta\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Estado  :'\" [contenido]=\"movimiento.estado\" ></detalle>\n    </div>\n    <form [formGroup]=\"movimientoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.monto}\">\n        <label for=\"monto\" class=\"col-md-2 control-label\" for=\"monto\"> Monto </label>\n        <div class=\"col-md-8\">\n          <input  id=\"monto\" type=\"number\" class=\"form-control\" formControlName=\"monto\" [(ngModel)]=\"monto\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.monto\" class=\"help-block\">{{ formErrors.monto}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"monto\"> Bs. </label>\n      </div>\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.precio_puro}\">\n        <label for=\"precio_puro\" class=\"col-md-2 control-label\" for=\"precio_puro\"> Precio Puro </label>\n        <div class=\"col-md-8\">\n          <input  id=\"precio_puro\" type=\"number\" class=\"form-control\" formControlName=\"precio_puro\" [(ngModel)]=\"precio_puro\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.precio_puro\" class=\"help-block\">{{ formErrors.precio_puro}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"precio_puro\"> Bs. </label>\n      </div>\n      <div [ngClass]=\"{'form-group': true,'col-md-12': true}\" >\n        <div class=\"col-md-5 pull-right\" >\n          <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Monto : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{monto|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Precio Puro : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{precio_puro|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Gramos : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{gramos|number:'1.2-2'}} grams.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Total : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n          </table>\n        </div>\n        <div class=\"col-md-12\">\n          <div class=\"btn-group  pull-right\">\n            <input type=\"button\" class=\"btn btn-danger\" (click)=\"onCancelar()\" value=\"Cancelar\">\n            <input type=\"button\" class=\"btn btn-primary\" (click)=\"onGuardar()\" value=\"Guardar\">\n           </div>\n        </div>\n      </div>  \n    </form>\n  </div>\n</div>",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
+    ], CierreEditAsignarPrecioMovimientoComponent);
+    return CierreEditAsignarPrecioMovimientoComponent;
+}());
+exports.CierreEditAsignarPrecioMovimientoComponent = CierreEditAsignarPrecioMovimientoComponent;
+
+},{"./../../services/movimiento.service":68,"@angular/core":75,"@angular/forms":76}],18:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var cierre_1 = require('./../../models/cierre');
+var movimiento_1 = require('./../../models/movimiento');
+var abono_1 = require('./../../models/abono');
+var cierre_service_1 = require('./../../services/cierre.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
+var cierre_edit_abono_component_1 = require('./cierre.edit.abono.component');
+var cierre_edit_movimiento_component_1 = require('./cierre.edit.movimiento.component');
+var cierre_edit_asignar_precio_movimiento_component_1 = require('./cierre.edit.asignar.precio.movimiento.component');
+var abono_service_1 = require('./../../services/abono.service');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var CierreEditComponent = (function () {
+    function CierreEditComponent(cierreService, fB, abonoService, movimientoService, _changeDetectionRef) {
+        this.cierreService = cierreService;
+        this.fB = fB;
+        this.abonoService = abonoService;
+        this.movimientoService = movimientoService;
+        this._changeDetectionRef = _changeDetectionRef;
+        this.abonoDisabled = true;
+        this.abonoActive = false;
+        this.cierreActive = true;
+        this.cierreDisabled = false;
+        this.movimientoDisabled = true;
+        this.movimientoActive = false;
+        this.movimientoMaterialDisabled = true;
+        this.movimientoMaterialActive = false;
+        this._totalMovimientos = 0.0;
+        this._totalGramosMovimientos = 0.0;
+        this._totalAbonos = 0.0;
+        this.total = 0.0;
+        this.formErrors = {
+            negocio_id: '',
+            fecha: '',
+            movimientos: '',
+            abonos: '',
+        };
+    }
+    CierreEditComponent.prototype.onValueChanged = function (data) {
+        this.formErrors.nombre = "";
+    };
+    CierreEditComponent.prototype.onGuardar = function (operacion) {
+        var _this = this;
+        var cierre = new cierre_1.Cierre;
+        cierre.id = this.cierre.id;
+        cierre.negocio_id = this.negocio_id;
+        cierre.fecha = this.jfecha.val();
+        cierre.abonos = this.abonos;
+        cierre.movimientos = this.movimientos;
+        this.cierreService.guardar(cierre, operacion).then(function (cierre) {
+            _this.component.changeTable(cierre);
+            _this.hideModal();
+        }).catch(function (errores) {
+            _this.formErrors['negocio_id'] = errores.negocio_id;
+            _this.formErrors['fecha'] = errores.fecha;
+            _this.formErrors['movimientos'] = errores.movimientos;
+            _this.formErrors['abonos'] = errores.abonos;
+        });
+    };
+    CierreEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.abonoDisabled = true;
+        this.modal.onShown.subscribe(function (event) {
+            _this.jnegocio = jquery_component_1.JqueryComponent.negocios("#negocio_id", _this.cierre.negocio);
+            _this.jnegocio.on('select2:select', function () {
+                _this.formErrors['negocio_id'] = '';
+                _this.limpiarFormulario();
+                _this.cargarDetalle();
+            });
+            _this.jfecha = jquery_component_1.JqueryComponent.fecha("#fecha", _this.cierre.fecha);
+        });
+    };
+    CierreEditComponent.prototype.limpiarFormulario = function () {
+        this.abonoDisabled = true;
+        this.abonoActive = false;
+        this.cierreActive = true;
+        this.movimientoDisabled = true;
+        this.movimientoActive = false;
+        this.movimientos = [];
+        this.abonos = [];
+        this._totalMovimientos = 0.0;
+        this._totalGramosMovimientos = 0.0;
+        this._totalAbonos = 0.0;
+        this.total = 0.0;
+    };
+    CierreEditComponent.prototype.cargarMovimientos = function (id) {
+        var _this = this;
+        this.cierreService.movimientospendites(id).subscribe(function (resp) {
+            _this.movimientos = resp;
+            _this.totalMovimiento();
+        });
+        this.formErrors['movimientos'] = '';
+    };
+    CierreEditComponent.prototype.cargarAbonos = function (id) {
+        var _this = this;
+        this.cierreService.abonospendientes(id).subscribe(function (resp) {
+            _this.abonos = resp;
+            _this.totalAbonos();
+        });
+        this.formErrors['abonos'] = '';
+    };
+    CierreEditComponent.prototype.cargarDetalle = function () {
+        this.negocio_id = this.jnegocio.val();
+        if (this.negocio_id) {
+            this.cargarMovimientos(this.negocio_id);
+            this.cargarAbonos(this.negocio_id);
+        }
+    };
+    CierreEditComponent.prototype.setModel = function (cierre) {
+        var _this = this;
+        this.limpiarFormulario();
+        if (cierre.id) {
+            console.log("Gogogogogogo Aqui EStoy ");
+            this.cierreService.getCierre(cierre.id).then(function (resp) {
+                _this.cierre = resp;
+                _this.negocio_id = cierre.negocio_id;
+                _this.abonos = resp.abonos;
+                _this.movimientos = resp.movimientos;
+                _this.totalMovimiento();
+                _this.totalAbonos();
+            });
+        }
+        else {
+            this.cierre = cierre;
+            this.negocio_id = null;
+            if (this.negocio_id) {
+                this.cargarMovimientos(this.negocio_id);
+                this.cargarAbonos(this.negocio_id);
+            }
+        }
+    };
+    CierreEditComponent.prototype.openModal = function (component) {
+        this.component = component;
+        this.modal.show();
+    };
+    CierreEditComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    CierreEditComponent.prototype.totalMovimiento = function () {
+        this._totalMovimientos = 0.0;
+        this._totalGramosMovimientos = 0.0;
+        for (var _i = 0, _a = this.movimientos; _i < _a.length; _i++) {
+            var movimiento = _a[_i];
+            this._totalMovimientos += movimiento.saldo;
+            this._totalGramosMovimientos += this.totalGramo(movimiento);
+        }
+        this.total = this._totalAbonos - this._totalMovimientos;
+    };
+    CierreEditComponent.prototype.totalAbonos = function () {
+        this._totalAbonos = 0.0;
+        for (var _i = 0, _a = this.abonos; _i < _a.length; _i++) {
+            var abono = _a[_i];
+            this._totalAbonos += abono.saldo;
+        }
+        this.total = this._totalAbonos - this._totalMovimientos;
+    };
+    CierreEditComponent.prototype.totalGramo = function (movimiento) {
+        return (movimiento.precio_puro === 0 ||
+            movimiento.precio_puro == undefined ?
+            0 : movimiento.saldo / movimiento.precio_puro);
+    };
+    CierreEditComponent.prototype.onAgregarAbono = function () {
+        if (this.negocio_id) {
+            var abono = new abono_1.Abono();
+            abono.negocio_id = this.negocio_id;
+            this.abonoDisabled = false;
+            this.abonoActive = true;
+            this.cierreActive = false;
+            this.cierreDisabled = true;
+            this._changeDetectionRef.detectChanges();
+            this.cierreEditAbonoComponent.setModel(abono, this);
+        }
+        else {
+            alert("Seleccione negocio o cierre ");
+        }
+    };
+    CierreEditComponent.prototype.onAgregarMovimiento = function () {
+        if (this.negocio_id) {
+            var movimiento = new movimiento_1.Movimiento();
+            movimiento.negocio_id = this.negocio_id;
+            this.movimientoDisabled = false;
+            this.movimientoActive = true;
+            this.cierreActive = false;
+            this.cierreDisabled = true;
+            this.cierreEditMovimientoComponent.setModel(movimiento, this);
+        }
+        else {
+            alert("Seleccione negocio o cierre ");
+        }
+    };
+    CierreEditComponent.prototype.agregarEditarAbono = function (abono) {
+        this.formErrors['abonos'] = '';
+        this.abonoDisabled = true;
+        this.abonoActive = false;
+        this.cierreActive = true;
+        this.cierreDisabled = false;
+        for (var m in this.abonos) {
+            if (this.abonos[m].id === abono.id) {
+                this.abonos[m] = abono;
+                this.totalAbonos();
+                return;
+            }
+        }
+        this.abonos.push(abono);
+        this.totalAbonos();
+    };
+    CierreEditComponent.prototype.agregarEditarMovimiento = function (movimiento) {
+        this.formErrors['movimientos'] = '';
+        this.movimientoDisabled = true;
+        this.movimientoActive = false;
+        this.movimientoMaterialDisabled = true;
+        this.movimientoMaterialActive = false;
+        this.cierreActive = true;
+        this.cierreDisabled = false;
+        for (var m in this.movimientos) {
+            if (this.movimientos[m].id === movimiento.id) {
+                this.movimientos[m] = movimiento;
+                this.totalMovimiento();
+                return;
+            }
+        }
+        this.movimientos.push(movimiento);
+        this.totalMovimiento();
+    };
+    CierreEditComponent.prototype.onEditarAbono = function (abono) {
+        if (this.negocio_id) {
+            abono.negocio_id = this.negocio_id;
+            this.abonoDisabled = false;
+            this.abonoActive = true;
+            this.cierreActive = false;
+            this.cierreDisabled = true;
+            this.cierreEditAbonoComponent.setModel(abono, this);
+        }
+        else {
+            alert("Seleccione negocio o cierre ");
+        }
+    };
+    CierreEditComponent.prototype.onEditarMovimiento = function (movimiento) {
+        if (this.negocio_id) {
+            movimiento.negocio_id = this.negocio_id;
+            this.movimientoDisabled = false;
+            this.movimientoActive = true;
+            this.cierreActive = false;
+            this.cierreDisabled = true;
+            this.cierreEditMovimientoComponent.setModel(movimiento, this);
+        }
+        else {
+            alert("Seleccione negocio o cierre ");
+        }
+    };
+    CierreEditComponent.prototype.onAsignarPrecio = function (movimiento) {
+        if (this.negocio_id) {
+            movimiento.negocio_id = this.negocio_id;
+            this.movimientoMaterialDisabled = false;
+            this.movimientoMaterialActive = true;
+            this.cierreActive = false;
+            this.cierreDisabled = true;
+            this.cierreEditAsignarPrecioMovimientoComponent.setModel(movimiento, this);
+        }
+        else {
+            alert("Seleccione negocio o cierre ");
+        }
+    };
+    CierreEditComponent.prototype.onEliminarAbono = function (abono) {
+        for (var m in this.abonos) {
+            if (this.abonos[m].id === abono.id) {
+                var position = +m;
+                this.abonos.splice(position, 1);
+                this.totalAbonos();
+                return;
+            }
+        }
+    };
+    CierreEditComponent.prototype.onEliminarMovimiento = function (movimiento) {
+        for (var m in this.movimientos) {
+            if (this.movimientos[m].id === movimiento.id) {
+                var position = +m;
+                this.movimientos.splice(position, 1);
+                this.totalMovimiento();
+                return;
+            }
+        }
+    };
+    CierreEditComponent.prototype.onActivarCierre = function () {
+        this.abonoDisabled = true;
+        this.abonoActive = false;
+        this.cierreActive = true;
+        this.cierreDisabled = false;
+        this.movimientoDisabled = true;
+        this.movimientoActive = false;
+        this.movimientoMaterialDisabled = true;
+        this.movimientoMaterialActive = false;
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CierreEditComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_edit_abono_component_1.CierreEditAbonoComponent), 
+        __metadata('design:type', cierre_edit_abono_component_1.CierreEditAbonoComponent)
+    ], CierreEditComponent.prototype, "cierreEditAbonoComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_edit_movimiento_component_1.CierreEditMovimientoComponent), 
+        __metadata('design:type', cierre_edit_movimiento_component_1.CierreEditMovimientoComponent)
+    ], CierreEditComponent.prototype, "cierreEditMovimientoComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_edit_asignar_precio_movimiento_component_1.CierreEditAsignarPrecioMovimientoComponent), 
+        __metadata('design:type', cierre_edit_asignar_precio_movimiento_component_1.CierreEditAsignarPrecioMovimientoComponent)
+    ], CierreEditComponent.prototype, "cierreEditAsignarPrecioMovimientoComponent", void 0);
+    CierreEditComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-edit-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:95%; height:90%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    Editar Cierre\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"cierre\">\n      <tabset>\n        <tab heading=\"Editar Cierre\" [active]=\"cierreActive\" [disabled]=\"cierreDisabled\"> \n          <div class=\"panel-body\">\n            <div [ngClass]=\"{'form-group': true, 'col-md-4': true,'has-error': formErrors.negocio_id}\">\n              <label for=\"negocio_id\" class=\"col-sm-2 control-label\" for=\"estado\">Negocio o Socio </label>\n              <div class=\"col-sm-10\">\n                <select id=\"negocio_id\" class=\"form-control\"></select>\n                <span *ngIf=\"formErrors.negocio_id\" id=\"errornegocio_id\" class=\"help-block\">{{ formErrors.negocio_id}}</span>\n              </div> \n            </div>\n            <div [ngClass]=\"{'form-group': true,'col-md-4': true,'has-error': formErrors.fecha}\"  >\n              <label for=\"fecha\" class=\"col-md-2 control-label\" for=\"fecha\">Fecha</label>\n              <div class=\"col-md-10\">\n                <input id=\"fecha\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n                <span *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n              </div>\n            </div>\n\n            <div [ngClass]=\"{'form-group': true,'col-md-4': true,'has-error': formErrors.fecha}\"  >\n              <label for=\"total\" class=\"col-md-2 control-label\">Total </label>\n              <div class=\"col-md-10\">\n                <label class=\"form-control\">{{total|number:'1.2-2'|montoBs}}</label>\n                <span *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n              </div>\n            </div>\n\n            <div class=\"col-md-12\" >\n              <h3 class=\"page-header\">\n                <button type=\"button\" class=\"btn btn-default btn-xs\" (click)=\"onAgregarMovimiento()\">+</button>\n                Movimientos\n              </h3>\n              <span *ngIf=\"formErrors.movimientos\" id=\"errornegocio_id\" class=\"help-block\">{{ formErrors.movimientos}}</span>\n              <div class=\"table-responsive\" style=\"height:200px; overflow:auto;\">\n              <table class=\"table\">\n                <thead>\n                  <tr class=\"active\">\n                    <th style=\"width: 10%\">Id</th>\n                    <th style=\"width: 15%\">Tipo</th>\n                    <th style=\"width: 15%\">Fecha</th>\n                    <th style=\"width: 20%\">Total</th>\n                    <th style=\"width: 20%\" >precio Puro</th>\n                    <th style=\"width: 20%\">Total Gramos</th>\n                    <th></th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let movimiento of movimientos\">\n                    <td style=\"width: 10%\"><span>{{movimiento.id}}</span></td>\n                    <td style=\"width: 15%\"><span>{{movimiento.tipo}}</span></td>\n                    <td style=\"width: 15%\"><span>{{movimiento.fecha}}</span></td>\n                    <td style=\"width: 20%\"><span>{{movimiento.saldo|number:'1.2-2'}}</span></td>\n                    <td style=\"width: 20%\"><span>{{movimiento.precio_puro|number:'1.2-2'}}</span></td>\n                    <td style=\"width: 20%\"><span>{{totalGramo(movimiento)|number:'1.2-2'}}</span></td>\n                    <td align=\"right\">\n                      <span  dropdown > \n                        <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n                        <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                          <li role=\"menuitem\" (click)=\"onEditarMovimiento(movimiento)\">\n                            <a class=\"dropdown-item\" >Editar</a>\n                          </li>\n                          <li role=\"menuitem\" (click)=\"onAsignarPrecio(movimiento)\">\n                            <a class=\"dropdown-item\" >Asignar Precio Puro</a>\n                          </li>\n                          <li role=\"menuitem\" (click)=\"onEliminarMovimiento(movimiento)\">\n                            <a class=\"dropdown-item\" >Quitar</a>\n                          </li>\n                        </ul>\n                      </span>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n              </div>\n              <table style=\"width: 100%\">\n                <tfoot>\n                   <tr>\n                      <td style=\"width: 60%\"></td>\n                      <td style=\"width: 20%; text-align: right;\"><strong>Total:</strong></td>\n                      <td style=\"width: 20%\"> {{_totalMovimientos|number:'1.2-2'|montoBs}}</td>\n                   </tr>\n                   <tr style=\"text-align: right;\">\n                      <td style=\"width: 60%\"></td>\n                      <td style=\"width: 20%; text-align: right;\"><strong>Total Gramos :</strong></td>\n                      <td style=\"width: 20%\">{{_totalGramosMovimientos|number:'1.2-2'}}</td>\n                   </tr>\n                </tfoot>\n              </table>\n            </div>\n\n            <div class=\"col-md-12\">\n              <h3 class=\"page-header\">\n                <button type=\"button\" class=\"btn btn-default btn-xs\" (click)=\"onAgregarAbono()\">+</button>\n                Abonos\n              </h3>\n             <span *ngIf=\"formErrors.abonos\" id=\"errornegocio_id\" class=\"help-block\">{{ formErrors.abonos}}</span>\n              <div class=\"table-responsive\" style=\"height:200px; overflow:auto;\">\n              <table class=\"table\">\n                <thead>\n                  <tr class=\"active\">\n                    <th style=\"width: 20%\">Id</th>\n                    <th style=\"width: 20%\">Tipo</th>\n                    <th style=\"width: 20%\">Fecha</th>\n                    <th style=\"width: 20%\">Cantidad</th>\n                    <th style=\"width: 20%\">Total</th>\n                    <th></th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let abono of abonos\">\n                    <td style=\"width: 20%\"><span>{{abono.id}}</span></td>\n                    <td style=\"width: 20%\"><span>{{abono.tipo.tipo}}</span></td>\n                    <td style=\"width: 20%\"><span>{{abono.fecha}}</span></td>\n                    <td style=\"width: 20%\"><span>{{abono|cantidadAbono}}</span></td>\n                    <td style=\"width: 20%\"><span>{{abono.saldo|number:'1.2-2'|montoBs}}</span></td>\n                    <td align=\"right\">\n                      <span  dropdown > \n                        <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n                        <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                          <li role=\"menuitem\" (click)=\"onEditarAbono(abono)\">\n                            <a class=\"dropdown-item\" >Editar</a>\n                          </li>\n                          <li role=\"menuitem\" (click)=\"onEliminarAbono(abono)\">\n                            <a class=\"dropdown-item\" >Quitar</a>\n                          </li>\n                        </ul>\n                      </span>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n              </div>\n              <table style=\"width: 100%\">\n                <tfoot>\n                   <tr style=\"text-align: right;\">\n                      <td style=\"width: 60%\"></td>\n                      <td style=\"width: 20%;text-align: right;\"><strong>Total:</strong></td>\n                      <td style=\"width: 20%\"> {{_totalAbonos|number:'1.2-2'|montoBs}}</td>\n                   </tr>\n                </tfoot>\n              </table>\n            </div>\n            <div class=\"col-md-12\" style=\"margin-top: 20px;\" >\n              <div class=\"  pull-right\">\n                <input type=\"button\" class=\"btn btn-primary\" (click)=\"onGuardar('guardarcerrar')\" value=\"Guardar & Cerrar\">\n                <input type=\"button\" class=\"btn btn-primary\" (click)=\"onGuardar('guardar')\" value=\"Guardar\">\n              </div>\n            </div>\n          </div>\n        </tab>\n        <tab heading=\"Editar Abono\" [disabled]=\"abonoDisabled\" [active]=\"abonoActive\">\n           <cierre-edit-abono-component></cierre-edit-abono-component>\n        </tab>\n        <tab heading=\"Editar Movimiento\"  [disabled]=\"movimientoDisabled\" [active]=\"movimientoActive\">\n           <cierre-edit-movimiento-component></cierre-edit-movimiento-component>\n        </tab>\n        <tab heading=\"Asignar Precio Material\" [disabled]=\"movimientoMaterialDisabled\" [active]=\"movimientoMaterialActive\">\n           <cierre-edit-asignar-precio-movimiento-component></cierre-edit-asignar-precio-movimiento-component>\n        </tab>\n      </tabset>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
+            providers: [cierre_service_1.CierreService]
+        }), 
+        __metadata('design:paramtypes', [cierre_service_1.CierreService, forms_1.FormBuilder, abono_service_1.AbonoService, movimiento_service_1.MovimientoService, core_1.ChangeDetectorRef])
+    ], CierreEditComponent);
+    return CierreEditComponent;
+}());
+exports.CierreEditComponent = CierreEditComponent;
+
+},{"./../../models/abono":53,"./../../models/cierre":55,"./../../models/movimiento":57,"./../../services/abono.service":62,"./../../services/cierre.service":64,"./../../services/movimiento.service":68,"./../jquery.component":28,"./cierre.edit.abono.component":16,"./cierre.edit.asignar.precio.movimiento.component":17,"./cierre.edit.movimiento.component":19,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],19:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var CierreEditMovimientoComponent = (function () {
+    function CierreEditMovimientoComponent(movimientoService, fB) {
+        this.movimientoService = movimientoService;
+        this.fB = fB;
+        this.tipo = null;
+        this.saldo = 0.0;
+        this.comision = 0.0;
+        this.monto = 0.0;
+        this.formErrors = {
+            'id': '',
+            'monto': '',
+            'comision': '',
+            'fecha': '',
+            'descripcion': '',
+            'tipo': '',
+            'referencia': '',
+            'estado': '',
+            'negocio_id': '',
+            'cuenta_id': '',
+        };
+    }
+    CierreEditMovimientoComponent.prototype.onValueChanged = function (data) {
+        if (!this.movimientoForm) {
+            return;
+        }
+        for (var field in this.formErrors) {
+            this.formErrors[field] = '';
+        }
+    };
+    CierreEditMovimientoComponent.prototype.onGuardar = function () {
+        var _this = this;
+        var movimiento = this.movimientoForm.value;
+        movimiento.cuenta_id = this.jcuenta.val();
+        movimiento.fecha = this.jfecha.val();
+        movimiento.comision = this.comision;
+        this.movimientoService.guardar(movimiento).then(function (movimiento) {
+            _this.cierreEditComponent.agregarEditarMovimiento(movimiento);
+        }).catch(function (errores) {
+            _this.formErrors['id'] = errores.id;
+            _this.formErrors['monto'] = errores.monto;
+            _this.formErrors['comision'] = errores.comision;
+            _this.formErrors['fecha'] = errores.fecha;
+            _this.formErrors['descripcion'] = errores.descripcion;
+            _this.formErrors['tipo'] = errores.tipo;
+            _this.formErrors['referencia'] = errores.referencia;
+            _this.formErrors['estado'] = errores.estado;
+            _this.formErrors['negocio_id'] = errores.negocio_id;
+            _this.formErrors['cuenta_id'] = errores.cuenta_id;
+        });
+    };
+    CierreEditMovimientoComponent.prototype.ngOnInit = function () {
+        this.formBuilder();
+    };
+    CierreEditMovimientoComponent.prototype.formBuilder = function () {
+        var _this = this;
+        this.movimientoForm = this.fB.group({
+            'id': '',
+            'monto': '',
+            'comision': '',
+            'fecha': '',
+            'descripcion': '',
+            'tipo': '',
+            'referencia': '',
+            'estado': '',
+            'negocio_id': '',
+            'cuenta_id': '',
+        });
+        this.movimientoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
+    };
+    CierreEditMovimientoComponent.prototype.setModel = function (movimiento, cierreEditComponent) {
+        this.movimiento = movimiento;
+        this.cierreEditComponent = cierreEditComponent;
+        this.saldo = this.movimiento.saldo || 0.0;
+        this.monto = this.movimiento.monto || 0.0;
+        this.comision = this.movimiento.comision || 0.0;
+        this.movimientoForm.setValue({
+            'id': this.movimiento.id || '',
+            'monto': this.movimiento.monto || '',
+            'comision': this.movimiento.comision || '',
+            'fecha': this.movimiento.fecha || '',
+            'descripcion': this.movimiento.descripcion || '',
+            'tipo': this.movimiento.tipo || '',
+            'referencia': this.movimiento.referencia || '',
+            'estado': this.movimiento.estado || '',
+            'negocio_id': this.movimiento.negocio_id || '',
+            'cuenta_id': this.movimiento.cuenta_id || '',
+        });
+        this.jfecha = jquery_component_1.JqueryComponent.fecha("form #fecha", this.movimiento.fecha);
+        this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", this.movimiento.cuenta);
+    };
+    CierreEditMovimientoComponent.prototype.actualizarSaldo = function () {
+        this.comision = (Math.abs(this.comision) <= 100 ? Math.abs(this.comision) : 0);
+        this.saldo = ((this.comision / 100) + 1) * this.monto;
+    };
+    CierreEditMovimientoComponent.prototype.cambiarTipo = function () {
+        if (this.tipo === "TRANSFERENCIA") {
+            this.comision = 0.0;
+            this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", this.movimiento.cuenta);
+            this.actualizarSaldo();
+        }
+    };
+    CierreEditMovimientoComponent.prototype.onCancelar = function () {
+        this.cierreEditComponent.onActivarCierre();
+    };
+    CierreEditMovimientoComponent = __decorate([
+        core_1.Component({
+            selector: 'cierre-edit-movimiento-component',
+            template: "\n  <div class=\"panel-body\" *ngIf=\"movimiento\">\n    <form [formGroup]=\"movimientoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tipo}\">\n        <label for=\"tipo\" class=\"col-md-2 control-label\" for=\"tipo\">Tipo</label>\n        <div class=\"col-md-10\">\n          <select id=\"tipo\" formControlName=\"tipo\" class=\"form-control\"  [(ngModel)]=\"tipo\" (click)=\"cambiarTipo()\"> \n            <option>Seleccione</option>\n            <option values=\"TRANSFERENCIA\">TRANSFERENCIA</option>\n            <option values=\"EFECTIVO\">EFECTIVO</option>\n          </select>\n          <span  *ngIf=\"formErrors.tipo\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tipo}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.fecha}\"  >\n        <label for=\"fecha\" class=\"col-md-2 control-label\" for=\"tipo\">Fecha</label>\n        <div class=\"col-md-10\">\n          <input id=\"fecha\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          <span  *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.monto}\">\n        <label for=\"monto\" class=\"col-md-2 control-label\" for=\"monto\"> Monto </label>\n        <div class=\"col-md-8\">\n          <input  id=\"monto\" type=\"number\" class=\"form-control\" formControlName=\"monto\" [(ngModel)]=\"monto\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.monto\" id=\"errornombre\" class=\"help-block\">{{ formErrors.monto}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"monto\"> Bs. </label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cuenta_id}\"  *ngIf=\" tipo=='TRANSFERENCIA'\">\n        <label for=\"cuenta_id\" class=\"col-md-2 control-label\" for=\"tipo\">Cuenta</label>\n        <div class=\"col-md-10\">\n          <select id=\"cuenta_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.cuenta_id\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cuenta_id}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.referencia}\"  *ngIf=\" tipo == 'TRANSFERENCIA' \">\n        <label for=\"referencia\" class=\"col-md-2 control-label\" for=\"referencia\">Referencia </label>\n        <div class=\"col-md-10\">\n          <input  id=\"referencia\" type=\"text\" class=\"form-control\" formControlName=\"referencia\">\n          <span  *ngIf=\"formErrors.referencia\" id=\"errornombre\" class=\"help-block\">{{ formErrors.referencia}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-setoff-6':true, 'col-md-6': true,'has-error': formErrors.comision}\" *ngIf=\" tipo == 'EFECTIVO' \"  >\n        <label for=\"comision\" class=\"col-md-2 control-label\" for=\"comision\"> Comision </label>\n        <div class=\"col-md-6\">\n          <input  id=\"comision\" type=\"number\" class=\"form-control\" formControlName=\"comision\" [(ngModel)]=\"comision\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.comision\" id=\"errornombre\" class=\"help-block\">{{ formErrors.comision}}</span>\n        </div>\n        <label  class=\"col-md-4 control-label\" for=\"comision\">%</label>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.descripcion}\"  >\n        <label for=\"descripcion\" class=\"col-md-2 control-label\" for=\"tipo\">Descripci\u00F3n </label>\n        <div class=\"col-md-10\">\n          <textarea id=\"descripcion\" type=\"text\" class=\"form-control\" formControlName=\"descripcion\" row=\"4\" > </textarea> \n          <span  *ngIf=\"formErrors.descripcion\" id=\"errornombre\" class=\"help-block\">{{ formErrors.descripcion}}</span>\n        </div>\n      </div>\n       <div [ngClass]=\"{'form-group': true,'col-md-12': true}\" >\n        <div class=\"col-md-5 pull-right\" >\n          <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Total : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n          </table>\n        </div>\n        <div class=\"col-md-12\">\n          <div class=\"btn-group  pull-right\">\n            <input type=\"button\" class=\"btn btn-danger\" (click)=\"onCancelar()\" value=\"Cancelar\">\n            <input type=\"button\" class=\"btn btn-primary\" (click)=\"onGuardar()\" value=\"Guardar\">\n           </div>\n        </div>\n      </div>  \n\n    </form>\n  </div>\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
+    ], CierreEditMovimientoComponent);
+    return CierreEditMovimientoComponent;
+}());
+exports.CierreEditMovimientoComponent = CierreEditMovimientoComponent;
+
+},{"./../../services/movimiento.service":68,"./../jquery.component":28,"@angular/core":75,"@angular/forms":76}],20:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var cierre_1 = require('./../../models/cierre');
+var cierre_service_1 = require('./../../services/cierre.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
+var http_1 = require('@angular/http');
+var cierre_edit_component_1 = require('./cierre.edit.component');
+var cierre_delete_component_1 = require('./cierre.delete.component');
+var cierre_component_1 = require('./cierre.component');
+var core_2 = require('@angular/core');
+var jquery_component_1 = require('./../jquery.component');
+var CierresComponent = (function () {
+    function CierresComponent(route, cierreService, _changeDetectionRef) {
+        this.route = route;
+        this.cierreService = cierreService;
+        this._changeDetectionRef = _changeDetectionRef;
+        this.isLoading$ = new BehaviorSubject_1.BehaviorSubject(false);
+        this.current_page = 1;
+        this.sort = "id";
+        this.mensaje = "";
+    }
+    CierresComponent.prototype.ngAfterViewInit = function () {
+    };
+    CierresComponent.prototype.loadTable = function () {
+        var _this = this;
+        this.mensaje = "";
+        this.isLoading$.next(true);
+        if (this.subscription != undefined) {
+            this.subscription.unsubscribe();
+            this.isLoading$.next(false);
+        }
+        this.observable = this.cierreService.getCierres(this.current_page.toString(), this.serach());
+        this.subscription = this.observable.subscribe(function (data) {
+            _this.cierres = data.data;
+            _this.per_page = data.per_page;
+            _this.total = data.total;
+            _this.current_page = data.current_page;
+            _this.subscription = undefined;
+        }, function (erro) {
+            _this.isLoading$.next(false);
+        }, function () {
+            _this.isLoading$.next(false);
+        });
+    };
+    CierresComponent.prototype.ngOnInit = function () {
+        this.loadTable();
+    };
+    CierresComponent.prototype.agregar = function () {
+        var cierre = new cierre_1.Cierre();
+        this.cierre = cierre;
+        this.cierreEditComponent.setModel(cierre);
+        this.cierreEditComponent.openModal(this);
+    };
+    CierresComponent.prototype.onSelect = function (cierre) {
+        this.cierre = cierre;
+        this.cierreComponent.setModel(cierre);
+        this.cierreComponent.openModal();
+    };
+    CierresComponent.prototype.onEditar = function (cierre) {
+        if (cierre.estado == "CERRADO") {
+            alert("Estado Cerrado, no puede ser editado ");
+        }
+        else {
+            this.cierre = cierre;
+            this.cierreEditComponent.setModel(cierre);
+            this.cierreEditComponent.openModal(this);
+        }
+    };
+    CierresComponent.prototype.onEliminar = function (cierre) {
+        this.cierre = cierre;
+        this.cierreDeleteComponent.cierre = cierre;
+        this.cierreDeleteComponent.openModal(this);
+    };
+    CierresComponent.prototype.onImprimir = function (cierre) {
+        var params = this.serach();
+        jquery_component_1.JqueryComponent.downloadPdf("/sistema/cierres/" + cierre.id + "/imprimir", "cierre.pdf");
+    };
+    CierresComponent.prototype.changeTable = function (cierre) {
+        for (var m in this.cierres) {
+            if (this.cierres[m].id === cierre.id) {
+                this.cierres[m] = cierre;
+                return;
+            }
+        }
+        this.cierres.push(cierre);
+    };
+    CierresComponent.prototype.serach = function () {
+        var param = new http_1.URLSearchParams();
+        if (this.search) {
+            param.set("search", this.search);
+            param.set("sort", this.sort);
+        }
+        return param;
+    };
+    ;
+    CierresComponent.prototype.eliminar = function (cierre) {
+        for (var m in this.cierres) {
+            if (this.cierres[m].id === cierre.id) {
+                console.log(this.cierres);
+                var position = +m;
+                this.cierres.splice(position, 1);
+                console.log(+m + 1);
+                console.log(this.cierres);
+                return;
+            }
+        }
+    };
+    CierresComponent.prototype.pageChanged = function (event) {
+        this.current_page = event.page;
+        this._changeDetectionRef.detectChanges();
+        this.loadTable();
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], CierresComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_component_1.CierreComponent), 
+        __metadata('design:type', cierre_component_1.CierreComponent)
+    ], CierresComponent.prototype, "cierreComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_edit_component_1.CierreEditComponent), 
+        __metadata('design:type', cierre_edit_component_1.CierreEditComponent)
+    ], CierresComponent.prototype, "cierreEditComponent", void 0);
+    __decorate([
+        core_1.ViewChild(cierre_delete_component_1.CierreDeleteComponent), 
+        __metadata('design:type', cierre_delete_component_1.CierreDeleteComponent)
+    ], CierresComponent.prototype, "cierreDeleteComponent", void 0);
+    CierresComponent = __decorate([
+        core_1.Component({
+            selector: 'cierres-component',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"loadTable()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup.enter)=\"loadTable()\">\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"mensaje\">\n  <p class=\"bg-warning\">{{mensaje}}</p>\n</div>\n<div class=\"col-md-12\" *ngIf=\"isLoading$ | async\">\n  <p class=\"text-primary\">Cargando Informaci\u00F3n ...........</p>\n</div>\n\n<div class=\"col-md-12\"> \n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Negocio o socio </th><th>Abono</th><th>Prestamo</th><th>Saldo</th><th>Fecha</th><th>Estado</th><th></th></tr>\n      </thead>\n      <tbody class=\"cierres\" >\n        <tr *ngFor=\"let cierre of cierres\">\n          <td ><span>{{cierre.id}}</span></td>\n          <td ><span>{{cierre.negocio|detalleNegocio}}</span></td>\n          <td ><span>{{cierre.abono|number:'1.2-2'|montoBs}}</span></td>\n          <td ><span>{{cierre.prestamo|number:'1.2-2'|montoBs}}</span></td>\n          <td ><span>{{cierre.saldo|number:'1.2-2'|montoBs}}</span></td>\n          <td ><span>{{cierre.fecha}}</span></td>\n          <td ><span>{{cierre.estado}}</span></td>\n          <td align=\"right\">\n            <span  dropdown > \n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(cierre)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(cierre)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onImprimir(cierre)\">\n                  <a class=\"dropdown-item\" >Imprimir</a>\n                </li>\n              </ul>\n            </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Cierres {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n<cierre-delete-component></cierre-delete-component>\n<cierre-component></cierre-component>\n<cierre-edit-component></cierre-edit-component> \n",
+            providers: [cierre_service_1.CierreService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, cierre_service_1.CierreService, core_2.ChangeDetectorRef])
+    ], CierresComponent);
+    return CierresComponent;
+}());
+exports.CierresComponent = CierresComponent;
+
+},{"./../../models/cierre":55,"./../../services/cierre.service":64,"./../jquery.component":28,"./cierre.component":13,"./cierre.delete.component":14,"./cierre.edit.component":18,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119,"rxjs/BehaviorSubject":159}],21:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1071,7 +2129,7 @@ var CuentaComponent = (function () {
     CuentaComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-component',
-            templateUrl: 'app/templates/cuentas/cuenta.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\"  *ngIf=\"cuenta\" >\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Detalle Cuenta {{cuenta.id}}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\">\n          <div class=\"col-md-12\">\n            <cuenta-detalle-component [cuenta]=\"cuenta\"></cuenta-detalle-component>\n          </div>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService])
@@ -1080,7 +2138,7 @@ var CuentaComponent = (function () {
 }());
 exports.CuentaComponent = CuentaComponent;
 
-},{"./../../models/cuenta":44,"./../../services/cuenta.service":52,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],14:[function(require,module,exports){
+},{"./../../models/cuenta":56,"./../../services/cuenta.service":65,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],22:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1129,7 +2187,7 @@ var CuentaDeleteComponent = (function () {
     CuentaDeleteComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-delete-component',
-            templateUrl: 'app/templates/cuentas/cuenta.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\" *ngIf=\"cuenta\" >\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Eliminar Cuenta {{cuenta.id}}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\">\n          <div class=\"col-md-12\">\n            <cuenta-detalle-component [cuenta]=\"cuenta\"></cuenta-detalle-component>\n            <div class=\"col-md-12\" align=\"right\">\n              <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>  \n              <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n            </div>\n          </div>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService])
@@ -1138,7 +2196,38 @@ var CuentaDeleteComponent = (function () {
 }());
 exports.CuentaDeleteComponent = CuentaDeleteComponent;
 
-},{"./../../models/cuenta":44,"./../../services/cuenta.service":52,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],15:[function(require,module,exports){
+},{"./../../models/cuenta":56,"./../../services/cuenta.service":65,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],23:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var cuenta_1 = require('./../../models/cuenta');
+var CuentaDetalleComponent = (function () {
+    function CuentaDetalleComponent() {
+    }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', cuenta_1.Cuenta)
+    ], CuentaDetalleComponent.prototype, "cuenta", void 0);
+    CuentaDetalleComponent = __decorate([
+        core_1.Component({
+            selector: 'cuenta-detalle-component',
+            template: "\n    <detalle [nombre]=\"'Numero :'\" [contenido]=\"cuenta.numero\" ></detalle>\n    <detalle [nombre]=\"'Banco :'\" [contenido]=\"cuenta.banco.nombre\" ></detalle>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CuentaDetalleComponent);
+    return CuentaDetalleComponent;
+}());
+exports.CuentaDetalleComponent = CuentaDetalleComponent;
+
+},{"./../../models/cuenta":56,"@angular/core":75}],24:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1207,9 +2296,9 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent.prototype.setModel = function (cuenta) {
         this.cuenta = cuenta;
         this.cuentaForm.setValue({
-            'id': cuenta.id,
-            'numero': cuenta.numero,
-            'banco_id': cuenta.banco_id
+            'id': cuenta.id || '',
+            'numero': cuenta.numero || '',
+            'banco_id': cuenta.banco_id || ''
         });
     };
     CuentaEditComponent.prototype.openModal = function (component) {
@@ -1223,7 +2312,7 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-edit-component',
-            templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Editar Cuenta</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\" *ngIf=\"cuenta\">\n        \n        <form [formGroup]=\"cuentaForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n          \n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.numero}\"  >\n            <label for=\"numero\" class=\"col-sm-2 control-label\" for=\"numero\">Numero</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"numero\" type=\"text\" class=\"form-control\" formControlName=\"numero\" aria-describedby=\"errornumero\" placeholder=\"Numero de cuenta\" required >\n              <span  *ngIf=\"formErrors.numero\" id=\"errornumero\" class=\"help-block\">{{ formErrors.numero}}</span>\n            </div>\n          </div> \n          \n         <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.banco_id}\"  >\n            <label for=\"banco_id\" class=\"col-sm-2 control-label\" for=\"estado\">Banco</label>\n            <div class=\"col-sm-10\">\n              <select id=\"banco_id\" class=\"form-control\" > \n              \n              </select>\n              <span  *ngIf=\"formErrors.banco_id\" class=\"help-block\">{{ formErrors.banco_id}}</span>\n            </div>\n          </div>\n \n          <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n          </div>\n        </form>\n         \n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService, banco_service_1.BancoService, forms_1.FormBuilder])
@@ -1232,7 +2321,7 @@ var CuentaEditComponent = (function () {
 }());
 exports.CuentaEditComponent = CuentaEditComponent;
 
-},{"./../../services/banco.service":51,"./../../services/cuenta.service":52,"./../jquery.component":19,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],16:[function(require,module,exports){
+},{"./../../services/banco.service":63,"./../../services/cuenta.service":65,"./../jquery.component":28,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],25:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1254,14 +2343,21 @@ var cuenta_delete_component_1 = require('./cuenta.delete.component');
 var cuenta_component_1 = require('./cuenta.component');
 var core_2 = require('@angular/core');
 var CuentasComponent = (function () {
-    function CuentasComponent(route, cuentaService, _changeDetectionRef) {
-        this.route = route;
+    function CuentasComponent(router, cuentaService, _changeDetectionRef) {
+        this.router = router;
         this.cuentaService = cuentaService;
         this._changeDetectionRef = _changeDetectionRef;
         this.current_page = 1;
         this.sort = "id";
     }
     CuentasComponent.prototype.ngAfterViewInit = function () {
+        this.loadTable();
+    };
+    CuentasComponent.prototype.limpiar = function () {
+        this.search = "";
+    };
+    CuentasComponent.prototype.onRefrescar = function () {
+        this.limpiar();
         this.loadTable();
     };
     CuentasComponent.prototype.loadTable = function () {
@@ -1356,7 +2452,7 @@ var CuentasComponent = (function () {
     CuentasComponent = __decorate([
         core_1.Component({
             selector: 'cuentas-component',
-            templateUrl: 'app/templates/cuentas/cuentas.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"onRefrescar()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup)=\"loadTable()\"  >\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div class=\"col-md-12\">\n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Nuemro</th><th>Banco</th><th></th></tr>\n      </thead>\n      <tbody class=\"cuentas\">\n        <tr *ngFor=\"let cuenta of cuentas\" >\n          <td ><span>{{cuenta.id}}</span></td>\n          <td ><span>{{cuenta.numero}}</span></td>\n          <td ><span>{{cuenta.banco.nombre}}</span></td>\n          <td align=\"right\">\n          <span  dropdown >\n            <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n            <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n              <li  role=\"menuitem\" (click)=\"onSelect(cuenta)\" >\n                <a class=\"dropdown-item\" >Mostrar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEditar(cuenta)\">\n                <a class=\"dropdown-item\" >Editar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEliminar(cuenta)\">\n                <a class=\"dropdown-item\" >Eliminar</a>\n              </li>\n            </ul>\n          </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Cuentas {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n<cuenta-delete-component></cuenta-delete-component>\n<cuenta-component></cuenta-component>\n<cuenta-edit-component></cuenta-edit-component> \n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, cuenta_service_1.CuentaService, core_2.ChangeDetectorRef])
@@ -1365,7 +2461,7 @@ var CuentasComponent = (function () {
 }());
 exports.CuentasComponent = CuentasComponent;
 
-},{"./../../models/cuenta":44,"./../../services/cuenta.service":52,"./cuenta.component":13,"./cuenta.delete.component":14,"./cuenta.edit.component":15,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105}],17:[function(require,module,exports){
+},{"./../../models/cuenta":56,"./../../services/cuenta.service":65,"./cuenta.component":21,"./cuenta.delete.component":22,"./cuenta.edit.component":24,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119}],26:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1404,7 +2500,7 @@ var DetalleComponent = (function () {
 }());
 exports.DetalleComponent = DetalleComponent;
 
-},{"@angular/core":61}],18:[function(require,module,exports){
+},{"@angular/core":75}],27:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1425,12 +2521,11 @@ var IndexComponent = (function () {
     }
     IndexComponent.prototype.ngOnInit = function () {
         this.user = this.currentUsuario.user;
-        console.log("blalblabla-->", this.user);
     };
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'index-component',
-            templateUrl: 'app/templates/index.component.html',
+            template: "\n<div class=\"col-md-12 \">\n</div>  \n  ",
             providers: [current_usuario_service_1.CurrentUsuario]
         }), 
         __metadata('design:paramtypes', [router_1.Router, current_usuario_service_1.CurrentUsuario])
@@ -1439,21 +2534,28 @@ var IndexComponent = (function () {
 }());
 exports.IndexComponent = IndexComponent;
 
-},{"./../services/current.usuario.service":53,"@angular/core":61,"@angular/router":66}],19:[function(require,module,exports){
+},{"./../services/current.usuario.service":66,"@angular/core":75,"@angular/router":80}],28:[function(require,module,exports){
 "use strict";
 var capitalize = function (cadena) { return cadena.replace(/\b\w/g, function (e) { return e.toUpperCase(); }); };
 var JqueryComponent = (function () {
     function JqueryComponent() {
     }
     JqueryComponent.fecha = function (name, value) {
+        var today = new Date();
+        value = (value ? value : today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate());
         return $(name)
             .datepicker({ format: "yyyy/mm/dd" })
             .datepicker("setDate", value);
+    };
+    JqueryComponent.fechaSinValorIncial = function (name) {
+        return $(name)
+            .datepicker({ format: "yyyy/mm/dd" });
     };
     JqueryComponent.negocios = function (name, value) {
         var formato = function (obj) {
             return (obj.text ? obj.text : capitalize(" " + obj.rif + " " + obj.nombre));
         };
+        $(name).empty();
         if (value) {
             var op = document.createElement("option");
             op.setAttribute("value", value.id.toString());
@@ -1461,9 +2563,10 @@ var JqueryComponent = (function () {
             $(name).empty();
             $(name).append(op);
         }
+        $(name).off('select2:select');
         return $(name).select2({
             ajax: {
-                url: "/sistema/negocios",
+                url: "/webservices/negocios",
                 dataType: 'json',
                 delay: 250,
                 data: JqueryComponent.proceData,
@@ -1480,6 +2583,7 @@ var JqueryComponent = (function () {
         var formato = function (obj) {
             return (obj.text ? obj.text : capitalize(" " + obj.tipo + " " + obj.simbolo + "."));
         };
+        $(name).empty();
         if (value) {
             var op = document.createElement("option");
             op.setAttribute("value", value.id.toString());
@@ -1487,6 +2591,7 @@ var JqueryComponent = (function () {
             $(name).empty();
             $(name).append(op);
         }
+        $(name).off('select2:select');
         return $(name).select2({
             ajax: {
                 url: "/webservices/tipos",
@@ -1504,9 +2609,9 @@ var JqueryComponent = (function () {
     };
     JqueryComponent.cuentas = function (name, value) {
         var formato = function (obj) {
-            console.log(obj);
             return (obj.text ? obj.text : capitalize(" " + obj.banco.nombre + " " + obj.numero + "."));
         };
+        $(name).empty();
         if (value) {
             var op = document.createElement("option");
             op.setAttribute("value", value.id.toString());
@@ -1514,9 +2619,10 @@ var JqueryComponent = (function () {
             $(name).empty();
             $(name).append(op);
         }
+        $(name).off('select2:select');
         return $(name).select2({
             ajax: {
-                url: "/sistema/cuentas",
+                url: "/webservices/cuentas",
                 dataType: 'json',
                 delay: 250,
                 data: JqueryComponent.proceData,
@@ -1533,6 +2639,7 @@ var JqueryComponent = (function () {
         var formato = function (obj) {
             return (obj.text ? obj.text : capitalize(" " + obj.nombre + "."));
         };
+        $(name).empty();
         if (value) {
             var op = document.createElement("option");
             op.setAttribute("value", value.id.toString());
@@ -1540,9 +2647,10 @@ var JqueryComponent = (function () {
             $(name).empty();
             $(name).append(op);
         }
+        $(name).off('select2:select');
         return $(name).select2({
             ajax: {
-                url: "/sistema/bancos",
+                url: "/webservices/bancos",
                 dataType: 'json',
                 delay: 250,
                 data: JqueryComponent.proceData,
@@ -1554,6 +2662,9 @@ var JqueryComponent = (function () {
             templateSelection: formato,
             templateResult: formato,
         });
+    };
+    JqueryComponent.downloadPdf = function (url, name) {
+        window.open(url, "_blank");
     };
     JqueryComponent.proceData = function (params) {
         return {
@@ -1574,7 +2685,7 @@ var JqueryComponent = (function () {
 }());
 exports.JqueryComponent = JqueryComponent;
 
-},{}],20:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1642,7 +2753,7 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'index-component',
-            templateUrl: 'app/templates/login.component.html',
+            template: "\n<div class=\"col-md-6 col-md-offset-6\">\n  <div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">Login</div>\n    <div class=\"panel-body\">\n      <form [formGroup]=\"form\" (ngSubmit)=\"inciar()\" class=\"form-horizontal\">\n         \n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.email}\"  >\n          <label class=\"col-sm-2 control-label\" for=\"email\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> Email</label> \n          <div class=\"col-sm-10\">\n            <input  id=\"email\" type=\"email\" class=\"form-control\" formControlName=\"email\" aria-describedby=\"erroremail\" required >\n            <span  *ngIf=\"formErrors.email\" id=\"errornombre\" class=\"help-block\">{{ formErrors.email}}</span>\n          </div>\n        </div>\n\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.password}\"  >\n          <label for=\"password\" class=\"col-sm-2 control-label\" for=\"password\"><span class=\"glyphicon glyphicon glyphicon-lock\" aria-hidden=\"true\"></span> Password</label>\n          <div class=\"col-sm-10\">\n            <input  id=\"password\" type=\"password\" class=\"form-control\" formControlName=\"password\" aria-describedby=\"errorpassword\" required >\n            <span  *ngIf=\"formErrors.password\" id=\"errornombre\" class=\"help-block\">{{ formErrors.password}}</span>\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n          <div class=\"col-sm-12\" align=\"right\">\n            <input type=\"button\" class=\"btn btn-default\" (click)=\"inciar()\" value=\"Iniciar\">\n          </div>\n        </div>\n\n      </form>\n    </div>\n  </div>\n</div>\n",
             providers: [current_usuario_service_1.CurrentUsuario]
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, current_usuario_service_1.CurrentUsuario, forms_1.FormBuilder])
@@ -1651,7 +2762,7 @@ var LoginComponent = (function () {
 }());
 exports.LoginComponent = LoginComponent;
 
-},{"./../services/current.usuario.service":53,"@angular/core":61,"@angular/forms":62,"@angular/router":66}],21:[function(require,module,exports){
+},{"./../services/current.usuario.service":66,"@angular/core":75,"@angular/forms":76,"@angular/router":80}],30:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1663,14 +2774,664 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var negocio_1 = require('./../../models/negocio');
+var movimiento_1 = require('./../../models/movimiento');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var MovimientoComponent = (function () {
+    function MovimientoComponent(movimientoService) {
+        this.movimientoService = movimientoService;
+    }
+    MovimientoComponent.prototype.ngOnInit = function () {
+    };
+    MovimientoComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    MovimientoComponent.prototype.openModal = function () {
+        this.modal.show();
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', movimiento_1.Movimiento)
+    ], MovimientoComponent.prototype, "movimiento", void 0);
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientoComponent.prototype, "modal", void 0);
+    MovimientoComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"movimiento\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Movimiento {{movimiento.id}}</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\">\n    <div class=\"col-md-12\">\n      <movimiento-detalle-component  [movimiento]=\"movimiento\"></movimiento-detalle-component>\n  </div>\n</div> <!-- end  modal-body --> \n</div>\n</div>\n</div>\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService])
+    ], MovimientoComponent);
+    return MovimientoComponent;
+}());
+exports.MovimientoComponent = MovimientoComponent;
+
+},{"./../../models/movimiento":57,"./../../services/movimiento.service":68,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],31:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var movimiento_1 = require('./../../models/movimiento');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var MovimientoDeleteComponent = (function () {
+    function MovimientoDeleteComponent(movimientoService) {
+        this.movimientoService = movimientoService;
+    }
+    MovimientoDeleteComponent.prototype.ngOnInit = function () {
+    };
+    MovimientoDeleteComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    MovimientoDeleteComponent.prototype.openModal = function (component) {
+        this.component = component;
+        this.mensaje = "";
+        this.modal.show();
+    };
+    MovimientoDeleteComponent.prototype.eliminar = function () {
+        var _this = this;
+        this.movimientoService.delete(this.movimiento).then(function (movimiento) {
+            _this.hideModal();
+            _this.component.eliminar(movimiento);
+        }).catch(function (error) {
+            _this.mensaje = error.mensaje;
+        });
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', movimiento_1.Movimiento)
+    ], MovimientoDeleteComponent.prototype, "movimiento", void 0);
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientoDeleteComponent.prototype, "modal", void 0);
+    MovimientoDeleteComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-delete-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"movimiento\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Eliminar Movimiento {{movimiento.id}}</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\"  >\n    <div class=\"col-md-12\">\n      <movimiento-detalle-component  [movimiento]=\"movimiento\"></movimiento-detalle-component>\n      <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label> \n      <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n</div>\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService])
+    ], MovimientoDeleteComponent);
+    return MovimientoDeleteComponent;
+}());
+exports.MovimientoDeleteComponent = MovimientoDeleteComponent;
+
+},{"./../../models/movimiento":57,"./../../services/movimiento.service":68,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],32:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var movimiento_1 = require('./../../models/movimiento');
+var MovimientoDetalleComponent = (function () {
+    function MovimientoDetalleComponent() {
+    }
+    MovimientoDetalleComponent.prototype.transferencia = function () {
+        return (this.movimiento.tipo === "TRANSFERENCIA" ? true : false);
+    };
+    MovimientoDetalleComponent.prototype.isTransferencia = function (movimiento) {
+        return movimiento.tipo === "TRANSFERENCIA";
+    };
+    MovimientoDetalleComponent.prototype.isEfectivo = function (movimiento) {
+        return movimiento.tipo === "EFECTIVO";
+    };
+    MovimientoDetalleComponent.prototype.totalGramo = function (movimiento) {
+        if (movimiento.precio_puro === 0 || movimiento.precio_puro == undefined) {
+            return 0;
+        }
+        else {
+            return movimiento.saldo / movimiento.precio_puro;
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', movimiento_1.Movimiento)
+    ], MovimientoDetalleComponent.prototype, "movimiento", void 0);
+    MovimientoDetalleComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-detalle-component',
+            template: "\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"movimiento.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"movimiento.fecha\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"movimiento.tipo\" ></detalle>\n    <detalle [nombre]=\"'Referencia :'\" [contenido]=\"movimiento.referencia\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Cuenta  :'\" [contenido]=\"movimiento.cuenta|detalleCuenta\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Estado  :'\" [contenido]=\"movimiento.estado\" ></detalle>\n    <div class=\"col-md-12\">\n      <div class=\"col-md-6 row\">\n        <blockquote style=\"height: 185px;\">\n          <p><label> Descripci\u00F3n :</label>{{movimiento.descripcion}}</p>\n        </blockquote>\n      </div>\n      <div class=\"col-md-6 row\">\n        <blockquote>\n        <label><strong>Totales :</strong></label>\n        <table class=\"table table-hover\">\n          <tr *ngIf=\"transferencia()\">\n            <td style=\"text-align: right;\"><strong> Comisi\u00F3n : </strong></td>\n            <td style=\"text-align: left\"><strong> {{movimiento.comision|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n          <tr *ngIf=\"transferencia()\">\n            <td style=\"text-align: right;\"><strong> Monto : </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{movimiento.monto|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n\n          <tr >\n            <td style=\"text-align: right;\"><strong> Total: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{movimiento.saldo|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n\n        </table>\n        </blockquote>\n      </div>\n    </div>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MovimientoDetalleComponent);
+    return MovimientoDetalleComponent;
+}());
+exports.MovimientoDetalleComponent = MovimientoDetalleComponent;
+
+},{"./../../models/movimiento":57,"@angular/core":75}],33:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var forms_1 = require('@angular/forms');
+var jquery_component_1 = require('./../jquery.component');
+var MovimientoEditComponent = (function () {
+    function MovimientoEditComponent(movimientoService, fB) {
+        this.movimientoService = movimientoService;
+        this.fB = fB;
+        this.tipo = "";
+        this.saldo = 0.0;
+        this.comision = 0.0;
+        this.monto = 0.0;
+        this.formErrors = {
+            'id': '',
+            'monto': '',
+            'comision': '',
+            'fecha': '',
+            'descripcion': '',
+            'tipo': '',
+            'referencia': '',
+            'estado': '',
+            'negocio_id': '',
+            'cuenta_id': '',
+        };
+    }
+    MovimientoEditComponent.prototype.onValueChanged = function (data) {
+        if (!this.movimientoForm) {
+            return;
+        }
+        for (var field in this.formErrors) {
+            this.formErrors[field] = '';
+        }
+    };
+    MovimientoEditComponent.prototype.guardar = function () {
+        var _this = this;
+        var movimiento = this.movimientoForm.value;
+        movimiento.cuenta_id = this.jcuenta.val();
+        movimiento.negocio_id = this.jnegocio.val();
+        movimiento.fecha = this.jfecha.val();
+        movimiento.comision = this.comision;
+        this.movimientoService.guardar(movimiento).then(function (movimiento) {
+            _this.component.changeTable(movimiento);
+            _this.hideModal();
+        }).catch(function (errores) {
+            _this.formErrors['id'] = errores.id;
+            _this.formErrors['monto'] = errores.monto;
+            _this.formErrors['comision'] = errores.comision;
+            _this.formErrors['fecha'] = errores.fecha;
+            _this.formErrors['descripcion'] = errores.descripcion;
+            _this.formErrors['tipo'] = errores.tipo;
+            _this.formErrors['referencia'] = errores.referencia;
+            _this.formErrors['estado'] = errores.estado;
+            _this.formErrors['negocio_id'] = errores.negocio_id;
+            _this.formErrors['cuenta_id'] = errores.cuenta_id;
+        });
+    };
+    MovimientoEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.formBuilder();
+        this.modal.onShown.subscribe(function (event) {
+            _this.jfecha = jquery_component_1.JqueryComponent.fecha("form #fecha", _this.movimiento.fecha);
+            _this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", _this.movimiento.cuenta);
+            _this.jnegocio = jquery_component_1.JqueryComponent.negocios("form #negocio_id", _this.movimiento.negocio);
+        });
+    };
+    MovimientoEditComponent.prototype.formBuilder = function () {
+        var _this = this;
+        this.movimientoForm = this.fB.group({
+            'id': '',
+            'monto': '',
+            'comision': '',
+            'fecha': '',
+            'descripcion': '',
+            'tipo': '',
+            'referencia': '',
+            'estado': '',
+            'negocio_id': '',
+            'cuenta_id': '',
+        });
+        this.movimientoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
+    };
+    MovimientoEditComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    MovimientoEditComponent.prototype.setModel = function (movimiento) {
+        this.movimiento = movimiento;
+        this.saldo = this.movimiento.saldo || 0;
+        this.monto = this.movimiento.monto || 0;
+        this.comision = this.movimiento.comision || 0;
+        this.movimientoForm.setValue({
+            'id': this.movimiento.id || '',
+            'monto': this.movimiento.monto || '',
+            'comision': this.movimiento.comision || '',
+            'fecha': this.movimiento.fecha || '',
+            'descripcion': this.movimiento.descripcion || '',
+            'tipo': this.movimiento.tipo || '',
+            'referencia': this.movimiento.referencia || '',
+            'estado': this.movimiento.estado || '',
+            'negocio_id': this.movimiento.negocio_id || '',
+            'cuenta_id': this.movimiento.cuenta_id || '',
+        });
+    };
+    MovimientoEditComponent.prototype.openModal = function (component) {
+        this.component = component;
+        this.modal.show();
+    };
+    MovimientoEditComponent.prototype.actualizarSaldo = function () {
+        this.comision = (Math.abs(this.comision) <= 100 ? Math.abs(this.comision) : 0);
+        this.saldo = ((this.comision / 100) + 1) * this.monto;
+    };
+    MovimientoEditComponent.prototype.cambiarTipo = function () {
+        if (this.tipo === "TRANSFERENCIA") {
+            this.comision = 0.0;
+            this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", this.movimiento.cuenta);
+            this.actualizarSaldo();
+        }
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientoEditComponent.prototype, "modal", void 0);
+    MovimientoEditComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-edit-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:95%; height:80%;\" >\n<div class=\"modal-content\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Editar Movimiento</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\" *ngIf=\"movimiento\">\n    <form [formGroup]=\"movimientoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n      \n      <div [ngClass]=\"{'form-group': true, 'col-md-6': true,'has-error': formErrors.negocio_id}\"  >\n        <label for=\"negocio_id\" class=\"col-sm-2 control-label\" for=\"estado\">Negocio o Socio </label>\n        <div class=\"col-sm-10\">\n          <select id=\"negocio_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.negocio_id\" class=\"help-block\">{{ formErrors.negocio_id}}</span>\n        </div> \n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.tipo}\">\n        <label for=\"tipo\" class=\"col-md-2 control-label\" for=\"tipo\">Tipo</label>\n        <div class=\"col-md-10\">\n          <select id=\"tipo\" formControlName=\"tipo\" class=\"form-control\"  [(ngModel)]=\"tipo\" (click)=\"cambiarTipo()\"> \n            <option values=\"TRANSFERENCIA\">TRANSFERENCIA</option>\n            <option values=\"EFECTIVO\">EFECTIVO</option>\n          </select>\n          <span  *ngIf=\"formErrors.tipo\" id=\"errornombre\" class=\"help-block\">{{ formErrors.tipo}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.fecha}\"  >\n        <label for=\"fecha\" class=\"col-md-2 control-label\" for=\"tipo\">Fecha</label>\n        <div class=\"col-md-10\">\n          <input id=\"fecha\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          <span  *ngIf=\"formErrors.fecha\" id=\"errornombre\" class=\"help-block\">{{ formErrors.fecha}}</span>\n        </div>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.monto}\">\n        <label for=\"monto\" class=\"col-md-2 control-label\" for=\"monto\"> Monto </label>\n        <div class=\"col-md-8\">\n          <input  id=\"monto\" type=\"number\" class=\"form-control\" formControlName=\"monto\" [(ngModel)]=\"monto\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.monto\" id=\"errornombre\" class=\"help-block\">{{ formErrors.monto}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"monto\"> Bs. </label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.cuenta_id}\"  *ngIf=\" tipo=='TRANSFERENCIA'\">\n        <label for=\"cuenta_id\" class=\"col-md-2 control-label\" for=\"tipo\">Cuenta</label>\n        <div class=\"col-md-10\">\n          <select id=\"cuenta_id\" class=\"form-control\"></select>\n          <span  *ngIf=\"formErrors.cuenta_id\" id=\"errornombre\" class=\"help-block\">{{ formErrors.cuenta_id}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.referencia}\"  *ngIf=\" tipo == 'TRANSFERENCIA' \">\n        <label for=\"referencia\" class=\"col-md-2 control-label\" for=\"referencia\">Referencia </label>\n        <div class=\"col-md-10\">\n          <input  id=\"referencia\" type=\"text\" class=\"form-control\" formControlName=\"referencia\">\n          <span  *ngIf=\"formErrors.referencia\" id=\"errornombre\" class=\"help-block\">{{ formErrors.referencia}}</span>\n        </div>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-setoff-6':true, 'col-md-6': true,'has-error': formErrors.comision}\" *ngIf=\" tipo == 'EFECTIVO' \"  >\n        <label for=\"comision\" class=\"col-md-2 control-label\" for=\"comision\"> Comision </label>\n        <div class=\"col-md-6\">\n          <input  id=\"comision\" type=\"number\" class=\"form-control\" formControlName=\"comision\" [(ngModel)]=\"comision\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.comision\" id=\"errornombre\" class=\"help-block\">{{ formErrors.comision}}</span>\n        </div>\n        <label  class=\"col-md-4 control-label\" for=\"comision\">%</label>\n      </div>\n\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.descripcion}\"  >\n        <label for=\"descripcion\" class=\"col-md-2 control-label\" for=\"tipo\">Descripci\u00F3n </label>\n        <div class=\"col-md-10\">\n          <textarea id=\"descripcion\" type=\"text\" class=\"form-control\" formControlName=\"descripcion\" row=\"4\" > </textarea> \n          <span  *ngIf=\"formErrors.descripcion\" id=\"errornombre\" class=\"help-block\">{{ formErrors.descripcion}}</span>\n        </div>\n      </div>\n       <div [ngClass]=\"{'form-group': true,'col-md-12': true}\" >\n        <div class=\"col-md-5 pull-right\" >\n          <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Total : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n          </table>\n        </div>\n        <div class=\"col-md-12\"  >\n          <input type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"guardar()\" value=\"Guardar\">\n        </div>\n      </div>  \n\n    </form>\n  </div>\n</div> <!-- end modal body  --> \n</div>\n</div>\n</div>\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
+    ], MovimientoEditComponent);
+    return MovimientoEditComponent;
+}());
+exports.MovimientoEditComponent = MovimientoEditComponent;
+
+},{"./../../services/movimiento.service":68,"./../jquery.component":28,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],34:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var forms_1 = require('@angular/forms');
+var MovimientoPrecioPuroComponent = (function () {
+    function MovimientoPrecioPuroComponent(movimientoService, fB) {
+        this.movimientoService = movimientoService;
+        this.fB = fB;
+        this.saldo = 0.0;
+        this.monto = 0.0;
+        this.gramos = 0.0;
+        this.precio_puro = 0.0;
+        this.formErrors = {
+            'id': '',
+            'monto': '',
+            'precio_puro': ''
+        };
+    }
+    MovimientoPrecioPuroComponent.prototype.onValueChanged = function (data) {
+        if (!this.movimientoForm) {
+            return;
+        }
+        for (var field in this.formErrors) {
+            this.formErrors[field] = '';
+        }
+    };
+    MovimientoPrecioPuroComponent.prototype.guardar = function () {
+        var _this = this;
+        var movimiento = this.movimientoForm.value;
+        this.movimientoService.actualizarPrecioPuro(movimiento).then(function (movimiento) {
+            _this.component.changeTable(movimiento);
+            _this.hideModal();
+        }).catch(function (errores) {
+            _this.formErrors['id'] = errores.id;
+            _this.formErrors['monto'] = errores.monto;
+            _this.formErrors['precio_puro'] = errores.precio_puro;
+        });
+    };
+    MovimientoPrecioPuroComponent.prototype.ngOnInit = function () {
+        this.formBuilder();
+    };
+    MovimientoPrecioPuroComponent.prototype.formBuilder = function () {
+        var _this = this;
+        this.movimientoForm = this.fB.group({
+            'id': '',
+            'monto': '',
+            'precio_puro': ''
+        });
+        this.movimientoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
+    };
+    MovimientoPrecioPuroComponent.prototype.hideModal = function () {
+        this.modal.hide();
+        this.movimiento = null;
+        this.saldo = 0.0;
+        this.monto = 0.0;
+        this.gramos = 0.0;
+        this.precio_puro = 0.0;
+    };
+    MovimientoPrecioPuroComponent.prototype.setModel = function (movimiento) {
+        this.movimiento = movimiento;
+        this.saldo = this.movimiento.saldo;
+        this.monto = this.movimiento.monto;
+        this.precio_puro = this.movimiento.precio_puro;
+        if (this.precio_puro == 0 || this.precio_puro == undefined) {
+            this.gramos = 0.0;
+        }
+        else {
+            this.gramos = this.saldo / this.precio_puro;
+        }
+        this.movimientoForm.setValue({
+            'id': movimiento.id || '',
+            'monto': movimiento.monto || '',
+            'precio_puro': movimiento.precio_puro || '',
+        });
+    };
+    MovimientoPrecioPuroComponent.prototype.openModal = function (component) {
+        this.component = component;
+        this.modal.show();
+    };
+    MovimientoPrecioPuroComponent.prototype.actualizarSaldo = function () {
+        this.saldo = ((this.movimiento.comision / 100) + 1) * this.monto;
+        this.gramos = (this.saldo / this.precio_puro);
+    };
+    MovimientoPrecioPuroComponent.prototype.transferencia = function () {
+        return (this.movimiento.tipo === "TRANSFERENCIA" ? true : false);
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientoPrecioPuroComponent.prototype, "modal", void 0);
+    MovimientoPrecioPuroComponent = __decorate([
+        core_1.Component({
+            selector: 'movimiento-precio-puro-component',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:95%; height:80%;\" >\n<div class=\"modal-content\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Actualizar Precio Movimiento</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\" *ngIf=\"movimiento\">\n    <div class=\"col-md-12\">\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"movimiento.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"movimiento.fecha\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"movimiento.tipo\" ></detalle>\n    <detalle [nombre]=\"'Referencia :'\" [contenido]=\"movimiento.referencia\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Cuenta  :'\" [contenido]=\"movimiento.cuenta|detalleCuenta\" *ngIf=\"transferencia()\" ></detalle>\n    <detalle [nombre]=\"'Estado  :'\" [contenido]=\"movimiento.estado\" ></detalle>\n    </div>\n    <form [formGroup]=\"movimientoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.monto}\">\n        <label for=\"monto\" class=\"col-md-2 control-label\" for=\"monto\"> Monto </label>\n        <div class=\"col-md-8\">\n          <input  id=\"monto\" type=\"number\" class=\"form-control\" formControlName=\"monto\" [(ngModel)]=\"monto\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.monto\" class=\"help-block\">{{ formErrors.monto}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"monto\"> Bs. </label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.precio_puro}\">\n        <label for=\"precio_puro\" class=\"col-md-2 control-label\" for=\"precio_puro\"> Precio Puro </label>\n        <div class=\"col-md-8\">\n          <input  id=\"precio_puro\" type=\"number\" class=\"form-control\" formControlName=\"precio_puro\" [(ngModel)]=\"precio_puro\" (keyup)=\"actualizarSaldo()\">\n          <span  *ngIf=\"formErrors.precio_puro\" class=\"help-block\">{{ formErrors.precio_puro}}</span>\n        </div>\n       <label class=\"col-md-2 control-label\" for=\"precio_puro\"> Bs. </label>\n      </div>\n\n      <div [ngClass]=\"{'form-group': true,'col-md-12': true}\" >\n        <div class=\"col-md-5 pull-right\" >\n          <h4 class=\"page-header\"><strong>Totales :</strong></h4>\n          <table class=\"table table-hover\">\n            <tr>\n              <td style=\"text-align: right;\"><strong> Monto : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{monto|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Precio Puro : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{precio_puro|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Gramos : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{gramos|number:'1.2-2'}} grams.</strong></td>\n            </tr>\n            <tr>\n              <td style=\"text-align: right;\"><strong> Total : </strong></td>\n              <td style=\"text-align: left;\"> <strong> {{saldo|number:'1.2-2'}} Bs.</strong></td>\n            </tr>\n          </table>\n        </div>\n        <div class=\"col-md-12\"  >\n          <input type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"guardar()\" value=\"Guardar\">\n        </div>\n      </div>  \n\n    </form>\n  </div>\n</div> <!-- end modal body  --> \n</div>\n</div>\n</div>\n\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [movimiento_service_1.MovimientoService, forms_1.FormBuilder])
+    ], MovimientoPrecioPuroComponent);
+    return MovimientoPrecioPuroComponent;
+}());
+exports.MovimientoPrecioPuroComponent = MovimientoPrecioPuroComponent;
+
+},{"./../../services/movimiento.service":68,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],35:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var movimiento_1 = require('./../../models/movimiento');
+var movimiento_service_1 = require('./../../services/movimiento.service');
+var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
+var http_1 = require('@angular/http');
+var movimiento_edit_component_1 = require('./movimiento.edit.component');
+var movimiento_delete_component_1 = require('./movimiento.delete.component');
+var movimiento_component_1 = require('./movimiento.component');
+var movimiento_precio_puro_component_1 = require('./movimiento.precio.puro.component');
+var jquery_component_1 = require('./../jquery.component');
+var core_2 = require('@angular/core');
+var MovimientosComponent = (function () {
+    function MovimientosComponent(route, movimientoService, _changeDetectionRef) {
+        this.route = route;
+        this.movimientoService = movimientoService;
+        this._changeDetectionRef = _changeDetectionRef;
+        this.current_page = 1;
+    }
+    MovimientosComponent.prototype.limpiar = function () {
+        this.texto = null;
+        this.jDesde.datepicker("setDate", null);
+        this.jHasta.datepicker("setDate", null);
+        this.jnegocio.empty();
+        this.jcuenta.empty();
+        this.tipo = null;
+        this.referencia = null;
+    };
+    MovimientosComponent.prototype.onRefrescar = function () {
+        this.limpiar();
+        this.loadTable();
+    };
+    MovimientosComponent.prototype.loadTable = function () {
+        var _this = this;
+        this._changeDetectionRef.detectChanges();
+        if (this.obser != undefined) {
+            this.obser.unsubscribe();
+        }
+        this.observable = this.movimientoService.getMovimientos(this.current_page.toString(), this.serach());
+        this.obser = this.observable.subscribe(function (data) {
+            _this.movimientos = data.data;
+            _this.per_page = data.per_page;
+            _this.total = data.total;
+            _this.current_page = data.current_page;
+            _this.obser = undefined;
+        });
+    };
+    MovimientosComponent.prototype.ngOnInit = function () {
+        this.jDesde = jquery_component_1.JqueryComponent.fechaSinValorIncial("#search_desde");
+        this.jHasta = jquery_component_1.JqueryComponent.fechaSinValorIncial("#search_hasta");
+        this.jnegocio = jquery_component_1.JqueryComponent.negocios("#negocio_id");
+        this.jcuenta = jquery_component_1.JqueryComponent.cuentas("#cuenta_id");
+        this.a = document.createElement("a");
+        document.body.appendChild(this.a);
+        this.loadTable();
+    };
+    MovimientosComponent.prototype.agregar = function () {
+        var movimiento = new movimiento_1.Movimiento();
+        this.movimiento = movimiento;
+        this.movimientoEditComponent.setModel(movimiento);
+        this.movimientoEditComponent.openModal(this);
+    };
+    MovimientosComponent.prototype.onSelect = function (movimiento) {
+        this.movimiento = movimiento;
+        this.movimientoComponent.movimiento = movimiento;
+        this.movimientoComponent.openModal();
+    };
+    MovimientosComponent.prototype.onEditar = function (movimiento) {
+        if (movimiento.estado === "CREADO") {
+            this.movimiento = movimiento;
+            this.movimientoEditComponent.setModel(movimiento);
+            this.movimientoEditComponent.openModal(this);
+        }
+        else {
+            alert("No Puedes Modificar Este movimiento.");
+        }
+    };
+    MovimientosComponent.prototype.onAsignarPrecio = function (movimiento) {
+        if (movimiento.estado === "CREADO") {
+            this.movimiento = movimiento;
+            this.movimientoPrecioPuroComponent.setModel(movimiento);
+            this.movimientoPrecioPuroComponent.openModal(this);
+        }
+        else {
+            alert("No Puedes Asignar Precio.");
+        }
+    };
+    MovimientosComponent.prototype.onEliminar = function (movimiento) {
+        if (movimiento.estado === "CREADO") {
+            this.movimiento = movimiento;
+            this.movimientoDeleteComponent.movimiento = movimiento;
+            this.movimientoDeleteComponent.openModal(this);
+        }
+        else {
+            alert("No Puedes Eliminar Este movimiento.");
+        }
+    };
+    MovimientosComponent.prototype.changeTable = function (movimiento) {
+        for (var m in this.movimientos) {
+            if (this.movimientos[m].id === movimiento.id) {
+                this.movimientos[m] = movimiento;
+                return;
+            }
+        }
+        this.movimientos.push(movimiento);
+    };
+    MovimientosComponent.prototype.serach = function () {
+        var param = new http_1.URLSearchParams();
+        var desde = this.jDesde.val();
+        var hasta = this.jHasta.val();
+        var negocio_id = this.jnegocio.val();
+        var cuenta_id = this.jcuenta.val();
+        if (this.texto) {
+            param.set("descripcion", this.texto);
+        }
+        if (desde) {
+            param.set("desde", desde);
+        }
+        if (hasta) {
+            param.set("hasta", hasta);
+        }
+        if (this.tipo) {
+            param.set("tipo", this.tipo);
+        }
+        if (negocio_id) {
+            param.set("negocio_id", negocio_id);
+        }
+        if (cuenta_id) {
+            param.set("cuenta_id", cuenta_id);
+        }
+        if (this.referencia) {
+            param.set("referencia", this.referencia);
+        }
+        return param;
+    };
+    ;
+    MovimientosComponent.prototype.eliminar = function (movimiento) {
+        for (var m in this.movimientos) {
+            if (this.movimientos[m].id === movimiento.id) {
+                var position = +m;
+                this.movimientos.splice(position, 1);
+                return;
+            }
+        }
+    };
+    MovimientosComponent.prototype.imprimir = function () {
+        var params = this.serach();
+        jquery_component_1.JqueryComponent.downloadPdf("/sistema/reporte/movimientos?" + params.toString(), "reporteMoviminetos.pdf");
+    };
+    MovimientosComponent.prototype.pageChanged = function (event) {
+        this.current_page = event.page;
+        this._changeDetectionRef.detectChanges();
+        this.loadTable();
+    };
+    MovimientosComponent.prototype.onActive = function (movimiento) {
+        this.activeMovimiento = movimiento;
+    };
+    MovimientosComponent.prototype.openModal = function () {
+        this.modal.show();
+    };
+    MovimientosComponent.prototype.hideModal = function () {
+        this.modal.hide();
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', modal_component_1.ModalDirective)
+    ], MovimientosComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_component_1.MovimientoComponent), 
+        __metadata('design:type', movimiento_component_1.MovimientoComponent)
+    ], MovimientosComponent.prototype, "movimientoComponent", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_edit_component_1.MovimientoEditComponent), 
+        __metadata('design:type', movimiento_edit_component_1.MovimientoEditComponent)
+    ], MovimientosComponent.prototype, "movimientoEditComponent", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_delete_component_1.MovimientoDeleteComponent), 
+        __metadata('design:type', movimiento_delete_component_1.MovimientoDeleteComponent)
+    ], MovimientosComponent.prototype, "movimientoDeleteComponent", void 0);
+    __decorate([
+        core_1.ViewChild(movimiento_precio_puro_component_1.MovimientoPrecioPuroComponent), 
+        __metadata('design:type', movimiento_precio_puro_component_1.MovimientoPrecioPuroComponent)
+    ], MovimientosComponent.prototype, "movimientoPrecioPuroComponent", void 0);
+    MovimientosComponent = __decorate([
+        core_1.Component({
+            selector: 'movimientos-component',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"onRefrescar()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"texto\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup)=\"loadTable()\"  >\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\">\n        <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"openModal()\">\n        <span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div class=\"col-md-12\">\n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n        <th>Id</th><th>Negocio o Socio</th><th>Descripcion</th><th>Fecha</th><th>Tipo</th><th>Precio Gramos</th><th>Saldo</th><th>Estado</th><th></th>\n        </tr>\n      </thead>\n      <tbody class=\"movimientos\">\n        <tr *ngFor=\"let movimiento of movimientos\" [class.active]=\"movimiento === activeMovimiento\" (click)=\"onActive(movimiento)\">\n          <td><span>{{movimiento.id}}</span></td>\n          <td><span>{{movimiento.negocio.nombre}}</span></td>\n          <td><span>{{movimiento.descripcion}}</span></td>\n          <td><span>{{movimiento.fecha}}</span></td>\n          <td><span>{{movimiento.tipo}}</span></td>\n          <td><span>{{movimiento.precio_puro}}</span></td>\n          <td><span>{{movimiento.saldo}}</span></td>\n          <td><span>{{movimiento.estado}}</span></td>\n          <td align=\"right\">\n            <span  dropdown >\n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right\" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(movimiento)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(movimiento)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEliminar(movimiento)\">\n                  <a class=\"dropdown-item\" >Eliminar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onAsignarPrecio(movimiento)\">\n                  <a class=\"dropdown-item\" >Asignar Precio Puro</a>\n                </li>\n              </ul>\n              </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Movimientos {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n<movimiento-delete-component></movimiento-delete-component>\n<movimiento-component></movimiento-component>\n<movimiento-edit-component></movimiento-edit-component> \n<movimiento-precio-puro-component></movimiento-precio-puro-component>\n\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Detalle Busquedad</h4>\n  </div>\n  \n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n\n      <div class=\"form-horizontal\">\n        <div class=\"form-group\">\n          <label for=\"search_desde\" class=\"col-md-2 control-label\">Desde</label>\n          <div class=\"col-md-4\">\n            <input id=\"search_desde\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          </div>\n \n          <label for=\"search_hasta\" class=\"col-md-2 control-label\">Hasta</label>\n          <div class=\"col-md-4\">\n            <input id=\"search_hasta\" type=\"text\" data-provide=\"datepicker\" class=\"form-control input-sm\" >\n          </div>\n        </div>\n \n        <div class=\"form-group\">\n          <label for=\"tipo\" class=\"col-md-2 control-label\">Tipo</label>\n          <div class=\"col-md-10\">\n            <select id=\"tipo\" [(ngModel)]=\"tipo\" class=\"form-control input-sm\">\n              <option value=\"TRANSFERENCIA\">TRANSFERENCIA</option>\n              <option value=\"EFECTIVO\">EFECTIVO</option>\n            </select>\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n          <label for=\"referencia\" class=\"col-md-2 control-label\">Referencia</label>\n          <div class=\"col-md-10\">\n            <input id=\"referencia\" [(ngModel)]=\"referencia\" type=\"text\" class=\"form-control input-sm\" >\n          </div>\n        </div>\n\n        <div  class=\"form-group\">\n          <label for=\"negocio_id\" class=\"col-sm-2 control-label\" for=\"estado\">Negocio</label>\n          <div class=\"col-sm-10\">\n            <select id=\"negocio_id\" class=\"form-control\" style=\"width: 100%;\"></select>\n          </div> \n        </div>\n\n\n        <div  class=\"form-group\">\n          <label for=\"cuenta_id\" class=\"col-sm-2 control-label\" for=\"estado\">Cuenta</label>\n          <div class=\"col-sm-10\">\n            <select id=\"cuenta_id\" class=\"form-control\" style=\"width: 100%;\"></select>\n          </div> \n        </div>\n\n        <div class=\"form-group\">\n          <div class=\"col-md-12\" align=\"right\">\n            <button type=\"button\" class=\"btn  btn-default\"\n                    (click)=\"limpiar()\">\n              <span class=\"glyphicon glyphicon-ban-circle\" aria-hidden=\"true\"></span>\n            </button>\n            <button type=\"button\" class=\"btn  btn-default\"\n                    (click)=\"loadTable()\">\n              <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n            </button>\n            <button type=\"button\" class=\"btn  btn-default\"\n                    (click)=\"imprimir()\">\n              <span class=\"glyphicon glyphicon-print\" aria-hidden=\"true\"></span>\n            </button>\n\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div> \n\n  ",
+            providers: [movimiento_service_1.MovimientoService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, movimiento_service_1.MovimientoService, core_2.ChangeDetectorRef])
+    ], MovimientosComponent);
+    return MovimientosComponent;
+}());
+exports.MovimientosComponent = MovimientosComponent;
+
+},{"./../../models/movimiento":57,"./../../services/movimiento.service":68,"./../jquery.component":28,"./movimiento.component":30,"./movimiento.delete.component":31,"./movimiento.edit.component":33,"./movimiento.precio.puro.component":34,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119}],36:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
 var negocio_service_1 = require('./../../services/negocio.service');
 var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
 var NegocioComponent = (function () {
     function NegocioComponent(negocioService) {
         this.negocioService = negocioService;
+        this.total = 0.0;
+        this.totalGramos = 0.0;
     }
+    NegocioComponent.prototype.isTransferencia = function (movimiento) {
+        return movimiento.tipo === "TRANSFERENCIA";
+    };
+    NegocioComponent.prototype.isEfectivo = function (movimiento) {
+        return movimiento.tipo === "EFECTIVO";
+    };
+    NegocioComponent.prototype.totalGramo = function (movimiento) {
+        if (movimiento.precio_puro === 0 || movimiento.precio_puro == undefined) {
+            return 0;
+        }
+        else {
+            return movimiento.saldo / movimiento.precio_puro;
+        }
+    };
     NegocioComponent.prototype.ngOnInit = function () {
+        this.modal.onShown.subscribe(function (event) {
+        });
+    };
+    NegocioComponent.prototype.setModel = function (negocio) {
+        var _this = this;
+        this.negocio = negocio;
+        this.movimientos = [];
+        this.abonos = [];
+        this.total = 0.0;
+        this.totalGramos = 0.0;
+        this.negocioService.movimientos_creados(this.negocio.id).subscribe(function (res) {
+            _this.movimientos = res;
+            for (var _i = 0, _a = _this.movimientos; _i < _a.length; _i++) {
+                var movimiento = _a[_i];
+                _this.total += movimiento.saldo;
+                _this.totalGramos += _this.totalGramo(movimiento);
+            }
+        });
     };
     NegocioComponent.prototype.hideModal = function () {
         this.modal.hide();
@@ -1679,17 +3440,13 @@ var NegocioComponent = (function () {
         this.modal.show();
     };
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', negocio_1.Negocio)
-    ], NegocioComponent.prototype, "negocio", void 0);
-    __decorate([
         core_1.ViewChild('modal'), 
         __metadata('design:type', modal_component_1.ModalDirective)
     ], NegocioComponent.prototype, "modal", void 0);
     NegocioComponent = __decorate([
         core_1.Component({
             selector: 'negocio-component',
-            templateUrl: 'app/templates/negocios/negocio.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"negocio\" >\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n      <h4 class=\"modal-title\">Detalle Negocio {{negocio.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <negocio-detalle-component [negocio]=\"negocio\"></negocio-detalle-component>\n      </div>\n\n      <div  class=\"col-md-12\">\n        <negocio-detalle-component [negocio]=\"negocio\"></negocio-detalle-component>\n      </div>\n      <h4 class=\"pull-right\">Movimientos Pendientes por cerrar. </h4>\n      <div  class=\"col-md-8 col-md-offset-4\" align=\"rigth\">\n        <div class=\"list-group-item\" *ngFor=\"let movimiento of movimientos\" >\n          <h4 class=\"list-group-item-heading\">\n            <strong>{{movimiento.tipo}}</strong>\n             <span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.referencia}}</span>\n             <span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.cuenta.banco.nombre}}</span>\n             <span *ngIf=\"isTransferencia(movimiento)\">{{movimiento.cuenta.numero}}</span>\n             <span> Fecha {{movimiento.fecha}}</span>\n          </h4>\n          <div class=\"row\">\n          <div class=\"col-md-4\"> \n            <label>Monto</label>\n            <span>{{movimiento.monto|number:'1.2-2'}}</span>\n          </div>\n          <div class=\"col-md-4\" align=\"center\" *ngIf=\"isEfectivo(movimiento)\">\n            <label>Comision</label>\n            <span>{{movimiento.comision}}%</span>\n          </div>\n          <div [ngClass]=\"{'col-md-4': isEfectivo(movimiento),'col-md-8': isTransferencia(movimiento)}\"  align=\"right\"> \n            <label>Total </label>\n            <span>{{movimiento.saldo|number:'1.2-2'}}</span>\n          </div>\n          <div class=\"col-md-6\" align=\"right\"> \n            <label>Precio Gramo </label>\n            <span>{{movimiento.precio_puro|number:'1.2-2'}}</span>\n          </div>\n          <div class=\"col-md-6\" align=\"right\"> \n            <label>Total Gramo </label>\n            <span>{{totalGramo(movimiento)|number:'1.2-2'}}</span>\n          </div>\n          </div>\n        </div>\n      </div>\n      <div  class=\"col-md-8 col-md-offset-4\">\n        <label><strong>Totales :</strong></label>\n        <table class=\"table table-hover\" align=\"right\">\n          <tr>\n            <td style=\"text-align: right;\"><strong> Total  : </strong></td>\n            <td style=\"text-align: left\"><strong> {{total|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n          <tr >\n            <td style=\"text-align: right;\"><strong> Total Gramos: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{totalGramos|number:'1.2-2'}} Gramos.</strong></td>\n          </tr>\n        </table>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>",
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService])
@@ -1698,7 +3455,7 @@ var NegocioComponent = (function () {
 }());
 exports.NegocioComponent = NegocioComponent;
 
-},{"./../../models/negocio":45,"./../../services/negocio.service":55,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],22:[function(require,module,exports){
+},{"./../../services/negocio.service":69,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],37:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1747,7 +3504,7 @@ var NegocioDeleteComponent = (function () {
     NegocioDeleteComponent = __decorate([
         core_1.Component({
             selector: 'negocio-delete-component',
-            templateUrl: 'app/templates/negocios/negocio.delete.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"negocio\" >\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n      <h4 class=\"modal-title\">Detalle Negocio {{negocio.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <negocio-detalle-component [negocio]=\"negocio\"></negocio-detalle-component>\n      </div>\n      <div class=\"col-md-12\" align=\"right\">\n        <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label> \n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>",
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService])
@@ -1756,7 +3513,38 @@ var NegocioDeleteComponent = (function () {
 }());
 exports.NegocioDeleteComponent = NegocioDeleteComponent;
 
-},{"./../../models/negocio":45,"./../../services/negocio.service":55,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],23:[function(require,module,exports){
+},{"./../../models/negocio":58,"./../../services/negocio.service":69,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],38:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var negocio_1 = require('./../../models/negocio');
+var NegocioDetalleComponent = (function () {
+    function NegocioDetalleComponent() {
+    }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', negocio_1.Negocio)
+    ], NegocioDetalleComponent.prototype, "negocio", void 0);
+    NegocioDetalleComponent = __decorate([
+        core_1.Component({
+            selector: 'negocio-detalle-component',
+            template: "\n<detalle [nombre]=\"'Nombre :'\" [contenido]=\"negocio.nombre\" ></detalle>\n<detalle [nombre]=\"'Rif :'\" [contenido]=\"negocio.rif\" ></detalle>\n<detalle [nombre]=\"'Descripcion :'\" [contenido]=\"negocio.descripcion\" ></detalle>\n<detalle [nombre]=\"'Direccion :'\" [contenido]=\"negocio.direccion\" ></detalle>\n<detalle [nombre]=\"'Encargado :'\" [contenido]=\"negocio.encargado\" ></detalle>\n<detalle [nombre]=\"'Telefono :'\" [contenido]=\"negocio.telefono\" ></detalle>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], NegocioDetalleComponent);
+    return NegocioDetalleComponent;
+}());
+exports.NegocioDetalleComponent = NegocioDetalleComponent;
+
+},{"./../../models/negocio":58,"@angular/core":75}],39:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1830,7 +3618,15 @@ var NegocioEditComponent = (function () {
     };
     NegocioEditComponent.prototype.setModel = function (negocio) {
         this.negocio = negocio;
-        this.negocioForm.setValue(negocio_1.Negocio.clone(negocio));
+        this.negocioForm.setValue({
+            'id': negocio.id || '',
+            'nombre': negocio.id || '',
+            'rif': negocio.rif || '',
+            'descripcion': negocio.descripcion || '',
+            'direccion': negocio.direccion || '',
+            'encargado': negocio.encargado || '',
+            'telefono': negocio.telefono || '',
+        });
     };
     NegocioEditComponent.prototype.openModal = function (component) {
         this.component = component;
@@ -1847,7 +3643,7 @@ var NegocioEditComponent = (function () {
     NegocioEditComponent = __decorate([
         core_1.Component({
             selector: 'negocio-edit-component',
-            templateUrl: 'app/templates/negocios/negocio.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Editar Negocio</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\" *ngIf=\"negocio\">\n        <form [formGroup]=\"negocioForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n\n         <div [ngClass]=\"{'form-group': true,'col-md-6': true, 'has-error': formErrors.rif}\"  >\n            <label for=\"rif\" class=\"col-sm-2 control-label\" for=\"rif\">Rif</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"rif\" type=\"text\" class=\"form-control\" formControlName=\"rif\" placeholder=\"Rif del negocio\" >\n              <span  *ngIf=\"formErrors.rif\" class=\"help-block\">{{ formErrors.rif}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true,'col-md-6': true,'has-error': formErrors.nombre}\"  >\n            <label for=\"nombre\" class=\"col-sm-2 control-label\" for=\"nombre\">Nombre</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"nombre\" type=\"text\" class=\"form-control\" formControlName=\"nombre\" placeholder=\"Nombre del negocio\" >\n              <span  *ngIf=\"formErrors.nombre\" class=\"help-block\">{{ formErrors.nombre}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true,'col-md-6': true,  'has-error': formErrors.encargado}\"  >\n            <label for=\"encargado\" class=\"col-sm-2 control-label\" for=\"encargado\">Encargado</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"encargado\" type=\"text\" class=\"form-control\" formControlName=\"encargado\" placeholder=\"Encargado del negocio\" >\n              <span  *ngIf=\"formErrors.encargado\" class=\"help-block\">{{ formErrors.encargado}}</span>\n            </div>\n          </div>\n\n         <div [ngClass]=\"{'form-group': true, 'col-md-6': true, 'has-error': formErrors.telefono}\"  >\n            <label for=\"telefono\" class=\"col-sm-2 control-label\" for=\"telefono\">Telefono</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"telefono\" type=\"text\" class=\"form-control\" formControlName=\"telefono\" placeholder=\"Nombre del negocio\" >\n              <span  *ngIf=\"formErrors.telefono\" class=\"help-block\">{{ formErrors.telefono}}</span>\n            </div>\n          </div>\n\n\n         <div [ngClass]=\"{'form-group': true,'col-md-12': true, 'has-error': formErrors.descripcion}\"  >\n            <label for=\"descripcion\" class=\"col-sm-1 control-label\" for=\"descripcion\">Descripci\u00F3n</label>\n            <div class=\"col-sm-10\">\n              <textarea id=\"descripcion\" class=\"form-control\" formControlName=\"descripcion\" placeholder=\"Descripcion del negocio\"  rows=\"3\"></textarea>  \n              <span  *ngIf=\"formErrors.descripcion\" class=\"help-block\">{{ formErrors.descripcion}}</span>\n            </div>\n          </div>\n           \n         <div [ngClass]=\"{'form-group': true,'col-md-12': true, 'has-error': formErrors.direccion}\"  >\n            <label for=\"direccion\" class=\"col-sm-1 control-label\" for=\"direccion\">Direcci\u00F3n</label>\n            <div class=\"col-sm-10\">\n              <textarea  id=\"direccion\" class=\"form-control\" formControlName=\"direccion\" placeholder=\"Direcci\u00F3n del negocio\" rows=\"3\" ></textarea>\n              <span  *ngIf=\"formErrors.direccion\" class=\"help-block\">{{ formErrors.direccion}}</span>\n            </div>\n          </div>\n\n          <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n          </div>\n        </form>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService, forms_1.FormBuilder])
@@ -1856,7 +3652,7 @@ var NegocioEditComponent = (function () {
 }());
 exports.NegocioEditComponent = NegocioEditComponent;
 
-},{"./../../models/negocio":45,"./../../services/negocio.service":55,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],24:[function(require,module,exports){
+},{"./../../models/negocio":58,"./../../services/negocio.service":69,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],40:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1901,6 +3697,13 @@ var NegociosComponent = (function () {
             _this.obser = undefined;
         });
     };
+    NegociosComponent.prototype.onRefrescar = function () {
+        this.limpiar();
+        this.loadTable();
+    };
+    NegociosComponent.prototype.limpiar = function () {
+        this.search = "";
+    };
     NegociosComponent.prototype.ngOnInit = function () {
         this.loadTable();
     };
@@ -1912,7 +3715,7 @@ var NegociosComponent = (function () {
     };
     NegociosComponent.prototype.onSelect = function (negocio) {
         this.negocio = negocio;
-        this.negocioComponent.negocio = negocio;
+        this.negocioComponent.setModel(negocio);
         this.negocioComponent.openModal();
     };
     NegociosComponent.prototype.onEditar = function (negocio) {
@@ -1946,11 +3749,8 @@ var NegociosComponent = (function () {
     NegociosComponent.prototype.eliminar = function (negocio) {
         for (var m in this.negocios) {
             if (this.negocios[m].id === negocio.id) {
-                console.log(this.negocios);
                 var position = +m;
                 this.negocios.splice(position, 1);
-                console.log(+m + 1);
-                console.log(this.negocios);
                 return;
             }
         }
@@ -1979,7 +3779,7 @@ var NegociosComponent = (function () {
     NegociosComponent = __decorate([
         core_1.Component({
             selector: 'negocios-component',
-            templateUrl: 'app/templates/negocios/negocios.component.html',
+            template: "\n\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"onRefrescar()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup)=\"loadTable()\">\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div class=\"col-md-12\">\n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Nombre</th><th>Rif</th><th>Descripcion</th><th>Direccion</th><th>Encargado</th><th>Telefono</th><th></th></tr>\n      </thead>\n      <tbody class=\"negocios\">\n        <tr *ngFor=\"let negocio of negocios\" >\n          <td ><span>{{negocio.id | truncate }}</span></td>\n          <td ><span>{{negocio.nombre | truncate }}</span></td>\n          <td ><span>{{negocio.rif | truncate }}</span></td>\n          <td ><span>{{negocio.descripcion | truncate }}</span></td>\n          <td ><span>{{negocio.direccion | truncate }}</span></td>\n          <td ><span>{{negocio.encargado | truncate }}</span></td>\n          <td ><span>{{negocio.telefono | truncate }}</span></td>\n          <td align=\"right\">\n          <span  dropdown >\n            <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n            <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n              <li  role=\"menuitem\" (click)=\"onSelect(negocio)\" >\n                <a class=\"dropdown-item\" >Mostrar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEditar(negocio)\">\n                <a class=\"dropdown-item\" >Editar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEliminar(negocio)\">\n                <a class=\"dropdown-item\" >Eliminar</a>\n              </li>\n            </ul>\n          </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n        <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p> <strong>Pagina: {{current_page}} Total de Negocios {{total}}</strong> </p>\n    </div>\n  </div>\n</div>  \n<negocio-delete-component></negocio-delete-component>\n<negocio-component></negocio-component>\n<negocio-edit-component></negocio-edit-component> \n",
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, negocio_service_1.NegocioService, core_2.ChangeDetectorRef])
@@ -1988,443 +3788,7 @@ var NegociosComponent = (function () {
 }());
 exports.NegociosComponent = NegociosComponent;
 
-},{"./../../models/negocio":45,"./../../services/negocio.service":55,"./negocio.component":21,"./negocio.delete.component":22,"./negocio.edit.component":23,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105}],25:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var prestamo_1 = require('./../../models/prestamo');
-var prestamo_service_1 = require('./../../services/prestamo.service');
-var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
-var PrestamoComponent = (function () {
-    function PrestamoComponent(prestamoService) {
-        this.prestamoService = prestamoService;
-    }
-    PrestamoComponent.prototype.ngOnInit = function () {
-    };
-    PrestamoComponent.prototype.hideModal = function () {
-        this.modal.hide();
-    };
-    PrestamoComponent.prototype.openModal = function () {
-        this.modal.show();
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', prestamo_1.Prestamo)
-    ], PrestamoComponent.prototype, "prestamo", void 0);
-    __decorate([
-        core_1.ViewChild('modal'), 
-        __metadata('design:type', modal_component_1.ModalDirective)
-    ], PrestamoComponent.prototype, "modal", void 0);
-    PrestamoComponent = __decorate([
-        core_1.Component({
-            selector: 'prestamo-component',
-            templateUrl: 'app/templates/prestamos/prestamo.component.html',
-            providers: [prestamo_service_1.PrestamoService]
-        }), 
-        __metadata('design:paramtypes', [prestamo_service_1.PrestamoService])
-    ], PrestamoComponent);
-    return PrestamoComponent;
-}());
-exports.PrestamoComponent = PrestamoComponent;
-
-},{"./../../models/prestamo":46,"./../../services/prestamo.service":56,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],26:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var prestamo_1 = require('./../../models/prestamo');
-var prestamo_service_1 = require('./../../services/prestamo.service');
-var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
-var PrestamoDeleteComponent = (function () {
-    function PrestamoDeleteComponent(prestamoService) {
-        this.prestamoService = prestamoService;
-    }
-    PrestamoDeleteComponent.prototype.ngOnInit = function () {
-    };
-    PrestamoDeleteComponent.prototype.hideModal = function () {
-        this.modal.hide();
-    };
-    PrestamoDeleteComponent.prototype.openModal = function (component) {
-        this.component = component;
-        this.mensaje = "";
-        this.modal.show();
-    };
-    PrestamoDeleteComponent.prototype.eliminar = function () {
-        var _this = this;
-        this.prestamoService.delete(this.prestamo).then(function (prestamo) {
-            _this.hideModal();
-            _this.component.eliminar(prestamo);
-        }).catch(function (error) {
-            _this.mensaje = error.mensaje;
-        });
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', prestamo_1.Prestamo)
-    ], PrestamoDeleteComponent.prototype, "prestamo", void 0);
-    __decorate([
-        core_1.ViewChild('modal'), 
-        __metadata('design:type', modal_component_1.ModalDirective)
-    ], PrestamoDeleteComponent.prototype, "modal", void 0);
-    PrestamoDeleteComponent = __decorate([
-        core_1.Component({
-            selector: 'prestamo-delete-component',
-            templateUrl: 'app/templates/prestamos/prestamo.detele.component.html',
-            providers: [prestamo_service_1.PrestamoService]
-        }), 
-        __metadata('design:paramtypes', [prestamo_service_1.PrestamoService])
-    ], PrestamoDeleteComponent);
-    return PrestamoDeleteComponent;
-}());
-exports.PrestamoDeleteComponent = PrestamoDeleteComponent;
-
-},{"./../../models/prestamo":46,"./../../services/prestamo.service":56,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],27:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var prestamo_1 = require('./../../models/prestamo');
-var PrestamoDetalleComponent = (function () {
-    function PrestamoDetalleComponent() {
-    }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', prestamo_1.Prestamo)
-    ], PrestamoDetalleComponent.prototype, "prestamo", void 0);
-    PrestamoDetalleComponent = __decorate([
-        core_1.Component({
-            selector: 'prestamo-detalle-component',
-            template: "\n    <detalle [nombre]=\"'Negocio :'\" [contenido]=\"prestamo.negocio|detalleNegocio\" ></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"prestamo.tipo\" ></detalle>\n    <detalle [nombre]=\"'Fecha :'\" [contenido]=\"prestamo.fecha\" ></detalle>\n    <detalle [nombre]=\"'Usuario :'\" [contenido]=\"prestamo.user.name\" ></detalle>\n    <detalle [nombre]=\"'Cuenta :'\" [contenido]=\"prestamo.cuenta.numero\" *ngIf=\"prestamo.tipo == 'efectivo'\"></detalle>\n    <detalle [nombre]=\"'Referencia :'\" [contenido]=\"prestamo.referencia\" *ngIf=\"prestamo.tipo == 'efectivo'\"></detalle>\n    <div class=\"col-md-12\">\n      <div class=\"col-md-6 row\">\n        <blockquote style=\"height: 185px;\">\n          <p><label> Descripci\u00F3n :</label>{{prestamo.descripcion}}</p>\n        </blockquote>\n      </div>\n      <div class=\"col-md-6 row\">\n        <blockquote>\n        <label><strong>Totales :</strong></label>\n        <table class=\"table table-hover\">\n          <tr>\n            <td style=\"text-align: right;\"><strong> Precio Puro (gramos): </strong></td>\n            <td style=\"text-align: left\"><strong> {{prestamo.precio_material|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n          <tr>\n            <td style=\"text-align: right;\"><strong> Cantidad de puro: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{prestamo.monto/prestamo.precio_material|number:'1.2-2'}} Grs.</strong></td>\n          </tr>\n\n          <tr *ngIf=\"prestamo.tipo == 'efectivo'\">\n            <td style=\"text-align: right;\"><strong> Comision: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{prestamo.comision|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n          <tr>\n            <td style=\"text-align: right;\"><strong> Monto: </strong></td>\n            <td style=\"text-align: left;\"> <strong> {{prestamo.monto|number:'1.2-2'}} Bs.</strong></td>\n          </tr>\n        </table>\n        </blockquote>\n      </div>\n    </div>\n  "
-        }), 
-        __metadata('design:paramtypes', [])
-    ], PrestamoDetalleComponent);
-    return PrestamoDetalleComponent;
-}());
-exports.PrestamoDetalleComponent = PrestamoDetalleComponent;
-
-},{"./../../models/prestamo":46,"@angular/core":61}],28:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var prestamo_service_1 = require('./../../services/prestamo.service');
-var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
-var forms_1 = require('@angular/forms');
-var jquery_component_1 = require('./../jquery.component');
-var PrestamoEditComponent = (function () {
-    function PrestamoEditComponent(prestamoService, fB) {
-        this.prestamoService = prestamoService;
-        this.fB = fB;
-        this.puro = 0;
-        this.monto = 0;
-        this.cantidad = 0;
-        this.formErrors = {
-            'tipo': '',
-            'negocio_id': '',
-            'fecha': '',
-            'precio_material': '',
-            'monto': '',
-            'descripcion': '',
-            'cuenta_id': '',
-            'comision': '',
-            'referencia': ''
-        };
-    }
-    PrestamoEditComponent.prototype.onValueChanged = function (data) {
-        if (!this.prestamoForm) {
-            return;
-        }
-        for (var field in this.formErrors) {
-            this.formErrors[field] = '';
-        }
-    };
-    PrestamoEditComponent.prototype.guardar = function () {
-        var _this = this;
-        var values = this.prestamoForm.value;
-        values.cuenta_id = this.jcuenta.val();
-        values.negocio_id = this.jnegocio.val();
-        values.fecha = this.jfecha.val();
-        this.prestamoService.guardar(values).then(function (prestamo) {
-            _this.component.changeTable(prestamo);
-            _this.hideModal();
-        }).catch(function (errores) {
-            _this.formErrors['tipo'] = errores.tipo;
-            _this.formErrors['negocio_id'] = errores.negocio_id;
-            _this.formErrors['fecha'] = errores.fecha;
-            _this.formErrors['precio_material'] = errores.precio_material;
-            _this.formErrors['monto'] = errores.monto;
-            _this.formErrors['descripcion'] = errores.descripcion;
-            _this.formErrors['cuenta_id'] = errores.cuenta_id;
-            _this.formErrors['comision'] = errores.comision;
-            _this.formErrors['referencia'] = errores.referencia;
-        });
-    };
-    PrestamoEditComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.formBuilder();
-        this.modal.onShown.subscribe(function (event) {
-            _this.jfecha = jquery_component_1.JqueryComponent.fecha("form #fecha", _this.prestamo.fecha);
-            _this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id", _this.prestamo.cuenta);
-            _this.jnegocio = jquery_component_1.JqueryComponent.negocios("form #negocio_id", _this.prestamo.negocio);
-        });
-    };
-    PrestamoEditComponent.prototype.formBuilder = function () {
-        var _this = this;
-        this.prestamoForm = this.fB.group({
-            'id': '',
-            'tipo': '',
-            'negocio_id': '',
-            'fecha': '',
-            'precio_material': '',
-            'monto': '',
-            'descripcion': '',
-            'cuenta_id': '',
-            'comision': '',
-            'referencia': ''
-        });
-        this.prestamoForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
-    };
-    PrestamoEditComponent.prototype.hideModal = function () {
-        this.modal.hide();
-    };
-    PrestamoEditComponent.prototype.setModel = function (prestamo) {
-        this.prestamo = prestamo;
-        this.puro = prestamo.precio_material;
-        this.monto = prestamo.monto;
-        this.calcularPuro();
-        this.tipo = this.prestamo.tipo;
-        this.prestamoForm.setValue({
-            'id': prestamo.id,
-            'tipo': prestamo.tipo,
-            'negocio_id': prestamo.negocio_id,
-            'fecha': prestamo.fecha,
-            'precio_material': prestamo.precio_material,
-            'monto': prestamo.monto,
-            'descripcion': prestamo.descripcion,
-            'cuenta_id': prestamo.cuenta_id,
-            'comision': prestamo.comision,
-            'referencia': prestamo.referencia
-        });
-    };
-    PrestamoEditComponent.prototype.openModal = function (component) {
-        this.component = component;
-        this.modal.show();
-    };
-    PrestamoEditComponent.prototype.cambiarTipo = function () {
-        if (this.tipo != "efectivo") {
-            this.jcuenta = jquery_component_1.JqueryComponent.cuentas("form #cuenta_id");
-        }
-    };
-    PrestamoEditComponent.prototype.calcularPuro = function () {
-        if (this.puro == 0) {
-            this.cantidad = 0;
-        }
-        else {
-            this.cantidad = this.monto / this.puro;
-        }
-    };
-    __decorate([
-        core_1.ViewChild('modal'), 
-        __metadata('design:type', modal_component_1.ModalDirective)
-    ], PrestamoEditComponent.prototype, "modal", void 0);
-    PrestamoEditComponent = __decorate([
-        core_1.Component({
-            selector: 'prestamo-edit-component',
-            templateUrl: 'app/templates/prestamos/prestamo.edit.component.html',
-            providers: [prestamo_service_1.PrestamoService]
-        }), 
-        __metadata('design:paramtypes', [prestamo_service_1.PrestamoService, forms_1.FormBuilder])
-    ], PrestamoEditComponent);
-    return PrestamoEditComponent;
-}());
-exports.PrestamoEditComponent = PrestamoEditComponent;
-
-},{"./../../services/prestamo.service":56,"./../jquery.component":19,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],29:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var prestamo_1 = require('./../../models/prestamo');
-var prestamo_service_1 = require('./../../services/prestamo.service');
-var modal_component_1 = require('ng2-bootstrap/components/modal/modal.component');
-var http_1 = require('@angular/http');
-var prestamo_edit_component_1 = require('./prestamo.edit.component');
-var prestamo_delete_component_1 = require('./prestamo.delete.component');
-var prestamo_component_1 = require('./prestamo.component');
-var core_2 = require('@angular/core');
-var jquery_component_1 = require('./../jquery.component');
-var PrestamosComponent = (function () {
-    function PrestamosComponent(route, prestamoService, _changeDetectionRef) {
-        this.route = route;
-        this.prestamoService = prestamoService;
-        this._changeDetectionRef = _changeDetectionRef;
-        this.current_page = 1;
-    }
-    PrestamosComponent.prototype.ngAfterViewInit = function () {
-    };
-    PrestamosComponent.prototype.loadTable = function () {
-        var _this = this;
-        this._changeDetectionRef.detectChanges();
-        if (this.obser != undefined) {
-            this.obser.unsubscribe();
-        }
-        this.observable = this.prestamoService.getPrestamos(this.current_page.toString(), this.serach());
-        this.obser = this.observable.subscribe(function (data) {
-            _this.prestamos = data.data;
-            _this.per_page = data.per_page;
-            _this.total = data.total;
-            _this.current_page = data.current_page;
-            _this.obser = undefined;
-        });
-    };
-    PrestamosComponent.prototype.ngOnInit = function () {
-        this.jDesde = jquery_component_1.JqueryComponent.fecha("#search_desde");
-        this.jHasta = jquery_component_1.JqueryComponent.fecha("#search_hasta");
-        this.jnegocio = jquery_component_1.JqueryComponent.negocios("#negocio_id");
-        this.loadTable();
-    };
-    PrestamosComponent.prototype.agregar = function () {
-        var prestamo = new prestamo_1.Prestamo();
-        this.prestamo = prestamo;
-        this.prestamoEditComponent.setModel(prestamo);
-        this.prestamoEditComponent.openModal(this);
-    };
-    PrestamosComponent.prototype.onSelect = function (prestamo) {
-        this.prestamo = prestamo;
-        this.prestamoComponent.prestamo = prestamo;
-        this.prestamoComponent.openModal();
-    };
-    PrestamosComponent.prototype.onEditar = function (prestamo) {
-        this.prestamo = prestamo;
-        this.prestamoEditComponent.setModel(prestamo);
-        this.prestamoEditComponent.openModal(this);
-    };
-    PrestamosComponent.prototype.onEliminar = function (prestamo) {
-        this.prestamo = prestamo;
-        this.prestamoDeleteComponent.prestamo = prestamo;
-        this.prestamoDeleteComponent.openModal(this);
-    };
-    PrestamosComponent.prototype.changeTable = function (prestamo) {
-        for (var m in this.prestamos) {
-            if (this.prestamos[m].id === prestamo.id) {
-                this.prestamos[m] = prestamo;
-                return;
-            }
-        }
-        this.prestamos.push(prestamo);
-    };
-    PrestamosComponent.prototype.serach = function () {
-        var param = new http_1.URLSearchParams();
-        var desde = this.jDesde.val();
-        var hasta = this.jHasta.val();
-        var negocio_id = this.jnegocio.val();
-        if (this.search) {
-            param.set("texto", this.search);
-        }
-        if (desde) {
-            param.set("desde", desde);
-        }
-        if (hasta) {
-            param.set("hasta", hasta);
-        }
-        if (this.tipo) {
-            param.set("tipo", this.tipo);
-        }
-        if (negocio_id) {
-            param.set("negocio_id", negocio_id);
-        }
-        return param;
-    };
-    ;
-    PrestamosComponent.prototype.eliminar = function (prestamo) {
-        for (var m in this.prestamos) {
-            if (this.prestamos[m].id === prestamo.id) {
-                var position = +m;
-                this.prestamos.splice(position, 1);
-                return;
-            }
-        }
-    };
-    PrestamosComponent.prototype.pageChanged = function (event) {
-        this.current_page = event.page;
-        this._changeDetectionRef.detectChanges();
-        this.loadTable();
-    };
-    PrestamosComponent.prototype.onActive = function (prestamo) {
-        this.activePrestamo = prestamo;
-    };
-    PrestamosComponent.prototype.openModal = function () {
-        this.modal.show();
-    };
-    PrestamosComponent.prototype.hideModal = function () {
-        this.modal.hide();
-    };
-    __decorate([
-        core_1.ViewChild('modal'), 
-        __metadata('design:type', modal_component_1.ModalDirective)
-    ], PrestamosComponent.prototype, "modal", void 0);
-    __decorate([
-        core_1.ViewChild(prestamo_component_1.PrestamoComponent), 
-        __metadata('design:type', prestamo_component_1.PrestamoComponent)
-    ], PrestamosComponent.prototype, "prestamoComponent", void 0);
-    __decorate([
-        core_1.ViewChild(prestamo_edit_component_1.PrestamoEditComponent), 
-        __metadata('design:type', prestamo_edit_component_1.PrestamoEditComponent)
-    ], PrestamosComponent.prototype, "prestamoEditComponent", void 0);
-    __decorate([
-        core_1.ViewChild(prestamo_delete_component_1.PrestamoDeleteComponent), 
-        __metadata('design:type', prestamo_delete_component_1.PrestamoDeleteComponent)
-    ], PrestamosComponent.prototype, "prestamoDeleteComponent", void 0);
-    PrestamosComponent = __decorate([
-        core_1.Component({
-            selector: 'prestamos-component',
-            templateUrl: 'app/templates/prestamos/prestamos.component.html',
-            providers: [prestamo_service_1.PrestamoService]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, prestamo_service_1.PrestamoService, core_2.ChangeDetectorRef])
-    ], PrestamosComponent);
-    return PrestamosComponent;
-}());
-exports.PrestamosComponent = PrestamosComponent;
-
-},{"./../../models/prestamo":46,"./../../services/prestamo.service":56,"./../jquery.component":19,"./prestamo.component":25,"./prestamo.delete.component":26,"./prestamo.edit.component":28,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105}],30:[function(require,module,exports){
+},{"./../../models/negocio":58,"./../../services/negocio.service":69,"./negocio.component":36,"./negocio.delete.component":37,"./negocio.edit.component":39,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119}],41:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2457,7 +3821,7 @@ var TipoComponent = (function () {
     TipoComponent = __decorate([
         core_1.Component({
             selector: 'tipo-component',
-            templateUrl: 'app/templates/tipos/tipo.component.html',
+            template: "<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n    <div class=\"modal-content\" *ngIf=\"tipo\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Detalle Tipo {{tipo.id}}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\">\n          <div  class=\"col-md-12\">\n            <tipo-detalle-component [tipo]=\"tipo\"></tipo-detalle-component>\n          </div>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n",
             providers: [tipo_service_1.TipoService]
         }), 
         __metadata('design:paramtypes', [tipo_service_1.TipoService])
@@ -2466,7 +3830,7 @@ var TipoComponent = (function () {
 }());
 exports.TipoComponent = TipoComponent;
 
-},{"./../../services/tipo.service":57,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],31:[function(require,module,exports){
+},{"./../../services/tipo.service":71,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],42:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2515,7 +3879,7 @@ var TipoDeleteComponent = (function () {
     TipoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'tipo-delete-component',
-            templateUrl: 'app/templates/tipos/tipo.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"tipo\">\n  <div class=\"modal-header\">\n     <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n       <span aria-hidden=\"true\">&times;</span>\n     </button>\n    <h4 class=\"modal-title\">Eliminar Tipo {{tipo.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <tipo-detalle-component [tipo]=\"tipo\"></tipo-detalle-component>\n        <div class=\"col-md-12\" align=\"right\">\n          <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>\n          <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [tipo_service_1.TipoService]
         }), 
         __metadata('design:paramtypes', [tipo_service_1.TipoService])
@@ -2524,7 +3888,7 @@ var TipoDeleteComponent = (function () {
 }());
 exports.TipoDeleteComponent = TipoDeleteComponent;
 
-},{"./../../models/tipo":47,"./../../services/tipo.service":57,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],32:[function(require,module,exports){
+},{"./../../models/tipo":59,"./../../services/tipo.service":71,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],43:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2547,7 +3911,7 @@ var TipoDetalleComponent = (function () {
     TipoDetalleComponent = __decorate([
         core_1.Component({
             selector: 'tipo-detalle-component',
-            template: "\n    <detalle [nombre]=\"'Id :'\" [contenido]=\"tipo.id\"></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"tipo.tipo\"></detalle>\n    <detalle [nombre]=\"'Simbo :'\" [contenido]=\"tipo.simbolo\"></detalle>\n    <detalle [nombre]=\"'Tasa :'\" [contenido]=\"tipo.tasa\"></detalle>\n    <detalle [nombre]=\"'Divisa :'\" [contenido]=\"tipo.divisa|divisa\"></detalle>\n\n  "
+            template: "\n    <detalle [nombre]=\"'Id :'\" [contenido]=\"tipo.id\"></detalle>\n    <detalle [nombre]=\"'Tipo :'\" [contenido]=\"tipo.tipo\"></detalle>\n    <detalle [nombre]=\"'Simbo :'\" [contenido]=\"tipo.simbolo\"></detalle>\n    <detalle [nombre]=\"'Tasa :'\" [contenido]=\"tipo.tasa\"></detalle>\n    <detalle [nombre]=\"'Divisa :'\" [contenido]=\"tipo.divisa|divisa\"></detalle>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TipoDetalleComponent);
@@ -2555,7 +3919,7 @@ var TipoDetalleComponent = (function () {
 }());
 exports.TipoDetalleComponent = TipoDetalleComponent;
 
-},{"./../../models/tipo":47,"@angular/core":61}],33:[function(require,module,exports){
+},{"./../../models/tipo":59,"@angular/core":75}],44:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2642,7 +4006,7 @@ var TipoEditComponent = (function () {
     TipoEditComponent = __decorate([
         core_1.Component({
             selector: 'tipo-edit-component',
-            templateUrl: 'app/templates/tipos/tipo.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Editar Tipo</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"tipo\">\n      <form [formGroup]=\"tipoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.tipo}\"  >\n          <label for=\"tipo\" class=\"col-sm-2 control-label\" for=\"tipo\">Tipo </label>\n          <div class=\"col-sm-10\">\n            <input  id=\"tipo\" type=\"text\" class=\"form-control\" formControlName=\"tipo\" aria-describedby=\"errornombre\">\n            <span  *ngIf=\"formErrors.tipo\" id=\"errortipo\" class=\"help-block\">{{ formErrors.tipo}}</span>\n          </div>\n        </div>\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.simbolo}\"  >\n          <label for=\"simbolo\" class=\"col-sm-2 control-label\" for=\"simbolo\">Simbolo </label>\n          <div class=\"col-sm-10\">\n            <input  id=\"simbolo\" type=\"text\" class=\"form-control\" formControlName=\"simbolo\" aria-describedby=\"errorsimboloe\">\n            <span  *ngIf=\"formErrors.simbolo\" id=\"errorsimbolo\" class=\"help-block\">{{ formErrors.simbolo}}</span>\n          </div>\n        </div>\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.tasa}\"  >\n          <label for=\"tasa\" class=\"col-sm-2 control-label\" for=\"tasa\">Tasa </label>\n          <div class=\"col-sm-10\">\n            <input  id=\"tasa\" type=\"number\" class=\"form-control\" formControlName=\"tasa\" aria-describedby=\"errortasa\">\n            <span  *ngIf=\"formErrors.tasa\" id=\"errortasa\" class=\"help-block\">{{ formErrors.tasa}}</span>\n          </div>\n        </div>\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.divisa}\"  >\n          <label for=\"divisa\" class=\"col-sm-2 control-label\" for=\"divisa\"> Divisa </label>\n          <div class=\"col-sm-10\">\n            <input  id=\"divisa\" type=\"checkbox\" formControlName=\"divisa\" aria-describedby=\"errorsimboloe\" style=\"padding-left: 0px;padding-top: 10px;\">\n            <span  *ngIf=\"formErrors.divisa\" id=\"errorsimbolo\" class=\"help-block\">{{ formErrors.divisa}}</span>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"col-sm-12\" align=\"right\">\n            <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [tipo_service_1.TipoService]
         }), 
         __metadata('design:paramtypes', [tipo_service_1.TipoService, forms_1.FormBuilder])
@@ -2651,7 +4015,7 @@ var TipoEditComponent = (function () {
 }());
 exports.TipoEditComponent = TipoEditComponent;
 
-},{"./../../services/tipo.service":57,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],34:[function(require,module,exports){
+},{"./../../services/tipo.service":71,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],45:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2783,7 +4147,7 @@ var TiposComponent = (function () {
     TiposComponent = __decorate([
         core_1.Component({
             selector: 'tipos-component',
-            templateUrl: 'app/templates/tipos/tipos.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"loadTable()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup.enter)=\"loadTable()\">\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n<div *ngIf=\"mensaje\">\n  <p class=\"bg-warning\">{{mensaje}}</p>\n</div>\n<div class=\"col-md-12\" *ngIf=\"isLoading$ | async\">\n  <p class=\"text-primary\">Cargando Informaci\u00F3n ...........</p>\n</div>\n<div class=\"col-md-12\"> \n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Tipo</th><th>Simbolo</th><th>Tasa</th><th>Divisa</th><th></th></tr>\n      </thead>\n      <tbody class=\"tipos\" >\n        <tr *ngFor=\"let tipo of tipos\" >\n          <td ><span>{{tipo.id}}</span></td>\n          <td ><span>{{tipo.tipo}}</span></td>\n          <td ><span>{{tipo.simbolo}}</span></td>\n          <td ><span>{{tipo.tasa}}</span></td>\n          <td ><span>{{tipo.divisa|divisa}}</span></td>\n          <td align=\"right\">\n            <span  dropdown >\n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(tipo)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(tipo)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEliminar(tipo)\">\n                  <a class=\"dropdown-item\" >Eliminar</a>\n                </li>\n              </ul>\n            </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Tipos {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n<tipo-delete-component></tipo-delete-component>\n<tipo-component></tipo-component>\n<tipo-edit-component></tipo-edit-component> \n  ",
             providers: [tipo_service_1.TipoService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, tipo_service_1.TipoService, core_2.ChangeDetectorRef])
@@ -2792,7 +4156,7 @@ var TiposComponent = (function () {
 }());
 exports.TiposComponent = TiposComponent;
 
-},{"./../../models/tipo":47,"./../../services/tipo.service":57,"./tipo.component":30,"./tipo.delete.component":31,"./tipo.edit.component":33,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105,"rxjs/BehaviorSubject":145}],35:[function(require,module,exports){
+},{"./../../models/tipo":59,"./../../services/tipo.service":71,"./tipo.component":41,"./tipo.delete.component":42,"./tipo.edit.component":44,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119,"rxjs/BehaviorSubject":159}],46:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2825,7 +4189,7 @@ var UsuarioComponent = (function () {
     UsuarioComponent = __decorate([
         core_1.Component({
             selector: 'usuario-component',
-            templateUrl: 'app/templates/usuarios/usuario.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n    <div class=\"modal-content\" *ngIf=\"user\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Detalle Usuario {{user.id}}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\">\n          <div  class=\"col-md-12\">\n          <detalle [nombre]=\"'Nombre :'\" [contenido]=\"user.name\" ></detalle>\n          <detalle [nombre]=\"'Email :'\" [contenido]=\"user.email\" ></detalle>\n          <detalle [nombre]=\"'Administador :'\" [contenido]=\"user.administrador|administrador\" ></detalle>\n          </div>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [usuario_service_1.UsuarioService])
@@ -2834,7 +4198,7 @@ var UsuarioComponent = (function () {
 }());
 exports.UsuarioComponent = UsuarioComponent;
 
-},{"./../../services/usuario.service":58,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],36:[function(require,module,exports){
+},{"./../../services/usuario.service":72,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],47:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2908,7 +4272,7 @@ var UsuarioContrasenaComponent = (function () {
     UsuarioContrasenaComponent = __decorate([
         core_1.Component({
             selector: 'usuario-contrasena-component',
-            templateUrl: 'app/templates/usuarios/usuario.contrasena.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Cambiar Contrase\u00F1a Usuario</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"usuario\">\n      <form [formGroup]=\"usuarioForm\" (ngSubmit)=\"onSubmit()\" class=\"form-horizontal\">\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.password}\">\n          <label for=\"password\" class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n          <div class=\"col-sm-10\">\n            <input id=\"password\" class=\"form-control\" formControlName=\"password\" placeholder=\"password\"  type=\"password\" pattern=\".{8,}\">\n            <span *ngIf=\"formErrors.password\" id=\"errorusername\" class=\"help-block\">{{ formErrors.password}}</span>\n          </div>\n        </div>\n        <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.password_confirmation}\">\n          <label for=\"password_confirmation\" class=\"col-sm-2 control-label\" for=\"password_confirmation\">Password Confirmation</label>\n          <div class=\"col-sm-10\">\n            <input  id=\"password_confirmation\" class=\"form-control\" formControlName=\"password_confirmation\" placeholder=\"password_confirmation\"  type=\"password\" pattern=\".{8,}\">\n            <span  *ngIf=\"formErrors.password_confirmation\" id=\"errorusername\" class=\"help-block\">{{ formErrors.password_confirmation}}</span>\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n          <div class=\"col-sm-12\" align=\"right\">\n            <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n          </div>\n         </div>\n      </form>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [usuario_service_1.UsuarioService, forms_1.FormBuilder])
@@ -2917,7 +4281,7 @@ var UsuarioContrasenaComponent = (function () {
 }());
 exports.UsuarioContrasenaComponent = UsuarioContrasenaComponent;
 
-},{"./../../services/usuario.service":58,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],37:[function(require,module,exports){
+},{"./../../services/usuario.service":72,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],48:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2966,7 +4330,7 @@ var UsuarioDeleteComponent = (function () {
     UsuarioDeleteComponent = __decorate([
         core_1.Component({
             selector: 'usuario-delete-component',
-            templateUrl: 'app/templates/usuarios/usuario.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"user\">\n  <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Eliminar Usuario {{user.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div class=\"col-md-12\">\n        <detalle [nombre]=\"'Nombre :'\" [contenido]=\"user.name\" ></detalle>\n        <detalle [nombre]=\"'Email :'\" [contenido]=\"user.email\" ></detalle>\n        <detalle [nombre]=\"'Administador :'\" [contenido]=\"user.administrador|administrador\" ></detalle>\n      </div>          \n      <div class=\"col-md-12\" align=\"right\">\n          <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [usuario_service_1.UsuarioService])
@@ -2975,7 +4339,7 @@ var UsuarioDeleteComponent = (function () {
 }());
 exports.UsuarioDeleteComponent = UsuarioDeleteComponent;
 
-},{"./../../models/user":48,"./../../services/usuario.service":58,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],38:[function(require,module,exports){
+},{"./../../models/user":60,"./../../services/usuario.service":72,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],49:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3044,13 +4408,12 @@ var UsuarioEditComponent = (function () {
     };
     UsuarioEditComponent.prototype.setModel = function (user) {
         this.user = user;
-        console.log(user);
         this.userForm.setValue({
-            'name': user.name,
-            'email': user.email,
+            'name': user.name || '',
+            'email': user.email || '',
             'password': '',
             'password_confirmation': '',
-            'administrador': this.user.administrador
+            'administrador': this.user.administrador || ''
         });
     };
     UsuarioEditComponent.prototype.openModal = function (component) {
@@ -3068,7 +4431,7 @@ var UsuarioEditComponent = (function () {
     UsuarioEditComponent = __decorate([
         core_1.Component({
             selector: 'usuario-edit-component',
-            templateUrl: 'app/templates/usuarios/usuario.edit.component.html',
+            template: "\n\n\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Editar Usuario</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\" *ngIf=\"user\">\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n\n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.name}\"  >\n            <label for=\"name\" class=\"col-sm-2 control-label\" for=\"name\">Nombre</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"name\" type=\"text\" class=\"form-control\" formControlName=\"name\" aria-describedby=\"errornombre\" placeholder=\"Nombre del Usuario\" required >\n              <span  *ngIf=\"formErrors.name\" id=\"errorname\" class=\"help-block\">{{ formErrors.name}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.email}\"  >\n            <label for=\"email\" class=\"col-sm-2 control-label\" for=\"email\">Email</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"email\" type=\"email\" class=\"form-control\" formControlName=\"email\" aria-describedby=\"errornombre\" placeholder=\"Nombre del Usuario\" required >\n              <span  *ngIf=\"formErrors.email\" id=\"erroremail\" class=\"help-block\">{{ formErrors.email}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.password}\" *ngIf=\"!user.id\">\n            <label for=\"password\" class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"password\" type=\"password\" class=\"form-control\" formControlName=\"password\" aria-describedby=\"errorpassword\" placeholder=\"password del Usuario\" required >\n              <span  *ngIf=\"formErrors.password\" id=\"erroremail\" class=\"help-block\">{{ formErrors.password}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.password_confirmation}\" *ngIf=\"!user.id\">\n            <label for=\"password_confirmation\" class=\"col-sm-2 control-label\" for=\"password_confirmation\">Password Confirmation</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"password_confirmation\" type=\"password\" class=\"form-control\" formControlName=\"password_confirmation\" aria-describedby=\"errornombre\" placeholder=\"password del Usuario\" required >\n              <span  *ngIf=\"formErrors.password_confirmation\" id=\"erroremail\" class=\"help-block\">{{ formErrors.password_confirmation}}</span>\n            </div>\n          </div>\n\n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.administrador}\"  >\n            <label for=\"administrador\" class=\"col-sm-2 control-label\" for=\"administrador\">Administrador </label>\n            <div class=\"col-sm-10\"  style=\"padding-top: 7px;\">  \n              <select   id=\"administrador\" class=\"form-control\" type=\"checkbox\" formControlName=\"administrador\">\n                  <option value=\"true\">administrador</option>\n                  <option value=\"false\">comun</option>\n              </select>\n              <span  *ngIf=\"formErrors.administrador\" id=\"erroremail\" class=\"help-block\">{{ formErrors.administrador}}</span>\n            </div>\n          </div>\n\n\n          <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n          </div>\n        </form>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n \n\n\n\n  ",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [usuario_service_1.UsuarioService, forms_1.FormBuilder])
@@ -3077,7 +4440,7 @@ var UsuarioEditComponent = (function () {
 }());
 exports.UsuarioEditComponent = UsuarioEditComponent;
 
-},{"./../../models/user":48,"./../../services/usuario.service":58,"@angular/core":61,"@angular/forms":62,"ng2-bootstrap/components/modal/modal.component":105}],39:[function(require,module,exports){
+},{"./../../models/user":60,"./../../services/usuario.service":72,"@angular/core":75,"@angular/forms":76,"ng2-bootstrap/components/modal/modal.component":119}],50:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3115,7 +4478,7 @@ var UsuarioPermisosComponent = (function () {
             { codigo: 'C04', accion: 'Crear' },
             { codigo: 'C05', accion: 'Listar' },
         ];
-        this.prestamosPermisos = [
+        this.cierresPermisos = [
             { codigo: 'D01', accion: 'Mostrar Detalle ' },
             { codigo: 'D02', accion: 'Eliminar' },
             { codigo: 'D03', accion: 'Editar' },
@@ -3130,6 +4493,29 @@ var UsuarioPermisosComponent = (function () {
             { codigo: 'E05', accion: 'Listar' },
             { codigo: 'E06', accion: 'Cambiar Contraseña' },
             { codigo: 'E07', accion: 'Permisos' },
+        ];
+        this.abonosPermisos = [
+            { codigo: 'F01', accion: 'Mostrar Detalle ' },
+            { codigo: 'F02', accion: 'Eliminar' },
+            { codigo: 'F03', accion: 'Editar' },
+            { codigo: 'F04', accion: 'Crear' },
+            { codigo: 'F05', accion: 'Listar' },
+        ];
+        this.tiposPermisos = [
+            { codigo: 'G01', accion: 'Mostrar Detalle ' },
+            { codigo: 'G02', accion: 'Eliminar' },
+            { codigo: 'G03', accion: 'Editar' },
+            { codigo: 'G04', accion: 'Crear' },
+            { codigo: 'G05', accion: 'Listar' },
+        ];
+        this.movimientosPermisos = [
+            { codigo: 'I01', accion: 'Mostrar Detalle ' },
+            { codigo: 'I02', accion: 'Eliminar' },
+            { codigo: 'I03', accion: 'Editar' },
+            { codigo: 'I04', accion: 'Crear' },
+            { codigo: 'I05', accion: 'Listar' },
+            { codigo: 'I06', accion: 'Asignar Precio Puro' },
+            { codigo: 'I07', accion: 'reporte' },
         ];
     }
     UsuarioPermisosComponent.prototype.ngOnInit = function () {
@@ -3186,7 +4572,7 @@ var UsuarioPermisosComponent = (function () {
     UsuarioPermisosComponent = __decorate([
         core_1.Component({
             selector: 'usuario-permiso-component',
-            templateUrl: 'app/templates/usuarios/usuario.permisos.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"user\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Permisos Usuario {{user.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <div class=\"col-md-4\">\n          <blockquote>\n            <p><label>Nombre :</label>{{user.name}}</p>\n          </blockquote>\n        </div>\n        <div class=\"col-md-4\">\n          <blockquote>\n            <p><label>Email :</label>{{user.email}}</p>\n           </blockquote>\n        </div>\n\n        <div class=\"col-md-4\">\n          <blockquote>\n           <p><label>Administador :</label>{{user.administrador|administrador}}</p>\n          </blockquote>\n        </div>\n      </div>\n\n      <div class=\"col-md-12\" *ngIf=\"!permisos\">\n        <div class=\"progress\">\n          <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%;\">\n                Cargando Permisos \n          </div>\n        </div>\n      </div>\n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Bancos</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of bancosPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n              <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>     \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div>\n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Cuentas</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of cuentasPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n              <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>     \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div>\n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Negocios</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of negociosPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n               <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>         \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div> \n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Cierres</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of cierresPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n               <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>         \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div> \n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Abonos</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of abonosPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n               <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>         \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div> \n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Tipos</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of tiposPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n               <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>         \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div> \n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Movimientos</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of movimientosPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n               <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>         \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div> \n\n      <div class=\"col-md-6\" *ngIf=\"permisos\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">Permisos Usuarios</div>\n          <div class=\"panel-body\">\n            <ul class=\"list-group\">\n              <li *ngFor=\"let permiso of usuariosPermisos\"  class=\"list-group-item\">\n              {{permiso.accion}}\n              <button type=\"button\" [ngClass]=\"{'btn': true,'btn-xs':true,'btn-danger': hasPermiso(permiso),'btn-success': noHasPermiso(permiso),'pull-right': true}\" (click)=\"agregarQuitarPermiso(permiso)\">\n                <span [ngClass]=\"{'glyphicon': true, 'glyphicon-minus': hasPermiso(permiso),'glyphicon-plus': noHasPermiso(permiso)}\" aria-hidden=\"true\"></span>\n              </button>        \n              </li>\n            </ul>\n            </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [usuario_service_1.UsuarioService])
@@ -3195,7 +4581,7 @@ var UsuarioPermisosComponent = (function () {
 }());
 exports.UsuarioPermisosComponent = UsuarioPermisosComponent;
 
-},{"./../../services/usuario.service":58,"@angular/core":61,"ng2-bootstrap/components/modal/modal.component":105}],40:[function(require,module,exports){
+},{"./../../services/usuario.service":72,"@angular/core":75,"ng2-bootstrap/components/modal/modal.component":119}],51:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3343,7 +4729,7 @@ var UsuariosComponent = (function () {
     UsuariosComponent = __decorate([
         core_1.Component({
             selector: 'usuarios-component',
-            templateUrl: 'app/templates/usuarios/usuarios.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"loadTable()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup)=\"loadTable()\">\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div class=\"col-md-12\">\n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Nombre</th><th>Email</th><th>Administrador</th><th></th></tr>\n      </thead>\n      <tbody class=\"usuarios\">\n        <tr *ngFor=\"let usuario of users\" [class.active]=\"usuario === activeusuario\" (click)=\"onActive(usuario)\">\n          <td ><span>{{usuario.id}}</span></td>\n          <td ><span>{{usuario.name}}</span></td>\n          <td ><span>{{usuario.email}}</span></td>\n          <td ><span>{{usuario.administrador|administrador}}</span></td>\n          <td align=\"right\">\n            <span  dropdown >\n              <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n              <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n                <li  role=\"menuitem\" (click)=\"onSelect(usuario)\" >\n                  <a class=\"dropdown-item\" >Mostrar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onCambiarContrasena(usuario)\">\n                  <a class=\"dropdown-item\" >Cambiar Contrase\u00F1a</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onPermiso(usuario)\">\n                  <a class=\"dropdown-item\">Permisos</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEditar(usuario)\">\n                  <a class=\"dropdown-item\" >Editar</a>\n                </li>\n                <li role=\"menuitem\" (click)=\"onEliminar(usuario)\">\n                  <a class=\"dropdown-item\" >Eliminar</a>\n                </li>\n              </ul>\n            </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Usuario {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n\n<usuario-delete-component></usuario-delete-component>\n<usuario-component></usuario-component> \n<usuario-edit-component></usuario-edit-component>\n<usuario-contrasena-component></usuario-contrasena-component>\n<usuario-permiso-component></usuario-permiso-component>\n  ",
             providers: [usuario_service_1.UsuarioService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, usuario_service_1.UsuarioService, core_2.ChangeDetectorRef])
@@ -3352,14 +4738,14 @@ var UsuariosComponent = (function () {
 }());
 exports.UsuariosComponent = UsuariosComponent;
 
-},{"./../../models/user":48,"./../../services/usuario.service":58,"./usuario.component":35,"./usuario.contrasena.component":36,"./usuario.delete.component":37,"./usuario.edit.component":38,"./usuario.permisos.component":39,"@angular/core":61,"@angular/http":63,"@angular/router":66,"ng2-bootstrap/components/modal/modal.component":105}],41:[function(require,module,exports){
+},{"./../../models/user":60,"./../../services/usuario.service":72,"./usuario.component":46,"./usuario.contrasena.component":47,"./usuario.delete.component":48,"./usuario.edit.component":49,"./usuario.permisos.component":50,"@angular/core":75,"@angular/http":77,"@angular/router":80,"ng2-bootstrap/components/modal/modal.component":119}],52:[function(require,module,exports){
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var app_module_1 = require('./app.module');
 var platform = platform_browser_dynamic_1.platformBrowserDynamic();
 platform.bootstrapModule(app_module_1.AppModule);
 
-},{"./app.module":1,"@angular/platform-browser-dynamic":64}],42:[function(require,module,exports){
+},{"./app.module":1,"@angular/platform-browser-dynamic":78}],53:[function(require,module,exports){
 "use strict";
 var Abono = (function () {
     function Abono() {
@@ -3368,103 +4754,52 @@ var Abono = (function () {
 }());
 exports.Abono = Abono;
 
-},{}],43:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 "use strict";
 var Banco = (function () {
-    function Banco(id, nombre, created_at, updated_at) {
-        this.nombre = nombre;
-        this.id = id;
-        this.created_at = (created_at ? created_at : null);
-        this.updated_at = (updated_at ? updated_at : null);
+    function Banco() {
     }
-    Banco.clone = function (banco) {
-        return new Banco(banco.id, banco.nombre, banco.created_at, banco.updated_at);
-    };
     return Banco;
 }());
 exports.Banco = Banco;
 
-},{}],44:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
+"use strict";
+var Cierre = (function () {
+    function Cierre() {
+    }
+    return Cierre;
+}());
+exports.Cierre = Cierre;
+
+},{}],56:[function(require,module,exports){
 "use strict";
 var Cuenta = (function () {
     function Cuenta() {
-        this.id = null;
-        this.numero = null;
-        this.banco_id = null;
-        this.banco = null;
-        this.created_at = null;
-        this.updated_at = null;
     }
-    Cuenta.clone = function (cuenta) {
-        var _cuenta = new Cuenta();
-        _cuenta.id = cuenta.id;
-        _cuenta.numero = cuenta.numero;
-        _cuenta.banco_id = cuenta.banco_id;
-        _cuenta.banco = cuenta.banco;
-        _cuenta.created_at = cuenta.created_at;
-        _cuenta.updated_at = cuenta.updated_at;
-        return _cuenta;
-    };
     return Cuenta;
 }());
 exports.Cuenta = Cuenta;
 
-},{}],45:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
+"use strict";
+var Movimiento = (function () {
+    function Movimiento() {
+    }
+    return Movimiento;
+}());
+exports.Movimiento = Movimiento;
+
+},{}],58:[function(require,module,exports){
 "use strict";
 var Negocio = (function () {
     function Negocio() {
-        this.id = null;
-        this.nombre = null;
-        this.rif = null;
-        this.descripcion = null;
-        this.direccion = null;
-        this.encargado = null;
-        this.telefono = null;
-        this.created_at = null;
-        this.updated_at = null;
     }
-    Negocio.clone = function (negocio) {
-        var _negocio = new Negocio();
-        _negocio.id = negocio.id;
-        _negocio.nombre = negocio.nombre;
-        _negocio.rif = negocio.rif;
-        _negocio.descripcion = negocio.descripcion;
-        _negocio.direccion = negocio.direccion;
-        _negocio.encargado = negocio.encargado;
-        ;
-        _negocio.telefono = negocio.telefono;
-        _negocio.created_at = negocio.created_at;
-        _negocio.updated_at = negocio.updated_at;
-        return _negocio;
-    };
     return Negocio;
 }());
 exports.Negocio = Negocio;
 
-},{}],46:[function(require,module,exports){
-"use strict";
-var Prestamo = (function () {
-    function Prestamo() {
-        this.id = null;
-        this.negocio_id = null;
-        this.negocio = null;
-        this.cuenta_id = null;
-        this.cuenta = null;
-        this.user_id = null;
-        this.user = null;
-        this.monto = 0.0;
-        this.comision = 0.0;
-        this.precio_material = 0.0;
-        this.referencia = null;
-        this.descripcion = null;
-        this.fecha = null;
-        this.tipo = "efectivo";
-    }
-    return Prestamo;
-}());
-exports.Prestamo = Prestamo;
-
-},{}],47:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 "use strict";
 var Tipo = (function () {
     function Tipo() {
@@ -3473,28 +4808,16 @@ var Tipo = (function () {
 }());
 exports.Tipo = Tipo;
 
-},{}],48:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 "use strict";
 var User = (function () {
     function User() {
-        this.name = null;
-        this.id = null;
-        this.email = null;
-        this.administrador = false;
-        this.permisos = [];
     }
-    User.clone = function (user) {
-        var _user = new User();
-        _user.id = user.id;
-        _user.name = user.name;
-        _user.email = user.email;
-        return _user;
-    };
     return User;
 }());
 exports.User = User;
 
-},{}],49:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3570,6 +4893,21 @@ var MontoBsPipe = (function () {
     return MontoBsPipe;
 }());
 exports.MontoBsPipe = MontoBsPipe;
+var DetalleCuentaPipe = (function () {
+    function DetalleCuentaPipe() {
+    }
+    DetalleCuentaPipe.prototype.transform = function (value) {
+        return capitalize(" " + value.numero + " " + value.banco.nombre);
+    };
+    DetalleCuentaPipe = __decorate([
+        core_1.Pipe({
+            name: 'detalleCuenta'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DetalleCuentaPipe);
+    return DetalleCuentaPipe;
+}());
+exports.DetalleCuentaPipe = DetalleCuentaPipe;
 var DetalleNegocioPipe = (function () {
     function DetalleNegocioPipe() {
     }
@@ -3617,7 +4955,7 @@ var DivisaPipe = (function () {
 }());
 exports.DivisaPipe = DivisaPipe;
 
-},{"@angular/core":61}],50:[function(require,module,exports){
+},{"@angular/core":75}],62:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -3687,7 +5025,7 @@ var AbonoService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.AbonoService = AbonoService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],51:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],63:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -3757,7 +5095,114 @@ var BancoService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.BancoService = BancoService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],52:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],64:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
+var general_servicio_1 = require('./general.servicio');
+require('rxjs/add/operator/toPromise');
+var CierreService = (function (_super) {
+    __extends(CierreService, _super);
+    function CierreService(http) {
+        _super.call(this);
+        this.http = http;
+        this.url = '/sistema/cierres';
+    }
+    CierreService.prototype.getCierres = function (page, searchs) {
+        searchs = (searchs ? searchs : new http_1.URLSearchParams());
+        searchs.set("page", page);
+        return this.http
+            .get(this.url, { search: searchs })
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.getCierre = function (id) {
+        return this.http
+            .get(this.url + "/" + id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.create = function (cierre, operacion) {
+        return this.http
+            .post(this.url, this.formatoCierre(cierre, operacion), this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.update = function (cierre, operacion) {
+        return this.http
+            .patch("/sistema/cierres/" + cierre.id, this.formatoCierre(cierre, operacion), this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.formatoCierre = function (cierre, operacion) {
+        return JSON.stringify({
+            cierre: {
+                id: cierre.id,
+                negocio_id: cierre.negocio_id,
+                fecha: cierre.fecha,
+                movimientos: cierre.movimientos.map(function (value) {
+                    return { id: value.id };
+                }),
+                abonos: cierre.abonos.map(function (value) {
+                    return { id: value.id };
+                }),
+                operacion: operacion
+            }
+        });
+    };
+    CierreService.prototype.delete = function (cierre) {
+        return this.http
+            .delete(this.url + "/" + cierre.id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.guardar = function (cierre, operacion) {
+        if (cierre.id) {
+            return this.update(cierre, operacion);
+        }
+        else {
+            return this.create(cierre, operacion);
+        }
+    };
+    CierreService.prototype.abonospendientes = function (id) {
+        return this.http
+            .get("/webservices/negocios/" + id + "/abonospendientes")
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService.prototype.movimientospendites = function (id) {
+        return this.http
+            .get("/webservices/negocios/" + id + "/movimientospendites")
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CierreService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], CierreService);
+    return CierreService;
+}(general_servicio_1.GeneralServicio));
+exports.CierreService = CierreService;
+
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],65:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -3790,6 +5235,13 @@ var CuentaService = (function (_super) {
         return this.http
             .get(this.url, { search: searchs })
             .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    CuentaService.prototype.getCuenta = function (id) {
+        return this.http
+            .get(this.url + "/" + id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     CuentaService.prototype.create = function (cuenta) {
@@ -3829,7 +5281,7 @@ var CuentaService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.CuentaService = CuentaService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],53:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],66:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -3921,7 +5373,7 @@ var CurrentUsuario = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.CurrentUsuario = CurrentUsuario;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"@angular/router":66,"rxjs/add/operator/map":160,"rxjs/add/operator/toPromise":163}],54:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"@angular/router":80,"rxjs/add/operator/map":174,"rxjs/add/operator/toPromise":177}],67:[function(require,module,exports){
 "use strict";
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
@@ -3950,7 +5402,93 @@ var GeneralServicio = (function () {
 }());
 exports.GeneralServicio = GeneralServicio;
 
-},{"@angular/http":63,"rxjs/add/operator/toPromise":163}],55:[function(require,module,exports){
+},{"@angular/http":77,"rxjs/add/operator/toPromise":177}],68:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
+require('rxjs/add/operator/toPromise');
+var general_servicio_1 = require('./general.servicio');
+var MovimientoService = (function (_super) {
+    __extends(MovimientoService, _super);
+    function MovimientoService(http) {
+        _super.call(this);
+        this.http = http;
+        this.url = '/sistema/movimientos';
+    }
+    MovimientoService.prototype.getMovimientos = function (page, searchs) {
+        searchs = (searchs ? searchs : new http_1.URLSearchParams());
+        searchs.set("page", page);
+        return this.http
+            .get(this.url, { search: searchs })
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.create = function (movimiento) {
+        return this.http
+            .post(this.url, JSON.stringify({ movimiento: movimiento }), this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.delete = function (movimiento) {
+        return this.http
+            .delete(this.url + "/" + movimiento.id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.cuenta = function (id) {
+        return this.http
+            .get(this.url + "/" + id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.actualizarPrecioPuro = function (movimiento) {
+        return this.http
+            .patch("sistema/movimientos/" + movimiento.id + "/precio_puro", JSON.stringify({ movimiento: movimiento }), this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.update = function (movimiento) {
+        return this.http
+            .patch(this.url + "/" + movimiento.id, JSON.stringify({ movimiento: movimiento }), this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.guardar = function (movimiento) {
+        if (movimiento.id) {
+            return this.update(movimiento);
+        }
+        else {
+            return this.create(movimiento);
+        }
+    };
+    MovimientoService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], MovimientoService);
+    return MovimientoService;
+}(general_servicio_1.GeneralServicio));
+exports.MovimientoService = MovimientoService;
+
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],69:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -3983,6 +5521,18 @@ var NegocioService = (function (_super) {
         searchs.set("page", page);
         return this.http
             .get(this.negociosUrl, { search: searchs })
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    NegocioService.prototype.movimientos_creados = function (id) {
+        return this.http
+            .get("/sistema/negocios/" + id + "/movimientos")
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    NegocioService.prototype.abonos_creados = function (id) {
+        return this.http
+            .get("/sistema/negocios/" + id + "/abonos")
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
@@ -4023,7 +5573,7 @@ var NegocioService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.NegocioService = NegocioService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],56:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],70:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -4039,63 +5589,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
 var general_servicio_1 = require('./general.servicio');
 require('rxjs/add/operator/toPromise');
-var PrestamoService = (function (_super) {
-    __extends(PrestamoService, _super);
-    function PrestamoService(http) {
+var ServiciosService = (function (_super) {
+    __extends(ServiciosService, _super);
+    function ServiciosService(http) {
         _super.call(this);
         this.http = http;
-        this.url = '/sistema/prestamos';
     }
-    PrestamoService.prototype.getPrestamos = function (page, searchs) {
+    ServiciosService.prototype.tipos = function (page, searchs) {
         searchs = (searchs ? searchs : new http_1.URLSearchParams());
         searchs.set("page", page);
-        return this.http
-            .get(this.url, { search: searchs })
-            .map(function (res) { return res.json(); })
+        return this.http.get("webservices/tipos", { search: searchs }).
+            map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    PrestamoService.prototype.create = function (prestamo) {
-        return this.http
-            .post(this.url, JSON.stringify({ prestamo: prestamo }), this.options)
-            .toPromise()
-            .then(function (res) { return res.json(); })
+    ServiciosService.prototype.movimientos = function (page, searchs) {
+        searchs = (searchs ? searchs : new http_1.URLSearchParams());
+        searchs.set("page", page);
+        return this.http.get("webservices/movimientos", { search: searchs }).
+            map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    PrestamoService.prototype.delete = function (prestamo) {
-        return this.http
-            .delete(this.url + "/" + prestamo.id)
-            .toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(this.handleError);
-    };
-    PrestamoService.prototype.update = function (prestamo) {
-        return this.http
-            .patch(this.url + "/" + prestamo.id, JSON.stringify({ prestamo: prestamo }), this.options)
-            .toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(this.handleError);
-    };
-    PrestamoService.prototype.guardar = function (prestamo) {
-        if (prestamo.id) {
-            return this.update(prestamo);
-        }
-        else {
-            return this.create(prestamo);
-        }
-    };
-    PrestamoService = __decorate([
+    ServiciosService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], PrestamoService);
-    return PrestamoService;
+    ], ServiciosService);
+    return ServiciosService;
 }(general_servicio_1.GeneralServicio));
-exports.PrestamoService = PrestamoService;
+exports.ServiciosService = ServiciosService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],57:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],71:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -4167,7 +5693,7 @@ var TipoService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.TipoService = TipoService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],58:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],72:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -4282,7 +5808,7 @@ var UsuarioService = (function (_super) {
 }(general_servicio_1.GeneralServicio));
 exports.UsuarioService = UsuarioService;
 
-},{"./general.servicio":54,"@angular/core":61,"@angular/http":63,"rxjs/add/operator/toPromise":163}],59:[function(require,module,exports){
+},{"./general.servicio":67,"@angular/core":75,"@angular/http":77,"rxjs/add/operator/toPromise":177}],73:[function(require,module,exports){
 (function (global){
 /**
  * @license Angular v2.4.1
@@ -7800,7 +9326,7 @@ exports.UsuarioService = UsuarioService;
 
 }));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"@angular/core":61}],60:[function(require,module,exports){
+},{"@angular/core":75}],74:[function(require,module,exports){
 /**
  * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
@@ -35899,7 +37425,7 @@ exports.UsuarioService = UsuarioService;
   exports.SyntaxError = SyntaxError;
 
 }));
-},{"@angular/core":61}],61:[function(require,module,exports){
+},{"@angular/core":75}],75:[function(require,module,exports){
 (function (global){
 /**
  * @license Angular v2.4.1
@@ -49056,7 +50582,7 @@ exports.UsuarioService = UsuarioService;
 
 }));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"rxjs/Observable":148,"rxjs/Subject":152}],62:[function(require,module,exports){
+},{"rxjs/Observable":162,"rxjs/Subject":166}],76:[function(require,module,exports){
 /**
  * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
@@ -54822,7 +56348,7 @@ exports.UsuarioService = UsuarioService;
     exports.ReactiveFormsModule = ReactiveFormsModule;
 
 }));
-},{"@angular/core":61,"rxjs/Observable":148,"rxjs/Subject":152,"rxjs/observable/fromPromise":172,"rxjs/operator/toPromise":188}],63:[function(require,module,exports){
+},{"@angular/core":75,"rxjs/Observable":162,"rxjs/Subject":166,"rxjs/observable/fromPromise":186,"rxjs/operator/toPromise":202}],77:[function(require,module,exports){
 /**
  * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
@@ -56851,7 +58377,7 @@ exports.UsuarioService = UsuarioService;
     exports.VERSION = VERSION;
 
 }));
-},{"@angular/core":61,"@angular/platform-browser":65,"rxjs/Observable":148}],64:[function(require,module,exports){
+},{"@angular/core":75,"@angular/platform-browser":79,"rxjs/Observable":162}],78:[function(require,module,exports){
 (function (global){
 /**
  * @license Angular v2.4.1
@@ -57022,7 +58548,7 @@ exports.UsuarioService = UsuarioService;
 
 }));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"@angular/compiler":60,"@angular/core":61,"@angular/platform-browser":65}],65:[function(require,module,exports){
+},{"@angular/compiler":74,"@angular/core":75,"@angular/platform-browser":79}],79:[function(require,module,exports){
 (function (global){
 /**
  * @license Angular v2.4.1
@@ -61708,7 +63234,7 @@ exports.UsuarioService = UsuarioService;
 
 }));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"@angular/common":59,"@angular/core":61}],66:[function(require,module,exports){
+},{"@angular/common":73,"@angular/core":75}],80:[function(require,module,exports){
 /**
  * @license Angular v3.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
@@ -67172,7 +68698,7 @@ exports.UsuarioService = UsuarioService;
   exports.__router_private__ = __router_private__;
 
 }));
-},{"@angular/common":59,"@angular/core":61,"@angular/platform-browser":65,"rxjs/BehaviorSubject":145,"rxjs/Observable":148,"rxjs/Subject":152,"rxjs/observable/from":171,"rxjs/observable/fromPromise":172,"rxjs/observable/of":173,"rxjs/operator/catch":174,"rxjs/operator/concatAll":175,"rxjs/operator/concatMap":176,"rxjs/operator/every":178,"rxjs/operator/filter":179,"rxjs/operator/first":180,"rxjs/operator/last":181,"rxjs/operator/map":182,"rxjs/operator/mergeAll":183,"rxjs/operator/mergeMap":184,"rxjs/operator/reduce":186,"rxjs/util/EmptyError":196}],67:[function(require,module,exports){
+},{"@angular/common":73,"@angular/core":75,"@angular/platform-browser":79,"rxjs/BehaviorSubject":159,"rxjs/Observable":162,"rxjs/Subject":166,"rxjs/observable/from":185,"rxjs/observable/fromPromise":186,"rxjs/observable/of":187,"rxjs/operator/catch":188,"rxjs/operator/concatAll":189,"rxjs/operator/concatMap":190,"rxjs/operator/every":192,"rxjs/operator/filter":193,"rxjs/operator/first":194,"rxjs/operator/last":195,"rxjs/operator/map":196,"rxjs/operator/mergeAll":197,"rxjs/operator/mergeMap":198,"rxjs/operator/reduce":200,"rxjs/util/EmptyError":210}],81:[function(require,module,exports){
 //! moment.js
 //! version : 2.15.0
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -71407,7 +72933,7 @@ exports.UsuarioService = UsuarioService;
     return _moment;
 
 }));
-},{}],68:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 var accordion_group_component_1 = require('./accordion/accordion-group.component');
 exports.AccordionPanelComponent = accordion_group_component_1.AccordionPanelComponent;
@@ -71416,7 +72942,7 @@ exports.AccordionComponent = accordion_component_1.AccordionComponent;
 var accordion_module_1 = require('./accordion/accordion.module');
 exports.AccordionModule = accordion_module_1.AccordionModule;
 
-},{"./accordion/accordion-group.component":69,"./accordion/accordion.component":70,"./accordion/accordion.module":71}],69:[function(require,module,exports){
+},{"./accordion/accordion-group.component":83,"./accordion/accordion.component":84,"./accordion/accordion.module":85}],83:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71493,7 +73019,7 @@ var AccordionPanelComponent = (function () {
 }());
 exports.AccordionPanelComponent = AccordionPanelComponent;
 
-},{"./accordion.component":70,"@angular/core":61}],70:[function(require,module,exports){
+},{"./accordion.component":84,"@angular/core":75}],84:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71551,7 +73077,7 @@ var AccordionComponent = (function () {
 }());
 exports.AccordionComponent = AccordionComponent;
 
-},{"@angular/core":61}],71:[function(require,module,exports){
+},{"@angular/core":75}],85:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71582,14 +73108,14 @@ var AccordionModule = (function () {
 }());
 exports.AccordionModule = AccordionModule;
 
-},{"../collapse/collapse.module":85,"./accordion-group.component":69,"./accordion.component":70,"@angular/common":59,"@angular/core":61}],72:[function(require,module,exports){
+},{"../collapse/collapse.module":99,"./accordion-group.component":83,"./accordion.component":84,"@angular/common":73,"@angular/core":75}],86:[function(require,module,exports){
 "use strict";
 var alert_component_1 = require('./alert/alert.component');
 exports.AlertComponent = alert_component_1.AlertComponent;
 var alert_module_1 = require('./alert/alert.module');
 exports.AlertModule = alert_module_1.AlertModule;
 
-},{"./alert/alert.component":73,"./alert/alert.module":74}],73:[function(require,module,exports){
+},{"./alert/alert.component":87,"./alert/alert.module":88}],87:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71654,7 +73180,7 @@ var AlertComponent = (function () {
 }());
 exports.AlertComponent = AlertComponent;
 
-},{"@angular/core":61}],74:[function(require,module,exports){
+},{"@angular/core":75}],88:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71683,7 +73209,7 @@ var AlertModule = (function () {
 }());
 exports.AlertModule = AlertModule;
 
-},{"./alert.component":73,"@angular/common":59,"@angular/core":61}],75:[function(require,module,exports){
+},{"./alert.component":87,"@angular/common":73,"@angular/core":75}],89:[function(require,module,exports){
 "use strict";
 var button_checkbox_directive_1 = require('./buttons/button-checkbox.directive');
 exports.ButtonCheckboxDirective = button_checkbox_directive_1.ButtonCheckboxDirective;
@@ -71692,7 +73218,7 @@ exports.ButtonRadioDirective = button_radio_directive_1.ButtonRadioDirective;
 var buttons_module_1 = require('./buttons/buttons.module');
 exports.ButtonsModule = buttons_module_1.ButtonsModule;
 
-},{"./buttons/button-checkbox.directive":76,"./buttons/button-radio.directive":77,"./buttons/buttons.module":78}],76:[function(require,module,exports){
+},{"./buttons/button-checkbox.directive":90,"./buttons/button-radio.directive":91,"./buttons/buttons.module":92}],90:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71787,7 +73313,7 @@ var ButtonCheckboxDirective = (function () {
 }());
 exports.ButtonCheckboxDirective = ButtonCheckboxDirective;
 
-},{"@angular/core":61,"@angular/forms":62}],77:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],91:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71879,7 +73405,7 @@ var ButtonRadioDirective = (function () {
 }());
 exports.ButtonRadioDirective = ButtonRadioDirective;
 
-},{"@angular/core":61,"@angular/forms":62}],78:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],92:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -71909,7 +73435,7 @@ var ButtonsModule = (function () {
 }());
 exports.ButtonsModule = ButtonsModule;
 
-},{"./button-checkbox.directive":76,"./button-radio.directive":77,"@angular/core":61,"@angular/forms":62}],79:[function(require,module,exports){
+},{"./button-checkbox.directive":90,"./button-radio.directive":91,"@angular/core":75,"@angular/forms":76}],93:[function(require,module,exports){
 "use strict";
 var carousel_component_1 = require('./carousel/carousel.component');
 exports.CarouselComponent = carousel_component_1.CarouselComponent;
@@ -71918,7 +73444,7 @@ exports.CarouselModule = carousel_module_1.CarouselModule;
 var slide_component_1 = require('./carousel/slide.component');
 exports.SlideComponent = slide_component_1.SlideComponent;
 
-},{"./carousel/carousel.component":80,"./carousel/carousel.module":81,"./carousel/slide.component":82}],80:[function(require,module,exports){
+},{"./carousel/carousel.component":94,"./carousel/carousel.module":95,"./carousel/slide.component":96}],94:[function(require,module,exports){
 // todo: add animate
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -72114,7 +73640,7 @@ var CarouselComponent = (function () {
 exports.CarouselComponent = CarouselComponent;
 var _a;
 
-},{"../ng2-bootstrap-config":107,"@angular/core":61}],81:[function(require,module,exports){
+},{"../ng2-bootstrap-config":121,"@angular/core":75}],95:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72144,7 +73670,7 @@ var CarouselModule = (function () {
 }());
 exports.CarouselModule = CarouselModule;
 
-},{"./carousel.component":80,"./slide.component":82,"@angular/common":59,"@angular/core":61}],82:[function(require,module,exports){
+},{"./carousel.component":94,"./slide.component":96,"@angular/common":73,"@angular/core":75}],96:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72197,14 +73723,14 @@ var SlideComponent = (function () {
 }());
 exports.SlideComponent = SlideComponent;
 
-},{"./carousel.component":80,"@angular/core":61}],83:[function(require,module,exports){
+},{"./carousel.component":94,"@angular/core":75}],97:[function(require,module,exports){
 "use strict";
 var collapse_directive_1 = require('./collapse/collapse.directive');
 exports.CollapseDirective = collapse_directive_1.CollapseDirective;
 var collapse_module_1 = require('./collapse/collapse.module');
 exports.CollapseModule = collapse_module_1.CollapseModule;
 
-},{"./collapse/collapse.directive":84,"./collapse/collapse.module":85}],84:[function(require,module,exports){
+},{"./collapse/collapse.directive":98,"./collapse/collapse.module":99}],98:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72390,7 +73916,7 @@ var CollapseDirective = (function () {
 }());
 exports.CollapseDirective = CollapseDirective;
 
-},{"@angular/core":61}],85:[function(require,module,exports){
+},{"@angular/core":75}],99:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72417,7 +73943,7 @@ var CollapseModule = (function () {
 }());
 exports.CollapseModule = CollapseModule;
 
-},{"./collapse.directive":84,"@angular/core":61}],86:[function(require,module,exports){
+},{"./collapse.directive":98,"@angular/core":75}],100:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72462,7 +73988,7 @@ var NgTranscludeDirective = (function () {
 }());
 exports.NgTranscludeDirective = NgTranscludeDirective;
 
-},{"@angular/core":61}],87:[function(require,module,exports){
+},{"@angular/core":75}],101:[function(require,module,exports){
 "use strict";
 /*
  todo: general:
@@ -72477,7 +74003,7 @@ exports.DatePickerComponent = datepicker_component_1.DatePickerComponent;
 var datepicker_module_1 = require('./datepicker/datepicker.module');
 exports.DatepickerModule = datepicker_module_1.DatepickerModule;
 
-},{"./datepicker/datepicker.component":90,"./datepicker/datepicker.module":91}],88:[function(require,module,exports){
+},{"./datepicker/datepicker.component":104,"./datepicker/datepicker.module":105}],102:[function(require,module,exports){
 "use strict";
 var moment = require('moment');
 var DateFormatter = (function () {
@@ -72490,7 +74016,7 @@ var DateFormatter = (function () {
 }());
 exports.DateFormatter = DateFormatter;
 
-},{"moment":67}],89:[function(require,module,exports){
+},{"moment":81}],103:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -72834,7 +74360,7 @@ var DatePickerInnerComponent = (function () {
 }());
 exports.DatePickerInnerComponent = DatePickerInnerComponent;
 
-},{"./date-formatter":88,"@angular/core":61}],90:[function(require,module,exports){
+},{"./date-formatter":102,"@angular/core":75}],104:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73000,7 +74526,7 @@ var DatePickerComponent = (function () {
 }());
 exports.DatePickerComponent = DatePickerComponent;
 
-},{"@angular/core":61,"@angular/forms":62}],91:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],105:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73038,7 +74564,7 @@ var DatepickerModule = (function () {
 }());
 exports.DatepickerModule = DatepickerModule;
 
-},{"../utils/components-helper.service":141,"./datepicker-inner.component":89,"./datepicker.component":90,"./daypicker.component":92,"./monthpicker.component":93,"./yearpicker.component":94,"@angular/common":59,"@angular/core":61,"@angular/forms":62}],92:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./datepicker-inner.component":103,"./datepicker.component":104,"./daypicker.component":106,"./monthpicker.component":107,"./yearpicker.component":108,"@angular/common":73,"@angular/core":75,"@angular/forms":76}],106:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73163,7 +74689,7 @@ var DayPickerComponent = (function () {
 exports.DayPickerComponent = DayPickerComponent;
 var _a;
 
-},{"../ng2-bootstrap-config":107,"./datepicker-inner.component":89,"@angular/core":61}],93:[function(require,module,exports){
+},{"../ng2-bootstrap-config":121,"./datepicker-inner.component":103,"@angular/core":75}],107:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73226,7 +74752,7 @@ var MonthPickerComponent = (function () {
 }());
 exports.MonthPickerComponent = MonthPickerComponent;
 
-},{"../ng2-bootstrap-config":107,"./datepicker-inner.component":89,"@angular/core":61}],94:[function(require,module,exports){
+},{"../ng2-bootstrap-config":121,"./datepicker-inner.component":103,"@angular/core":75}],108:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73292,7 +74818,7 @@ var YearPickerComponent = (function () {
 }());
 exports.YearPickerComponent = YearPickerComponent;
 
-},{"../ng2-bootstrap-config":107,"./datepicker-inner.component":89,"@angular/core":61}],95:[function(require,module,exports){
+},{"../ng2-bootstrap-config":121,"./datepicker-inner.component":103,"@angular/core":75}],109:[function(require,module,exports){
 "use strict";
 var dropdown_menu_directive_1 = require('./dropdown/dropdown-menu.directive');
 exports.DropdownMenuDirective = dropdown_menu_directive_1.DropdownMenuDirective;
@@ -73303,7 +74829,7 @@ exports.DropdownDirective = dropdown_directive_1.DropdownDirective;
 var dropdown_module_1 = require('./dropdown/dropdown.module');
 exports.DropdownModule = dropdown_module_1.DropdownModule;
 
-},{"./dropdown/dropdown-menu.directive":96,"./dropdown/dropdown-toggle.directive":97,"./dropdown/dropdown.directive":98,"./dropdown/dropdown.module":99}],96:[function(require,module,exports){
+},{"./dropdown/dropdown-menu.directive":110,"./dropdown/dropdown-toggle.directive":111,"./dropdown/dropdown.directive":112,"./dropdown/dropdown.module":113}],110:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73346,7 +74872,7 @@ var DropdownMenuDirective = (function () {
 }());
 exports.DropdownMenuDirective = DropdownMenuDirective;
 
-},{"./dropdown.directive":98,"@angular/core":61}],97:[function(require,module,exports){
+},{"./dropdown.directive":112,"@angular/core":75}],111:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73423,7 +74949,7 @@ var DropdownToggleDirective = (function () {
 }());
 exports.DropdownToggleDirective = DropdownToggleDirective;
 
-},{"./dropdown.directive":98,"@angular/core":61}],98:[function(require,module,exports){
+},{"./dropdown.directive":112,"@angular/core":75}],112:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73594,7 +75120,7 @@ var DropdownDirective = (function () {
 }());
 exports.DropdownDirective = DropdownDirective;
 
-},{"./dropdown.service":100,"@angular/core":61}],99:[function(require,module,exports){
+},{"./dropdown.service":114,"@angular/core":75}],113:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73623,7 +75149,7 @@ var DropdownModule = (function () {
 }());
 exports.DropdownModule = DropdownModule;
 
-},{"./dropdown-menu.directive":96,"./dropdown-toggle.directive":97,"./dropdown.directive":98,"@angular/core":61}],100:[function(require,module,exports){
+},{"./dropdown-menu.directive":110,"./dropdown-toggle.directive":111,"./dropdown.directive":112,"@angular/core":75}],114:[function(require,module,exports){
 "use strict";
 exports.ALWAYS = 'always';
 exports.DISABLED = 'disabled';
@@ -73694,7 +75220,7 @@ var DropdownService = (function () {
 exports.DropdownService = DropdownService;
 exports.dropdownService = new DropdownService();
 
-},{}],101:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73742,7 +75268,7 @@ var Ng2BootstrapModule = (function () {
 }());
 exports.Ng2BootstrapModule = Ng2BootstrapModule;
 
-},{"./accordion/accordion.module":71,"./alert/alert.module":74,"./buttons/buttons.module":78,"./carousel/carousel.module":81,"./collapse/collapse.module":85,"./datepicker/datepicker.module":91,"./dropdown/dropdown.module":99,"./modal/modal.module":106,"./pagination/pagination.module":111,"./progressbar/progressbar.module":117,"./rating/rating.module":120,"./tabs/tabs.module":124,"./timepicker/timepicker.module":128,"./tooltip/tooltip.module":133,"./typeahead/typeahead.module":140,"./utils/components-helper.service":141,"@angular/core":61}],102:[function(require,module,exports){
+},{"./accordion/accordion.module":85,"./alert/alert.module":88,"./buttons/buttons.module":92,"./carousel/carousel.module":95,"./collapse/collapse.module":99,"./datepicker/datepicker.module":105,"./dropdown/dropdown.module":113,"./modal/modal.module":120,"./pagination/pagination.module":125,"./progressbar/progressbar.module":131,"./rating/rating.module":134,"./tabs/tabs.module":138,"./timepicker/timepicker.module":142,"./tooltip/tooltip.module":147,"./typeahead/typeahead.module":154,"./utils/components-helper.service":155,"@angular/core":75}],116:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -73753,7 +75279,7 @@ __export(require('./modal/modal.component'));
 var modal_module_1 = require('./modal/modal.module');
 exports.ModalModule = modal_module_1.ModalModule;
 
-},{"./modal/modal-backdrop.component":103,"./modal/modal-options.class":104,"./modal/modal.component":105,"./modal/modal.module":106}],103:[function(require,module,exports){
+},{"./modal/modal-backdrop.component":117,"./modal/modal-options.class":118,"./modal/modal.component":119,"./modal/modal.module":120}],117:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73815,7 +75341,7 @@ var ModalBackdropComponent = (function () {
 }());
 exports.ModalBackdropComponent = ModalBackdropComponent;
 
-},{"./modal-options.class":104,"@angular/core":61}],104:[function(require,module,exports){
+},{"./modal-options.class":118,"@angular/core":75}],118:[function(require,module,exports){
 "use strict";
 exports.modalConfigDefaults = {
     backdrop: true,
@@ -73838,7 +75364,7 @@ exports.Selector = {
     FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
 };
 
-},{}],105:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 // todo: should we support enforce focus in?
 // todo: in original bs there are was a way to prevent modal from showing
 // todo: original modal had resize events
@@ -74167,7 +75693,7 @@ var ModalDirective = (function () {
 }());
 exports.ModalDirective = ModalDirective;
 
-},{"../utils/components-helper.service":141,"../utils/facade/browser":142,"../utils/utils.class":143,"./modal-backdrop.component":103,"./modal-options.class":104,"@angular/core":61}],106:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"../utils/facade/browser":156,"../utils/utils.class":157,"./modal-backdrop.component":117,"./modal-options.class":118,"@angular/core":75}],120:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74198,7 +75724,7 @@ var ModalModule = (function () {
 }());
 exports.ModalModule = ModalModule;
 
-},{"../utils/components-helper.service":141,"./modal-backdrop.component":103,"./modal.component":105,"@angular/core":61}],107:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./modal-backdrop.component":117,"./modal.component":119,"@angular/core":75}],121:[function(require,module,exports){
 "use strict";
 var browser_1 = require('./utils/facade/browser');
 (function (Ng2BootstrapTheme) {
@@ -74227,7 +75753,7 @@ var Ng2BootstrapConfig = (function () {
 }());
 exports.Ng2BootstrapConfig = Ng2BootstrapConfig;
 
-},{"./utils/facade/browser":142}],108:[function(require,module,exports){
+},{"./utils/facade/browser":156}],122:[function(require,module,exports){
 "use strict";
 var pager_component_1 = require('./pagination/pager.component');
 exports.PagerComponent = pager_component_1.PagerComponent;
@@ -74236,7 +75762,7 @@ exports.PaginationComponent = pagination_component_1.PaginationComponent;
 var pagination_module_1 = require('./pagination/pagination.module');
 exports.PaginationModule = pagination_module_1.PaginationModule;
 
-},{"./pagination/pager.component":109,"./pagination/pagination.component":110,"./pagination/pagination.module":111}],109:[function(require,module,exports){
+},{"./pagination/pager.component":123,"./pagination/pagination.component":124,"./pagination/pagination.module":125}],123:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74285,7 +75811,7 @@ var PagerComponent = (function (_super) {
 }(pagination_component_1.PaginationComponent));
 exports.PagerComponent = PagerComponent;
 
-},{"./pagination.component":110,"@angular/core":61,"@angular/forms":62}],110:[function(require,module,exports){
+},{"./pagination.component":124,"@angular/core":75,"@angular/forms":76}],124:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74565,7 +76091,7 @@ var PaginationComponent = (function () {
 }());
 exports.PaginationComponent = PaginationComponent;
 
-},{"@angular/core":61,"@angular/forms":62}],111:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],125:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74596,7 +76122,7 @@ var PaginationModule = (function () {
 }());
 exports.PaginationModule = PaginationModule;
 
-},{"./pager.component":109,"./pagination.component":110,"@angular/common":59,"@angular/core":61,"@angular/forms":62}],112:[function(require,module,exports){
+},{"./pager.component":123,"./pagination.component":124,"@angular/common":73,"@angular/core":75,"@angular/forms":76}],126:[function(require,module,exports){
 "use strict";
 var PositionService = (function () {
     function PositionService() {
@@ -74749,7 +76275,7 @@ var PositionService = (function () {
 exports.PositionService = PositionService;
 exports.positionService = new PositionService();
 
-},{}],113:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 "use strict";
 var bar_component_1 = require('./progressbar/bar.component');
 exports.BarComponent = bar_component_1.BarComponent;
@@ -74760,7 +76286,7 @@ exports.ProgressbarComponent = progressbar_component_1.ProgressbarComponent;
 var progressbar_module_1 = require('./progressbar/progressbar.module');
 exports.ProgressbarModule = progressbar_module_1.ProgressbarModule;
 
-},{"./progressbar/bar.component":114,"./progressbar/progress.directive":115,"./progressbar/progressbar.component":116,"./progressbar/progressbar.module":117}],114:[function(require,module,exports){
+},{"./progressbar/bar.component":128,"./progressbar/progress.directive":129,"./progressbar/progressbar.component":130,"./progressbar/progressbar.module":131}],128:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74832,7 +76358,7 @@ var BarComponent = (function () {
 }());
 exports.BarComponent = BarComponent;
 
-},{"./progress.directive":115,"@angular/core":61}],115:[function(require,module,exports){
+},{"./progress.directive":129,"@angular/core":75}],129:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74903,7 +76429,7 @@ var ProgressDirective = (function () {
 }());
 exports.ProgressDirective = ProgressDirective;
 
-},{"@angular/core":61}],116:[function(require,module,exports){
+},{"@angular/core":75}],130:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74945,7 +76471,7 @@ var ProgressbarComponent = (function () {
 }());
 exports.ProgressbarComponent = ProgressbarComponent;
 
-},{"@angular/core":61}],117:[function(require,module,exports){
+},{"@angular/core":75}],131:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74976,14 +76502,14 @@ var ProgressbarModule = (function () {
 }());
 exports.ProgressbarModule = ProgressbarModule;
 
-},{"./bar.component":114,"./progress.directive":115,"./progressbar.component":116,"@angular/common":59,"@angular/core":61}],118:[function(require,module,exports){
+},{"./bar.component":128,"./progress.directive":129,"./progressbar.component":130,"@angular/common":73,"@angular/core":75}],132:[function(require,module,exports){
 "use strict";
 var rating_component_1 = require('./rating/rating.component');
 exports.RatingComponent = rating_component_1.RatingComponent;
 var rating_module_1 = require('./rating/rating.module');
 exports.RatingModule = rating_module_1.RatingModule;
 
-},{"./rating/rating.component":119,"./rating/rating.module":120}],119:[function(require,module,exports){
+},{"./rating/rating.component":133,"./rating/rating.module":134}],133:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75130,7 +76656,7 @@ var RatingComponent = (function () {
 }());
 exports.RatingComponent = RatingComponent;
 
-},{"@angular/core":61,"@angular/forms":62}],120:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],134:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75160,7 +76686,7 @@ var RatingModule = (function () {
 }());
 exports.RatingModule = RatingModule;
 
-},{"./rating.component":119,"@angular/common":59,"@angular/core":61,"@angular/forms":62}],121:[function(require,module,exports){
+},{"./rating.component":133,"@angular/common":73,"@angular/core":75,"@angular/forms":76}],135:[function(require,module,exports){
 "use strict";
 var tab_heading_directive_1 = require('./tabs/tab-heading.directive');
 exports.TabHeadingDirective = tab_heading_directive_1.TabHeadingDirective;
@@ -75171,7 +76697,7 @@ exports.TabDirective = tab_directive_1.TabDirective;
 var tabs_module_1 = require('./tabs/tabs.module');
 exports.TabsModule = tabs_module_1.TabsModule;
 
-},{"./tabs/tab-heading.directive":122,"./tabs/tab.directive":123,"./tabs/tabs.module":124,"./tabs/tabset.component":125}],122:[function(require,module,exports){
+},{"./tabs/tab-heading.directive":136,"./tabs/tab.directive":137,"./tabs/tabs.module":138,"./tabs/tabset.component":139}],136:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75196,7 +76722,7 @@ var TabHeadingDirective = (function () {
 }());
 exports.TabHeadingDirective = TabHeadingDirective;
 
-},{"./tab.directive":123,"@angular/core":61}],123:[function(require,module,exports){
+},{"./tab.directive":137,"@angular/core":75}],137:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75291,7 +76817,7 @@ var TabDirective = (function () {
 }());
 exports.TabDirective = TabDirective;
 
-},{"./tabset.component":125,"@angular/core":61}],124:[function(require,module,exports){
+},{"./tabset.component":139,"@angular/core":75}],138:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75323,7 +76849,7 @@ var TabsModule = (function () {
 }());
 exports.TabsModule = TabsModule;
 
-},{"../common":86,"./tab-heading.directive":122,"./tab.directive":123,"./tabset.component":125,"@angular/common":59,"@angular/core":61}],125:[function(require,module,exports){
+},{"../common":100,"./tab-heading.directive":136,"./tab.directive":137,"./tabset.component":139,"@angular/common":73,"@angular/core":75}],139:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75468,14 +76994,14 @@ var TabsetComponent = (function () {
 }());
 exports.TabsetComponent = TabsetComponent;
 
-},{"@angular/core":61}],126:[function(require,module,exports){
+},{"@angular/core":75}],140:[function(require,module,exports){
 "use strict";
 var timepicker_component_1 = require('./timepicker/timepicker.component');
 exports.TimepickerComponent = timepicker_component_1.TimepickerComponent;
 var timepicker_module_1 = require('./timepicker/timepicker.module');
 exports.TimepickerModule = timepicker_module_1.TimepickerModule;
 
-},{"./timepicker/timepicker.component":127,"./timepicker/timepicker.module":128}],127:[function(require,module,exports){
+},{"./timepicker/timepicker.component":141,"./timepicker/timepicker.module":142}],141:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75833,7 +77359,7 @@ var TimepickerComponent = (function () {
 }());
 exports.TimepickerComponent = TimepickerComponent;
 
-},{"@angular/core":61,"@angular/forms":62}],128:[function(require,module,exports){
+},{"@angular/core":75,"@angular/forms":76}],142:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75863,7 +77389,7 @@ var TimepickerModule = (function () {
 }());
 exports.TimepickerModule = TimepickerModule;
 
-},{"./timepicker.component":127,"@angular/common":59,"@angular/core":61,"@angular/forms":62}],129:[function(require,module,exports){
+},{"./timepicker.component":141,"@angular/common":73,"@angular/core":75,"@angular/forms":76}],143:[function(require,module,exports){
 "use strict";
 var tooltip_container_component_1 = require('./tooltip/tooltip-container.component');
 exports.TooltipContainerComponent = tooltip_container_component_1.TooltipContainerComponent;
@@ -75872,7 +77398,7 @@ exports.TooltipDirective = tooltip_directive_1.TooltipDirective;
 var tooltip_module_1 = require('./tooltip/tooltip.module');
 exports.TooltipModule = tooltip_module_1.TooltipModule;
 
-},{"./tooltip/tooltip-container.component":130,"./tooltip/tooltip.directive":132,"./tooltip/tooltip.module":133}],130:[function(require,module,exports){
+},{"./tooltip/tooltip-container.component":144,"./tooltip/tooltip.directive":146,"./tooltip/tooltip.module":147}],144:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75935,7 +77461,7 @@ var TooltipContainerComponent = (function () {
 }());
 exports.TooltipContainerComponent = TooltipContainerComponent;
 
-},{"../position":112,"./tooltip-options.class":131,"@angular/core":61}],131:[function(require,module,exports){
+},{"../position":126,"./tooltip-options.class":145,"@angular/core":75}],145:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75959,7 +77485,7 @@ var TooltipOptions = (function () {
 }());
 exports.TooltipOptions = TooltipOptions;
 
-},{"@angular/core":61}],132:[function(require,module,exports){
+},{"@angular/core":75}],146:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -76072,7 +77598,7 @@ var TooltipDirective = (function () {
 }());
 exports.TooltipDirective = TooltipDirective;
 
-},{"../utils/components-helper.service":141,"./tooltip-container.component":130,"./tooltip-options.class":131,"@angular/core":61}],133:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./tooltip-container.component":144,"./tooltip-options.class":145,"@angular/core":75}],147:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -76105,7 +77631,7 @@ var TooltipModule = (function () {
 }());
 exports.TooltipModule = TooltipModule;
 
-},{"../utils/components-helper.service":141,"./tooltip-container.component":130,"./tooltip.directive":132,"@angular/common":59,"@angular/core":61}],134:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./tooltip-container.component":144,"./tooltip.directive":146,"@angular/common":73,"@angular/core":75}],148:[function(require,module,exports){
 "use strict";
 var typeahead_container_component_1 = require('./typeahead/typeahead-container.component');
 exports.TypeaheadContainerComponent = typeahead_container_component_1.TypeaheadContainerComponent;
@@ -76116,7 +77642,7 @@ exports.TypeaheadDirective = typeahead_directive_1.TypeaheadDirective;
 var typeahead_module_1 = require('./typeahead/typeahead.module');
 exports.TypeaheadModule = typeahead_module_1.TypeaheadModule;
 
-},{"./typeahead/typeahead-container.component":136,"./typeahead/typeahead-options.class":137,"./typeahead/typeahead.directive":139,"./typeahead/typeahead.module":140}],135:[function(require,module,exports){
+},{"./typeahead/typeahead-container.component":150,"./typeahead/typeahead-options.class":151,"./typeahead/typeahead.directive":153,"./typeahead/typeahead.module":154}],149:[function(require,module,exports){
 "use strict";
 exports.latinMap = {
     'Á': 'A',
@@ -76945,7 +78471,7 @@ exports.latinMap = {
     'ₓ': 'x'
 };
 
-},{}],136:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -77092,7 +78618,7 @@ var TypeaheadContainerComponent = (function () {
 exports.TypeaheadContainerComponent = TypeaheadContainerComponent;
 var _a;
 
-},{"../ng2-bootstrap-config":107,"../position":112,"./typeahead-options.class":137,"./typeahead-utils":138,"@angular/core":61}],137:[function(require,module,exports){
+},{"../ng2-bootstrap-config":121,"../position":126,"./typeahead-options.class":151,"./typeahead-utils":152,"@angular/core":75}],151:[function(require,module,exports){
 "use strict";
 var TypeaheadOptions = (function () {
     function TypeaheadOptions(options) {
@@ -77102,7 +78628,7 @@ var TypeaheadOptions = (function () {
 }());
 exports.TypeaheadOptions = TypeaheadOptions;
 
-},{}],138:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 "use strict";
 var latin_map_1 = require('./latin-map');
 var TypeaheadUtils = (function () {
@@ -77165,7 +78691,7 @@ var TypeaheadUtils = (function () {
 }());
 exports.TypeaheadUtils = TypeaheadUtils;
 
-},{"./latin-map":135}],139:[function(require,module,exports){
+},{"./latin-map":149}],153:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -77505,7 +79031,7 @@ var TypeaheadDirective = (function () {
 }());
 exports.TypeaheadDirective = TypeaheadDirective;
 
-},{"../utils/components-helper.service":141,"./typeahead-container.component":136,"./typeahead-options.class":137,"./typeahead-utils":138,"@angular/core":61,"@angular/forms":62,"rxjs/Observable":148,"rxjs/add/observable/from":156,"rxjs/add/operator/debounceTime":158,"rxjs/add/operator/filter":159,"rxjs/add/operator/map":160,"rxjs/add/operator/mergeMap":161,"rxjs/add/operator/toArray":162}],140:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./typeahead-container.component":150,"./typeahead-options.class":151,"./typeahead-utils":152,"@angular/core":75,"@angular/forms":76,"rxjs/Observable":162,"rxjs/add/observable/from":170,"rxjs/add/operator/debounceTime":172,"rxjs/add/operator/filter":173,"rxjs/add/operator/map":174,"rxjs/add/operator/mergeMap":175,"rxjs/add/operator/toArray":176}],154:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -77539,7 +79065,7 @@ var TypeaheadModule = (function () {
 }());
 exports.TypeaheadModule = TypeaheadModule;
 
-},{"../utils/components-helper.service":141,"./typeahead-container.component":136,"./typeahead.directive":139,"@angular/common":59,"@angular/core":61,"@angular/forms":62}],141:[function(require,module,exports){
+},{"../utils/components-helper.service":155,"./typeahead-container.component":150,"./typeahead.directive":153,"@angular/common":73,"@angular/core":75,"@angular/forms":76}],155:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -77647,7 +79173,7 @@ var ComponentsHelper = (function () {
 }());
 exports.ComponentsHelper = ComponentsHelper;
 
-},{"@angular/core":61,"@angular/platform-browser":65}],142:[function(require,module,exports){
+},{"@angular/core":75,"@angular/platform-browser":79}],156:[function(require,module,exports){
 /*tslint:disable */
 /**
  * @license
@@ -77674,7 +79200,7 @@ exports.History = win['History'];
 exports.Location = win['Location'];
 exports.EventListener = win['EventListener'];
 
-},{}],143:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 "use strict";
 var browser_1 = require('./facade/browser');
 var Utils = (function () {
@@ -77698,7 +79224,7 @@ var Utils = (function () {
 }());
 exports.Utils = Utils;
 
-},{"./facade/browser":142}],144:[function(require,module,exports){
+},{"./facade/browser":156}],158:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -77756,7 +79282,7 @@ exports.ComponentsHelper = components_helper_service_1.ComponentsHelper;
 var index_1 = require('./components/index');
 exports.Ng2BootstrapModule = index_1.Ng2BootstrapModule;
 
-},{"./components/accordion":68,"./components/accordion/accordion.module":71,"./components/alert":72,"./components/alert/alert.module":74,"./components/buttons":75,"./components/buttons/buttons.module":78,"./components/carousel":79,"./components/carousel/carousel.module":81,"./components/collapse":83,"./components/collapse/collapse.module":85,"./components/common":86,"./components/datepicker":87,"./components/datepicker/datepicker.module":91,"./components/dropdown":95,"./components/dropdown/dropdown.module":99,"./components/index":101,"./components/modal":102,"./components/modal/modal.module":106,"./components/ng2-bootstrap-config":107,"./components/pagination":108,"./components/pagination/pagination.module":111,"./components/position":112,"./components/progressbar":113,"./components/progressbar/progressbar.module":117,"./components/rating":118,"./components/rating/rating.module":120,"./components/tabs":121,"./components/tabs/tabs.module":124,"./components/timepicker":126,"./components/timepicker/timepicker.module":128,"./components/tooltip":129,"./components/tooltip/tooltip.module":133,"./components/typeahead":134,"./components/typeahead/typeahead.module":140,"./components/utils/components-helper.service":141}],145:[function(require,module,exports){
+},{"./components/accordion":82,"./components/accordion/accordion.module":85,"./components/alert":86,"./components/alert/alert.module":88,"./components/buttons":89,"./components/buttons/buttons.module":92,"./components/carousel":93,"./components/carousel/carousel.module":95,"./components/collapse":97,"./components/collapse/collapse.module":99,"./components/common":100,"./components/datepicker":101,"./components/datepicker/datepicker.module":105,"./components/dropdown":109,"./components/dropdown/dropdown.module":113,"./components/index":115,"./components/modal":116,"./components/modal/modal.module":120,"./components/ng2-bootstrap-config":121,"./components/pagination":122,"./components/pagination/pagination.module":125,"./components/position":126,"./components/progressbar":127,"./components/progressbar/progressbar.module":131,"./components/rating":132,"./components/rating/rating.module":134,"./components/tabs":135,"./components/tabs/tabs.module":138,"./components/timepicker":140,"./components/timepicker/timepicker.module":142,"./components/tooltip":143,"./components/tooltip/tooltip.module":147,"./components/typeahead":148,"./components/typeahead/typeahead.module":154,"./components/utils/components-helper.service":155}],159:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -77806,7 +79332,7 @@ var BehaviorSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.BehaviorSubject = BehaviorSubject;
 
-},{"./Subject":152,"./util/ObjectUnsubscribedError":197}],146:[function(require,module,exports){
+},{"./Subject":166,"./util/ObjectUnsubscribedError":211}],160:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -77843,7 +79369,7 @@ var InnerSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.InnerSubscriber = InnerSubscriber;
 
-},{"./Subscriber":154}],147:[function(require,module,exports){
+},{"./Subscriber":168}],161:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('./Observable');
 /**
@@ -77971,7 +79497,7 @@ var Notification = (function () {
 }());
 exports.Notification = Notification;
 
-},{"./Observable":148}],148:[function(require,module,exports){
+},{"./Observable":162}],162:[function(require,module,exports){
 "use strict";
 var root_1 = require('./util/root');
 var toSubscriber_1 = require('./util/toSubscriber');
@@ -78101,7 +79627,7 @@ var Observable = (function () {
 }());
 exports.Observable = Observable;
 
-},{"./symbol/observable":194,"./util/root":205,"./util/toSubscriber":207}],149:[function(require,module,exports){
+},{"./symbol/observable":208,"./util/root":219,"./util/toSubscriber":221}],163:[function(require,module,exports){
 "use strict";
 exports.empty = {
     closed: true,
@@ -78110,7 +79636,7 @@ exports.empty = {
     complete: function () { }
 };
 
-},{}],150:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -78141,7 +79667,7 @@ var OuterSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.OuterSubscriber = OuterSubscriber;
 
-},{"./Subscriber":154}],151:[function(require,module,exports){
+},{"./Subscriber":168}],165:[function(require,module,exports){
 "use strict";
 /**
  * An execution context and a data structure to order tasks and schedule their
@@ -78191,7 +79717,7 @@ var Scheduler = (function () {
 }());
 exports.Scheduler = Scheduler;
 
-},{}],152:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -78352,7 +79878,7 @@ var AnonymousSubject = (function (_super) {
 }(Subject));
 exports.AnonymousSubject = AnonymousSubject;
 
-},{"./Observable":148,"./SubjectSubscription":153,"./Subscriber":154,"./Subscription":155,"./symbol/rxSubscriber":195,"./util/ObjectUnsubscribedError":197}],153:[function(require,module,exports){
+},{"./Observable":162,"./SubjectSubscription":167,"./Subscriber":168,"./Subscription":169,"./symbol/rxSubscriber":209,"./util/ObjectUnsubscribedError":211}],167:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -78393,7 +79919,7 @@ var SubjectSubscription = (function (_super) {
 }(Subscription_1.Subscription));
 exports.SubjectSubscription = SubjectSubscription;
 
-},{"./Subscription":155}],154:[function(require,module,exports){
+},{"./Subscription":169}],168:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -78643,7 +80169,7 @@ var SafeSubscriber = (function (_super) {
     return SafeSubscriber;
 }(Subscriber));
 
-},{"./Observer":149,"./Subscription":155,"./symbol/rxSubscriber":195,"./util/isFunction":201}],155:[function(require,module,exports){
+},{"./Observer":163,"./Subscription":169,"./symbol/rxSubscriber":209,"./util/isFunction":215}],169:[function(require,module,exports){
 "use strict";
 var isArray_1 = require('./util/isArray');
 var isObject_1 = require('./util/isObject');
@@ -78797,57 +80323,57 @@ var Subscription = (function () {
 }());
 exports.Subscription = Subscription;
 
-},{"./util/UnsubscriptionError":198,"./util/errorObject":199,"./util/isArray":200,"./util/isFunction":201,"./util/isObject":202,"./util/tryCatch":208}],156:[function(require,module,exports){
+},{"./util/UnsubscriptionError":212,"./util/errorObject":213,"./util/isArray":214,"./util/isFunction":215,"./util/isObject":216,"./util/tryCatch":222}],170:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var from_1 = require('../../observable/from');
 Observable_1.Observable.from = from_1.from;
 
-},{"../../Observable":148,"../../observable/from":171}],157:[function(require,module,exports){
+},{"../../Observable":162,"../../observable/from":185}],171:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var catch_1 = require('../../operator/catch');
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 
-},{"../../Observable":148,"../../operator/catch":174}],158:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/catch":188}],172:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var debounceTime_1 = require('../../operator/debounceTime');
 Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 
-},{"../../Observable":148,"../../operator/debounceTime":177}],159:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/debounceTime":191}],173:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var filter_1 = require('../../operator/filter');
 Observable_1.Observable.prototype.filter = filter_1.filter;
 
-},{"../../Observable":148,"../../operator/filter":179}],160:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/filter":193}],174:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var map_1 = require('../../operator/map');
 Observable_1.Observable.prototype.map = map_1.map;
 
-},{"../../Observable":148,"../../operator/map":182}],161:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/map":196}],175:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var mergeMap_1 = require('../../operator/mergeMap');
 Observable_1.Observable.prototype.mergeMap = mergeMap_1.mergeMap;
 Observable_1.Observable.prototype.flatMap = mergeMap_1.mergeMap;
 
-},{"../../Observable":148,"../../operator/mergeMap":184}],162:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/mergeMap":198}],176:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var toArray_1 = require('../../operator/toArray');
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 
-},{"../../Observable":148,"../../operator/toArray":187}],163:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/toArray":201}],177:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var toPromise_1 = require('../../operator/toPromise');
 Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
 
-},{"../../Observable":148,"../../operator/toPromise":188}],164:[function(require,module,exports){
+},{"../../Observable":162,"../../operator/toPromise":202}],178:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -78918,7 +80444,7 @@ var ArrayLikeObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ArrayLikeObservable = ArrayLikeObservable;
 
-},{"../Observable":148,"./EmptyObservable":166,"./ScalarObservable":170}],165:[function(require,module,exports){
+},{"../Observable":162,"./EmptyObservable":180,"./ScalarObservable":184}],179:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79041,7 +80567,7 @@ var ArrayObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ArrayObservable = ArrayObservable;
 
-},{"../Observable":148,"../util/isScheduler":204,"./EmptyObservable":166,"./ScalarObservable":170}],166:[function(require,module,exports){
+},{"../Observable":162,"../util/isScheduler":218,"./EmptyObservable":180,"./ScalarObservable":184}],180:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79123,7 +80649,7 @@ var EmptyObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.EmptyObservable = EmptyObservable;
 
-},{"../Observable":148}],167:[function(require,module,exports){
+},{"../Observable":162}],181:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79246,7 +80772,7 @@ var FromObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.FromObservable = FromObservable;
 
-},{"../Observable":148,"../operator/observeOn":185,"../symbol/iterator":193,"../symbol/observable":194,"../util/isArray":200,"../util/isPromise":203,"./ArrayLikeObservable":164,"./ArrayObservable":165,"./IteratorObservable":168,"./PromiseObservable":169}],168:[function(require,module,exports){
+},{"../Observable":162,"../operator/observeOn":199,"../symbol/iterator":207,"../symbol/observable":208,"../util/isArray":214,"../util/isPromise":217,"./ArrayLikeObservable":178,"./ArrayObservable":179,"./IteratorObservable":182,"./PromiseObservable":183}],182:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79410,7 +80936,7 @@ function sign(value) {
     return valueAsNumber < 0 ? -1 : 1;
 }
 
-},{"../Observable":148,"../symbol/iterator":193,"../util/root":205}],169:[function(require,module,exports){
+},{"../Observable":162,"../symbol/iterator":207,"../util/root":219}],183:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79532,7 +81058,7 @@ function dispatchError(arg) {
     }
 }
 
-},{"../Observable":148,"../util/root":205}],170:[function(require,module,exports){
+},{"../Observable":162,"../util/root":219}],184:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79591,22 +81117,22 @@ var ScalarObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ScalarObservable = ScalarObservable;
 
-},{"../Observable":148}],171:[function(require,module,exports){
+},{"../Observable":162}],185:[function(require,module,exports){
 "use strict";
 var FromObservable_1 = require('./FromObservable');
 exports.from = FromObservable_1.FromObservable.create;
 
-},{"./FromObservable":167}],172:[function(require,module,exports){
+},{"./FromObservable":181}],186:[function(require,module,exports){
 "use strict";
 var PromiseObservable_1 = require('./PromiseObservable');
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 
-},{"./PromiseObservable":169}],173:[function(require,module,exports){
+},{"./PromiseObservable":183}],187:[function(require,module,exports){
 "use strict";
 var ArrayObservable_1 = require('./ArrayObservable');
 exports.of = ArrayObservable_1.ArrayObservable.of;
 
-},{"./ArrayObservable":165}],174:[function(require,module,exports){
+},{"./ArrayObservable":179}],188:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79673,7 +81199,7 @@ var CatchSubscriber = (function (_super) {
     return CatchSubscriber;
 }(OuterSubscriber_1.OuterSubscriber));
 
-},{"../OuterSubscriber":150,"../util/subscribeToResult":206}],175:[function(require,module,exports){
+},{"../OuterSubscriber":164,"../util/subscribeToResult":220}],189:[function(require,module,exports){
 "use strict";
 var mergeAll_1 = require('./mergeAll');
 /* tslint:disable:max-line-length */
@@ -79730,7 +81256,7 @@ function concatAll() {
 }
 exports.concatAll = concatAll;
 
-},{"./mergeAll":183}],176:[function(require,module,exports){
+},{"./mergeAll":197}],190:[function(require,module,exports){
 "use strict";
 var mergeMap_1 = require('./mergeMap');
 /* tslint:disable:max-line-length */
@@ -79801,7 +81327,7 @@ function concatMap(project, resultSelector) {
 }
 exports.concatMap = concatMap;
 
-},{"./mergeMap":184}],177:[function(require,module,exports){
+},{"./mergeMap":198}],191:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79918,7 +81444,7 @@ function dispatchNext(subscriber) {
     subscriber.debouncedNext();
 }
 
-},{"../Subscriber":154,"../scheduler/async":192}],178:[function(require,module,exports){
+},{"../Subscriber":168,"../scheduler/async":206}],192:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -79987,7 +81513,7 @@ var EverySubscriber = (function (_super) {
     return EverySubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154}],179:[function(require,module,exports){
+},{"../Subscriber":168}],193:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80081,7 +81607,7 @@ var FilterSubscriber = (function (_super) {
     return FilterSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154}],180:[function(require,module,exports){
+},{"../Subscriber":168}],194:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80234,7 +81760,7 @@ var FirstSubscriber = (function (_super) {
     return FirstSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154,"../util/EmptyError":196}],181:[function(require,module,exports){
+},{"../Subscriber":168,"../util/EmptyError":210}],195:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80354,7 +81880,7 @@ var LastSubscriber = (function (_super) {
     return LastSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154,"../util/EmptyError":196}],182:[function(require,module,exports){
+},{"../Subscriber":168,"../util/EmptyError":210}],196:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80442,7 +81968,7 @@ var MapSubscriber = (function (_super) {
     return MapSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154}],183:[function(require,module,exports){
+},{"../Subscriber":168}],197:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80554,7 +82080,7 @@ var MergeAllSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.MergeAllSubscriber = MergeAllSubscriber;
 
-},{"../OuterSubscriber":150,"../util/subscribeToResult":206}],184:[function(require,module,exports){
+},{"../OuterSubscriber":164,"../util/subscribeToResult":220}],198:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80726,7 +82252,7 @@ var MergeMapSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.MergeMapSubscriber = MergeMapSubscriber;
 
-},{"../OuterSubscriber":150,"../util/subscribeToResult":206}],185:[function(require,module,exports){
+},{"../OuterSubscriber":164,"../util/subscribeToResult":220}],199:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80802,7 +82328,7 @@ var ObserveOnMessage = (function () {
 }());
 exports.ObserveOnMessage = ObserveOnMessage;
 
-},{"../Notification":147,"../Subscriber":154}],186:[function(require,module,exports){
+},{"../Notification":161,"../Subscriber":168}],200:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80926,7 +82452,7 @@ var ReduceSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.ReduceSubscriber = ReduceSubscriber;
 
-},{"../Subscriber":154}],187:[function(require,module,exports){
+},{"../Subscriber":168}],201:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -80972,7 +82498,7 @@ var ToArraySubscriber = (function (_super) {
     return ToArraySubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":154}],188:[function(require,module,exports){
+},{"../Subscriber":168}],202:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 /* tslint:disable:max-line-length */
@@ -81002,7 +82528,7 @@ function toPromise(PromiseCtor) {
 }
 exports.toPromise = toPromise;
 
-},{"../util/root":205}],189:[function(require,module,exports){
+},{"../util/root":219}],203:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81047,7 +82573,7 @@ var Action = (function (_super) {
 }(Subscription_1.Subscription));
 exports.Action = Action;
 
-},{"../Subscription":155}],190:[function(require,module,exports){
+},{"../Subscription":169}],204:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81190,7 +82716,7 @@ var AsyncAction = (function (_super) {
 }(Action_1.Action));
 exports.AsyncAction = AsyncAction;
 
-},{"../util/root":205,"./Action":189}],191:[function(require,module,exports){
+},{"../util/root":219,"./Action":203}],205:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81242,13 +82768,13 @@ var AsyncScheduler = (function (_super) {
 }(Scheduler_1.Scheduler));
 exports.AsyncScheduler = AsyncScheduler;
 
-},{"../Scheduler":151}],192:[function(require,module,exports){
+},{"../Scheduler":165}],206:[function(require,module,exports){
 "use strict";
 var AsyncAction_1 = require('./AsyncAction');
 var AsyncScheduler_1 = require('./AsyncScheduler');
 exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 
-},{"./AsyncAction":190,"./AsyncScheduler":191}],193:[function(require,module,exports){
+},{"./AsyncAction":204,"./AsyncScheduler":205}],207:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 function symbolIteratorPonyfill(root) {
@@ -81283,7 +82809,7 @@ function symbolIteratorPonyfill(root) {
 exports.symbolIteratorPonyfill = symbolIteratorPonyfill;
 exports.$$iterator = symbolIteratorPonyfill(root_1.root);
 
-},{"../util/root":205}],194:[function(require,module,exports){
+},{"../util/root":219}],208:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 function getSymbolObservable(context) {
@@ -81306,14 +82832,14 @@ function getSymbolObservable(context) {
 exports.getSymbolObservable = getSymbolObservable;
 exports.$$observable = getSymbolObservable(root_1.root);
 
-},{"../util/root":205}],195:[function(require,module,exports){
+},{"../util/root":219}],209:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 var Symbol = root_1.root.Symbol;
 exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
 
-},{"../util/root":205}],196:[function(require,module,exports){
+},{"../util/root":219}],210:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81342,7 +82868,7 @@ var EmptyError = (function (_super) {
 }(Error));
 exports.EmptyError = EmptyError;
 
-},{}],197:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81370,7 +82896,7 @@ var ObjectUnsubscribedError = (function (_super) {
 }(Error));
 exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 
-},{}],198:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -81396,44 +82922,44 @@ var UnsubscriptionError = (function (_super) {
 }(Error));
 exports.UnsubscriptionError = UnsubscriptionError;
 
-},{}],199:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 "use strict";
 // typeof any so that it we don't have to cast when comparing a result to the error object
 exports.errorObject = { e: {} };
 
-},{}],200:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 "use strict";
 exports.isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
 
-},{}],201:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 "use strict";
 function isFunction(x) {
     return typeof x === 'function';
 }
 exports.isFunction = isFunction;
 
-},{}],202:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 "use strict";
 function isObject(x) {
     return x != null && typeof x === 'object';
 }
 exports.isObject = isObject;
 
-},{}],203:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 "use strict";
 function isPromise(value) {
     return value && typeof value.subscribe !== 'function' && typeof value.then === 'function';
 }
 exports.isPromise = isPromise;
 
-},{}],204:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 "use strict";
 function isScheduler(value) {
     return value && typeof value.schedule === 'function';
 }
 exports.isScheduler = isScheduler;
 
-},{}],205:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 (function (global){
 "use strict";
 /**
@@ -81449,7 +82975,7 @@ if (!exports.root) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],206:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 "use strict";
 var root_1 = require('./root');
 var isArray_1 = require('./isArray');
@@ -81528,7 +83054,7 @@ function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
 }
 exports.subscribeToResult = subscribeToResult;
 
-},{"../InnerSubscriber":146,"../Observable":148,"../symbol/iterator":193,"../symbol/observable":194,"./isArray":200,"./isObject":202,"./isPromise":203,"./root":205}],207:[function(require,module,exports){
+},{"../InnerSubscriber":160,"../Observable":162,"../symbol/iterator":207,"../symbol/observable":208,"./isArray":214,"./isObject":216,"./isPromise":217,"./root":219}],221:[function(require,module,exports){
 "use strict";
 var Subscriber_1 = require('../Subscriber');
 var rxSubscriber_1 = require('../symbol/rxSubscriber');
@@ -81549,7 +83075,7 @@ function toSubscriber(nextOrObserver, error, complete) {
 }
 exports.toSubscriber = toSubscriber;
 
-},{"../Observer":149,"../Subscriber":154,"../symbol/rxSubscriber":195}],208:[function(require,module,exports){
+},{"../Observer":163,"../Subscriber":168,"../symbol/rxSubscriber":209}],222:[function(require,module,exports){
 "use strict";
 var errorObject_1 = require('./errorObject');
 var tryCatchTarget;
@@ -81569,5 +83095,5 @@ function tryCatch(fn) {
 exports.tryCatch = tryCatch;
 ;
 
-},{"./errorObject":199}]},{},[41])(41)
+},{"./errorObject":213}]},{},[52])(52)
 });

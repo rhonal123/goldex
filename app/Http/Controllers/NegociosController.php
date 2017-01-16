@@ -15,7 +15,7 @@ use Validator;
 
 use Illuminate\Validation\Rule;
 /*
- *  'codigo' => 'C01' , 'accion' => 'NegociosController@show'
+ *  'codigo' => 'C01' , 'accion' => 'NegociosController@show,movimientos,abonos'
  *  'codigo' => 'C02' , 'accion' => 'NegociosController@delete'
  *  'codigo' => 'C03' , 'accion' => 'NegociosController@update'
  *  'codigo' => 'C04' , 'accion' => 'NegociosController@create'
@@ -24,10 +24,22 @@ use Illuminate\Validation\Rule;
 class NegociosController extends Controller
 {
 
-	public function show($id){
+	public function show($id) {
 		$this->authorize('C01');
 		$negocio = Negocio::findOrFail($id);
 		return $negocio;
+	}
+
+	public function movimientos(Request $request, $id) {
+		$this->authorize('C01');
+		$estado = $request->input('estado');
+		return Negocio::movimientos($id,$estado);
+	}
+
+	public function abonos(Request $request, $id) {
+		$this->authorize('C01');
+		$estado = $request->input('estado');
+		return Negocio::abonos($id,$estado);
 	}
 
 	public function delete($id){

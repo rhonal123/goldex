@@ -16,10 +16,10 @@ class TipoModelTest extends TestCase
  public function testCrearPrestamoEfectivo() {
 
     $value = [
-    	'tipo'=> ' Nueva Modena de Cambio',
-			'simbolo'=> 'SIMBOLO',
-			'tasa'=> 7500,
-			'divisa'=> true,
+    	'tipo'=> ' Nueva Modena de Cambio _}'.date("Y-m-d H:i:s"),
+		'simbolo'=> 'SIMBOLO',
+		'tasa'=> 7500,
+		'divisa'=> true,
     ];
     $valid = Tipo::validador($value);
     $this->validarformulario($valid);
@@ -27,7 +27,7 @@ class TipoModelTest extends TestCase
     $this->assertNotEmpty($prestamo->id);
 
     $value = [
-    	'tipo'=> ' Nueva Modena de Cambio2',
+    	'tipo'=> ' Nueva Modena de Cambio2'. date("Y-m-d H:i:s"),
 			'simbolo'=> 'SIMBOLO2',
 			'tasa'=> 7500,
 			'divisa'=> false,

@@ -30,6 +30,6 @@ class CreateCuentasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cuentas');
+        Schema::dropIfExists('cuentas');
     }
 }

@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 
+use App\Movimiento;
+use App\Abono;
+
 class Negocio extends Model
 {
     //
@@ -36,10 +39,10 @@ class Negocio extends Model
 	{
 
   	if($nombre) {
-	    $negocios = Negocio::where('nombre', 'ilike',"%".$nombre."%")->paginate(15);
+	    $negocios = Negocio::where('nombre', 'ilike',"%".$nombre."%")->orderBy('id','desc')->paginate(15);
 		}
 		else{
-	    $negocios = Negocio::paginate(15);
+	    $negocios = Negocio::orderBy('id','desc')->paginate(15);
 		}
    
    
@@ -47,7 +50,14 @@ class Negocio extends Model
   }
 
   public static function validador($values){
- 
   	return Validator::make($values,self::$val,self::$message);
+  }
+
+  public static function movimientos($id,$estado="CREADO"){
+    return Movimiento::with('cuenta.banco')->where("negocio_id",$id)->get();
+  }
+
+  public static function abonos($id,$estado="CREADO"){
+    return Abono::with('cuenta.banco')->where("negocio_id",$id)->get();
   }
  }

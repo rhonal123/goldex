@@ -19,14 +19,21 @@ var cuenta_delete_component_1 = require('./cuenta.delete.component');
 var cuenta_component_1 = require('./cuenta.component');
 var core_2 = require('@angular/core');
 var CuentasComponent = (function () {
-    function CuentasComponent(route, cuentaService, _changeDetectionRef) {
-        this.route = route;
+    function CuentasComponent(router, cuentaService, _changeDetectionRef) {
+        this.router = router;
         this.cuentaService = cuentaService;
         this._changeDetectionRef = _changeDetectionRef;
         this.current_page = 1;
         this.sort = "id";
     }
     CuentasComponent.prototype.ngAfterViewInit = function () {
+        this.loadTable();
+    };
+    CuentasComponent.prototype.limpiar = function () {
+        this.search = "";
+    };
+    CuentasComponent.prototype.onRefrescar = function () {
+        this.limpiar();
         this.loadTable();
     };
     CuentasComponent.prototype.loadTable = function () {
@@ -121,7 +128,7 @@ var CuentasComponent = (function () {
     CuentasComponent = __decorate([
         core_1.Component({
             selector: 'cuentas-component',
-            templateUrl: 'app/templates/cuentas/cuentas.component.html',
+            template: "\n<div class=\"col-md-2 \">\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"agregar()\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n  </button>\n  <button type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"onRefrescar()\">\n    <span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span>\n  </button>\n</div>\n<div class=\"col-md-10\" align=\"right\">\n  <div class=\"form-inline\">\n    <div class=\"form-group\">\n      <input type=\"text\" [(ngModel)]=\"search\" class=\"form-control col-md-6\" placeholder=\"buscar\" (keyup)=\"loadTable()\"  >\n      <button type=\"button\" class=\"btn  btn-default\" (click)=\"loadTable()\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n    </div>\n  </div>\n</div>\n\n<div class=\"col-md-12\">\n  <div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr><th>Id</th><th>Nuemro</th><th>Banco</th><th></th></tr>\n      </thead>\n      <tbody class=\"cuentas\">\n        <tr *ngFor=\"let cuenta of cuentas\" >\n          <td ><span>{{cuenta.id}}</span></td>\n          <td ><span>{{cuenta.numero}}</span></td>\n          <td ><span>{{cuenta.banco.nombre}}</span></td>\n          <td align=\"right\">\n          <span  dropdown >\n            <span class=\"glyphicon glyphicon-th\" aria-hidden=\"true\" dropdownToggle ></span>\n            <ul class=\"dropdown-menu dropdown-menu-right \" dropdownMenu  role=\"menu\" aria-labelledby=\"split-button\">\n              <li  role=\"menuitem\" (click)=\"onSelect(cuenta)\" >\n                <a class=\"dropdown-item\" >Mostrar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEditar(cuenta)\">\n                <a class=\"dropdown-item\" >Editar</a>\n              </li>\n              <li role=\"menuitem\" (click)=\"onEliminar(cuenta)\">\n                <a class=\"dropdown-item\" >Eliminar</a>\n              </li>\n            </ul>\n          </span>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div align=\"right\">\n      <pagination [totalItems]=\"total\" [(ngModel)]=\"current_page\"  [itemsPerPage]=\"per_page\" (pageChanged)=\"pageChanged($event)\" [boundaryLinks]=\"true\" [maxSize]=\"10\" [rotate]=\"false\" previousText=\"&lsaquo;\" nextText=\"&rsaquo;\" firstText=\"&laquo;\" lastText=\"&raquo;\"></pagination><p><strong>Pagina: {{current_page}} Total de Cuentas {{total}}</strong></p>\n    </div>\n  </div>\n</div>\n<cuenta-delete-component></cuenta-delete-component>\n<cuenta-component></cuenta-component>\n<cuenta-edit-component></cuenta-edit-component> \n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, cuenta_service_1.CuentaService, core_2.ChangeDetectorRef])

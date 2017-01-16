@@ -64,9 +64,9 @@ class User extends Authenticatable
 
     public static function buscar($name) {
         if($name){
-          return User::where('name', 'ilike',"%".$name."%")->paginate(15);
+          return User::where('name', 'ilike',"%".$name."%")->orderBy('id','desc')->paginate(15);
         }
-        return User::paginate(15);
+        return User::orderBy('id','desc')->paginate(15);
     }
 
     public static function validador($values,$user= null){

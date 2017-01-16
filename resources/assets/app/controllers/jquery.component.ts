@@ -35,13 +35,17 @@ export class JqueryComponent {
 			.datepicker("setDate",value);
 	}
 
+	public static fechaSinValorIncial(name: string,): any {
+		return ($(name) as any )
+			.datepicker({format: "yyyy/mm/dd"});
+	}
 
 
 	public static negocios(name: string, value?: Negocio) :any  {
 	  let formato = (obj: any) : string => {
 	  	return (obj.text? obj.text:capitalize(` ${obj.rif} ${obj.nombre}`));
 	  };
-
+    $(name).empty();
     if(value)
     {
       let op =  document.createElement("option");
@@ -50,10 +54,10 @@ export class JqueryComponent {
       $(name).empty();
       $(name).append(op);
     }
-
-		return ($(name) as any).select2({
+    $(name).off('select2:select')
+		return $(name).select2({
 	    ajax: {
-	      url: "/sistema/negocios",
+	      url: "/webservices/negocios",
 	      dataType: 'json',
 	      delay: 250,
 	      data: JqueryComponent.proceData,
@@ -72,7 +76,7 @@ export class JqueryComponent {
 	  let formato = (obj: any) : string => {
 	  	return (obj.text?  obj.text : capitalize(` ${obj.tipo} ${obj.simbolo}.`));
 	  };
-
+    $(name).empty();
     if(value)
     {
       let op =  document.createElement("option");
@@ -81,8 +85,8 @@ export class JqueryComponent {
       $(name).empty();
       $(name).append(op);
     }
-
-		return ($(name) as any).select2({
+    $(name).off('select2:select')
+		return $(name).select2({
 	    ajax: {
 	      url: "/webservices/tipos",
 	      dataType: 'json',
@@ -100,9 +104,9 @@ export class JqueryComponent {
  
   public static cuentas(name: string, value?: Cuenta ): any {
 	  let formato = (obj: any) : string => {
-	  	console.log(obj)
 	  	return (obj.text?  obj.text : capitalize(` ${obj.banco.nombre} ${obj.numero}.`));
 	  };
+	  $(name).empty();
     if(value)
     {
       let op =  document.createElement("option");
@@ -111,9 +115,10 @@ export class JqueryComponent {
       $(name).empty();
       $(name).append(op);
     }
-  	return  ($(name) as any ).select2({
+    $(name).off('select2:select')
+  	return $(name).select2({
       ajax: {
-        url: "/sistema/cuentas",
+        url: "/webservices/cuentas",
         dataType: 'json',
         delay: 250,
 	      data: JqueryComponent.proceData,
@@ -131,7 +136,7 @@ export class JqueryComponent {
 	  let formato = (obj: any) : string => {
 	  	return (obj.text?  obj.text : capitalize(` ${obj.nombre}.`));
 	  };
-
+    $(name).empty();
     if(value)
     {
       let op =  document.createElement("option");
@@ -140,9 +145,10 @@ export class JqueryComponent {
       $(name).empty();
       $(name).append(op);
     }
-  	return  ($(name) as any ).select2({
+    $(name).off('select2:select')
+  	return $(name).select2({
       ajax: {
-        url: "/sistema/bancos",
+        url: "/webservices/bancos",
         dataType: 'json',
         delay: 250,
 	      data: JqueryComponent.proceData,
@@ -154,6 +160,17 @@ export class JqueryComponent {
 	    templateSelection: formato,
 	    templateResult: formato,
     }); 
+  }
+
+  public static downloadPdf(url: string, name: string){
+		window.open(url,"_blank");
+		/*let a =  document.getElementById("downloadPdf");
+    ///(a as any).style = "display: none";
+    (a as any).href = url;
+    (a as any).download = name;
+    (a as any).click();
+ 	*/
+    ///window.URL.revokeObjectURL(url);
   }
 
 }

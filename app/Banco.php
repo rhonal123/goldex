@@ -18,7 +18,7 @@ class Banco extends Model
 
  	public static function buscar($nombre)
 	{
-    $query = DB::table('bancos');
+    $query = DB::table('bancos')->orderBy('id','desc');;
 
   	if($nombre) {
 			/*Log::info(Banco::where('nombre','like',$nombre)->toSql());*/
@@ -27,7 +27,7 @@ class Banco extends Model
     return $query->paginate(15);
   }
 
-  public static function validador($values,$banco){
+  public static function validador($values,$banco= null){
     if($banco){
        $val = ["nombre"=> 'required|max:50|unique:bancos,nombre,'.$banco->id];
     }

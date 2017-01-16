@@ -13,7 +13,7 @@ class AbonosController extends Controller
 
 	public function show($id){
 		$this->authorize('F01');
-		return Abono::with('tipo','negocio','cuenta.banco','user')->findOrFail($id);
+		return Abono::with('tipo','negocio','cuenta.banco')->findOrFail($id);
 	}
 
 	public function delete($id){
@@ -37,8 +37,8 @@ class AbonosController extends Controller
 			return response()->json($validator->errors(),500);
 		}
 		else {
-			$abono->update($values);
-			return Abono::with('tipo','negocio','cuenta.banco','user')->findOrFail($abono->id);
+			$abono->actualizarAbono($values);
+			return Abono::with('tipo','negocio','cuenta.banco')->findOrFail($abono->id);
 		}
 	}
 
@@ -50,7 +50,7 @@ class AbonosController extends Controller
 			return response()->json($validator->errors(),500);
 		}
 		else {
-			return Abono::createToUser($values);
+			return Abono::crearAbono($values);
 		}
 	}
 
@@ -58,14 +58,10 @@ class AbonosController extends Controller
 		$this->authorize('F05');
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
-		$tipo = $request->input('tipo');
+		$tipo = $request->input('tipo_id');
 		$negocio_id = $request->input('negocio_id');
 		$abonos = Abono::buscar($desde,$hasta,$tipo,$negocio_id);
 		return $abonos;
-	}
-
-	public function nocerrados(Request $request,$negocio_id){
-		return Abono::nocerrados($negocio_id);;
 	}
 
 }

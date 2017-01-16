@@ -16,6 +16,7 @@
     "templates": "rm -r ../../public/app/templates && cp -r app/templates ../../public/app/templates",
     "images": "cp -r app/images ../../public/app/",
     "style": "lessc style.less style.css && cp style.css ../../public/assets/stylesheets",
+    "stylepdf": "lessc pdf.less pdf.css && cp pdf.css ../../public/assets/stylesheets",
     "to_public": "npm run build_prod &&  npm run templates && npm run images && npm run style "
   },
   "license": "ISC",

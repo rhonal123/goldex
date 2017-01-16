@@ -7,7 +7,29 @@ import { MovimientosComponent } from './movimientos.component';
 
 @Component({
   selector: 'movimiento-delete-component',
-  templateUrl: 'app/templates/movimientos/movimiento.detele.component.html',
+  template: `
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"  >
+<div class="modal-dialog" style="width:85%; height:80%;" >
+<div class="modal-content" *ngIf="movimiento">
+<div class="modal-header">
+  <button type="button" class="close" (click)="hideModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">Eliminar Movimiento {{movimiento.id}}</h4>
+</div>
+<div class="modal-body">
+  <div class="panel-body"  >
+    <div class="col-md-12">
+      <movimiento-detalle-component  [movimiento]="movimiento"></movimiento-detalle-component>
+      <label class="label label-danger" role="alert" *ngIf="mensaje">{{mensaje}}</label> 
+      <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  `,
   providers: [MovimientoService]
 })
 export class MovimientoDeleteComponent implements OnInit {

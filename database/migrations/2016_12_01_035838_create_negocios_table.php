@@ -31,6 +31,6 @@ class CreateNegociosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('negocios');
+        Schema::dropIfExists('negocios');
     }
 }

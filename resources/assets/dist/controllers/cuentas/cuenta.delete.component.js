@@ -46,7 +46,7 @@ var CuentaDeleteComponent = (function () {
     CuentaDeleteComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-delete-component',
-            templateUrl: 'app/templates/cuentas/cuenta.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\" *ngIf=\"cuenta\" >\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Eliminar Cuenta {{cuenta.id}}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\">\n          <div class=\"col-md-12\">\n            <cuenta-detalle-component [cuenta]=\"cuenta\"></cuenta-detalle-component>\n            <div class=\"col-md-12\" align=\"right\">\n              <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>  \n              <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n            </div>\n          </div>\n         </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService])

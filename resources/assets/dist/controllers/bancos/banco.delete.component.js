@@ -46,7 +46,7 @@ var BancoDeleteComponent = (function () {
     BancoDeleteComponent = __decorate([
         core_1.Component({
             selector: 'banco-delete-component',
-            templateUrl: 'app/templates/bancos/banco.detele.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"banco\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Eliminar Banco {{banco.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <detalle [nombre]=\"'Banco :'\" [contenido]=\"banco.nombre\" ></detalle>\n      </div>\n    </div>\n    <div class=\"col-md-12\" align=\"right\">\n      <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label>\n      <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService])

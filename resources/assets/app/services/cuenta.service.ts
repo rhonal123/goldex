@@ -28,6 +28,18 @@ export class CuentaService extends GeneralServicio {
   }
 
 
+  getCuenta(id: number): Promise<Cuenta> {
+     return this.http
+      .get(this.url+"/"+id,this.options)
+      .toPromise()
+      .then(res => res.json() as Cuenta )
+      .catch(this.handleError);
+  }
+ 
+
+
+
+
   create(cuenta: Cuenta ): Promise<Cuenta> {
     return this.http
       .post(this.url,JSON.stringify({cuenta: cuenta}),this.options)

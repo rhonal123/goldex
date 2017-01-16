@@ -10,21 +10,21 @@ use App\Cierre;
 use Validator;
 use DB;
 use Gate;
-
+use View;
+use Illuminate\Support\Facades\Log;
+use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\Validation\Rule;
-
-
 
 class CierresController extends Controller
 {
 
 	public function show($id){
-		$this->authorize('H01');
-		return Cierre::findOrFail($id);
+		$this->authorize('D01');
+		return Cierre::with('negocio','abonos','abonos.tipo','abonos.cuenta.banco','movimientos','movimientos.cuenta.banco')->findOrFail($id);
 	}
 
-	public function delete($id){
-		$this->authorize('H02');
+	public function delete($id){ // anular cierre
+		$this->authorize('D02');
 		$cierre = Cierre::findOrFail($id);
 		try {
 					$cierre->delete();
@@ -35,7 +35,7 @@ class CierresController extends Controller
 	}
 
 	public function update(Request $request,$id){
-		$this->authorize('H03');
+		$this->authorize('D03');
 		$cierre = Cierre::findOrFail($id); 
   	$values = $request->all()['cierre']; 
 		$validator = Cierre::validador($values,$cierre);
@@ -43,33 +43,51 @@ class CierresController extends Controller
 			return response()->json($validator->errors(),500);
 		}
 		else {
-			$cierreRequest = $values;
-			$cierre->nombre = $cierreRequest['nombre'];
-			$cierre->save();
-			return $cierre;
+			$cierre->actualizarCierre($values);
+			return Cierre::with('negocio')->findOrFail($cierre->id);
 		}
 	}
 
 	public function create(Request $request){
-		$this->authorize('H04');
+		$this->authorize('D04');
   	$values = $request->all()['cierre']; 
 		$validator = Cierre::validador($values);
 		if ($validator->fails()) {
 			return response()->json($validator->errors(),500);
 		}
 		else {
-			$cierreRequest = $values;
-			return Cierre::createCierre($values);
+			$cierre = Cierre::createCierre($values);
+			return Cierre::with('negocio')->findOrFail($cierre->id);
 		}
 	}
 
 	public function index(Request $request){
-		$this->authorize('H05');
+		$this->authorize('D05');
 		$estado = $request->input('estado');
+		$desde  = $request->input('desde');
+		$hasta  = $request->input('hasta');
 		$negocio_id = $request->input('negocio_id');
-		$cierres = Cierre::buscar($negocio_id,$estado);
+		$cierres = Cierre::buscar($desde,$hasta,$negocio_id,$estado); 
 		return $cierres;
 	}
 
-	
+
+
+
+	public function imprimir($id){
+		$this->authorize('D06');
+		$cierre = Cierre::with('negocio','abonos','abonos.tipo','abonos.cuenta.banco','movimientos','movimientos.cuenta.banco')->findOrFail($id);
+		$totalAbono = 0.0;
+		foreach ($cierre->abonos as $abono) {
+			$totalAbono += $abono->monto;
+		}
+  	$view = View::make('pdf.cierre',compact('cierre','totalAbono'))->render();
+		TCPDF::SetFont('times', null, 9);
+		TCPDF::SetMargins(10,10,10);
+		TCPDF::AddPage('L', 'LETTER');
+		TCPDF::writeHTML($view);
+		TCPDF::Output('cierre_'.$cierre->negocio.'.pdf');
+	}
+
+
 }

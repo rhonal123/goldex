@@ -24,20 +24,23 @@ var banco_edit_component_1 = require('./controllers/bancos/banco.edit.component'
 var banco_service_1 = require('./services/banco.service');
 var cuentas_component_1 = require('./controllers/cuentas/cuentas.component');
 var cuenta_component_1 = require('./controllers/cuentas/cuenta.component');
+var cuenta_detalle_component_1 = require('./controllers/cuentas/cuenta.detalle.component');
 var cuenta_delete_component_1 = require('./controllers/cuentas/cuenta.delete.component');
 var cuenta_edit_component_1 = require('./controllers/cuentas/cuenta.edit.component');
 var cuenta_service_1 = require('./services/cuenta.service');
 var negocios_component_1 = require('./controllers/negocios/negocios.component');
 var negocio_component_1 = require('./controllers/negocios/negocio.component');
+var negocio_detalle_component_1 = require('./controllers/negocios/negocio.detalle.component');
 var negocio_delete_component_1 = require('./controllers/negocios/negocio.delete.component');
 var negocio_edit_component_1 = require('./controllers/negocios/negocio.edit.component');
 var negocio_service_1 = require('./services/negocio.service');
-var prestamos_component_1 = require('./controllers/prestamos/prestamos.component');
-var prestamo_component_1 = require('./controllers/prestamos/prestamo.component');
-var prestamo_detalle_component_1 = require('./controllers/prestamos/prestamo.detalle.component');
-var prestamo_delete_component_1 = require('./controllers/prestamos/prestamo.delete.component');
-var prestamo_edit_component_1 = require('./controllers/prestamos/prestamo.edit.component');
-var prestamo_service_1 = require('./services/prestamo.service');
+var movimientos_component_1 = require('./controllers/movimientos/movimientos.component');
+var movimiento_component_1 = require('./controllers/movimientos/movimiento.component');
+var movimiento_delete_component_1 = require('./controllers/movimientos/movimiento.delete.component');
+var movimiento_edit_component_1 = require('./controllers/movimientos/movimiento.edit.component');
+var movimiento_precio_puro_component_1 = require('./controllers/movimientos/movimiento.precio.puro.component');
+var movimiento_detalle_component_1 = require('./controllers/movimientos/movimiento.detalle.component');
+var movimiento_service_1 = require('./services/movimiento.service');
 var abonos_component_1 = require('./controllers/abonos/abonos.component');
 var abono_component_1 = require('./controllers/abonos/abono.component');
 var abono_detalle_component_1 = require('./controllers/abonos/abono.detalle.component');
@@ -57,6 +60,16 @@ var tipo_detalle_component_1 = require('./controllers/tipos/tipo.detalle.compone
 var tipo_delete_component_1 = require('./controllers/tipos/tipo.delete.component');
 var tipo_edit_component_1 = require('./controllers/tipos/tipo.edit.component');
 var tipo_service_1 = require('./services/tipo.service');
+var cierres_component_1 = require('./controllers/cierres/cierres.component');
+var cierre_component_1 = require('./controllers/cierres/cierre.component');
+var cierre_detalle_component_1 = require('./controllers/cierres/cierre.detalle.component');
+var cierre_delete_component_1 = require('./controllers/cierres/cierre.delete.component');
+var cierre_edit_component_1 = require('./controllers/cierres/cierre.edit.component');
+var cierre_edit_abono_component_1 = require('./controllers/cierres/cierre.edit.abono.component');
+var cierre_edit_movimiento_component_1 = require('./controllers/cierres/cierre.edit.movimiento.component');
+var cierre_edit_asignar_precio_movimiento_component_1 = require('./controllers/cierres/cierre.edit.asignar.precio.movimiento.component');
+var cierre_service_1 = require('./services/cierre.service');
+var servicios_service_1 = require('./services/servicios.service');
 var current_usuario_service_1 = require('./services/current.usuario.service');
 var pipes_1 = require('./pipes/pipes');
 var login_component_1 = require('./controllers/login.component');
@@ -78,11 +91,13 @@ var AppModule = (function () {
                 banco_service_1.BancoService,
                 cuenta_service_1.CuentaService,
                 negocio_service_1.NegocioService,
-                prestamo_service_1.PrestamoService,
                 current_usuario_service_1.CurrentUsuario,
                 usuario_service_1.UsuarioService,
                 tipo_service_1.TipoService,
                 abono_service_1.AbonoService,
+                servicios_service_1.ServiciosService,
+                movimiento_service_1.MovimientoService,
+                cierre_service_1.CierreService,
                 {
                     provide: common_1.LocationStrategy,
                     useClass: common_1.HashLocationStrategy
@@ -91,15 +106,16 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent, index_component_1.IndexComponent,
                 bancos_component_1.BancosComponent, banco_component_1.BancoComponent, banco_delete_component_1.BancoDeleteComponent, banco_edit_component_1.BancoEditComponent,
-                cuentas_component_1.CuentasComponent, cuenta_component_1.CuentaComponent, cuenta_delete_component_1.CuentaDeleteComponent, cuenta_edit_component_1.CuentaEditComponent,
-                negocios_component_1.NegociosComponent, negocio_component_1.NegocioComponent, negocio_delete_component_1.NegocioDeleteComponent, negocio_edit_component_1.NegocioEditComponent,
-                pipes_1.TruncatePipe, pipes_1.AdministradorPipe, pipes_1.CantidadAbonoPipe, pipes_1.MontoBsPipe, pipes_1.FechaPipe, pipes_1.DetalleNegocioPipe, pipes_1.DivisaPipe,
-                prestamos_component_1.PrestamosComponent, prestamo_component_1.PrestamoComponent, prestamo_delete_component_1.PrestamoDeleteComponent, prestamo_edit_component_1.PrestamoEditComponent, prestamo_detalle_component_1.PrestamoDetalleComponent,
+                cuentas_component_1.CuentasComponent, cuenta_component_1.CuentaComponent, cuenta_delete_component_1.CuentaDeleteComponent, cuenta_edit_component_1.CuentaEditComponent, cuenta_component_1.CuentaComponent, cuenta_detalle_component_1.CuentaDetalleComponent,
+                negocios_component_1.NegociosComponent, negocio_component_1.NegocioComponent, negocio_delete_component_1.NegocioDeleteComponent, negocio_edit_component_1.NegocioEditComponent, negocio_detalle_component_1.NegocioDetalleComponent,
+                pipes_1.TruncatePipe, pipes_1.AdministradorPipe, pipes_1.CantidadAbonoPipe, pipes_1.MontoBsPipe, pipes_1.FechaPipe, pipes_1.DetalleNegocioPipe, pipes_1.DivisaPipe, pipes_1.DetalleCuentaPipe,
                 login_component_1.LoginComponent,
                 usuarios_component_1.UsuariosComponent, usuario_component_1.UsuarioComponent, usuario_delete_component_1.UsuarioDeleteComponent, usuario_edit_component_1.UsuarioEditComponent, usuario_contrasena_component_1.UsuarioContrasenaComponent, usuario_permisos_component_1.UsuarioPermisosComponent,
                 abonos_component_1.AbonosComponent, abono_component_1.AbonoComponent, abono_delete_component_1.AbonoDeleteComponent, abono_edit_component_1.AbonoEditComponent, abono_detalle_component_1.AbonoDetalleComponent,
                 detalle_component_1.DetalleComponent,
-                tipos_component_1.TiposComponent, tipo_component_1.TipoComponent, tipo_delete_component_1.TipoDeleteComponent, tipo_edit_component_1.TipoEditComponent, tipo_detalle_component_1.TipoDetalleComponent
+                movimientos_component_1.MovimientosComponent, movimiento_component_1.MovimientoComponent, movimiento_delete_component_1.MovimientoDeleteComponent, movimiento_edit_component_1.MovimientoEditComponent, movimiento_detalle_component_1.MovimientoDetalleComponent, movimiento_precio_puro_component_1.MovimientoPrecioPuroComponent,
+                tipos_component_1.TiposComponent, tipo_component_1.TipoComponent, tipo_delete_component_1.TipoDeleteComponent, tipo_edit_component_1.TipoEditComponent, tipo_detalle_component_1.TipoDetalleComponent,
+                cierres_component_1.CierresComponent, cierre_component_1.CierreComponent, cierre_detalle_component_1.CierreDetalleComponent, cierre_delete_component_1.CierreDeleteComponent, cierre_edit_component_1.CierreEditComponent, cierre_edit_abono_component_1.CierreEditAbonoComponent, cierre_edit_movimiento_component_1.CierreEditMovimientoComponent, cierre_edit_asignar_precio_movimiento_component_1.CierreEditAsignarPrecioMovimientoComponent,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

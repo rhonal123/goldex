@@ -150,7 +150,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
@@ -158,7 +157,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /*   fpdf */
+        ///  Anouar\Fpdf\FpdfServiceProvider::class,
+        Elibyy\TCPDF\ServiceProvider::class,
     ],
 
     /*
@@ -208,6 +209,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        ///'Fpdf' => Anouar\Fpdf\Facades\Fpdf::class,
+          'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
     ],
  
 ];

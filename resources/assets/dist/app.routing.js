@@ -3,9 +3,10 @@ var router_1 = require('@angular/router');
 var index_component_1 = require('./controllers/index.component');
 var current_usuario_service_1 = require('./services/current.usuario.service');
 var bancos_component_1 = require('./controllers/bancos/bancos.component');
+var cierres_component_1 = require('./controllers/cierres/cierres.component');
 var cuentas_component_1 = require('./controllers/cuentas/cuentas.component');
 var negocios_component_1 = require('./controllers/negocios/negocios.component');
-var prestamos_component_1 = require('./controllers/prestamos/prestamos.component');
+var movimientos_component_1 = require('./controllers/movimientos/movimientos.component');
 var usuarios_component_1 = require('./controllers/usuarios/usuarios.component');
 var abonos_component_1 = require('./controllers/abonos/abonos.component');
 var tipos_component_1 = require('./controllers/tipos/tipos.component');
@@ -37,11 +38,6 @@ var appRoutes = [
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {
-        path: 'prestamos',
-        component: prestamos_component_1.PrestamosComponent,
-        canActivate: [current_usuario_service_1.CurrentUsuario]
-    },
-    {
         path: 'usuarios',
         component: usuarios_component_1.UsuariosComponent,
         canActivate: [current_usuario_service_1.CurrentUsuario]
@@ -52,8 +48,18 @@ var appRoutes = [
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {
+        path: 'movimientos',
+        component: movimientos_component_1.MovimientosComponent,
+        canActivate: [current_usuario_service_1.CurrentUsuario]
+    },
+    {
         path: 'tipos',
         component: tipos_component_1.TiposComponent,
+        canActivate: [current_usuario_service_1.CurrentUsuario]
+    },
+    {
+        path: 'cierres',
+        component: cierres_component_1.CierresComponent,
         canActivate: [current_usuario_service_1.CurrentUsuario]
     },
     {

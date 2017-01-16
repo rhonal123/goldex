@@ -66,9 +66,9 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent.prototype.setModel = function (cuenta) {
         this.cuenta = cuenta;
         this.cuentaForm.setValue({
-            'id': cuenta.id,
-            'numero': cuenta.numero,
-            'banco_id': cuenta.banco_id
+            'id': cuenta.id || '',
+            'numero': cuenta.numero || '',
+            'banco_id': cuenta.banco_id || ''
         });
     };
     CuentaEditComponent.prototype.openModal = function (component) {
@@ -82,7 +82,7 @@ var CuentaEditComponent = (function () {
     CuentaEditComponent = __decorate([
         core_1.Component({
             selector: 'cuenta-edit-component',
-            templateUrl: 'app/templates/cuentas/cuenta.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n  <div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        <h4 class=\"modal-title\">Editar Cuenta</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"panel-body\" *ngIf=\"cuenta\">\n        \n        <form [formGroup]=\"cuentaForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n          \n          <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.numero}\"  >\n            <label for=\"numero\" class=\"col-sm-2 control-label\" for=\"numero\">Numero</label>\n            <div class=\"col-sm-10\">\n              <input  id=\"numero\" type=\"text\" class=\"form-control\" formControlName=\"numero\" aria-describedby=\"errornumero\" placeholder=\"Numero de cuenta\" required >\n              <span  *ngIf=\"formErrors.numero\" id=\"errornumero\" class=\"help-block\">{{ formErrors.numero}}</span>\n            </div>\n          </div> \n          \n         <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.banco_id}\"  >\n            <label for=\"banco_id\" class=\"col-sm-2 control-label\" for=\"estado\">Banco</label>\n            <div class=\"col-sm-10\">\n              <select id=\"banco_id\" class=\"form-control\" > \n              \n              </select>\n              <span  *ngIf=\"formErrors.banco_id\" class=\"help-block\">{{ formErrors.banco_id}}</span>\n            </div>\n          </div>\n \n          <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n          </div>\n        </form>\n         \n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n  ",
             providers: [cuenta_service_1.CuentaService]
         }), 
         __metadata('design:paramtypes', [cuenta_service_1.CuentaService, banco_service_1.BancoService, forms_1.FormBuilder])

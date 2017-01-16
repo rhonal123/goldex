@@ -55,8 +55,8 @@ var BancoEditComponent = (function () {
     BancoEditComponent.prototype.setModel = function (banco) {
         this.banco = banco;
         this.bancoForm.setValue({
-            'id': banco.id,
-            'nombre': banco.nombre
+            'id': banco.id || '',
+            'nombre': banco.nombre || ''
         });
     };
     BancoEditComponent.prototype.openModal = function (component) {
@@ -74,7 +74,7 @@ var BancoEditComponent = (function () {
     BancoEditComponent = __decorate([
         core_1.Component({
             selector: 'banco-edit-component',
-            templateUrl: 'app/templates/bancos/banco.edit.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\"  >\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\">\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    <h4 class=\"modal-title\">Editar Banco</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\" *ngIf=\"banco\">\n    <form [formGroup]=\"bancoForm\" (ngSubmit)=\"guardar()\" class=\"form-horizontal\">\n      <div [ngClass]=\"{'form-group': true, 'has-error': formErrors.nombre}\"  >\n        <label for=\"nombre\" class=\"col-sm-2 control-label\" for=\"nombre\">Nombre</label>\n        <div class=\"col-sm-10\">\n           <input type=\"text\" class=\"form-control\" formControlName=\"nombre\" aria-describedby=\"errornombre\" placeholder=\"Nombre del banco\">\n          <span *ngIf=\"formErrors.nombre\" id=\"errornombre\" class=\"help-block\">{{formErrors.nombre}}</span>\n        </div>\n      </div>\n      <div class=\"form-group\">\n            <div class=\"col-sm-12\" align=\"right\">\n              <input type=\"button\" class=\"btn btn-default\" (click)=\"guardar()\" value=\"Guardar\">\n            </div>\n      </div>\n    </form>\n    </div>\n  </div>\n</div>\n</div>\n</div>\n  ",
             providers: [banco_service_1.BancoService]
         }), 
         __metadata('design:paramtypes', [banco_service_1.BancoService, forms_1.FormBuilder])

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'app-component',
-  templateUrl: 'app/templates/app.component.html',
+  templateUrl:'assets/app.component.html',
   providers: [CurrentUsuario]
 })
 export class AppComponent  implements OnInit  {
@@ -39,13 +39,12 @@ export class AppComponent  implements OnInit  {
     this.usuarioContrasenaComponent.openModal(this);
    }
 
-  cerrarSession(): void {
+  cerrarSesion(): void {
     this.currentUsuario.logout();
   }
 
   canToDo(operacion: string): boolean
   {
     return true;
-     // return User.canToDo(this.user,operacion); // this.usuario.canToDo(operacion);
   }  
 }

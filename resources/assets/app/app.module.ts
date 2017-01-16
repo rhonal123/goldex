@@ -19,12 +19,14 @@ import { BancoService } from './services/banco.service';
 
 import { CuentasComponent} from './controllers/cuentas/cuentas.component';
 import { CuentaComponent} from './controllers/cuentas/cuenta.component';
+import { CuentaDetalleComponent} from './controllers/cuentas/cuenta.detalle.component';
 import { CuentaDeleteComponent} from './controllers/cuentas/cuenta.delete.component';
 import { CuentaEditComponent} from './controllers/cuentas/cuenta.edit.component';
 import { CuentaService} from './services/cuenta.service';
 
 import { NegociosComponent} from './controllers/negocios/negocios.component';
 import { NegocioComponent} from './controllers/negocios/negocio.component';
+import { NegocioDetalleComponent } from './controllers/negocios/negocio.detalle.component';
 import { NegocioDeleteComponent} from './controllers/negocios/negocio.delete.component';
 import { NegocioEditComponent} from './controllers/negocios/negocio.edit.component';
 import { NegocioService} from './services/negocio.service';
@@ -33,14 +35,9 @@ import { MovimientosComponent} from './controllers/movimientos/movimientos.compo
 import { MovimientoComponent} from './controllers/movimientos/movimiento.component';
 import { MovimientoDeleteComponent} from './controllers/movimientos/movimiento.delete.component';
 import { MovimientoEditComponent} from './controllers/movimientos/movimiento.edit.component';
+import { MovimientoPrecioPuroComponent} from './controllers/movimientos/movimiento.precio.puro.component';
+import { MovimientoDetalleComponent} from './controllers/movimientos/movimiento.detalle.component';
 import { MovimientoService} from './services/movimiento.service';
-
-import { PrestamosComponent } from './controllers/prestamos/prestamos.component';
-import { PrestamoComponent } from './controllers/prestamos/prestamo.component';
-import { PrestamoDetalleComponent } from './controllers/prestamos/prestamo.detalle.component';
-import { PrestamoDeleteComponent } from './controllers/prestamos/prestamo.delete.component';
-import { PrestamoEditComponent } from './controllers/prestamos/prestamo.edit.component';
-import { PrestamoService } from './services/prestamo.service';
 
 import { AbonosComponent } from  './controllers/abonos/abonos.component';
 import { AbonoComponent } from   './controllers/abonos/abono.component';
@@ -64,12 +61,25 @@ import { TipoDetalleComponent } from './controllers/tipos/tipo.detalle.component
 import { TipoDeleteComponent } from './controllers/tipos/tipo.delete.component';
 import { TipoEditComponent } from './controllers/tipos/tipo.edit.component';
 import { TipoService } from './services/tipo.service';
+ 
 
+import { CierresComponent } from  './controllers/cierres/cierres.component';
+import { CierreComponent } from   './controllers/cierres/cierre.component';
+import { CierreDetalleComponent } from './controllers/cierres/cierre.detalle.component';
+import { CierreDeleteComponent } from './controllers/cierres/cierre.delete.component';
+import { CierreEditComponent } from './controllers/cierres/cierre.edit.component';
+import { CierreEditAbonoComponent } from './controllers/cierres/cierre.edit.abono.component';
+import { CierreEditMovimientoComponent } from './controllers/cierres/cierre.edit.movimiento.component';
+import { CierreEditAsignarPrecioMovimientoComponent } from './controllers/cierres/cierre.edit.asignar.precio.movimiento.component';
+import { CierreService } from './services/cierre.service'; 
+
+
+
+import { ServiciosService } from './services/servicios.service';
 
 import { CurrentUsuario }  from './services/current.usuario.service';
-import { TruncatePipe , AdministradorPipe, CantidadAbonoPipe, MontoBsPipe, FechaPipe, DetalleNegocioPipe, DivisaPipe} from './pipes/pipes';
+import { TruncatePipe , AdministradorPipe, CantidadAbonoPipe, MontoBsPipe, FechaPipe, DetalleNegocioPipe, DivisaPipe, DetalleCuentaPipe} from './pipes/pipes';
 import { LoginComponent } from './controllers/login.component';
-
 
 import { DetalleComponent } from './controllers/detalle.component';
 
@@ -86,11 +96,14 @@ import { DetalleComponent } from './controllers/detalle.component';
       BancoService,
       CuentaService,
       NegocioService,
-      PrestamoService,
+     // PrestamoService,
       CurrentUsuario,
       UsuarioService,
       TipoService,
       AbonoService,
+      ServiciosService,
+      MovimientoService,
+      CierreService,
       { 
         provide: LocationStrategy,
         useClass: HashLocationStrategy
@@ -99,16 +112,17 @@ import { DetalleComponent } from './controllers/detalle.component';
     declarations: [ 
     	AppComponent,IndexComponent,
       BancosComponent,BancoComponent, BancoDeleteComponent,BancoEditComponent,
-      CuentasComponent,CuentaComponent,CuentaDeleteComponent,CuentaEditComponent,
-      NegociosComponent,NegocioComponent,NegocioDeleteComponent,NegocioEditComponent,
-      TruncatePipe,AdministradorPipe,CantidadAbonoPipe,MontoBsPipe,FechaPipe,DetalleNegocioPipe,DivisaPipe,
-      PrestamosComponent,PrestamoComponent,PrestamoDeleteComponent,PrestamoEditComponent,PrestamoDetalleComponent,
+      CuentasComponent,CuentaComponent,CuentaDeleteComponent,CuentaEditComponent,CuentaComponent,CuentaDetalleComponent,
+      NegociosComponent,NegocioComponent,NegocioDeleteComponent,NegocioEditComponent,NegocioDetalleComponent,
+      TruncatePipe,AdministradorPipe,CantidadAbonoPipe,MontoBsPipe,FechaPipe,DetalleNegocioPipe,DivisaPipe,DetalleCuentaPipe,
       LoginComponent,
       UsuariosComponent,UsuarioComponent,UsuarioDeleteComponent,UsuarioEditComponent,UsuarioContrasenaComponent,UsuarioPermisosComponent,
       AbonosComponent,AbonoComponent,AbonoDeleteComponent,AbonoEditComponent,AbonoDetalleComponent,
       DetalleComponent,
-      TiposComponent,TipoComponent,TipoDeleteComponent,TipoEditComponent,TipoDetalleComponent
-   	],
+      MovimientosComponent,MovimientoComponent,MovimientoDeleteComponent,MovimientoEditComponent,MovimientoDetalleComponent,MovimientoPrecioPuroComponent,
+      TiposComponent,TipoComponent,TipoDeleteComponent,TipoEditComponent,TipoDetalleComponent,
+      CierresComponent,CierreComponent,CierreDetalleComponent,CierreDeleteComponent,CierreEditComponent,CierreEditAbonoComponent,CierreEditMovimientoComponent,CierreEditAsignarPrecioMovimientoComponent,
+     	],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { 

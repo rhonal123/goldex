@@ -16,7 +16,7 @@
     {{ Html::script('assets/javascripts/zone.js') }}
     {{ Html::script('assets/javascripts/datepicker.js') }}
     {{ Html::script('assets/javascripts/select2.min.js') }}
-    {{ Html::script('assets/javascripts/bundle2017-01-02.js') }}
+    {{ Html::script('assets/javascripts/bundle.js') }}
 
 </head>
 <body>

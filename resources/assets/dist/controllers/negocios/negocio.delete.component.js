@@ -46,7 +46,7 @@ var NegocioDeleteComponent = (function () {
     NegocioDeleteComponent = __decorate([
         core_1.Component({
             selector: 'negocio-delete-component',
-            templateUrl: 'app/templates/negocios/negocio.delete.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\" >\n<div class=\"modal-content\" *ngIf=\"negocio\" >\n  <div class=\"modal-header\">\n    <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n      <h4 class=\"modal-title\">Detalle Negocio {{negocio.id}}</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"panel-body\">\n      <div  class=\"col-md-12\">\n        <negocio-detalle-component [negocio]=\"negocio\"></negocio-detalle-component>\n      </div>\n      <div class=\"col-md-12\" align=\"right\">\n        <label class=\"label label-danger\" role=\"alert\" *ngIf=\"mensaje\">{{mensaje}}</label> \n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"eliminar()\">Eliminar</button>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n</div>",
             providers: [negocio_service_1.NegocioService]
         }), 
         __metadata('design:paramtypes', [negocio_service_1.NegocioService])

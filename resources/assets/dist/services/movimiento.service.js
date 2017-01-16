@@ -22,33 +22,47 @@ var MovimientoService = (function (_super) {
     function MovimientoService(http) {
         _super.call(this);
         this.http = http;
-        this.movimientosUrl = '/sistema/movimientos';
+        this.url = '/sistema/movimientos';
     }
     MovimientoService.prototype.getMovimientos = function (page, searchs) {
         searchs = (searchs ? searchs : new http_1.URLSearchParams());
         searchs.set("page", page);
         return this.http
-            .get(this.movimientosUrl, { search: searchs })
+            .get(this.url, { search: searchs })
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     MovimientoService.prototype.create = function (movimiento) {
         return this.http
-            .post(this.movimientosUrl, JSON.stringify({ movimiento: movimiento }), this.options)
+            .post(this.url, JSON.stringify({ movimiento: movimiento }), this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     MovimientoService.prototype.delete = function (movimiento) {
         return this.http
-            .delete(this.movimientosUrl + "/" + movimiento.id, this.options)
+            .delete(this.url + "/" + movimiento.id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.cuenta = function (id) {
+        return this.http
+            .get(this.url + "/" + id, this.options)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    MovimientoService.prototype.actualizarPrecioPuro = function (movimiento) {
+        return this.http
+            .patch("sistema/movimientos/" + movimiento.id + "/precio_puro", JSON.stringify({ movimiento: movimiento }), this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     MovimientoService.prototype.update = function (movimiento) {
         return this.http
-            .patch(this.movimientosUrl + "/" + movimiento.id, JSON.stringify({ movimiento: movimiento }), this.options)
+            .patch(this.url + "/" + movimiento.id, JSON.stringify({ movimiento: movimiento }), this.options)
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);

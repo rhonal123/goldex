@@ -22,7 +22,7 @@ class Tipo extends Model
  	public static function buscar($nombre)
 	{
   	if($nombre) {
-	    return  Tipo::where('tipo', 'ilike',"%".$nombre."%")->paginate(15);
+	    return  Tipo::where('tipo', 'ilike',"%".$nombre."%")->orderBy('id','desc')->paginate(15);
 		}
     return Tipo::paginate(15);
   }

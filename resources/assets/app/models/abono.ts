@@ -22,11 +22,6 @@ export class Abono {
   tipo: Tipo;
   negocio: Negocio;
   cuenta: Cuenta;
-  user: User;
-
-  constructor( ) {
-
-  }
 }
 
  

@@ -6,71 +6,120 @@ use DB;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 
+/*
+
+	Estados -> CREADO, ASOCIADO, ANULADO
+  TRANSFERENCIA -> 1,EFECTIVO 
+*/
 class Movimiento extends Model
 {
-  // tipo = EFECTIVO,TRANSFERENCIA 
 
-	protected $fillable = [ 
-		'negocio_id',
-		'monto',
-		'fecha',
-		'descripcion',
-		'tipo',
-		'clasificacion',
-		'cuenta_id',
-		'user_id',
-		'puro',
-		'cuenta_destino',
-		'banco_destino_id'
-		];
+	protected $fillable = [ 'monto','comision','fecha','descripcion','tipo','negocio_id','cuenta_id','referencia'];
+  protected $casts = [
+    'id' 							=> 'integer',
+    'negocio_id' 			=> 'integer',
+    'cuenta_id' 			=> 'integer',
+    'fecha' 					=> 'string',
+    'comision' 				=> 'double',
+    'monto' 					=> 'double',
+    'precio_puro'     => 'double',
+    'saldo'           => 'double',
+    'referencia' 			=> 'string',
+    'descripcion' 		=> 'string',
+    'tipo' 						=> 'string'
+  ];
 
-  protected $guarded = ['id'];
-
-  public static $val = [
-  	"negocio_id"=> 'required',
-  	"monto"=> 'required',
-  	"fecha"=> 'required',
-  	"tipo"=> 'required|max:25',
-  	"clasificacion"=> 'required|max:25',
-  	"descripcion"=> 'required'];
-
-  public static $message = [
-    'nombre.required' => 'Introduzca una nombre valido !',
-		'negocio_id.required' => 'Introduzca una nombre valido !',
-		'monto.required' => 'Introduzca una monto valido !',
-		'fecha.required' => 'Introduzca la fecha del movimiento !',
-		'tipo.required' => 'Seleccione !',
-		'clasificacion.required' => 'Seleccione !',
-		'descripcion.required' => 'Introduzca una nombre valido !',
-	];
-
- 	public static function buscar($texto,$desde,$hasta,$tipo,$clasificacion,$negocio_id)
-	{
-		$query =  Movimiento::with('negocio','cuenta.banco','user','banco_destino');
-		
-		if($texto) {
-	    $query->where('descripcion', 'ilike',"%".$texto."%");
-		}
-
-		if($desde){
+ 	public static function buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$cuenta_id ) {
+		$query =  Movimiento::with('negocio','cuenta.banco')->orderBy('id','desc');
+ 		if($desde){
 	    $query->where('fecha', '>=',$desde);
 		}
-
+    if($referencia) {
+      $query->where('referencia', 'ilike',"%".$referencia."%");
+    }
+    if($descripcion) {
+      $query->where('descripcion', 'ilike',"%".$descripcion."%");
+    }
 		if($hasta){
 	    $query->where('fecha', '<=',$hasta);
 		}
-
 		if($tipo){
-	    $query->where('tipo', '=',$tipo);
+	    $query->where('tipo', '=' ,$tipo);
 		}
-
-		if($clasificacion){
-	    $query->where('clasificacion', '=',$clasificacion);
-		}
+    if($negocio_id){
+      $query->where('negocio_id', '=',$negocio_id);
+    }
+    if($cuenta_id){
+      $query->where('cuenta_id', '=',$cuenta_id);
+    }
     return $query->paginate(15);
   }
- 
 
+  public static function movimientosEfectivo($desde,$hasta,$negocio_id){
+    $query =  Movimiento::with('negocio')->where('tipo','EFECTIVO');
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    if($negocio_id){
+      $query->where('negocio_id', '=',$negocio_id);
+    }
+    return $query->get();
+  }
+
+  public static function movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id){
+    $query =  Movimiento::with('negocio','cuenta.banco')->where('tipo','TRANSFERENCIA');
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    if($negocio_id){
+      $query->where('negocio_id', '=',$negocio_id);
+    }
+    if($cuenta_id){
+      $query->where('cuenta_id', '=',$cuenta_id);
+    }
+    return $query->get();
+  }
+
+
+  public static function crearMovimiento($values){
+  	$movimiento = new Movimiento($values);
+    if($movimiento->tipo == "TRANSFERENCIA"){
+      $movimiento->comision = 0;
+    }
+  	$movimiento->estado = "CREADO";
+    $movimiento->saldo = (1 + ($movimiento->comision/100)) * $movimiento->monto;
+  	$movimiento->save();
+  	return $movimiento;
+  }
+
+  public function actualizar($values){
+  	if($this->attributes['estado'] == 'CREADO') {
+    	$this->update($values);
+      $this->attributes['saldo'] = (1 + ($this->attributes['comision']/100)) * $this->attributes['monto'];
+      $this->save();
+  	}
+  	else
+  	{
+  		throw new Exception("No Puedes actualizar este Movimiento", 1);
+  	}
+  }
+
+  public function anular($values){
+  	if($this->attributes['estado'] == 'CREADO') {
+  		$this->attributes['estado'] = 'ANULADO';
+      $this->attributes['saldo'] = 0;
+  		$this->save();
+  	}
+  	else {
+  		throw new Exception("No Puedes anular este Movimiento", 1);
+  	}
+  }
 	public function negocio() {
     return $this->belongsTo('App\Negocio');
   }
@@ -79,23 +128,84 @@ class Movimiento extends Model
     return $this->belongsTo('App\Cuenta');
   }
 
+  public static function validadorPrecioPuro($values,$movimiento){
 
-	public function user() {
-    return $this->belongsTo('App\User');
+    $validator = [
+      'monto' => 'required|numeric|min:0',
+      'precio_puro' => 'required|numeric|min:0',
+    ];
+
+    $message = [
+      'required' => 'Campo Requerido.',
+      'numeric' => 'el valor debe ser numerico.' ,
+      'min' => 'monto invalido.',
+    ];
+    $v =  Validator::make($values,$validator,$message);
+    $v->after(function ($validator)  use ($movimiento)  {
+      if ($movimiento->estado != 'CREADO') {
+        $validator->errors()->add('estado',
+          'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
+      }
+    });
+    return $v;
+  }
+
+  public function actualizarPrcioPuro($values){
+    if($this->attributes['estado'] == 'CREADO') {
+      $precio_puro = $values['precio_puro'];
+      $monto = $values['monto'];
+      $this->attributes['monto'] = $monto;
+      $this->attributes['saldo'] = (1 + ($this->attributes['comision']/100)) * $monto;
+      $this->attributes['precio_puro'] = $precio_puro;
+      $this->save();
+    }
+    else
+    {
+      throw new Exception("No Puedes actualizar el Precio este Movimiento", 1);
+    }
+  }
+
+  public static function movimientoDisponible($id){
+    return (Movimiento::where('id', '=',$id)->whereNull('cierre_id')->where('estado','CREADO')->exists());
   }
 
 
-	public function banco_destino() {
-    return $this->belongsTo('App\Banco','banco_destino_id');
+  public static function movimientosDisponible($negocio_id){
+    return  Movimiento::with('cuenta.banco')->
+            whereNull('cierre_id')->
+            where('estado','CREADO')->
+            where("negocio_id",$negocio_id)->
+            get();
   }
 
-  public static function validador($values){
-		/*$validator->after(function ($validator) {
-    if ($this->somethingElseIsInvalid()) {
-        $validator->errors()->add('field', 'Something is wrong with this field!');
+
+
+  public static function validador($values,$movimiento = null){
+	  $validator = [
+			'negocio_id' => 'required',
+			'monto' => 'required|numeric|min:0',
+			'comision' => 'required|numeric|min:0',
+			'fecha' => 'required',
+			'descripcion' => 'required',
+			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO',   
+			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA',
+			'referencia'  => 'required_if:tipo,TRANSFERENCIA',
+		];
+
+		$message = [
+			'required' => 'Campo Requerido.',
+			'required_if' => 'Campo Requerido.',
+	    'in' => 'El :attribute deberia ser :values.',
+	    'numeric' => 'el valor debe ser numerico.' ,
+			'min' => 'monto invalido.',
+		];
+  	$v =  Validator::make($values,$validator,$message);
+  	$v->after(function ($validator)  use ($movimiento)  {
+    	if ($movimiento != null && $movimiento->estado != 'CREADO') {
+        $validator->errors()->add('estado',
+        	'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
     	}
-		});*/
-  	return Validator::make($values,self::$val,self::$message);
+		});
+  	return $v;
   }
-
 }

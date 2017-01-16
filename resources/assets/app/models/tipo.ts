@@ -4,8 +4,5 @@ export class Tipo {
   simbolo: string;
   tasa: number;
   divisa: boolean;
-  
-  constructor( ) {
 
-  }
 }

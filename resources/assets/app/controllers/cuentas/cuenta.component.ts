@@ -7,7 +7,27 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({
   selector: 'cuenta-component',
-  templateUrl: 'app/templates/cuentas/cuenta.component.html',
+  template: `
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"  >
+  <div class="modal-dialog" style="width:85%; height:80%;" >
+    <div class="modal-content"  *ngIf="cuenta" >
+      <div class="modal-header">
+        <button type="button" class="close" (click)="hideModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Detalle Cuenta {{cuenta.id}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <cuenta-detalle-component [cuenta]="cuenta"></cuenta-detalle-component>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+  `,
   providers: [CuentaService]
 })
 export class CuentaComponent implements OnInit {
@@ -15,11 +35,11 @@ export class CuentaComponent implements OnInit {
   cuenta: Cuenta;
 
   @ViewChild('modal') modal: ModalDirective;
-
-
   constructor(private cuentaService: CuentaService) {
 
+
   }
+
   ngOnInit(): void {
 		
   }

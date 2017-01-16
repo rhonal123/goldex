@@ -2,6 +2,8 @@ import { Headers, Http , RequestOptions, Response , HttpModule, URLSearchParams 
 import { Injectable,  ViewChild, ElementRef } from '@angular/core';
 import { Observable }     from 'rxjs/Observable';
 import { Negocio } from '../models/negocio';
+import { Movimiento } from '../models/movimiento';
+import { Abono } from '../models/abono';
 import { Paginacion } from '../models/paginacion';
 import { GeneralServicio } from './general.servicio'; 
 import 'rxjs/add/operator/toPromise';
@@ -25,6 +27,20 @@ export class NegocioService extends GeneralServicio {
       .catch(this.handleError);
   }
 
+
+  movimientos_creados(id :number):  Observable<Movimiento[]> {
+    return this.http
+      .get(`/sistema/negocios/${id}/movimientos`)
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  abonos_creados(id :number):  Observable<Abono[]> {
+    return this.http
+      .get(`/sistema/negocios/${id}/abonos`)
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
+  }
 
   create(negocio: Negocio ): Promise<Negocio> {
     return this.http

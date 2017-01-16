@@ -73,6 +73,21 @@ var MontoBsPipe = (function () {
     return MontoBsPipe;
 }());
 exports.MontoBsPipe = MontoBsPipe;
+var DetalleCuentaPipe = (function () {
+    function DetalleCuentaPipe() {
+    }
+    DetalleCuentaPipe.prototype.transform = function (value) {
+        return capitalize(" " + value.numero + " " + value.banco.nombre);
+    };
+    DetalleCuentaPipe = __decorate([
+        core_1.Pipe({
+            name: 'detalleCuenta'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DetalleCuentaPipe);
+    return DetalleCuentaPipe;
+}());
+exports.DetalleCuentaPipe = DetalleCuentaPipe;
 var DetalleNegocioPipe = (function () {
     function DetalleNegocioPipe() {
     }

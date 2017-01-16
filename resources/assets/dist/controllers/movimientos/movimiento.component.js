@@ -35,7 +35,7 @@ var MovimientoComponent = (function () {
     MovimientoComponent = __decorate([
         core_1.Component({
             selector: 'movimiento-component',
-            templateUrl: 'app/templates/movimientos/movimiento.component.html',
+            template: "\n<div bsModal #modal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n<div class=\"modal-dialog\" style=\"width:85%; height:80%;\">\n<div class=\"modal-content\" *ngIf=\"movimiento\">\n<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" (click)=\"hideModal()\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <h4 class=\"modal-title\">Movimiento {{movimiento.id}}</h4>\n</div>\n<div class=\"modal-body\">\n  <div class=\"panel-body\">\n    <div class=\"col-md-12\">\n      <movimiento-detalle-component  [movimiento]=\"movimiento\"></movimiento-detalle-component>\n  </div>\n</div> <!-- end  modal-body --> \n</div>\n</div>\n</div>\n  ",
             providers: [movimiento_service_1.MovimientoService]
         }), 
         __metadata('design:paramtypes', [movimiento_service_1.MovimientoService])

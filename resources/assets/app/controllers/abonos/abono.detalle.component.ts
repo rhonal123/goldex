@@ -10,7 +10,6 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
     <detalle [nombre]="'Tipo :'" [contenido]="abono.tipo.tipo" ></detalle>
     <detalle [nombre]="'Fecha :'" [contenido]="abono.fecha|fecha" ></detalle>
     <detalle [nombre]="'Estado :'" [contenido]="abono.estado" ></detalle>
-    <detalle [nombre]="'Usuario :'" [contenido]="abono.user.name" ></detalle>
     <div class="col-md-12">
       <div class="col-md-6 row" *ngIf="abono.afecta_banco == true">
         <blockquote>

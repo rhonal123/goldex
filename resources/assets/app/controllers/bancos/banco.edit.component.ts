@@ -9,7 +9,38 @@ import { NgForm, ReactiveFormsModule, FormGroup , FormBuilder } from '@angular/f
 
 @Component({
   selector: 'banco-edit-component',
-  templateUrl: 'app/templates/bancos/banco.edit.component.html',
+  template: `
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"  >
+<div class="modal-dialog" style="width:85%; height:80%;" >
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" (click)="hideModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Editar Banco</h4>
+  </div>
+  <div class="modal-body">
+    <div class="panel-body" *ngIf="banco">
+    <form [formGroup]="bancoForm" (ngSubmit)="guardar()" class="form-horizontal">
+      <div [ngClass]="{'form-group': true, 'has-error': formErrors.nombre}"  >
+        <label for="nombre" class="col-sm-2 control-label" for="nombre">Nombre</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" formControlName="nombre" aria-describedby="errornombre" placeholder="Nombre del banco">
+          <span *ngIf="formErrors.nombre" id="errornombre" class="help-block">{{formErrors.nombre}}</span>
+        </div>
+      </div>
+      <div class="form-group">
+            <div class="col-sm-12" align="right">
+              <input type="button" class="btn btn-default" (click)="guardar()" value="Guardar">
+            </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  `,
   providers: [BancoService]
 })
 export class BancoEditComponent implements OnInit {
@@ -34,9 +65,6 @@ export class BancoEditComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.bancoForm) { return; }
      this.formErrors.nombre  = "";
-    /*for (const field in this.formErrors) {
-      this.formErrors[field] = '';
-    }*/
   }
 
   guardar(): void
@@ -72,8 +100,8 @@ export class BancoEditComponent implements OnInit {
   setModel(banco: Banco): void {
     this.banco = banco;
     this.bancoForm.setValue({
-      'id': banco.id,
-      'nombre':banco.nombre
+      'id': banco.id || '',
+      'nombre':banco.nombre  || ''
     });
   }
 

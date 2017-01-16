@@ -17,7 +17,122 @@ import { JqueryComponent } from './../jquery.component';
 
 @Component({
   selector: 'abonos-component',
-  templateUrl: 'app/templates/abonos/abonos.component.html',
+  template: `
+<div class="col-md-2 ">
+  <button type="button" class="btn btn-sm btn-default" (click)="agregar()">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+  <button type="button" class="btn btn-sm btn-default" (click)="loadTable()">
+    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+  </button>
+</div>
+<div class="col-md-10" align="right">
+  <div class="form-inline">
+    <div class="form-group">
+      <button type="button" class="btn btn-default" (click)="openModal()"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mensaje">
+  <p class="bg-warning">{{mensaje}}</p>
+</div>
+<div class="col-md-12" *ngIf="isLoading$ | async">
+  <p class="text-primary">Cargando Información ...........</p>
+</div>
+
+<div class="col-md-12">  
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Id</th><th>Negocio</th><th>Tipo</th><th>Cantidad</th><th>Monto</th><th>Fecha</th><th></th></tr>
+      </thead>
+      <tbody class="abonos" >
+        <tr *ngFor="let abono of abonos" [class.active]="abono === activeAbono" (click)="onActive(abono)">
+          <td ><span>{{abono.id}}</span></td>
+          <td ><span>{{abono.negocio|detalleNegocio}}</span></td>
+          <td ><span>{{abono.tipo.tipo}}</span></td>
+          <td ><span>{{abono|cantidadAbono}}</span></td>
+          <td ><span>{{abono.monto|number:'1.2-2'|montoBs}}</span></td>
+          <td ><span>{{abono.fecha|fecha}}</span></td>
+          <td align="right">
+            <span  dropdown >
+              <span class="glyphicon glyphicon-th" aria-hidden="true" dropdownToggle ></span>
+              <ul class="dropdown-menu dropdown-menu-right " dropdownMenu  role="menu" aria-labelledby="split-button">
+                <li  role="menuitem" (click)="onSelect(abono)" >
+                  <a class="dropdown-item" >Mostrar</a>
+                </li>
+                <li role="menuitem" (click)="onEditar(abono)">
+                  <a class="dropdown-item" >Editar</a>
+                </li>
+                <li role="menuitem" (click)="onEliminar(abono)">
+                  <a class="dropdown-item" >Eliminar</a>
+                </li>
+              </ul>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div align="right">
+      <pagination [totalItems]="total" [(ngModel)]="current_page"  [itemsPerPage]="per_page" (pageChanged)="pageChanged($event)" [boundaryLinks]="true" [maxSize]="10" [rotate]="false" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination><p><strong>Pagina: {{current_page}} Total de Abonos {{total}}</strong></p>
+    </div>
+  </div>
+</div>
+
+<abono-delete-component></abono-delete-component>
+<abono-component></abono-component>
+<abono-edit-component></abono-edit-component> 
+
+
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"  >
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" (click)="hideModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Filtar </h4>
+  </div>
+  <div class="modal-body">
+    <div class="panel-body">
+     <div class="form-horizontal">
+        <div class="form-group">
+          <label for="search_desde" class="col-md-2 control-label">Desde</label>
+          <div class="col-md-4">
+            <input id="search_desde" type="text" data-provide="datepicker" class="form-control input-sm" >
+          </div>
+          <label for="search_hasta" class="col-md-2 control-label">Hasta</label>
+          <div class="col-md-4">
+            <input id="search_hasta" type="text" data-provide="datepicker" class="form-control input-sm" >
+          </div>
+        </div>
+
+        <div  class="form-group">
+          <label for="negocio_id" class="col-sm-2 control-label" for="estado">Negocio</label>
+          <div class="col-sm-10">
+            <select id="negocio_id" class="form-control" style="width: 100%;"></select>
+          </div> 
+        </div>
+
+        <div  class="form-group">
+          <label for="tipo_id" class="col-sm-2 control-label" for="estado">Tipo</label>
+          <div class="col-sm-10">
+            <select id="tipo_id" class="form-control" style="width: 100%;"></select>
+          </div> 
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-offset-10 col-sm-2">
+            <button type="button" class="btn  btn-default" (click)="loadTable()"> Filtrar <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  `,
   providers: [AbonoService]
 })
 export class AbonosComponent implements OnInit  , AfterViewInit {
@@ -90,8 +205,8 @@ export class AbonosComponent implements OnInit  , AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.jDesde   = JqueryComponent.fecha("#search_desde");
-    this.jHasta   = JqueryComponent.fecha("#search_hasta");
+    this.jDesde   = JqueryComponent.fechaSinValorIncial("#search_desde");
+    this.jHasta   = JqueryComponent.fechaSinValorIncial("#search_hasta");
     this.jnegocio = JqueryComponent.negocios("#negocio_id");
     this.jtipo    = JqueryComponent.tipos("#tipo_id");
     this.loadTable(); 

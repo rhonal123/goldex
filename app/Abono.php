@@ -8,16 +8,30 @@ use Validator;
 use Auth;
 use App\Tipo;
 
+
+// estado ---> CONSUMIDO, ACTIVO
 class Abono extends Model
 {
   /**
   * @var array
   */
   protected $fillable = [
-   'negocio_id','cuenta_id','afecta_banco','referencia','tasa',
-   'fecha','tipo_id','monto','cantidad'];
+   'negocio_id','cuenta_id','afecta_banco','referencia','tasa','fecha','tipo_id','monto','cantidad'];
 
   protected $hidden = ['created_at','updated_at'];
+
+  protected $casts = [
+    'id'          => 'integer',
+    'tipo_id'     => 'integer',
+    'monto'       => 'double',
+    'saldo'       => 'double',
+    'afecta_banco'=> 'boolean',
+    'tasa'        => 'double',
+    'cuenta_id'   => 'integer',
+    'negocio_id'  => 'integer',
+    'cantidad'    => 'double'
+  ];
+
 
 	public function negocio() {
     return $this->belongsTo('App\Negocio');
@@ -27,32 +41,13 @@ class Abono extends Model
     return $this->belongsTo('App\Tipo');
   }
 
-
 	public function cuenta() {
     return $this->belongsTo('App\Cuenta');
   }
-	public function user() {
-    return $this->belongsTo('App\User');
-  }
-
-
-  public static function nocerrados($negocio_id) {
-    return Abono::with('tipo','negocio','cuenta.banco','user')
-        ->where('negocio_id', '=',$negocio_id)
-        ->whereNull('cierre_id')
-        ->get();
-  }
-
-  public static function nocerrados_total_saldo($negocio_id){
-    return Abono::where('negocio_id', '=',$negocio_id)
-        ->whereNull('cierre_id')
-        ->sum('saldo');
-  }
-
-
+  
  	public static function buscar($desde,$hasta,$tipo,$negocio_id)
 	{
-		$query =  Abono::with('tipo','negocio','cuenta.banco','user');
+		$query =  Abono::with('tipo','negocio','cuenta.banco')->orderBy('id','desc');
 
 		if($desde){
 	    $query->where('fecha', '>=',$desde);
@@ -63,7 +58,7 @@ class Abono extends Model
 		}
 
 		if($tipo){
-	    $query->where('tipo', '=',$tipo);
+	    $query->where('tipo_id', '=',$tipo);
 		}
 		
 		if($negocio_id){
@@ -96,28 +91,44 @@ class Abono extends Model
 			'referencia.required' => 'Ingrese el Numero de Referencia'
 		];
   	$v =  Validator::make($values,$validator,$message);
-/*
-  	$v->after(function ($validator) {
-    	if ($this->somethingElseIsInvalid()) {
-        $validator->errors()->add('field', 'Something is wrong with this field!');
-    	}
-		});
-*/
   	$v->sometimes(['cuenta_id','referencia'],'required',function($input){
   		return ($input->afecta_banco);
   	});
   	return $v;
   }
 
-  public static function createToUser($values){
+
+  public function actualizarAbono($values){
+    $tipo = Tipo::findOrFail($values['tipo_id']);
+    $tipo->actualizarTasa($values['tasa']);
+    $this->attributes['saldo'] = $tipo->tasa * $values['cantidad'];
+    $this->attributes['monto'] = $this->attributes['saldo'];
+    $this->update($values);
+    $this->save();
+  }
+
+  public static function crearAbono($values){
+    ///$abono->user_id = Auth::user()->id;
   	$abono = new Abono($values);
   	$tipo = Tipo::findOrFail($values['tipo_id']);
   	$tipo->actualizarTasa($values['tasa']);
-  	$abono->user_id = Auth::user()->id;
   	$abono->saldo =  $tipo->tasa * $values['cantidad'];
   	$abono->monto = $abono->saldo;
   	$abono->save();
-  	return Abono::with('tipo','negocio','cuenta.banco','user')->findOrFail($abono->id);
+  	return Abono::with('tipo','negocio','cuenta.banco')->findOrFail($abono->id);
+  }
+
+  public static function abonoDisponible($id){
+    return (Abono::where('id', '=',$id)->whereNull('cierre_id')->where('estado','ACTIVO')->exists());
+  }
+
+
+  public static function abonosDisponible($negocio_id){
+    return Abono::with('cuenta.banco','tipo')->
+            where("negocio_id",$negocio_id)->
+            whereNull('cierre_id')->
+            where('estado','ACTIVO')->
+            get();
   }
 
 

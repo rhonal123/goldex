@@ -29,7 +29,7 @@ class AbonoModelTest extends TestCase
     ];
     $valid = Abono::validador($value);
     $this->validarformulario($valid);
-    $abono = Abono::createToUser($value);
+    $abono = Abono::crearAbono($value);
     $this->assertNotEmpty($abono->id);
 
 

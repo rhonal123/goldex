@@ -1,6 +1,7 @@
 <?php
 //config('permisos')
 return [
+
   ['codigo' => 'A01' , 'accion' => 'BancoController@show'],
   ['codigo' => 'A02' , 'accion' => 'BancoController@delete'],
   ['codigo' => 'A03' , 'accion' => 'BancoController@update'],
@@ -13,19 +14,18 @@ return [
   ['codigo' => 'B04' , 'accion' => 'CuentasController@create'],
   ['codigo' => 'B05' , 'accion' => 'CuentasController@index'],
 
-
   ['codigo' => 'C01' , 'accion' => 'NegociosController@show'],
   ['codigo' => 'C02' , 'accion' => 'NegociosController@delete'],
   ['codigo' => 'C03' , 'accion' => 'NegociosController@update'],
   ['codigo' => 'C04' , 'accion' => 'NegociosController@create'],
   ['codigo' => 'C05' , 'accion' => 'NegociosController@index'],
 
-
-  ['codigo' => 'D01' , 'accion' => 'PrestamosController@show'],
-  ['codigo' => 'D02' , 'accion' => 'PrestamosController@delete'],
-  ['codigo' => 'D03' , 'accion' => 'PrestamosController@update'],
-  ['codigo' => 'D04' , 'accion' => 'PrestamosController@create'],
-  ['codigo' => 'D05' , 'accion' => 'PrestamosController@index'],
+  ['codigo' => 'D01' , 'accion' => 'CierresController@show'],
+  ['codigo' => 'D02' , 'accion' => 'CierresController@delete'],
+  ['codigo' => 'D03' , 'accion' => 'CierresController@update'],
+  ['codigo' => 'D04' , 'accion' => 'CierresController@create'],
+  ['codigo' => 'D05' , 'accion' => 'CierresController@index'],
+  ['codigo' => 'D06' , 'accion' => 'CierresController@imprimir'],
 
 
   ['codigo' => 'E01' , 'accion' => 'UsuariosController@show'],
@@ -35,7 +35,6 @@ return [
   ['codigo' => 'E05' , 'accion' => 'UsuariosController@index'],
   ['codigo' => 'E06' , 'accion' => 'UsuariosController@password'],
   ['codigo' => 'E07' , 'accion' => 'UsuariosController@permisos'],
-
 
   ['codigo' => 'F01' , 'accion' => 'AbonosController@show'],
   ['codigo' => 'F02' , 'accion' => 'AbonosController@delete'],
@@ -49,13 +48,12 @@ return [
   ['codigo' => 'G04' , 'accion' => 'TiposController@create'],
   ['codigo' => 'G05' , 'accion' => 'TiposController@index'],
 
-
-  ['codigo' => 'H01' , 'accion' => 'CierresController@show'],
-  ['codigo' => 'H02' , 'accion' => 'CierresController@delete'],
-  ['codigo' => 'H03' , 'accion' => 'CierresController@update'],
-  ['codigo' => 'H04' , 'accion' => 'CierresController@create'],
-  ['codigo' => 'H05' , 'accion' => 'CierresController@index'],
-
-
+  ['codigo' => 'I01' , 'accion' => 'MovimientosController@show'],
+  ['codigo' => 'I02' , 'accion' => 'MovimientosController@delete'],
+  ['codigo' => 'I03' , 'accion' => 'MovimientosController@update'],
+  ['codigo' => 'I04' , 'accion' => 'MovimientosController@create'],
+  ['codigo' => 'I05' , 'accion' => 'MovimientosController@index'],
+  ['codigo' => 'I06' , 'accion' => 'MovimientosController@precio_puro'],
+  ['codigo' => 'I07' , 'accion' => 'MovimientosController@reporte'],
 
 ];
