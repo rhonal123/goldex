@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,33 +9,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-//Route::get('/hello','Hello@index');
-//Route::get('/hello/{name}', 'Hello@show');
-
-
-
-// Nos indica que las rutas que están dentro de él sólo serán mostradas si antes el usuario se ha autenticado.
-/*Route::group(array('before' => 'auth'), function()
-{
-    // Esta será nuestra ruta de bienvenida.
-    Route::get('/', function()
-    {
-        return View::make('hello');
-    });
-    // Esta ruta nos servirá para cerrar sesión.
-    Route::get('logout', 'AuthController@logOut');
-});
-
-*/
-
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
 
 Route::group(array('before' => 'auth'), function() {
     
@@ -51,7 +25,6 @@ Route::group(array('before' => 'auth'), function() {
         Route::get('negocios','ServiciosController@negocios')->middleware('auth');
         Route::get('cuentas','ServiciosController@cuentas')->middleware('auth');
         Route::get('bancos','ServiciosController@bancos')->middleware('auth');
-
         Route::get('negocios/{id}/abonospendientes','ServiciosController@abonospendientes')->middleware('auth');
         Route::get('negocios/{id}/movimientospendites','ServiciosController@movimientospendites')->middleware('auth');
 
@@ -99,7 +72,6 @@ Route::group(array('before' => 'auth'), function() {
         Route::post('abonos','AbonosController@create')->middleware('auth');
         Route::delete('abonos/{id}','AbonosController@delete')->middleware('auth');
         Route::patch('abonos/{id}','AbonosController@update')->middleware('auth');
-       // Route::get('abonos/{negocio_id}/nocerrados','AbonosController@nocerrados')->middleware('auth');
 
         Route::get('tipos','TiposController@index')->middleware('auth');
         Route::get('tipos/{id}','TiposController@show')->middleware('auth');
@@ -124,7 +96,6 @@ Route::group(array('before' => 'auth'), function() {
         Route::delete('cierres/{id}','CierresController@delete')->middleware('auth');
         Route::patch('cierres/{id}','CierresController@update')->middleware('auth');
         Route::get('cierres/{id}/imprimir','CierresController@imprimir')->middleware('auth');
-	
 
     });
 });

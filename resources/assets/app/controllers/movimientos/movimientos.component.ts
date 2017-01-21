@@ -126,14 +126,14 @@ declare var $: any;
             </select>
           </div>
         </div>
-
+<!--
         <div class="form-group">
           <label for="referencia" class="col-md-2 control-label">Referencia</label>
           <div class="col-md-10">
             <input id="referencia" [(ngModel)]="referencia" type="text" class="form-control input-sm" >
           </div>
         </div>
-
+-->
         <div  class="form-group">
           <label for="negocio_id" class="col-sm-2 control-label" for="estado">Negocio</label>
           <div class="col-sm-10">
@@ -147,6 +147,22 @@ declare var $: any;
           <div class="col-sm-10">
             <select id="cuenta_id" class="form-control" style="width: 100%;"></select>
           </div> 
+        </div>
+
+        <div  class="form-group">
+          <label for="ordenar" class="col-sm-2 control-label" for="estado">Ordenar Por </label>
+          <div class="col-sm-5">
+            <select class="form-control" [(ngModel)]="ordenar" style="width: 100%;">
+              <option value="fecha">Fecha</option>
+              <option value="id">Id</option>
+            </select>
+          </div>
+          <div class="col-sm-5">
+            <select class="form-control" [(ngModel)]="ordenarTipo" style="width: 100%;">
+              <option value="asc">Ascendente</option>
+              <option value="desc">Descendente</option>
+            </select>
+          </div>  
         </div>
 
         <div class="form-group">
@@ -163,10 +179,8 @@ declare var $: any;
                     (click)="imprimir()">
               <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
             </button>
-
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -190,7 +204,8 @@ export class MovimientosComponent implements OnInit {
   private texto: string;
   private tipo: string
   private referencia: string
-
+  private ordenar: string = "fecha";
+  private ordenarTipo: string = "asc";
   private observable:  Observable<Paginacion>;
   private obser: any;
 
@@ -361,6 +376,12 @@ export class MovimientosComponent implements OnInit {
     {
       param.set("referencia",this.referencia)
     }  
+    if(this.ordenar){
+      param.set("ordenar",this.ordenar)
+    }
+    if(this.ordenarTipo){
+      param.set("ordenarTipo",this.ordenarTipo)
+    }
     return param;
   };
 
@@ -376,8 +397,6 @@ export class MovimientosComponent implements OnInit {
 			}
 		}
 	}
-
-
 
   imprimir(){
     let params = this.serach();

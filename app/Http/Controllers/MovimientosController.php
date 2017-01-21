@@ -109,20 +109,24 @@ class MovimientosController extends Controller
 		$hasta = $request->input('hasta');
 		$negocio_id = $request->input('negocio_id');
 		$cuenta_id = $request->input('cuenta_id');
+		$ordenar  = $request->input('ordenar');  
+		$ordenarTipo  = $request->input('ordenarTipo'); 
   	$negocio = Negocio::find($negocio_id);
    	$cuenta  = Cuenta::find($cuenta_id);
    	$total = null;
    	$comision = null;
 
 	  if($tipo == "TRANSFERENCIA") {
-	   	$movimientos = Movimiento::movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id);
+	   	$movimientos = Movimiento::movimientosTrasnferencia(
+	   		$desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
 	   	$total = 0.0;
 	   	foreach ($movimientos as $value) { $total += $value->saldo; }
 	  	$view = View::make('pdf.movimientos_transferencia', 
     		compact('negocio', 'desde','hasta', 'movimientos','comision','total','cuenta'))->render();
     }
     else {
-			$movimientos=Movimiento::movimientosEfectivo($desde,$hasta,$negocio_id);
+			$movimientos=Movimiento::movimientosEfectivo(
+				$desde,$hasta,$negocio_id,$ordenar,$ordenarTipo);
    		$total = 0.0;
    		$comision = 0.0;
    		foreach ($movimientos as $value) {
