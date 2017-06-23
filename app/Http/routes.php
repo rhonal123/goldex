@@ -11,7 +11,7 @@
 */
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
+/*
 Route::group(array('before' => 'auth'), function() {
     
     Route::get('current_user', function(){
@@ -99,10 +99,11 @@ Route::group(array('before' => 'auth'), function() {
 
     });
 });
-
+*/
 
 
 Route::auth();
 
 Route::get('/', 'HomeController@index');
  
+Route::get('/home', 'HomeController@index');

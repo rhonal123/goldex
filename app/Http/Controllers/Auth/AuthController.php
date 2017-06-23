@@ -74,7 +74,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
- 
+ /*
     protected function sendFailedLoginResponse(Request $request)
     {
     return response()->json(['email' => ["Usuario o contraseña invalida"]], 422);    
@@ -90,7 +90,7 @@ class AuthController extends Controller
         }
         return  Auth::user();
     }
-
+*/
 
     protected function sendLockoutResponse(Request $request)
     {
