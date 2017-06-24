@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('header')
 <div class="page-header">
-  <h3>Bancos #{{$banco->id}}</h3>
-  <form action="{{ route('bancos.destroy', $banco->id) }}" method="POST" style="display: inline;" 
+  <h3>Cuenta #{{$cuenta->id}}</h3>
+  <form action="{{ route('cuentas.destroy', $cuenta->id) }}" method="POST" style="display: inline;" 
     onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="btn-group" role="group" aria-label="...">
         <a class="btn btn-default" 
-          href="{{ route('bancos.index') }}">
+          href="{{ route('cuentas.index') }}">
           <i class="glyphicon glyphicon-backward"></i>
           Regresar</a>
         <a class="btn btn-default" role="group" 
-          href="{{ route('bancos.edit', $banco->id) }}">
+          href="{{ route('cuentas.edit', $cuenta->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 
           Editar</a>
         <button type="submit" class="btn btn-default">Eliminar <i class="glyphicon glyphicon-trash"></i></button>
@@ -25,33 +25,31 @@
   @include('layouts/flash')
   <div class="row">
     <div class="col-md-12">
+
       <form action="#">
-        <div class="form-group col-md-4">
+       <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">ID</label> 
-            <p class="form-control-static">{{$banco->id}}</p>
+            <p class="form-control-static">{{$cuenta->id}}</p>
           </blockquote>
         </div>
-        <div class="form-group col-md-4">
+         <div class="form-group col-md-4">
           <blockquote>
-             <label for="nombre">NOMBRE</label>
-             <p class="form-control-static">{{$banco->nombre}}</p>
+            <label for="nome">CUENTA</label> 
+            <p class="form-control-static">{{$cuenta->numero}}</p>
           </blockquote>
         </div>
 
-        <div class="form-group col-md-6">
+         <div class="form-group col-md-4">
           <blockquote>
-             <label for="nombre">CUENTAS</label>
-            <ul class="list-group">
-            @foreach($banco->cuentas as $cuenta)
-              <li class="list-group-item">{{$cuenta->numero}}</li>
-            @endforeach
-            </ul>
+            <label for="nome">BANCO</label> 
+            <p class="form-control-static">{{$cuenta->banco->nombre}}</p>
           </blockquote>
         </div>
-
+       
       </form>
     </div>
   </div>
 
 @endsection
+
