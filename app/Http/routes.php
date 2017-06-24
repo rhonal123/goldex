@@ -103,6 +103,7 @@ Route::group(array('before' => 'auth'), function() {
 
 Route::resource('bancos', 'BancosController');
 Route::resource('cuentas', 'CuentasController');
+Route::resource('negocios', 'NegociosController');
 
 Route::auth();
 

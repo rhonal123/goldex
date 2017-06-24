@@ -112,7 +112,7 @@ class CuentasController extends Controller {
   	$values = $request->all(); 
 		$validator = Cuenta::validador($values,$cuenta);
 		if ($validator->fails()) {
- 			return redirect('cuentas/edit',['id' => $cuenta->id ])
+ 			return redirect()->route('cuentas.edit',['id' => $cuenta->id ])
           ->withErrors($validator)
           ->withInput();
 		}
@@ -120,7 +120,6 @@ class CuentasController extends Controller {
 			$cuenta->update($values);
 			return redirect()->route('cuentas.show',['id' => $cuenta->id ])->with('success', 'Cuenta correctamente actualizada.');
 		}
-
 	}
 
 	/**
@@ -136,7 +135,7 @@ class CuentasController extends Controller {
 		try {
 			$cuenta->delete();
 		}catch (QueryException $e){
-			return redirect()->route('cuentas.index')->with('danger', 'Este Cuenta esta siendo utilizada.');
+			return redirect()->route('cuentas.show',['id' => $cuenta->id ])->with('danger', 'Este Cuenta esta siendo utilizada.');
 		}
 		return redirect()->route('cuentas.index')->with('success', 'Cuenta Elminada.');
 	}

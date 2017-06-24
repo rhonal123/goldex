@@ -104,7 +104,7 @@ class BancosController extends Controller
         $validator = Banco::validador($values,$banco);
 
         if ($validator->fails()) {
-          return redirect('bancos/edit',['id' => $banco->id ])
+          return redirect()->route('bancos.edit',['id' => $banco->id ])
             ->withErrors($validator)
             ->withInput();
         }
@@ -126,7 +126,7 @@ class BancosController extends Controller
         try {
             $banco->delete();
         }catch (QueryException $e){
-            return redirect()->route('bancos.index')->with('danger', 'Este Banco esta siendo utilizado.');
+            return redirect()->route('bancos.show',['id' => $banco->id ])->with('danger', 'Este Banco esta siendo utilizado.');
         }
         return redirect()->route('bancos.index')->with('success', 'Banco Elminado.');
     }

@@ -15,7 +15,7 @@
       <form action="{{ route('cuentas.store') }}" method="POST"  class="form-horizontal">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group @if($errors->has('numero')) has-error @endif">
-          <label for="numero-field" class="col-sm-2 control-label">Nombre</label>
+          <label for="numero-field" class="col-sm-2 control-label">Numero</label>
           <div class="col-sm-4">
             <input type="text" id="numero-field" name="numero" class="form-control" value="{{ old("numero") }}"/>
             @if($errors->has("numero"))
