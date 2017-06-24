@@ -15,6 +15,7 @@
   <div class="row">
     <div class="col-md-12">
       @if($bancos->count())
+      <div class="table-responsive">
         <table class="table table-condensed table-striped">
           <thead>
             <tr>
@@ -27,10 +28,18 @@
             @each('bancos.banco', $bancos, 'banco')
           </tbody>
         </table>
-        {!! $bancos->render() !!}
+        <div class="paginador">
+          {!! $bancos->render() !!}
+        </div>
+      </div>
       @else
         <h3 class="text-center alert alert-info">Empty!</h3>
       @endif
     </div>
   </div>
 @endsection
+
+
+
+
+

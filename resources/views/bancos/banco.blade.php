@@ -11,13 +11,14 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="split-button">
         <li  role="menuitem">
-          <a href="{{ route('bancos.show', $banco->id) }}">
+          <a href="{{ route('bancos.show', $banco->id) }}"> 
+            <i class="glyphicon glyphicon-eye-open"></i> 
             Mostrar
           </a>
         </li>
         <li role="menuitem">
           <a href="{{ route('bancos.edit', $banco->id) }}">
-            Editar
+             <i class="glyphicon glyphicon-edit"></i>  Editar
           </a>
         </li>
         <li role="menuitem" (click)="onEliminar(abono)">
@@ -25,7 +26,7 @@
             onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button type="submit"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+            <button type="submit" class="eliminar"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
           </form>
         </li>
       </ul>
