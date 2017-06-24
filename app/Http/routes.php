@@ -101,6 +101,7 @@ Route::group(array('before' => 'auth'), function() {
 });
 */
 
+Route::resource('bancos', 'BancosController');
 
 Route::auth();
 

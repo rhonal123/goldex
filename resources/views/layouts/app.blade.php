@@ -54,6 +54,10 @@
     @include('layouts.menu')
   </div>
   <div class="col-md-10 sidenav well well-sm">
+      @section('header')
+
+      @show
+      
       @yield('content')
   </div>
   @else
