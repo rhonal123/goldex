@@ -3,11 +3,17 @@
 @section('header')
   <div class="page-header clearfix">
     <h3>
-      Bancos
+      Bancos 
     </h3>
   </div>
-      <a class="btn btn-success" href="{{ route('bancos.create') }}">
-      <i class="glyphicon glyphicon-plus"></i></a>
+  <div class="col-md-6">
+    <a class="btn btn-success" href="{{ route('bancos.create') }}">
+      <i class="glyphicon glyphicon-plus"></i>
+    </a>
+  </div>
+  <div class="col-md-6">
+    @include('layouts/search')
+  </div>
 @endsection
 @section('content')
   @include('layouts/flash')
@@ -28,7 +34,7 @@
           </tbody>
         </table>
         <div class="paginador">
-          {!! $bancos->render() !!}
+          {{ $bancos->appends(Request::only('search'))->links() }}
         </div>
       </div>
       @else

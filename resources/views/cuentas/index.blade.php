@@ -6,8 +6,16 @@
       Cuentas
     </h3>
   </div>
-      <a class="btn btn-success" href="{{ route('cuentas.create') }}">
-      <i class="glyphicon glyphicon-plus"></i></a>
+
+  <div class="col-md-6">
+    <a class="btn btn-success" href="{{ route('cuentas.create') }}">
+      <i class="glyphicon glyphicon-plus"></i>
+    </a>
+  </div>
+  <div class="col-md-6" align="right">
+    @include('layouts/search')
+  </div>
+
 @endsection
 
 
@@ -31,7 +39,7 @@
           </tbody>
         </table>
         <div class="paginador">
-          {!! $cuentas->render() !!}
+          {{ $cuentas->appends(Request::only('search'))->links() }}
         </div>
         
       @else

@@ -6,8 +6,14 @@
       Negocio
     </h3>
   </div>
-      <a class="btn btn-success" href="{{ route('negocios.create') }}">
-      <i class="glyphicon glyphicon-plus"></i></a>
+  <div class="col-md-6">
+    <a class="btn btn-success" href="{{ route('negocios.create') }}">
+      <i class="glyphicon glyphicon-plus"></i>
+    </a>
+  </div>
+  <div class="col-md-6" align="right">
+    @include('layouts/search')
+  </div>
 @endsection
 
 
@@ -33,7 +39,7 @@
           </tbody>
         </table>
         <div class="paginador">
-          {!! $negocios->render() !!}
+          {{ $negocios->appends(Request::only('search'))->links() }}
         </div>
         
       @else

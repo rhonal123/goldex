@@ -23,10 +23,11 @@ class BancosController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $this->authorize('A05');
-      $bancos = Banco::orderBy('id', 'desc')->paginate(10);
+      $nombre = $request->input('search');
+      $bancos = Banco::buscar($nombre); 
       return view('bancos.index', compact('bancos'));
     }
 

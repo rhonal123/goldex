@@ -17,7 +17,7 @@ class Cuenta extends Model
   private $banco; 
 
  	public static function buscar($numero) {
-    $query =  Cuenta::with('banco')->orderBy('id','desc');;
+    $query =  Cuenta::with('banco')->orderBy('cuentas.id','desc');;
     if($numero){
       $query->join('bancos', 'bancos.id', '=', 'banco_id')->where('numero', 'ilike',"%".$numero."%")->orWhere('bancos.nombre', 'ilike',"%".$numero."%");
     }

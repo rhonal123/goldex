@@ -25,15 +25,23 @@
         </a>
       </h4>
     </div>
+
     <div id="collapse_bancos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="menu_bancos">
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item"><a>Bancos</a></li>
-          <li class="list-group-item"><a>Cuentas</a></li>
-          <li class="list-group-item"><a>Tipo Cambio</a></li>
+          <li class="list-group-item {{ Request::is('bancos*') ? 'active' : '' }}">
+            <a href="{{ route('bancos.index') }}">Bancos</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{{ route('cuentas.index') }}">Cuentas</a>
+          </li>
+        <!--  <li class="list-group-item"><a>Tipo Cambio</a></li> -->
         </ul>
       </div>
     </div>
+
+
+
   </div>
 
   <div class="panel panel-default">

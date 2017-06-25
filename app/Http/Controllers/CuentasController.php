@@ -26,8 +26,8 @@ class CuentasController extends Controller {
 	public function index(Request $request)
 	{
  		$this->authorize('B05');
-		$nombre = $request->input('search');
-		$cuentas = Cuenta::buscar($nombre);
+		$numero = $request->input('search');
+		$cuentas = Cuenta::buscar($numero);
 		return view('cuentas.index', compact('cuentas'));
 	}
 
