@@ -157,6 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
         /*   fpdf */
         ///  Anouar\Fpdf\FpdfServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
@@ -211,7 +212,10 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         ///'Fpdf' => Anouar\Fpdf\Facades\Fpdf::class,
-          'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
+        'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
+        //'MyFuncs' => App\Helpers\MyFuncs::class,
+        'Welcome' => App\Http\Helpers\WelcomeHelper::class,
+
     ],
  
 ];

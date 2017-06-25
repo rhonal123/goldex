@@ -1,5 +1,5 @@
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  
+<div  id="accordion_menu" class="panel-group" role="tablist" aria-multiselectable="true">
+
   <div class="panel panel-default acordion-item">
     <div class="panel-heading" role="tab" id="menu_usuarios">
       <h4 class="panel-title">
@@ -8,7 +8,10 @@
         </a>
       </h4>
     </div>
-    <div id="collapse_usuarios" class="panel-collapse collapse" role="tabpanel" aria-labelledby="menu_usuarios">
+    <div id="collapse_usuarios" 
+      class="{{ Welcome::collapseActive(array('usuarios*')) }}" 
+      role="tabpanel" 
+      aria-labelledby="menu_usuarios">
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item"><a href="usuarios" >Usuarios</a></li>
@@ -26,22 +29,22 @@
       </h4>
     </div>
 
-    <div id="collapse_bancos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="menu_bancos">
+    <div id="collapse_bancos" 
+      class="{{ Welcome::collapseActive(array('bancos*','cuentas*')) }}" 
+      role="tabpanel" 
+      aria-labelledby="menu_bancos">
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item {{ Request::is('bancos*') ? 'active' : '' }}">
+          <li class="list-group-item {{ Welcome::linkActive('bancos*') }}">
             <a href="{{ route('bancos.index') }}">Bancos</a>
           </li>
-          <li class="list-group-item">
+          <li class="list-group-item {{ Welcome::linkActive('cuentas*') }}">
             <a href="{{ route('cuentas.index') }}">Cuentas</a>
           </li>
         <!--  <li class="list-group-item"><a>Tipo Cambio</a></li> -->
         </ul>
       </div>
     </div>
-
-
-
   </div>
 
   <div class="panel panel-default">
@@ -52,10 +55,15 @@
         </a>
       </h4>
     </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+    <div id="collapseThree"
+      class="{{ Welcome::collapseActive(array('negocios*')) }}" 
+      role="tabpanel" 
+      aria-labelledby="headingThree">
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item"><a>Negocios o Socios </a></li>
+          <li class="list-group-item {{ Welcome::linkActive('negocios*') }}">
+            <a href="{{ route('negocios.index') }}">Negocios o socios</a>
+          </li>
           <li class="list-group-item"><a>Movimientos</a></li>
           <li class="list-group-item"><a>Abonos</a></li>
           <li class="list-group-item"><a>Cierres</a></li>
