@@ -6812,14 +6812,6 @@ app-component {
   background-color: #fff;
   margin-top: 15px;
 }
-.table-responsive th,
-td {
-  text-align: center;
-}
-.table-responsive td:last-child {
-  width: 50px;
-  text-align: right;
-}
 .iconoprincipal {
   width: 100px;
   height: 80px;
@@ -6829,7 +6821,7 @@ td {
   background-color: #000;
 }
 .page-header {
-  margin: 15px 0 5px;
+  margin: 0px 0 5px;
 }
 .control-label {
   padding-left: 0px;
@@ -6867,4 +6859,30 @@ list-group-item {
 .titulo-head {
   font-size: 25px;
   color: orange;
+}
+.table-responsive th,
+td {
+  text-align: center;
+}
+.table-responsive td:last-child {
+  width: 50px;
+  text-align: right;
+}
+.table-responsive .paginador {
+  text-align: right;
+}
+.eliminar {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #333;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  color: #333333;
+  padding: 3px 20px;
+  list-style: outside none none;
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0;
+  white-space: nowrap;
 }
