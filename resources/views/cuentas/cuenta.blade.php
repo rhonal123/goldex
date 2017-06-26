@@ -5,7 +5,7 @@
   <td align="right">
     <span class="dropdown" >
       <button 
-          class="btn btn-default" type="button" 
+          class="btn btn-default btn-xs" type="button" 
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="glyphicon glyphicon-th" aria-hidden="true" ></span>
         <span class="caret"></span>

@@ -1,6 +1,8 @@
 <tr>
-  <td>{{$banco->id}}</td>
-  <td>{{$banco->nombre}}</td>
+  <td>{{$user->id}}</td>
+  <td>{{$user->name}}</td>
+  <td>{{$user->email}}</td>
+  <td>{{$user->administrador ? "administrador": "comun"}}</td>
   <td align="right">
     <span class="dropdown" >
       <button 
@@ -11,18 +13,18 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="split-button">
         <li  role="menuitem">
-          <a href="{{ route('bancos.show', $banco->id) }}"> 
+          <a href="{{ route('users.show', $user->id) }}""> 
             <i class="glyphicon glyphicon-eye-open"></i> 
             Mostrar
           </a>
         </li>
         <li role="menuitem">
-          <a href="{{ route('bancos.edit', $banco->id) }}">
+          <a href="{{ route('users.edit', $user->id) }}">
              <i class="glyphicon glyphicon-edit"></i>  Editar
           </a>
         </li>
         <li role="menuitem" (click)="onEliminar(abono)">
-          <form action="{{ route('bancos.destroy', $banco->id) }}" method="POST" style="display: inline;"    
+          <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;"    
             onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -32,4 +34,10 @@
       </ul>
     </span>
   </td>
+  
 </tr>
+
+
+
+
+

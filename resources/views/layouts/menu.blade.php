@@ -8,13 +8,16 @@
         </a>
       </h4>
     </div>
+
     <div id="collapse_usuarios" 
-      class="{{ Welcome::collapseActive(array('usuarios*')) }}" 
+      class="{{ Welcome::collapseActive(array('users*')) }}" 
       role="tabpanel" 
       aria-labelledby="menu_usuarios">
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item"><a href="usuarios" >Usuarios</a></li>
+           <li class="list-group-item {{ Welcome::linkActive('users*') }}">
+            <a href="{{ route('users.index') }}">Usuarios</a>
+          </li>
         </ul>
       </div>
     </div>

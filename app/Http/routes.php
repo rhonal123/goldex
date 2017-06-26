@@ -83,8 +83,10 @@ Route::group(array('before' => 'auth'), function() {
         Route::get('usuarios/{id}','UsuariosController@show')->middleware('auth');
         Route::get('usuarios/{id}/permisos','UsuariosController@permisos')->middleware('auth');
         Route::post('usuarios','UsuariosController@create')->middleware('auth');
+
         Route::patch('usuarios/{id}','UsuariosController@update')->middleware('auth');
         Route::patch('usuarios/{id}','UsuariosController@update')->middleware('auth');
+
         Route::patch('usuarios/{id}/password','UsuariosController@password')->middleware('auth');
         Route::patch('usuarios/{id}/permisos','UsuariosController@agregarPermiso')->middleware('auth');
         Route::delete('usuarios/{id}','UsuariosController@delete')->middleware('auth');
@@ -100,13 +102,30 @@ Route::group(array('before' => 'auth'), function() {
     });
 });
 */
+Route::group(array('before' => 'auth'), function() {
+    Route::resource('bancos', 'BancosController');
+    Route::resource('cuentas', 'CuentasController');
+    Route::resource('negocios', 'NegociosController');
+    Route::resource("users","UserController");  
 
-Route::resource('bancos', 'BancosController');
-Route::resource('cuentas', 'CuentasController');
-Route::resource('negocios', 'NegociosController');
+    Route::patch('users/{id}/password','UserController@password')->middleware('auth');
+    Route::get('users/{id}/password',
+            ['as' => 'users.password', 
+                'uses' => 'UserController@password_edit'])->middleware('auth');
+
+    Route::patch('users/{id}/permisos/{permiso_id}',
+        ['as' => 'users.permisos_add', 
+        'uses' => 'UserController@agregarPermiso'])->middleware('auth');
+
+    Route::delete('users/{id}/permisos/{permiso_id}',
+         ['as' => 'users.permisos_rm', 
+        'uses' => 'UserController@quitarPermiso'])->middleware('auth');
+
+
+
+});
+
 
 Route::auth();
-
 Route::get('/', 'HomeController@index');
- 
 Route::get('/home', 'HomeController@index');
