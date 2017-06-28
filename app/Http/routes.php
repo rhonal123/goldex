@@ -108,6 +108,17 @@ Route::group(array('before' => 'auth'), function() {
     Route::resource('negocios', 'NegociosController');
     Route::resource("users","UserController");  
 
+    Route::get('movimientos/reportes',
+            ['as' => 'movimientos.reporte', 
+                'uses' => 'MovimientoController@reporte_edit'])->middleware('auth');
+
+
+    Route::post('movimientos/reportes',
+            ['as' => 'movimientos.reporte', 
+            'uses' => 'MovimientoController@reporte'])->middleware('auth');
+
+    Route::resource("movimientos","MovimientoController"); // Add this line in routes.php
+
     Route::patch('users/{id}/password','UserController@password')->middleware('auth');
     Route::get('users/{id}/password',
             ['as' => 'users.password', 

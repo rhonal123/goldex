@@ -213,8 +213,6 @@ class Movimiento extends Model
             get();
   }
 
-
-
   public static function validador($values,$movimiento = null){
 	  $validator = [
 			'negocio_id' => 'required',

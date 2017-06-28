@@ -59,7 +59,7 @@
       </h4>
     </div>
     <div id="collapseThree"
-      class="{{ Welcome::collapseActive(array('negocios*')) }}" 
+      class="{{ Welcome::collapseActive(array('negocios*','movimientos*')) }}" 
       role="tabpanel" 
       aria-labelledby="headingThree">
       <div class="panel-body">
@@ -67,9 +67,11 @@
           <li class="list-group-item {{ Welcome::linkActive('negocios*') }}">
             <a href="{{ route('negocios.index') }}">Negocios o socios</a>
           </li>
-          <li class="list-group-item"><a>Movimientos</a></li>
-          <li class="list-group-item"><a>Abonos</a></li>
-          <li class="list-group-item"><a>Cierres</a></li>
+          <li class="list-group-item {{ Welcome::linkActive('movimientos*') }}">
+            <a href="{{ route('movimientos.index') }}">Movimientos</a>
+          </li>
+          <!-- <li class="list-group-item"><a>Abonos</a></li>
+          <li class="list-group-item"><a>Cierres</a></li>  -->
         </ul>
       </div>
     </div>

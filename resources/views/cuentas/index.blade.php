@@ -15,9 +15,7 @@
   <div class="col-md-6" align="right">
     @include('layouts/search')
   </div>
-
 @endsection
-
 
 @section('content')
   @include('layouts/flash')

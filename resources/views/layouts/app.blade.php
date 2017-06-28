@@ -15,6 +15,14 @@
 -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
+    <!-- JavaScripts -->
+    {{ Html::script('assets/javascripts/jquery3.min.js') }}
+    {{ Html::script('assets/javascripts/bootstrap.min.js') }}
+    {{ Html::script('assets/javascripts/datepicker.js') }}
+    {{ Html::script('assets/javascripts/select2.min.js') }}
+ 
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
     <style>
         body {
             font-family: 'Lato';
@@ -66,13 +74,7 @@
 </section>
 
 </body>
-    <!-- JavaScripts -->
-    {{ Html::script('assets/javascripts/jquery3.min.js') }}
-    {{ Html::script('assets/javascripts/bootstrap.min.js') }}
-    {{ Html::script('assets/javascripts/datepicker.js') }}
-    {{ Html::script('assets/javascripts/select2.min.js') }}
- 
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    
 </body>
 </html>
 

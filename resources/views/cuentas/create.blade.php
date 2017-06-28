@@ -2,7 +2,7 @@
 
 @section('header')
   <div class="page-header">
-    <h3>Bancos / Create </h3>
+    <h3>Cuentas / Create </h3>
   </div>
   <a class="btn btn-link" href="{{ route('cuentas.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
