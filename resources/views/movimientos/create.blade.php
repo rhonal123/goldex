@@ -133,8 +133,10 @@ let opcionesTipo = function(tipo){
 
 $(window).on('load', function() {
   opcionesTipo($("#tipo-field").val());
-  let today = new Date();
-  $("#fecha-field").datepicker({format: "yyyy/mm/dd"}).datepicker("setDate",today);
+ 
+
+
+  $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
   $("#negocio_id-field").select2({
     placeholder: 'Seleccione un Negocio',
     minimumInputLength: 0});

@@ -166,17 +166,18 @@ class MovimientoController extends Controller {
 	public function reporte_edit(Request $request){
 		$negocios = Negocio::pluck('nombre', 'id')->toArray();
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
-		return view('movimientos.reporte',compact('negocios','cuentas'));
+		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
+		return view('movimientos.reporte',compact('negocios','cuentas','tipos'));
 	}
 
   public function reporte(Request $request) 
   {
 		$this->authorize('I07');
-    $tipo = ($request->input('tipo')? $request->input('tipo'):"EFECTIVO");
+    $tipo = ($request->input('tipo') ? $request->input('tipo'): "EFECTIVO" );
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
-		$negocio_id = $request->input('negocio_id');
-		$cuenta_id = $request->input('cuenta_id');
+		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
+		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id'); 
 		$ordenar  = $request->input('ordenar');  
 		$ordenarTipo  = $request->input('ordenarTipo'); 
   	$negocio = Negocio::find($negocio_id);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,8 @@
     {{ Html::script('assets/javascripts/bootstrap.min.js') }}
     {{ Html::script('assets/javascripts/datepicker.js') }}
     {{ Html::script('assets/javascripts/select2.min.js') }}
- 
+    {{ Html::script('assets/javascripts/bootstrap-datepicker.es.js') }}
+      
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
     <style>
