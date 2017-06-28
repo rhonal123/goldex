@@ -161,7 +161,7 @@ return [
         /*   fpdf */
         ///  Anouar\Fpdf\FpdfServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
-        Laralib\L5scaffold\GeneratorsServiceProvider::class,
+        //Laralib\L5scaffold\GeneratorsServiceProvider::class,
     ],
 
     /*
