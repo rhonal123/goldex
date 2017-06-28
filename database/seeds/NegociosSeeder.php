@@ -215,7 +215,7 @@ class NegociosSeeder extends Seeder
 					'telefono' => 'telefono20'
     		));
 
-
+/*
     		Negocio::create(array(
 					'nombre' => 'nombre21',
 					'rif' => 'rif21',
@@ -1015,7 +1015,7 @@ class NegociosSeeder extends Seeder
 					'telefono' => 'telefono100'
     		));
 
-
+*/
 
 
 

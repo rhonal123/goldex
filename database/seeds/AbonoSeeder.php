@@ -13,7 +13,7 @@ class AbonoSeeder extends Seeder
     public function run()
     {
         //
-
+/*
 			Abono::crearAbono([
 				'negocio_id' => 2,
 		  	'afecta_banco' => false,
@@ -170,7 +170,7 @@ class AbonoSeeder extends Seeder
     	]);
 
 /****************************************************************/
-
+/*
 
       Abono::crearAbono([
         'id' => 100001,
@@ -234,7 +234,7 @@ class AbonoSeeder extends Seeder
         'tipo_id' =>  2, 
         'tasa' => 1200,
         'cantidad' => 8400]);
-
+*/
 
 
     }

@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder {
             'password' => Hash::make('admin') // Hash::make() nos va generar una cadena con nuestra contraseña encriptada
         ));
 
-
+/*
         User::create(array(
             ///'username'  => 'admin1',
             'email'     => 'admin1@admin.com',
@@ -195,7 +195,7 @@ class UserTableSeeder extends Seeder {
         ));
   
 
-
+*/
 
     }
 }
