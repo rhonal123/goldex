@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('header')
+<div class="col-md-12">
 <div class="page-header">
   <h3>user #{{$user->id}}</h3>
   <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;" 
@@ -25,11 +26,12 @@
       </div>
     </form>
   </div>
+</div>
 @endsection
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+ 
     <div class="col-md-12">
        <div class="form-group col-md-4">
           <blockquote>
@@ -105,10 +107,8 @@
           </tbody>
         </table>
     </div>
-
- 
-    </div>
   </div>
+ 
 
 @endsection
 

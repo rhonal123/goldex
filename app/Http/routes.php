@@ -102,7 +102,11 @@ Route::group(array('before' => 'auth'), function() {
     });
 });
 */
-Route::group(array('before' => 'auth'), function() {
+
+Route::auth();
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+Route::group(array('middleware' => 'auth'), function() {
     Route::resource('bancos', 'BancosController');
     Route::resource('cuentas', 'CuentasController');
     Route::resource('negocios', 'NegociosController');
@@ -110,14 +114,13 @@ Route::group(array('before' => 'auth'), function() {
 
     Route::get('movimientos/reportes',
             ['as' => 'movimientos.reporte', 
-                'uses' => 'MovimientoController@reporte_edit'])->middleware('auth');
-
+                'uses' => 'MovimientoController@reporte_edit']);
 
     Route::post('movimientos/reportes',
             ['as' => 'movimientos.reporte', 
-            'uses' => 'MovimientoController@reporte'])->middleware('auth');
+            'uses' => 'MovimientoController@reporte']);
 
-    Route::resource("movimientos","MovimientoController"); // Add this line in routes.php
+    Route::resource("movimientos","MovimientoController");
 
     Route::patch('users/{id}/password','UserController@password')->middleware('auth');
     Route::get('users/{id}/password',
@@ -131,12 +134,4 @@ Route::group(array('before' => 'auth'), function() {
     Route::delete('users/{id}/permisos/{permiso_id}',
          ['as' => 'users.permisos_rm', 
         'uses' => 'UserController@quitarPermiso'])->middleware('auth');
-
-
-
 });
-
-
-Route::auth();
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');

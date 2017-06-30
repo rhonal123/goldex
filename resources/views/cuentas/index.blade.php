@@ -7,7 +7,7 @@
       Cuentas
     </h3>
   </div>
-  <a class="btn btn-sm btn-success" href="{{ route('cuentas.create') }}">
+  <a class="btn btn-sm btn-success btn-sm" href="{{ route('cuentas.create') }}">
     <i class="glyphicon glyphicon-plus"></i>
   </a>
     @include('layouts/search')

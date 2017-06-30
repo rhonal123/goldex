@@ -2,27 +2,23 @@
 @extends('layouts.app')
  
 @section('header')
+<div class="col-md-12">
   <div class="page-header clearfix">
     <h3>
       Usuario
     </h3>
   </div>
-
-  <div class="col-md-6">
-    <a class="btn btn-success" href="{{ route('users.create') }}">
-      <i class="glyphicon glyphicon-plus"></i>
-    </a>
-  </div>
-  <div class="col-md-6" align="right">
-    @include('layouts/search')
-  </div>
-
+  <a class="btn btn-success btn-sm" href="{{ route('users.create') }}">
+    <i class="glyphicon glyphicon-plus"></i>
+  </a>
+  @include('layouts/search')
+</div>
 @endsection
 
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+  
     <div class="col-md-12">
       @if($users->count())
       <div class="table-responsive">
@@ -50,7 +46,7 @@
       @endif
 
     </div>
-  </div>
+ 
 
 @endsection
 

@@ -7,7 +7,7 @@
       Bancos 
     </h3>
   </div>
-  <a class="btn btn-sm btn-success" href="{{ route('bancos.create') }}">
+  <a class="btn btn-sm btn-success btn-sm" href="{{ route('bancos.create') }}">
       <i class="glyphicon glyphicon-plus"></i>
   </a>
   @include('layouts/search')

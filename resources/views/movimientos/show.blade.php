@@ -86,17 +86,23 @@
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">COMISION</label> 
-            <p class="form-control-static">{{$movimiento->comision}}</p>
+            <p class="form-control-static">{{$movimiento->comision}} %</p>
           </blockquote>
         </div>
 
+        <div class="form-group col-md-4">
+          <blockquote>
+            <label for="nome">MONTO</label> 
+            <p class="form-control-static">{{ number_format( $movimiento->monto, 2) }} Bs.</p>
+          </blockquote>
+        </div>
         @endif      
 
 
        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">SALDO</label> 
-            <p class="form-control-static">{{ number_format( $movimiento->saldo, 2) }}</p>
+            <p class="form-control-static">{{ number_format( $movimiento->saldo, 2) }} Bs.</p>
           </blockquote>
         </div>
  

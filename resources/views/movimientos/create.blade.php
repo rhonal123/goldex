@@ -54,6 +54,7 @@
               <span class="help-block">{{ $errors->first("comision") }}</span>
             @endif
          </div>
+         <label id="comision" class="col-sm-2 control-label" style="text-align: left;" > Comision: 0.00 BS </label>
         </div>
 
         <div class="form-group @if($errors->has('monto')) has-error @endif">
@@ -67,6 +68,7 @@
               <span class="help-block">{{ $errors->first("monto") }}</span>
             @endif
          </div>
+          <label id="total" class="col-sm-2 control-label" style="text-align: left;" > Total: 0.00 BS </label>
         </div>
 
         <div id="form-cuenta" class="form-group @if($errors->has('cuenta_id')) has-error @endif">
@@ -102,9 +104,7 @@
         <div class="form-group @if($errors->has('descripcion')) has-error @endif">
           <label for="descripcion-field" class="col-sm-2 control-label">Descripción</label>
           <div class="col-sm-4">
-            <textarea  id="descripcion-field" name="descripcion" class="form-control" >
-              {{ old("descripcion") }}
-            </textarea>
+            <textarea  id="descripcion-field" name="descripcion" class="form-control" >{{ old("descripcion") }}</textarea>
             @if($errors->has("descripcion"))
               <span class="help-block">{{ $errors->first("descripcion") }}</span>
             @endif
@@ -118,43 +118,7 @@
         </div>
       </form>
     </div>
- 
 
-<script type="text/javascript">
-
-let opcionesTipo = function(tipo){
-  if(tipo === "TRANSFERENCIA") {
-    $("#form-comision").css("display", "none");
-    $("#form-cuenta").css("display", "block");
-    $("#form-referencia").css("display", "block");
-  }
-  else{
-    $("#form-comision").css("display", "block");
-    $("#form-cuenta").css("display", "none");
-    $("#form-referencia").css("display", "none");
-  }
-}
-
-$(window).on('load', function() {
-  opcionesTipo($("#tipo-field").val());
- 
-
-
-  $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
-  $("#negocio_id-field").select2({
-    placeholder: 'Seleccione un Negocio',
-    minimumInputLength: 0});
-  $("#cuenta_id-field").select2({
-    placeholder: 'Seleccione un Negocio',
-    minimumInputLength: 0});
-}); 
-
-$(document).on('change','#tipo-field',function(){
-  opcionesTipo($("#tipo-field option:selected").val());
-});
-
-</script>
-
-
+  @include('movimientos.form_script')
 @endsection
  
