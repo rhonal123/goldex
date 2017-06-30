@@ -2,6 +2,7 @@
 
 @section('content')
   <div class="col-md-12" align="center">
+	  @include('layouts/flash')
     <img src="assets/images/goldex310x310.png"
         class="img-responsive"
         alt="Responsive image"

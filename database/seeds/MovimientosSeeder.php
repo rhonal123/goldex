@@ -18,7 +18,7 @@ class MovimientosSeeder extends Seeder
         //
 
 
-/*
+ 
 	Movimiento::crearMovimiento([
 		'monto'       => 1836532,
 		'comision'    => 95,
@@ -161,7 +161,7 @@ class MovimientosSeeder extends Seeder
 		'cuenta_id'   => 47,
 		'referencia'  => 'ABCR323412ASDAS'
   ]);
-  /*
+  
 
   Movimiento::crearMovimiento([
 		'monto'       => 53.52981097008979,
@@ -12018,8 +12018,7 @@ class MovimientosSeeder extends Seeder
 		'referencia'  => 'ABCR32341000ASDAS'
   ]);
   
-
-*/
+ 
 
 
     }

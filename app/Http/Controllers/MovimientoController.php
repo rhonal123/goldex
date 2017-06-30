@@ -19,6 +19,8 @@ use DB;
 use App;
 use View;
 
+use App\Http\Pdfs\MovimientoPdf;
+
 
 /*
   ['codigo' => 'I01' , 'accion' => 'MovimientosController@show'],
@@ -173,44 +175,15 @@ class MovimientoController extends Controller {
   public function reporte(Request $request) 
   {
 		$this->authorize('I07');
-    $tipo = ($request->input('tipo') ? $request->input('tipo'): "EFECTIVO" );
+		$pdf = new MovimientoPdf();
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
-		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id'); 
+		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
 		$ordenar  = $request->input('ordenar');  
 		$ordenarTipo  = $request->input('ordenarTipo'); 
-  	$negocio = Negocio::find($negocio_id);
-   	$cuenta  = Cuenta::find($cuenta_id);
-   	$total = null;
-   	$comision = null;
+   	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
 
-	  if($tipo == "TRANSFERENCIA") {
-	   	$movimientos = Movimiento::movimientosTrasnferencia(
-	   		$desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
-	   	$total = 0.0;
-	   	foreach ($movimientos as $value) { $total += $value->saldo; }
-	  	$view = View::make('pdf.movimientos_transferencia', 
-    		compact('negocio', 'desde','hasta', 'movimientos','comision','total','cuenta'))->render();
-    }
-    else {
-			$movimientos=Movimiento::movimientosEfectivo(
-				$desde,$hasta,$negocio_id,$ordenar,$ordenarTipo);
-   		$total = 0.0;
-   		$comision = 0.0;
-   		foreach ($movimientos as $value) {
-   			$comision += $value->monto;
-   			$total += $value->saldo;
-   		}
-	  	$view = View::make('pdf.movimientos_efectivo', 
-    		compact('negocio', 'desde','hasta', 'movimientos','comision','total'))->render();
-   	}
-    // set margins
-		TCPDF::SetFont('times', null, 9);
-		TCPDF::SetMargins(10,10,10);
-		TCPDF::AddPage('L', 'LETTER');
-		TCPDF::writeHTML($view);
-		TCPDF::Output('movimientos_efectivo.pdf');
   }
   
 }

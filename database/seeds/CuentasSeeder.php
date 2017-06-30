@@ -27,7 +27,7 @@ class CuentasSeeder extends Seeder
 				Cuenta::create(array('numero' => '0000000000000001011','banco_id' => '1'));
 				Cuenta::create(array('numero' => '0000000000000001111','banco_id' => '1'));
 				Cuenta::create(array('numero' => '0000000000000001211','banco_id' => '1'));
-/*
+ 
 				Cuenta::create(array('numero' => '0000000000000001311','banco_id' => '1'));
 				Cuenta::create(array('numero' => '0000000000000001411','banco_id' => '1'));
 				Cuenta::create(array('numero' => '0000000000000001511','banco_id' => '1'));
@@ -87,7 +87,7 @@ class CuentasSeeder extends Seeder
 				Cuenta::create(array('numero' => '00000000000000012611','banco_id' => '2'));
 				Cuenta::create(array('numero' => '00000000000000012711','banco_id' => '2'));
 				Cuenta::create(array('numero' => '00000000000000012811','banco_id' => '2'));
-*/
+ 
 
     }
 }

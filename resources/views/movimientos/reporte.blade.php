@@ -23,22 +23,12 @@
        <div class="form-group">
           <label for="search_desde" class="col-md-2 control-label">Desde</label>
           <div class="col-md-4">
-            <input id="search_desde" type="text"  class="form-control input-sm" >
+            <input id="search_desde" name="desde" type="text"  class="form-control input-sm" >
           </div>
  
           <label for="search_hasta" class="col-md-2 control-label">Hasta</label>
           <div class="col-md-4">
-            <input id="search_hasta" type="text" data-provide="datepicker" class="form-control input-sm" >
-          </div>
-        </div>
- 
-        <div class="form-group">
-          <label for="tipo" class="col-md-2 control-label">Tipo</label>
-          <div class="col-md-10">
-             {{ Form::select('tipo',
-              $tipos,
-              (is_null(old("tipo")) ? "TRANSFERENCIA": old("tipo")),
-              ['class' => 'form-control', 'id'=>'tipo-field']) }}
+            <input id="search_hasta" name="hasta" type="text" data-provide="datepicker" class="form-control input-sm" >
           </div>
         </div>
 
@@ -70,13 +60,13 @@
         <div  class="form-group">
           <label for="ordenar" class="col-sm-2 control-label" for="estado">Ordenar Por </label>
           <div class="col-sm-5">
-            <select class="form-control" [(ngModel)]="ordenar" style="width: 100%;">
+            <select class="form-control" name="ordenar" style="width: 100%;">
               <option value="fecha">Fecha</option>
               <option value="id">Id</option>
             </select>
           </div>
           <div class="col-sm-5">
-            <select class="form-control" [(ngModel)]="ordenarTipo" style="width: 100%;">
+            <select class="form-control" name="ordenarTipo" style="width: 100%;">
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>

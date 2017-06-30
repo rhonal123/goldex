@@ -86,6 +86,41 @@ class Movimiento extends Model
     return $query->get();
   }
 
+  public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
+    $query =  Movimiento::with('negocio','cuenta.banco');
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    if($negocio_id){
+      $query->where('negocio_id', '=',$negocio_id);
+    }
+    if($cuenta_id){
+      $query->where('cuenta_id', '=',$cuenta_id);
+    }
+    if($ordenar){
+      if($ordenar =="fecha"){
+        if($ordenarTipo =="desc"){
+          $query->orderBy('fecha','desc');
+        }
+        else{
+          $query->orderBy('fecha','asc');
+        }
+      }else{
+        if($ordenarTipo =="desc"){
+          $query->orderBy('id','desc');
+        }
+        else{
+          $query->orderBy('id','asc');
+        }
+      }
+    }
+    return $query->get();
+  }
+
+
   public static function movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
     $query =  Movimiento::with('negocio','cuenta.banco')->where('tipo','TRANSFERENCIA');
     if($desde){
@@ -117,7 +152,6 @@ class Movimiento extends Model
         }
       }
     }
-
     return $query->get();
   }
 

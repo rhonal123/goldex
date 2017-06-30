@@ -104,9 +104,14 @@ Route::group(array('before' => 'auth'), function() {
 */
 
 Route::auth();
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('root');
+
 Route::group(array('middleware' => 'auth'), function() {
+
+    Route::get('/password', 'HomeController@password_edit')->name('password');
+    Route::post('/password', 'HomeController@password')->name('password');
+
+
     Route::resource('bancos', 'BancosController');
     Route::resource('cuentas', 'CuentasController');
     Route::resource('negocios', 'NegociosController');

@@ -3,23 +3,15 @@
 @section('header')
 <div class="col-md-12">
   <div class="page-header">
-    <h3>users #{{$user->id}}</h3>
+    <h3>Cambiar Contraseña {{ Auth::user()->name }} </h3>
   </div>
-   <a class="btn btn-link" href="{{ route('users.index') }}">
-    <i class="glyphicon glyphicon-backward"></i> Regresar
-  </a>
 </div>
 @endsection
 
-
 @section('content')
- 
     <div class="col-md-12">
-      <form action="{{ route('users.password',['id'=>$user->id]) }}" method="POST" class="form-horizontal">
-        <input type="hidden" name="_method" value="PATCH">
+      <form action="{{ route('password') }}" method="POST" class="form-horizontal">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        
-
         <div class="form-group @if($errors->has('password')) has-error @endif">
           <label for="password-field" class="col-sm-2 control-label">Contraseña</label>
           <div class="col-sm-4">

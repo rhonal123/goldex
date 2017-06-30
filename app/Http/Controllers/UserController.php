@@ -199,6 +199,7 @@ class UserController extends Controller {
           ->withInput();
 		}
 		else {
+			$values['password'] = Hash::make($values['password']);
 			$user->update($values);
 			return redirect()->route('users.show',['id' => $user->id ])
 			         ->with('success', 'Contraseña correctamente creada.');

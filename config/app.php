@@ -158,6 +158,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        App\Providers\PdfServiceProvider::class,
         /*   fpdf */
         ///  Anouar\Fpdf\FpdfServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
