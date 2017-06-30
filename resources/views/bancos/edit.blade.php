@@ -4,18 +4,19 @@
  
 
 @section('header')
-<div class="page-header">
-  <h3>Bancos #{{$banco->id}}</h3>
-</div>
+<div class="col-md-12">
+  <div class="page-header">
+    <h3>Bancos #{{$banco->id}}</h3>
+  </div>
    <a class="btn btn-link" href="{{ route('bancos.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
   </a>
-
+</div>
 @endsection
 
 
 @section('content')
-  <div class="row">
+
     <div class="col-md-12">
       <form action="{{ route('bancos.update', $banco->id) }}" method="POST" class="form-horizontal">
         <input type="hidden" name="_method" value="PUT">
@@ -37,6 +38,6 @@
         </div>
       </form>
     </div>
-  </div>
+
 @endsection
  

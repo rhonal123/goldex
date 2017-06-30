@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('header')
+<div class="col-md-12">
 <div class="page-header">
   <h3>Cuenta #{{$cuenta->id}}</h3>
   <form action="{{ route('cuentas.destroy', $cuenta->id) }}" method="POST" style="display: inline;" 
@@ -19,11 +20,12 @@
       </div>
     </form>
   </div>
+</div>
 @endsection
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+
     <div class="col-md-12">
 
       <form action="#">
@@ -49,7 +51,7 @@
        
       </form>
     </div>
-  </div>
+
 
 @endsection
 

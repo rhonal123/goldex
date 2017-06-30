@@ -1,79 +1,46 @@
-<div  id="accordion_menu" class="panel-group" role="tablist" aria-multiselectable="true">
+ 
 
-  <div class="panel panel-default acordion-item">
-    <div class="panel-heading" role="tab" id="menu_usuarios">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_usuarios" aria-expanded="true" aria-controls="collapse_usuarios">
-          Usuarios
-        </a>
-      </h4>
-    </div>
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
 
-    <div id="collapse_usuarios" 
-      class="{{ Welcome::collapseActive(array('users*')) }}" 
-      role="tabpanel" 
-      aria-labelledby="menu_usuarios">
-      <div class="panel-body">
-        <ul class="list-group">
-           <li class="list-group-item {{ Welcome::linkActive('users*') }}">
-            <a href="{{ route('users.index') }}">Usuarios</a>
+      <li class="{{ Welcome::collapseActive(array('users*')) }}" >
+        <a href="#"><i class="fa  fa-folder "></i> Usuarios<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="{{ route('users.index') }}" class="{{ Welcome::linkActive('users*') }}">Usuarios</a>
           </li>
         </ul>
-      </div>
-    </div>
-  </div>
+        <!-- /.nav-second-level -->
+      </li>
+      <li>
 
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="menu_bancos">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_bancos" aria-expanded="false" aria-controls="collapse_bancos">
-          Bancos        
-        </a>
-      </h4>
-    </div>
-
-    <div id="collapse_bancos" 
-      class="{{ Welcome::collapseActive(array('bancos*','cuentas*')) }}" 
-      role="tabpanel" 
-      aria-labelledby="menu_bancos">
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item {{ Welcome::linkActive('bancos*') }}">
+      <li class="{{ Welcome::collapseActive(array('bancos*','cuentas*')) }}" >
+        <a href="#"><i class="fa  fa-folder "></i> Bancos <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li class="{{ Welcome::linkActive('bancos*') }}">
             <a href="{{ route('bancos.index') }}">Bancos</a>
           </li>
-          <li class="list-group-item {{ Welcome::linkActive('cuentas*') }}">
-            <a href="{{ route('cuentas.index') }}">Cuentas</a>
+          <li>
+            <a href="{{ route('cuentas.index') }}"  class="{{ Welcome::linkActive('cuentas*') }}">Cuentas</a>
           </li>
-        <!--  <li class="list-group-item"><a>Tipo Cambio</a></li> -->
         </ul>
-      </div>
-    </div>
-  </div>
+        <!-- /.nav-second-level -->
+      </li>
 
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Negocios
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree"
-      class="{{ Welcome::collapseActive(array('negocios*','movimientos*')) }}" 
-      role="tabpanel" 
-      aria-labelledby="headingThree">
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item {{ Welcome::linkActive('negocios*') }}">
-            <a href="{{ route('negocios.index') }}">Negocios o socios</a>
+      <li class="{{ Welcome::collapseActive(array('negocios*','movimientos*')) }}" >
+        <a href="#"><i class="fa  fa-folder "></i> Movimientos <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="{{ route('negocios.index') }}" class="{{ Welcome::linkActive('negocios*') }}">Negocios o socios</a>
           </li>
-          <li class="list-group-item {{ Welcome::linkActive('movimientos*') }}">
-            <a href="{{ route('movimientos.index') }}">Movimientos</a>
+          <li>
+            <a href="{{ route('movimientos.index') }}" class="{{ Welcome::linkActive('movimientos*') }}">Movimientos</a>
           </li>
-          <!-- <li class="list-group-item"><a>Abonos</a></li>
-          <li class="list-group-item"><a>Cierres</a></li>  -->
         </ul>
-      </div>
-    </div>
+        <!-- /.nav-second-level -->
+      </li>
+    </ul>    
   </div>
-</div> 
+  <!-- /.sidebar-collapse -->
+</div>

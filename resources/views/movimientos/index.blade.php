@@ -1,29 +1,30 @@
 @extends('layouts.app')
  
 @section('header')
+<div class="col-md-12">
   <div class="page-header clearfix">
     <h3>
       Movimientos
     </h3>
   </div>
-<div class="row">
-  <div class="col-md-6">
+
     <a class="btn btn-sm btn-success" href="{{ route('movimientos.create') }}">
       <i class="glyphicon glyphicon-plus"></i>
     </a>
     <a class="btn btn-sm btn-success" href="{{ route('movimientos.reporte') }}">
       <i class="glyphicon glyphicon-print"></i>
     </a>
-  </div>
-  <div class="col-md-6" align="right">
+
+
     @include('movimientos/search')
-  </div>
+
+
 </div>
 @endsection
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+
     <div class="col-md-12">
       @if($movimientos->count())
       <div class="table-responsive">
@@ -54,7 +55,7 @@
       @endif
 
     </div>
-  </div>
+
 
 @endsection
 

@@ -4,13 +4,14 @@
  
 
 @section('header')
+<div class="col-md-12">
 <div class="page-header">
   <h3>Cuentas #{{$cuenta->id}}</h3>
 </div>
    <a class="btn btn-link" href="{{ route('cuentas.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
   </a>
-
+</div>
 @endsection
 
 

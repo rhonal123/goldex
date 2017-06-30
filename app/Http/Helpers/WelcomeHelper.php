@@ -12,9 +12,9 @@ class WelcomeHelper {
     public static function collapseActive($links){
     	foreach ($links as $value) {
     		if(Request::is($value)){
-    			return "panel-collapse collapse in";
+    			return "active";
     		}
     	}
-    	return "panel-collapse collapse";
+    	return "";
     }
 }  

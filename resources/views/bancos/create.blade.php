@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('header')
+<div class="col-md-12">
   <div class="page-header">
     <h3>Bancos / Create </h3>
   </div>
   <a class="btn btn-link" href="{{ route('bancos.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
   </a>
+</div>
 @endsection
 
 @section('content')
-  <div class="row">
+
     <div class="col-md-12">
       <form action="{{ route('bancos.store') }}" method="POST"  class="form-horizontal">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -30,6 +32,6 @@
         </div>
       </form>
     </div>
-  </div>
+
 @endsection
  

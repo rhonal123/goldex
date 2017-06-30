@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('header')
+<div class="col-md-12">
 <div class="page-header">
   <h3>Cuenta #{{$negocio->id}}</h3>
   <form action="{{ route('negocios.destroy', $negocio->id) }}" method="POST" style="display: inline;" 
@@ -18,12 +19,13 @@
         <button type="submit" class="btn btn-default">Eliminar <i class="glyphicon glyphicon-trash"></i></button>
       </div>
     </form>
-  </div>
+</div>
+</div>
 @endsection
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+ 
     <div class="col-md-12">
 
       <form action="#">
@@ -79,7 +81,7 @@
 
       </form>
     </div>
-  </div>
+ 
 
 @endsection
 

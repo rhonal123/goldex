@@ -1,15 +1,17 @@
 @extends('layouts.app')
 @section('header')
+<div class="col-md-12">
   <div class="page-header clearfix">
     <h3>
       Movimientos / Reporte
     </h3>
   </div>
+</div>
 @endsection
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
+
     <div class="col-md-8">
       <form id="form-reporte" 
         action="{{ route('movimientos.reporte') }}" 
@@ -91,7 +93,7 @@
       </form> 
 
     </div>
-  </div>
+
 
 <script type="text/javascript">
   

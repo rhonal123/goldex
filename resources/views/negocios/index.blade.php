@@ -1,25 +1,22 @@
 @extends('layouts.app')
  
 @section('header')
+<div class="col-md-12">
   <div class="page-header clearfix">
     <h3>
       Negocio
     </h3>
   </div>
-  <div class="col-md-6">
-    <a class="btn btn-success" href="{{ route('negocios.create') }}">
-      <i class="glyphicon glyphicon-plus"></i>
-    </a>
-  </div>
-  <div class="col-md-6" align="right">
+  <a class="btn btn-success" href="{{ route('negocios.create') }}">
+    <i class="glyphicon glyphicon-plus"></i>
+  </a>
     @include('layouts/search')
-  </div>
+</div>
 @endsection
 
 
 @section('content')
   @include('layouts/flash')
-  <div class="row">
     <div class="col-md-12">
       @if($negocios->count())
       <div class="table-responsive">
@@ -46,10 +43,7 @@
         <h3 class="text-center alert alert-info">Empty!</h3>
       </div>
       @endif
-
     </div>
-  </div>
-
 @endsection
 
 

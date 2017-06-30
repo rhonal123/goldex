@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('header')
+<div class="col-md-12">
   <div class="page-header">
     <h3>Negocio / Create </h3>
   </div>
   <a class="btn btn-link" href="{{ route('negocios.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
   </a>
+</div>
 @endsection
 
 @section('content')
