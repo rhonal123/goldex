@@ -5,12 +5,14 @@ namespace App\Http\Pdfs;
 use Elibyy\TCPDF\Facades\TCPDF;
 
 use App\Movimiento;
+use App\Negocio;
 
 class MovimientoPdf extends \TCPDF {
 
     public $desde = null; 
     public $hasta = null; 
     public $rowPerPage = 23.0;
+    public $negocio;
 
   public function Header() {
         // Logo
@@ -21,10 +23,26 @@ class MovimientoPdf extends \TCPDF {
 				$this->SetXY(0,20);
         $this->Cell(0, 0, 'Inversiones Goldex ', 0,0 , 'C', 0, '', 0, false, 'C', 'C');
         $this->Ln();
-        $this->SetFont('helvetica', 'B', 10);
+        $this->SetFont('helvetica', 'B', 11);
         $this->Cell(0,0, 'Lista de Movimientos', 0, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln();
-        $this->Cell(0,0, 'Del '.$this->desde. ' hasta '. $this->hasta, 0, false, 'C', 0, '', 0, false, 'M', 'M');
+
+        if(!empty($this->negocio)) {
+	       	$this->Cell( 0, 0,
+	       			' Socio o Negocio : '. $this->negocio->nombre .' '. $this->negocio->rif,
+	       			0, false, 'C', 0, '', 0, false, 'M', 'M');
+      	}
+
+        if(!empty($this->desde)) {
+	        $this->Ln();
+					$this->SetXY(220,20);
+	       	$this->Cell(0,0,'DESDE :'. $this->desde , 0, false, 'C', 0, '', 0, false, 'M', 'M');
+      	}
+        if(!empty($this->hasta)){
+	        $this->Ln();	       	
+					$this->SetXY(220,25);
+	       	$this->Cell(0,0,'HASTA :'. $this->hasta , 0, false, 'C', 0, '', 0, false, 'M', 'M');
+      	}
     }
 
 	// Colored table
@@ -32,6 +50,7 @@ class MovimientoPdf extends \TCPDF {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
    	$movimientos = Movimiento::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+   	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
 		$this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -86,7 +105,7 @@ class MovimientoPdf extends \TCPDF {
     $totalEfectivo= number_format($this->totalEfectivo($movimientos), 2);
 		$totalTransferencia= number_format($this->totalTransferencia($movimientos), 2);
 		$totalComision = number_format($this->totalComision($movimientos), 2);
-    $this->SetFont('helvetica', 'B', 12);
+    $this->SetFont('helvetica', 'N', 11);
     $this->Ln();
 		$this->Cell(0, 0, 'TOTAL EFECTIVO : '.$totalEfectivo.' Bs', 0, 0, 'R');
     $this->Ln();
