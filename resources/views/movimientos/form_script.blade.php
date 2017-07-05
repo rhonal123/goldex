@@ -41,12 +41,22 @@ $(document).on('change','#tipo-field',function(){
   opcionesTipo($("#tipo-field option:selected").val());
 });
 
-$(document).on('keypress','#monto-field',function(){
+$(document).on('keydown','#monto-field',function(){
   total();
 });
+
+
+$(document).on('change','#monto-field',function(){
+  total();
+});
+
 
 $(document).on('change','#comision-field',function(){
   total();
 });
 
+
+$(document).on('keydown','#comision-field',function(){
+  total();
+});
 </script>
