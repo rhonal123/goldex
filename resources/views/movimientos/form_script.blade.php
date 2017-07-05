@@ -44,8 +44,9 @@ $(document).on('change','#tipo-field',function(){
 $(document).on('keydown','#monto-field',function(){
   total();
 });
-
-
+$(document).on('keyup','#monto-field',function(){
+  total();
+});
 $(document).on('change','#monto-field',function(){
   total();
 });
@@ -54,9 +55,11 @@ $(document).on('change','#monto-field',function(){
 $(document).on('change','#comision-field',function(){
   total();
 });
-
-
+$(document).on('keyup','#comision-field',function(){
+  total();
+});
 $(document).on('keydown','#comision-field',function(){
   total();
 });
+
 </script>
