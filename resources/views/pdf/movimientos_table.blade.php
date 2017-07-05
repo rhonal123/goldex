@@ -1,5 +1,5 @@
 <table class="tablecontenido" cellpadding="4"  >
-         <thead  border="1">
+  <thead  border="1">
           <tr valign="bottom"  align="center">
             <th style="width: 3%"   border="1"><strong>Id</strong></th>
             <th style="width: 32%"   border="1"><strong>Descripcion</strong></th>
@@ -23,12 +23,5 @@
             <td style="width: 15%;" border="1">{{number_format($movimiento->saldo,2)}}</td>
             </tr>
           @endforeach
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5"></td>
-            <td align="right" border="1"><strong>TOTAL :</strong></td>
-             
-          </tr>
-        </tfoot>
-      </table>
+  </tbody>
+</table>

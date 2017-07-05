@@ -6,7 +6,8 @@ use Elibyy\TCPDF\Facades\TCPDF;
 
 use App\Movimiento;
 use App\Negocio;
-
+use View;
+use Illuminate\Support\Facades\Log;
 class MovimientoPdf extends \TCPDF {
 
     public $desde = null; 
@@ -54,7 +55,8 @@ class MovimientoPdf extends \TCPDF {
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
 		$this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-		$this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		//$this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
 		$this->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 	
@@ -69,39 +71,45 @@ class MovimientoPdf extends \TCPDF {
 		///$this->Image(public_path('assets/images/goldex310x310.jpg'),25,10,35,35);
     $total = floatval(count($movimientos));
     $totalPage = ceil($total / $this->rowPerPage );
+	 	///$view = View::make('pdf.movimientos_table',compact('movimientos'))->render();
+	 	//$this->setFontSubsetting(false) ;
 
-    for($i = 0; $i < $totalPage; $i++) {
-		  $this->Ln();
-			$this->SetFont('times', null, 9);
-			$this->SetFillColor(243, 255, 166);
-	 		$this->Cell(10,7,"Id", 1, 0, 'C', 1);
-	 		$this->Cell(70,7,"Descripcion", 1, 0, 'C', 1);
-	 		$this->Cell(50,7,"Negocio", 1, 0, 'C', 1);
-	 		$this->Cell(40,7,"Cuenta", 1, 0, 'C', 1);
-	 		$this->Cell(40,7,"Referencia o Comision", 1, 0, 'C', 1);
-	 		$this->Cell(40,7,"Monto", 1, 0, 'C', 1);
-	    $this->Ln();
-
-	    for($j = $this->initPage($i); $j < $this->untilPage($i); $j++){
-	    	if($j < $total){
-		    	$row = $movimientos[$j];
-		      $this->Cell(10, 6,$row->id, 1, 0, 'C');
-		      $this->Cell(70, 6,$row->descripcion, 1, 0, 'C');
-		      $this->Cell(50, 6,$row->negocio->nombre, 1, 0, 'C');
-		      if($row->tipo == "TRANSFERENCIA"){
-		    	  $this->Cell(40, 6,$row->cuenta->numero, 1, 0, 'C');
-		    	  $this->Cell(40, 6,$row->referencia, 1, 0, 'C');
-		    	}
-		    	else{
-		    	  $this->Cell(40, 6,'EFECTIVO '.$row->comision.' %', 1, 0, 'C');
-		    	  $this->Cell(40, 6,number_format($row->monto * ($row->comision /100),2), 1, 0, 'C');
-		    	}
-		  	  $this->Cell(40, 6,number_format($row->saldo, 2) , 1, 0, 'C');
-		      $this->Ln();
-		    }
-	    }
-    } /// end  table 
-
+		//$this->writeHTML($view);
+    $header= true;
+		foreach ($movimientos as $key => $value) {
+			if($header){
+				$this->Ln();
+				$this->SetFont('times', null, 9);
+				$this->SetFillColor(243, 255, 166);
+		 		$this->Cell(10,7,"Id", 1, 0, 'C', 1);
+		 		$this->Cell(100,7,"Descripcion", 1, 0, 'C', 1);
+		 		$this->Cell(50,7,"Negocio", 1, 0, 'C', 1);
+		 		$this->Cell(40,7,"Cuenta", 1, 0, 'C', 1);
+		 		$this->Cell(30,7,"REF ó COMI", 1, 0, 'C', 1);
+		 		$this->Cell(30,7,"Monto", 1, 0, 'C', 1);
+		    $this->Ln();
+		    $header = false;
+		  }
+		  $height =ceil(strlen($value->descripcion) / 76.0) * 6;
+ 	    $this->Cell(10, $height, $value->id, 1, 0, 'C');
+ 	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
+	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
+      $this->Cell(50, $height,$value->negocio->nombre, 1, 0, 'C');
+		  if($value->tipo == "TRANSFERENCIA"){
+		    $this->Cell(40, $height,$value->cuenta->numero, 1, 0, 'C');
+		    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
+		  }
+		  else{
+		    $this->Cell(40, $height,'EFECTIVO '.$value->comision.' %', 1, 0, 'C');
+		    $this->Cell(30, $height,number_format($value->monto * ($value->comision /100),2), 1, 0, 'C');
+		  }
+		  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
+		  $this->ln();
+      Log::info("ID ".$value->id." X-->".$this->GetX()." Y-->".$this->GetY());
+      if($this->checkPageBreak($this->lasth)){
+      	$header = true;
+      }
+		}
     $totalEfectivo= number_format($this->totalEfectivo($movimientos), 2);
 		$totalTransferencia= number_format($this->totalTransferencia($movimientos), 2);
 		$totalComision = number_format($this->totalComision($movimientos), 2);
