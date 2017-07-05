@@ -134,6 +134,7 @@ class UserController extends Controller {
 		$this->authorize('B02');
 		$user = User::findOrFail($id);
 		try {
+			$user->permisos()->delete();
 			$user->delete();
 		}catch (QueryException $e){
 			return redirect()->route('users.show',['id' => $user->id ])->with('danger', 'Este Usuario esta siendo utilizado.');
