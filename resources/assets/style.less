@@ -1,21 +1,7 @@
 @import "bootstrap/bootstrap.less";
 
-
-@font-size-base: 12px;
-@table-cell-padding: 7px;
-@form-group-margin-bottom: 5px;
-@pager-border-radius: 5px;
-@grid-gutter-width:40px;
-@container-desktop: (1220px + @grid-gutter-width);
-@nav-link-padding: 10px 10px;
-@nav-pills-border-radius: 0px;
-@alert-padding: 5px;
-@alert-border-radius: 0px;
-@popover-max-width:350px;
-@navbar-border-radius: 0px; 
-
-@brand-primary: #ffff00; 
-
+@import "variables.less";
+@import "mixins.less";
 
 
 
@@ -55,7 +41,7 @@ h2,h1{
 
 blockquote {
     font-size: @font-size-base;
-    border-color: @brand-primary
+    border-color: #67200f; 
 }
 
 blockquote>p>strong {
@@ -243,8 +229,6 @@ list-group-item {
 }
 
 
-@import "variables.less";
-@import "mixins.less";
 
 // Global Styles
 
@@ -255,7 +239,17 @@ body {
 // Wrappers
 
 #wrapper {
+    background-color: #67200f;
     width: 100%;
+    .navbar-custom {
+        .navbar-header {
+            width: 20%;
+            .navbar-brand {
+                letter-spacing: 3px;
+                color: #feb510;
+            }
+        }
+    }
 }
 
 #page-wrapper {
@@ -280,11 +274,11 @@ body {
     font-family: 'Lobster', cursive;
     letter-spacing: 2px;
     color: #428bca;
-    &:hover,
-    &:focus {
-      color: #428bca;
+        &:hover,
+        &:focus {
+          color: #428bca;
+        }
     }
-}
 }
 
 
@@ -362,10 +356,11 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid darken(@gray-lightest, 6.5%);
+    border-bottom: 1px solid #feb510;
+    //border-bottom: 1px solid darken(@gray-lightest, 6.5%);
     a {
         &.active {
-            background-color: @gray-lighter;
+            background-color: #fff;
         }
     }
 }
@@ -400,7 +395,7 @@ body {
         z-index: 1;
         position: absolute;
         width: 250px;
-        margin-top: 51px;
+        margin-top: 68px;
     }
 
     .navbar-top-links .dropdown-messages,

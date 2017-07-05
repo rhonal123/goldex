@@ -54,7 +54,7 @@ class NegociosController extends Controller {
   	$values = $request->all(); 
 		$validator = Negocio::validador($values);
 		if ($validator->fails()) {
-			return redirect()->route('negocios.show',['id' => $negocio->id ])
+			return redirect()->route('negocios.create')
           ->withErrors($validator)
           ->withInput();
 		}
