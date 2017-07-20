@@ -89,6 +89,9 @@ class Movimiento extends Model
 
   public static function crearMovimiento($values,$clasificacion= 1){
   	$movimiento = new Movimiento($values);
+    if($clasificacion == 3){
+      $movimiento->tipo = 'TRANSFERENCIA';
+    }
     if($movimiento->tipo == "TRANSFERENCIA"){
       $movimiento->comision = 0;
     }
@@ -131,22 +134,31 @@ class Movimiento extends Model
   }
 
   public static function validador($values,$clasificacion=1,$movimiento = null){
-	  $validator = [
-			'monto' => 'required|numeric|min:0',
-			'fecha' => 'required',
-			'descripcion' => 'required',
-			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO',   
-			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA',
-			'referencia'  => 'required_if:tipo,TRANSFERENCIA',
-		];
 
-    if($clasificacion == 1){
+    $validator = [
+      'monto' => 'required|numeric|min:0',
+      'fecha' => 'required',
+      'descripcion' => 'required',
+    ];
+
+    if($clasificacion == 1 ){
+      $validator['tipo']= 'required|in:TRANSFERENCIA,EFECTIVO';
+      $validator['cuenta_id']= 'required_if:tipo,TRANSFERENCIA';
       $validator['comision'] = 'required|numeric|min:0';
-    }
-
-    if($clasificacion != 3){
+      $validator['referencia']= 'required_if:tipo,TRANSFERENCIA';
       $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
     }
+    elseif ($clasificacion == 2) {
+      $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
+      $validator['tipo']= 'required|in:TRANSFERENCIA,EFECTIVO';
+      $validator['cuenta_id']= 'required_if:tipo,TRANSFERENCIA';
+      $validator['referencia']= 'required_if:tipo,TRANSFERENCIA';
+    }
+    else{
+      $validator['cuenta_id']= 'required';
+      $validator['referencia']= 'required';
+    }
+ 
 
 		$message = [
 			'required' => 'Campo Requerido.',
@@ -155,6 +167,7 @@ class Movimiento extends Model
 	    'numeric' => 'el valor debe ser numerico.' ,
 			'min' => 'monto invalido.',
 		];
+
   	$v =  Validator::make($values,$validator,$message);
   	$v->after(function ($validator)  use ($movimiento)  {
     	if ($movimiento != null && $movimiento->estado != 'CREADO') {
@@ -164,4 +177,6 @@ class Movimiento extends Model
 		});
   	return $v;
   }
+
+
 }

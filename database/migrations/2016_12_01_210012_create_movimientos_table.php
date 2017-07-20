@@ -21,7 +21,7 @@ class CreateMovimientosTable extends Migration
 			$table->date('fecha')->nullable();
 			$table->string('descripcion',300);
 			$table->string('tipo',15); /// TRANSFERENCIA -> 1,EFECTIVO -> 2, CHEQUE -> 3 ...
-			$table->integer('negocio_id')->unsigned();
+			$table->integer('negocio_id')->unsigned()->nullable();
  			$table->string('referencia',120)->nullable(); 
 			$table->integer('cuenta_id')->unsigned()->nullable();
 			

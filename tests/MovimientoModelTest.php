@@ -41,13 +41,27 @@ class MovimientoModelTest extends TestCase
     $valid = Movimiento::validador($value,2);
     $this->validarformulario($valid);
 
+
+
+
+    $value = [
+			'monto' => 4500,
+			'fecha' =>  '26/08/2017',
+			'descripcion' => 'esta es una descripcion',
+			'cuenta_id'  =>1,
+			'referencia' => 'ABCR3987'
+    ];
+    $valid = Movimiento::validador($value,3);
+    $this->validarformulario($valid);
+
+
+
+
+
     $value = [
 			'monto' => 2400,
-			'comision' => 0,
 			'fecha' =>  '26/08/1990',
 			'descripcion' => 'esta es una descripcion',
-			'tipo' =>'TRANSFERENCIA',
-			'negocio_id' => null,
 			'cuenta_id'  =>1,
 			'referencia' => 'ABCR3987'
     ];

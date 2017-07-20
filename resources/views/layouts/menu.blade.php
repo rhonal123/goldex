@@ -17,7 +17,7 @@
       </li>
       <li>
 
-      <li class="{{ Welcome::collapseActive(array('bancos*','cuentas*')) }}" >
+      <li class="{{ Welcome::collapseActive(array('bancos*','cuentas*','abonos*')) }}" >
         <a href="#"><i class="fa  fa-folder "></i> Bancos <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
 
@@ -50,7 +50,7 @@
         <!-- /.nav-second-level -->
       </li>
 
-      <li class="{{ Welcome::collapseActive(array('negocios*','movimientos*')) }}" >
+      <li class="{{ Welcome::collapseActive(array('negocios*','movimientos*','gastos*')) }}" >
         <a href="#"><i class="fa  fa-folder "></i> Movimientos <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li>
@@ -70,8 +70,8 @@
 
           <li>
             <a 
-              href="{{ route('movimientos.index') }}" 
-              class="{{ Welcome::linkActive('movimientos*') }}">
+              href="{{ route('gastos.index') }}" 
+              class="{{ Welcome::linkActive('gastos*') }}">
               Gastos
             </a>
           </li>

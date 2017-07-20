@@ -127,7 +127,7 @@ Route::group(array('middleware' => 'auth'), function() {
 
     Route::resource("movimientos","MovimientoController");
     Route::resource("abonos","AbonosController");
-    //Route::resource("gastos","GastosController");
+    Route::resource("gastos","GastosController");
 
 
     Route::patch('users/{id}/password','UserController@password')->middleware('auth');
