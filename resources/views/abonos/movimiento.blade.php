@@ -1,11 +1,11 @@
 <tr>
-  <td><span>{{$movimiento->id}}</span></td>
-  <td><span>{{$movimiento->negocio->nombre}}</span></td>
-  <td><span>{{$movimiento->descripcion}}</span></td>
-  <td><span>{{$movimiento->fecha}}</span></td>
-  <td><span>{{$movimiento->tipo}}</span></td>
-  <td><span>{{number_format( $movimiento->saldo, 2)}}</span></td>
-  <td><span>{{$movimiento->estado}}</span></td>
+  <td><span>{{$abono->id}}</span></td>
+  <td><span>{{$abono->negocio->nombre}}</span></td>
+  <td><span>{{$abono->descripcion}}</span></td>
+  <td><span>{{$abono->fecha}}</span></td>
+  <td><span>{{$abono->tipo}}</span></td>
+  <td><span>{{number_format( $abono->saldo, 2)}}</span></td>
+  <td><span>{{$abono->estado}}</span></td>
   <td align="right">
     <span class="dropdown" >
       <button 
@@ -16,18 +16,18 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="split-button">
         <li  role="menuitem">
-          <a href="{{ route('movimientos.show', $movimiento->id) }}""> 
+          <a href="{{ route('abonos.show', $abono->id) }}""> 
             <i class="glyphicon glyphicon-eye-open"></i> 
             Mostrar
           </a>
         </li>
         <li role="menuitem">
-          <a href="{{ route('movimientos.edit', $movimiento->id) }}">
+          <a href="{{ route('abonos.edit', $abono->id) }}">
              <i class="glyphicon glyphicon-edit"></i>  Editar
           </a>
         </li>
         <li role="menuitem" (click)="onEliminar(abono)">
-          <form action="{{ route('movimientos.destroy', $movimiento->id) }}" method="POST" style="display: inline;"    
+          <form action="{{ route('abonos.destroy', $abono->id) }}" method="POST" style="display: inline;"    
             onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

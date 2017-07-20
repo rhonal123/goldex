@@ -3,7 +3,7 @@
 <div class="col-md-12">
   <div class="page-header clearfix">
     <h3>
-      Transferencia / Reporte
+      ABONOS / Reporte
     </h3>
   </div>
 </div>

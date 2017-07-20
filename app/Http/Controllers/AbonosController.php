@@ -1,67 +1,157 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-use App\Abono;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Elibyy\TCPDF\Facades\TCPDF;
 
-class AbonosController extends Controller
-{
+use App\Movimiento;
+use App\Cuenta;
+use App\Negocio;
+use App\User;
+ 
+use DB;
+use App;
+use View;
 
-	public function show($id){
-		$this->authorize('F01');
-		return Abono::with('tipo','negocio','cuenta.banco')->findOrFail($id);
+use App\Http\Pdfs\MovimientoPdf;
+
+/*
+  ['codigo' => 'F01' , 'accion' => 'AbonoController@show'],
+  ['codigo' => 'F02' , 'accion' => 'AbonoController@delete'],
+  ['codigo' => 'F03' , 'accion' => 'AbonoController@update'],
+  ['codigo' => 'F04' , 'accion' => 'AbonoController@create'],
+  ['codigo' => 'F05' , 'accion' => 'AbonoController@index'],
+*/
+
+class AbonosController extends Controller {
+
+	public static $TRANSFERENCIA_ENTRADA = 2;
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
+		$this->authorize('F05');
+		$descripcion = $request->input('descripcion');
+		$abonos = Movimiento::buscar($descripcion,self::$TRANSFERENCIA_ENTRADA);
+		return view('abonos.index', compact('abonos'));
 	}
 
-	public function delete($id){
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		$this->authorize('F04');
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
+		return view('abonos.create',compact('negocios','cuentas','tipos'));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function store(Request $request)
+	{ 
+		$this->authorize('F04');
+  	$values = $request->all(); 
+		$validator = Movimiento::validador($values,self::$TRANSFERENCIA_ENTRADA);
+		if ($validator->fails()) {
+		 Log::info($values);
+			return redirect('abonos/create')
+          ->withErrors($validator)
+          ->withInput();
+    }
+		else {
+			$abono = Movimiento::crearMovimiento($values,self::$TRANSFERENCIA_ENTRADA);
+			return redirect()->route('abonos.show',['id' => $abono->id ])->with('success', 'Abono correctamente creado.');			
+		}
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$this->authorize('F01');
+		$abono = Movimiento::findOrFail($id);
+		return view('abonos.show', compact('abono'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$this->authorize('F03');
+		$abono = Movimiento::findOrFail($id);
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
+		return view('abonos.edit', compact('abono','negocios','cuentas','tipos'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function update(Request $request, $id)
+	{
+		$this->authorize('F03');
+		$abono = Movimiento::findOrFail($id); 
+  	$values = $request->all(); 
+		$validator = Movimiento::validador($values,self::$TRANSFERENCIA_ENTRADA,$abono);
+		if ($validator->fails()) {
+ 			return redirect()->route('abonos.edit',['id' => $abono->id ])
+          ->withErrors($validator)
+          ->withInput();
+		}
+		else {
+			$abono->actualizar($values);
+			return redirect()->route('abonos.show',['id' => $abono->id ])->with('success', 'Abono correctamente actualizado.');
+		}
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
 		$this->authorize('F02');
-		$abono = Abono::findOrFail($id);
+		$abono = Movimiento::findOrFail($id);
 		try {
 			$abono->delete();
-		} 
-		catch (QueryException $e) {
-			return response()->json(["cuentas"=> "Este Abono esta siendo utilizado."],423);
+		}catch (QueryException $e){
+			return redirect()->route('abonos.show',['id' => $abono->id ])->with('danger', 'Este abono esta siendo utilizado.');
 		}
-		return $abono;
-	}
+		return redirect()->route('abonos.index')->with('success', 'Abono Elminado.');
 
-	public function update(Request $request,$id){
-		$this->authorize('F03');
-		$abono = Abono::findOrFail($id); 
-  	$values = $request->all()['abono']; 
-		$validator = Abono::validador($values,$abono);
-		if ($validator->fails()) {
-			return response()->json($validator->errors(),500);
-		}
-		else {
-			$abono->actualizarAbono($values);
-			return Abono::with('tipo','negocio','cuenta.banco')->findOrFail($abono->id);
-		}
-	}
-
-	public function create(Request $request){
-		$this->authorize('F04');
-  	$values = $request->all()['abono']; 
-		$validator = Abono::validador($values);
-		if ($validator->fails()) {
-			return response()->json($validator->errors(),500);
-		}
-		else {
-			return Abono::crearAbono($values);
-		}
-	}
-
-	public function index(Request $request){
-		$this->authorize('F05');
-		$desde = $request->input('desde');
-		$hasta = $request->input('hasta');
-		$tipo = $request->input('tipo_id');
-		$negocio_id = $request->input('negocio_id');
-		$abonos = Abono::buscar($desde,$hasta,$tipo,$negocio_id);
-		return $abonos;
 	}
 
 }

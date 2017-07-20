@@ -4,9 +4,9 @@
 <div class="col-md-12">
  
   <div class="page-header">
-    <h3>Transferencia / Create </h3>
+    <h3>ABONO / Create </h3>
   </div>
-  <a class="btn btn-link" href="{{ route('movimientos.index') }}">
+  <a class="btn btn-link" href="{{ route('abonos.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar
   </a>
  
@@ -16,7 +16,7 @@
 @section('content')
  
     <div class="col-md-12">
-      <form id="form-movimiento" action="{{ route('movimientos.store') }}" method="POST"  class="form-horizontal">
+      <form id="form-movimiento" action="{{ route('abonos.store') }}" method="POST"  class="form-horizontal">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group @if($errors->has('tipo')) has-error @endif">
@@ -41,21 +41,7 @@
             @endif
          </div>
         </div> 
-
-        <div id="form-comision" class="form-group @if($errors->has('comision')) has-error @endif">
-          <label for="comision-field" class="col-sm-2 control-label">Comision %</label>
-          <div class="col-sm-2">
-            <input type="number" id="comision-field" name="comision" class="form-control" 
-               value="{{ is_null(old("comision")) ? 0: old("comision") }}"
-              max="100"
-              min="0"
-               />
-            @if($errors->has("comision"))
-              <span class="help-block">{{ $errors->first("comision") }}</span>
-            @endif
-         </div>
-         <label id="comision" class="col-sm-2 control-label" style="text-align: left;" > Comision: 0.00 BS </label>
-        </div>
+ 
 
         <div class="form-group @if($errors->has('monto')) has-error @endif">
           <label for="monto-field" class="col-sm-2 control-label">Monto</label>

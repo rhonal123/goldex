@@ -126,7 +126,7 @@ Route::group(array('middleware' => 'auth'), function() {
             'uses' => 'MovimientoController@reporte']);
 
     Route::resource("movimientos","MovimientoController");
-    //Route::resource("abonos","AbonoController");
+    Route::resource("abonos","AbonosController");
     //Route::resource("gastos","GastosController");
 
 

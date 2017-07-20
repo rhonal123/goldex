@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Log;
-use App\Tipo;
+ 
 
 use App\Movimiento;
 use App\Negocio;
 use App\Cuenta;
 use App\Banco;
-use App\Abono;
+ 
 
 class ServiciosController extends Controller
 {
@@ -50,19 +50,6 @@ class ServiciosController extends Controller
 		$nombre = $request->input('search');
 		$bancos = Banco::buscar($nombre);
 		return $bancos;
-	}
-
- 	public function abonospendientes(Request $request, $id) {
-		return Abono::abonosDisponible($id);//with('cuenta.banco','tipo')->where("negocio_id",$id)->get();
-     /// Negocio::movimientos($id,"CREADO");
-	}
-
-	public function movimientospendites(Request $request, $id) {
-		return Movimiento::movimientosDisponible($id); // Negocio::abonos($id,"CREADO");
-	}
-
-
-
+	} 
 
 }
-

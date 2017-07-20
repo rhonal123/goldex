@@ -3,7 +3,7 @@
 @section('header')
 <div class="col-md-12">
   <div class="page-header">
-    <h3>Movimiento #{{$movimiento->id}}</h3>
+    <h3>Transferencia #{{$movimiento->id}}</h3>
   </div>
   <a class="btn btn-link" href="{{ route('movimientos.index') }}">
     <i class="glyphicon glyphicon-backward"></i> Regresar

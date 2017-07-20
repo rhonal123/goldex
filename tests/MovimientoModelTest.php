@@ -33,12 +33,12 @@ class MovimientoModelTest extends TestCase
 			'comision' => 0,
 			'fecha' =>  '26/08/1990',
 			'descripcion' => 'esta es una descripcion',
-			'tipo' =>'ABONO',
+			'tipo' =>'TRANSFERENCIA',
 			'negocio_id' =>1,
 			'cuenta_id'  =>1,
 			'referencia' => 'ABCR3987'
     ];
-    $valid = Movimiento::validador($value);
+    $valid = Movimiento::validador($value,2);
     $this->validarformulario($valid);
 
     $value = [
@@ -46,12 +46,12 @@ class MovimientoModelTest extends TestCase
 			'comision' => 0,
 			'fecha' =>  '26/08/1990',
 			'descripcion' => 'esta es una descripcion',
-			'tipo' =>'GASTO',
+			'tipo' =>'TRANSFERENCIA',
 			'negocio_id' => null,
 			'cuenta_id'  =>1,
 			'referencia' => 'ABCR3987'
     ];
-    $valid = Movimiento::validador($value);
+    $valid = Movimiento::validador($value,3);
     $this->validarformulario($valid);
 
 
@@ -80,7 +80,7 @@ class MovimientoModelTest extends TestCase
 			'cuenta_id'  =>null,
 			'referencia' => null
     ];
-    $valid = Movimiento::validador($value,$movimiento);
+    $valid = Movimiento::validador($value,1,$movimiento);
     $this->validarformulario($valid);
 
     $value = [

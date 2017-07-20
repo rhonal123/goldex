@@ -7,22 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 use Validator;
 
 /*
-
 	Estados -> CREADO, ASOCIADO, ANULADO
   Tipo -> 
     TRANSFERENCIA 
     EFECTIVO 
-    GASTO
-    ABONO
+  Clasificacion ->
+    TRASNFERENCIA SALIDA  -> 1 
+    TRASNFERENCIA ENTRADA -> 2 
+    GASTO PERSONAL        -> 3  
 */
 class Movimiento extends Model
 {
 
-	protected $fillable = [ 'monto','comision','fecha','descripcion','tipo','negocio_id','cuenta_id','referencia'];
+	protected $fillable = [ 'monto','comision','fecha','descripcion','tipo','negocio_id','cuenta_id','referencia','clasificacion'];
   protected $casts = [
     'id' 							=> 'integer',
     'negocio_id' 			=> 'integer',
     'cuenta_id' 			=> 'integer',
+    'clasificacion'   => 'integer',
     'fecha' 					=> 'string',
     'comision' 				=> 'double',
     'monto' 					=> 'double',
@@ -33,31 +35,23 @@ class Movimiento extends Model
     'tipo' 						=> 'string'
   ];
 
- 	public static function buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$cuenta_id ) {
+  public static $CLASIFICACION_TYPE = array(
+      'TRANSFERENCIA_SALIDA' => 1,
+      'TRANSFERENCIA_ENTRADA' => 2,
+      'GASTO_PERSONAL' => 3);
+
+ 	public static function buscar($descripcion,$clasificacion=1) {
 		$query =  Movimiento::with('negocio','cuenta.banco')->orderBy('id','desc');
- 		if($desde){
-	    $query->where('fecha', '>=',$desde);
-		}
-    if($referencia) {
-      $query->where('referencia', 'ilike',"%".$referencia."%");
-    }
     if($descripcion) {
-      $query->where('descripcion', 'ilike',"%".$descripcion."%");
+      $query->where('descripcion', 'like',"%".$descripcion."%");
     }
-		if($hasta){
-	    $query->where('fecha', '<=',$hasta);
-		}
-		if($tipo){
-	    $query->where('tipo', '=' ,$tipo);
-		}
-    if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
+    if($clasificacion) {
+      $query->where('clasificacion',$clasificacion);
     }
-    if($cuenta_id){
-      $query->where('cuenta_id', '=',$cuenta_id);
-    }
+
     return $query->paginate(15);
   }
+
 
   public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
     $query =  Movimiento::with('negocio','cuenta.banco');
@@ -93,11 +87,12 @@ class Movimiento extends Model
     return $query->get();
   }
 
-  public static function crearMovimiento($values){
+  public static function crearMovimiento($values,$clasificacion= 1){
   	$movimiento = new Movimiento($values);
     if($movimiento->tipo == "TRANSFERENCIA"){
       $movimiento->comision = 0;
     }
+    $movimiento->clasificacion = $clasificacion;
   	$movimiento->estado = "CREADO";
     $movimiento->saldo = (1 + ($movimiento->comision/100)) * $movimiento->monto;
   	$movimiento->save();
@@ -126,6 +121,7 @@ class Movimiento extends Model
   		throw new Exception("No Puedes anular este Movimiento", 1);
   	}
   }
+
 	public function negocio() {
     return $this->belongsTo('App\Negocio');
   }
@@ -134,30 +130,23 @@ class Movimiento extends Model
     return $this->belongsTo('App\Cuenta');
   }
 
-  public static function movimientoDisponible($id){
-    return (Movimiento::where('id', '=',$id)->whereNull('cierre_id')->where('estado','CREADO')->exists());
-  }
-
-
-  public static function movimientosDisponible($negocio_id){
-    return  Movimiento::with('cuenta.banco')->
-            whereNull('cierre_id')->
-            where('estado','CREADO')->
-            where("negocio_id",$negocio_id)->
-            get();
-  }
-
-  public static function validador($values,$movimiento = null){
+  public static function validador($values,$clasificacion=1,$movimiento = null){
 	  $validator = [
 			'monto' => 'required|numeric|min:0',
-			'comision' => 'required|numeric|min:0',
 			'fecha' => 'required',
 			'descripcion' => 'required',
-			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO,GASTO,ABONO',   
-			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA,GASTO,ABONO',
-      'negocio_id' => 'required_if:tipo,TRANSFERENCIA,ABONO,EFECTIVO',
-			'referencia'  => 'required_if:tipo,TRANSFERENCIA,GASTO,ABONO',
+			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO',   
+			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA',
+			'referencia'  => 'required_if:tipo,TRANSFERENCIA',
 		];
+
+    if($clasificacion == 1){
+      $validator['comision'] = 'required|numeric|min:0';
+    }
+
+    if($clasificacion != 3){
+      $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
+    }
 
 		$message = [
 			'required' => 'Campo Requerido.',

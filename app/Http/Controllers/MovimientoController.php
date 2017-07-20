@@ -41,16 +41,8 @@ class MovimientoController extends Controller {
 	public function index(Request $request)
 	{
 		$this->authorize('I05');
-		$desde = $request->input('desde');
-		$hasta = $request->input('hasta');
-
-		$referencia = $request->input('referencia');
 		$descripcion = $request->input('descripcion');
-
-		$tipo = $request->input('tipo');
-		$negocio_id = $request->input('negocio_id');
-		$movimiento_id = $request->input('movimiento_id');
-		$movimientos = Movimiento::buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$movimiento_id);
+		$movimientos = Movimiento::buscar($descripcion);
 		return view('movimientos.index', compact('movimientos'));
 	}
 
@@ -134,7 +126,7 @@ class MovimientoController extends Controller {
 		$this->authorize('I03');
 		$movimiento = Movimiento::findOrFail($id); 
   	$values = $request->all(); 
-		$validator = Movimiento::validador($values,$movimiento);
+		$validator = Movimiento::validador($values,1,$movimiento);
 		if ($validator->fails()) {
  			return redirect()->route('movimientos.edit',['id' => $movimiento->id ])
           ->withErrors($validator)

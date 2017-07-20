@@ -57,7 +57,4 @@ class Negocio extends Model
     return Movimiento::with('cuenta.banco')->where("negocio_id",$id)->get();
   }
 
-  public static function abonos($id,$estado="CREADO"){
-    return Abono::with('cuenta.banco')->where("negocio_id",$id)->get();
-  }
  }

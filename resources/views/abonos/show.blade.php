@@ -2,18 +2,18 @@
 @section('header')
 <div class="col-md-12">
 <div class="page-header">
-  <h3>Transferencia #{{$movimiento->id}}</h3>
-  <form action="{{ route('movimientos.destroy', $movimiento->id) }}" method="POST" style="display: inline;" 
+  <h3>Abono #{{$abono->id}}</h3>
+  <form action="{{ route('abonos.destroy', $abono->id) }}" method="POST" style="display: inline;" 
     onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="btn-group" role="group" aria-label="...">
         <a class="btn btn-default" 
-          href="{{ route('movimientos.index') }}">
+          href="{{ route('abonos.index') }}">
           <i class="glyphicon glyphicon-backward"></i>
           Regresar</a>
         <a class="btn btn-default" role="group" 
-          href="{{ route('movimientos.edit', $movimiento->id) }}">
+          href="{{ route('abonos.edit', $abono->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 
           Editar</a>
         <button type="submit" class="btn btn-default">Eliminar <i class="glyphicon glyphicon-trash"></i></button>
@@ -33,74 +33,55 @@
        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">TIPO</label> 
-            <p class="form-control-static">{{$movimiento->tipo}}</p>
+            <p class="form-control-static">{{$abono->tipo}}</p>
           </blockquote>
         </div>
 
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">FECHA</label> 
-            <p class="form-control-static">{{$movimiento->fecha}}</p>
+            <p class="form-control-static">{{$abono->fecha}}</p>
           </blockquote>
         </div>
 
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">DESCRIPCION</label> 
-            <p class="form-control-static">{{$movimiento->descripcion}}</p>
+            <p class="form-control-static">{{$abono->descripcion}}</p>
           </blockquote>
         </div>
 
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">NEGOCIO</label> 
-            <p class="form-control-static">{{$movimiento->negocio->nombre}}</p>
+            <p class="form-control-static">{{$abono->negocio->nombre}}</p>
           </blockquote>
         </div>
  
 
-        @if ($movimiento->tipo == "TRANSFERENCIA")
+        @if ($abono->tipo == "TRANSFERENCIA")
  
        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">CUENTA</label> 
-            <p class="form-control-static">{{$movimiento->cuenta->numero}}</p>
+            <p class="form-control-static">{{$abono->cuenta->numero}}</p>
           </blockquote>
         </div>
 
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">REFERENCIA</label> 
-            <p class="form-control-static">{{$movimiento->referencia}}</p>
-          </blockquote>
-        </div>
-
-        @else 
-
-        <div class="form-group col-md-4">
-          <blockquote>
-            <label for="nome">COMISION</label> 
-            <p class="form-control-static">{{$movimiento->comision}} %</p>
-          </blockquote>
-        </div>
-
-        <div class="form-group col-md-4">
-          <blockquote>
-            <label for="nome">MONTO</label> 
-            <p class="form-control-static">{{ number_format( $movimiento->monto, 2) }} Bs.</p>
+            <p class="form-control-static">{{$abono->referencia}}</p>
           </blockquote>
         </div>
         @endif      
 
-
        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">SALDO</label> 
-            <p class="form-control-static">{{ number_format( $movimiento->saldo, 2) }} Bs.</p>
+            <p class="form-control-static">{{ number_format( $abono->saldo, 2) }} Bs.</p>
           </blockquote>
         </div>
- 
- 
 
       </form>
     </div>
