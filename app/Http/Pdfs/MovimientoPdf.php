@@ -83,8 +83,9 @@ class MovimientoPdf extends \TCPDF {
 				$this->SetFillColor(243, 255, 166);
 		 		$this->Cell(10,7,"Id", 1, 0, 'C', 1);
 		 		$this->Cell(100,7,"Descripcion", 1, 0, 'C', 1);
-		 		$this->Cell(50,7,"Negocio", 1, 0, 'C', 1);
-		 		$this->Cell(40,7,"Cuenta", 1, 0, 'C', 1);
+		 		$this->Cell(40,7,"Negocio", 1, 0, 'C', 1);
+		 		$this->Cell(20,7,"Fecha", 1, 0, 'C', 1);
+		 		$this->Cell(30,7,"Cuenta", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"REF ó COMI", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Monto", 1, 0, 'C', 1);
 		    $this->Ln();
@@ -94,13 +95,14 @@ class MovimientoPdf extends \TCPDF {
  	    $this->Cell(10, $height, $value->id, 1, 0, 'C');
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
-      $this->Cell(50, $height,$value->negocio->nombre, 1, 0, 'C');
+      $this->Cell(40, $height,$value->negocio->nombre, 1, 0, 'C');
+      $this->Cell(20, $height,$value->fecha, 1, 0, 'C');
 		  if($value->tipo == "TRANSFERENCIA"){
-		    $this->Cell(40, $height,$value->cuenta->numero, 1, 0, 'C');
+		    $this->Cell(30, $height,$value->cuenta->numero, 1, 0, 'C');
 		    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
 		  }
 		  else{
-		    $this->Cell(40, $height,'EFECTIVO '.$value->comision.' %', 1, 0, 'C');
+		    $this->Cell(30, $height,'EFECTIVO '.$value->comision.' %', 1, 0, 'C');
 		    $this->Cell(30, $height,number_format($value->monto * ($value->comision /100),2), 1, 0, 'C');
 		  }
 		  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');

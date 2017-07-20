@@ -9,7 +9,11 @@ use Validator;
 /*
 
 	Estados -> CREADO, ASOCIADO, ANULADO
-  TRANSFERENCIA -> 1,EFECTIVO 
+  Tipo -> 
+    TRANSFERENCIA 
+    EFECTIVO 
+    GASTO
+    ABONO
 */
 class Movimiento extends Model
 {
@@ -55,37 +59,6 @@ class Movimiento extends Model
     return $query->paginate(15);
   }
 
-  public static function movimientosEfectivo($desde,$hasta,$negocio_id,$ordenar,$ordenarTipo){
-    $query =  Movimiento::with('negocio')->where('tipo','EFECTIVO');
-    if($desde){
-      $query->where('fecha', '>=',$desde);
-    }
-    if($hasta){
-      $query->where('fecha', '<=',$hasta);
-    }
-    if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
-    }
-    if($ordenar){
-      if($ordenar =="fecha"){
-        if($ordenarTipo =="desc"){
-          $query->orderBy('fecha','desc');
-        }
-        else{
-          $query->orderBy('fecha','asc');
-        }
-      }else{
-        if($ordenarTipo =="desc"){
-          $query->orderBy('id','desc');
-        }
-        else{
-          $query->orderBy('id','asc');
-        }
-      }
-    }
-    return $query->get();
-  }
-
   public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
     $query =  Movimiento::with('negocio','cuenta.banco');
     if($desde){
@@ -119,42 +92,6 @@ class Movimiento extends Model
     }
     return $query->get();
   }
-
-
-  public static function movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
-    $query =  Movimiento::with('negocio','cuenta.banco')->where('tipo','TRANSFERENCIA');
-    if($desde){
-      $query->where('fecha', '>=',$desde);
-    }
-    if($hasta){
-      $query->where('fecha', '<=',$hasta);
-    }
-    if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
-    }
-    if($cuenta_id){
-      $query->where('cuenta_id', '=',$cuenta_id);
-    }
-    if($ordenar){
-      if($ordenar =="fecha"){
-        if($ordenarTipo =="desc"){
-          $query->orderBy('fecha','desc');
-        }
-        else{
-          $query->orderBy('fecha','asc');
-        }
-      }else{
-        if($ordenarTipo =="desc"){
-          $query->orderBy('id','desc');
-        }
-        else{
-          $query->orderBy('id','asc');
-        }
-      }
-    }
-    return $query->get();
-  }
-
 
   public static function crearMovimiento($values){
   	$movimiento = new Movimiento($values);
@@ -197,43 +134,6 @@ class Movimiento extends Model
     return $this->belongsTo('App\Cuenta');
   }
 
-  public static function validadorPrecioPuro($values,$movimiento){
-
-    $validator = [
-      'monto' => 'required|numeric|min:0',
-      'precio_puro' => 'required|numeric|min:0',
-    ];
-
-    $message = [
-      'required' => 'Campo Requerido.',
-      'numeric' => 'el valor debe ser numerico.' ,
-      'min' => 'monto invalido.',
-    ];
-    $v =  Validator::make($values,$validator,$message);
-    $v->after(function ($validator)  use ($movimiento)  {
-      if ($movimiento->estado != 'CREADO') {
-        $validator->errors()->add('estado',
-          'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
-      }
-    });
-    return $v;
-  }
-
-  public function actualizarPrcioPuro($values){
-    if($this->attributes['estado'] == 'CREADO') {
-      $precio_puro = $values['precio_puro'];
-      $monto = $values['monto'];
-      $this->attributes['monto'] = $monto;
-      $this->attributes['saldo'] = (1 + ($this->attributes['comision']/100)) * $monto;
-      $this->attributes['precio_puro'] = $precio_puro;
-      $this->save();
-    }
-    else
-    {
-      throw new Exception("No Puedes actualizar el Precio este Movimiento", 1);
-    }
-  }
-
   public static function movimientoDisponible($id){
     return (Movimiento::where('id', '=',$id)->whereNull('cierre_id')->where('estado','CREADO')->exists());
   }
@@ -249,14 +149,14 @@ class Movimiento extends Model
 
   public static function validador($values,$movimiento = null){
 	  $validator = [
-			'negocio_id' => 'required',
 			'monto' => 'required|numeric|min:0',
 			'comision' => 'required|numeric|min:0',
 			'fecha' => 'required',
 			'descripcion' => 'required',
-			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO',   
-			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA',
-			'referencia'  => 'required_if:tipo,TRANSFERENCIA',
+			'tipo' =>  'required|in:TRANSFERENCIA,EFECTIVO,GASTO,ABONO',   
+			'cuenta_id' => 'required_if:tipo,TRANSFERENCIA,GASTO,ABONO',
+      'negocio_id' => 'required_if:tipo,TRANSFERENCIA,ABONO,EFECTIVO',
+			'referencia'  => 'required_if:tipo,TRANSFERENCIA,GASTO,ABONO',
 		];
 
 		$message = [

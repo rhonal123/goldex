@@ -67,7 +67,7 @@ class NegociosController extends Controller {
 				'encargado' => $values['encargado'],
 				'telefono' => $values['telefono'],
 			]);
-			return redirect()->route('negocios.show',['id' => $negocio->id ])->with('success', 'Movimiento correctamente creado.');
+			return redirect()->route('negocios.show',['id' => $negocio->id ])->with('success', 'Negocio correctamente creado.');
 		}
 	}
 
@@ -123,7 +123,7 @@ class NegociosController extends Controller {
 			$negocio->encargado = $values['encargado'];
 			$negocio->telefono = $values['telefono'];
 			$negocio->save();
-			return redirect()->route('negocios.show',['id' => $negocio->id ])->with('success', 'Movimiento correctamente creado.');
+			return redirect()->route('negocios.show',['id' => $negocio->id ])->with('success', 'Negocio correctamente creado.');
 		}
 	}
 

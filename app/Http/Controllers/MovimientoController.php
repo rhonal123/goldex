@@ -88,7 +88,7 @@ class MovimientoController extends Controller {
     }
 		else {
 			$movimiento = Movimiento::crearMovimiento($values);
-			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('success', 'Mocimiento correctamente creado.');			
+			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('success', 'Movimiento correctamente creado.');			
 		}
 
 	}
@@ -142,7 +142,7 @@ class MovimientoController extends Controller {
 		}
 		else {
 			$movimiento->actualizar($values);
-			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('success', 'Mocimiento correctamente actualizado.');
+			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('success', 'Movimiento correctamente actualizado.');
 		}
 	}
 
@@ -159,7 +159,7 @@ class MovimientoController extends Controller {
 		try {
 			$movimiento->delete();
 		}catch (QueryException $e){
-			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('danger', 'Este movimiento esta siendo utilizada.');
+			return redirect()->route('movimientos.show',['id' => $movimiento->id ])->with('danger', 'Este movimiento esta siendo utilizado.');
 		}
 		return redirect()->route('movimientos.index')->with('success', 'Movimiento Elminado.');
 

@@ -27,6 +27,34 @@ class MovimientoModelTest extends TestCase
     $valid = Movimiento::validador($value);
     $this->validarformulario($valid);
 
+
+    $value = [
+			'monto' => 2400,
+			'comision' => 0,
+			'fecha' =>  '26/08/1990',
+			'descripcion' => 'esta es una descripcion',
+			'tipo' =>'ABONO',
+			'negocio_id' =>1,
+			'cuenta_id'  =>1,
+			'referencia' => 'ABCR3987'
+    ];
+    $valid = Movimiento::validador($value);
+    $this->validarformulario($valid);
+
+    $value = [
+			'monto' => 2400,
+			'comision' => 0,
+			'fecha' =>  '26/08/1990',
+			'descripcion' => 'esta es una descripcion',
+			'tipo' =>'GASTO',
+			'negocio_id' => null,
+			'cuenta_id'  =>1,
+			'referencia' => 'ABCR3987'
+    ];
+    $valid = Movimiento::validador($value);
+    $this->validarformulario($valid);
+
+
     $value = [
 			'monto' => 1400,
 			'comision' => 0,
@@ -77,49 +105,4 @@ class MovimientoModelTest extends TestCase
   }
 
 
-    public function testProbarMovimiento(){
-    	$desde = null;
-    	$hasta = null;
-    	$tipo = null;
-    	$negocio_id = null;
-    	$referencia = null;
-    	$descripcion = null;
-    	$cuenta_id = null;
-    	$paginacion = Movimiento::buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$cuenta_id);
-    	$efectivos =  Movimiento::movimientosEfectivo($desde,$hasta,$negocio_id);
-    	$transferencias =  Movimiento::movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id);
-    	$total = count($efectivos) + count($transferencias); 
-    	$this->assertSame($paginacion->total(),$total);
-
-    	/*********************** negocio 27 **********************************************/ 
-    	$desde = null;
-    	$hasta = null;
-    	$tipo = null;
-    	$negocio_id = 27;
-    	$referencia = null;
-    	$descripcion = null;
-    	$cuenta_id = null;
-    	$paginacion = Movimiento::buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$cuenta_id);
-    	$efectivos =  Movimiento::movimientosEfectivo($desde,$hasta,$negocio_id);
-    	$transferencias =  Movimiento::movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id);
-    	$total = count($efectivos) + count($transferencias); 
-    	$this->assertSame($paginacion->total(),$total);
-
-    	/*********************** negocio 27 **********************************************/ 
-    	$desde = null;
-    	$hasta = null;
-    	$tipo = null;
-    	$negocio_id = 27;
-    	$referencia = null;
-    	$descripcion = null;
-    	$cuenta_id = null;
-    	$paginacion = Movimiento::buscar($desde,$hasta,$tipo,$negocio_id,$referencia,$descripcion,$cuenta_id);
-    	$efectivos =  Movimiento::movimientosEfectivo($desde,$hasta,$negocio_id);
-    	$transferencias =  Movimiento::movimientosTrasnferencia($desde,$hasta,$negocio_id,$cuenta_id);
-    	$total = count($efectivos) + count($transferencias); 
-    	$this->assertSame($paginacion->total(),$total);
- 
-
-
-    }
 }
