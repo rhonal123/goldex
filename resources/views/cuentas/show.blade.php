@@ -29,12 +29,7 @@
     <div class="col-md-12">
 
       <form action="#">
-       <div class="form-group col-md-4">
-          <blockquote>
-            <label for="nome">ID</label> 
-            <p class="form-control-static">{{$cuenta->id}}</p>
-          </blockquote>
-        </div>
+
          <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">CUENTA</label> 
@@ -48,9 +43,52 @@
             <p class="form-control-static">{{$cuenta->banco->nombre}}</p>
           </blockquote>
         </div>
-       
-      </form>
+
+
+         <div class="form-group col-md-4">
+          <blockquote>
+            <label for="nome">SALDO</label> 
+            <p class="form-control-static">{{number_format($cuenta->saldo(),2)}}</p>
+          </blockquote>
+        </div>
+
+    
+    <div class="form-group col-md-12">
+    @if($movimientos->count())
+      <div class="table-responsive">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Negocio</span></th>
+              <th>Descripcion</th>
+              <th>Fecha</span></th>
+              <th>Tipo</span></th>
+              <th>Saldo</span></th>
+           </tr>
+          </thead>
+          <tbody>
+            @each('cuentas.movimiento', $movimientos, 'movimiento')
+          </tbody>
+        </table>
+        <div class="col-md-4">
+        <p><b>G</b> gasto</p> 
+        <p><b>A</b> Abono</p>
+        <p><b>T</b> Transferencia</p>
+        </div>
+        <div class="col-md-8">
+          <div class="paginador">
+            {{ $movimientos->appends(Request::only('search'))->links() }}
+          </div>
+        </div>
+      @else
+        <h3 class="text-center alert alert-info">Empty!</h3>
+      </div>
+      @endif
     </div>
+</form>
+
+  </div>
 
 
 @endsection

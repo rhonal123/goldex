@@ -28,6 +28,6 @@ class CreatePermisosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('permisos');
+        Schema::dropIfExists('permisos');
     }
 }

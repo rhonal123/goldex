@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
-class AddClasificacionMovimientos extends Migration
+ 
+class AddClasificacionMovimientosTable extends Migration
 {
-    /**
+    /**  
      * Run the migrations.
      *
      * @return void

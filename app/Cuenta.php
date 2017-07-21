@@ -50,7 +50,42 @@ class Cuenta extends Model
     return $this->belongsTo('App\Banco');
   }
 
+  public function movimientos(){
+    return $this->hasMany('App\Movimiento');
+  }
 
 
+  public function transferencias(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',1);
+  }
+
+  public function abonos(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',2);
+  }
+
+  public function gastos(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',3);
+  }
+
+
+  public function transferencias_saldo() {
+    return $this->transferencias()->sum("saldo");
+  }
+
+
+  public function abonos_saldo() {
+    return $this->abonos()->sum("saldo");
+  }
+
+  public function gastos_saldo() {
+    return $this->gastos()->sum("saldo");
+  }
+
+
+  public function saldo() {
+    return  $this->abonos_saldo() - ($this->transferencias_saldo() + $this->gastos_saldo());
+  }
+
+  
 
 }

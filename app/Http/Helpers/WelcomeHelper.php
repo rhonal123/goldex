@@ -17,4 +17,21 @@ class WelcomeHelper {
     	}
     	return "";
     }
+
+    public static function clasificacion($movimiento){
+        if($movimiento->clasificacion == 1){
+            return "T";
+        }
+        if($movimiento->clasificacion == 2){
+            return "A";
+        }
+        if($movimiento->clasificacion == 3){
+            return "G";
+        }
+
+    }
+
+  
+
+
 }  

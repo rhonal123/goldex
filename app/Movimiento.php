@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Validator;
 
 /*
-	Estados -> CREADO, ASOCIADO, ANULADO
+	Estados -> CREADO, ASOCIADO, ANULADO, SALDADO
   Tipo -> 
     TRANSFERENCIA 
     EFECTIVO 
@@ -52,9 +52,12 @@ class Movimiento extends Model
     return $query->paginate(15);
   }
 
-
-  public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
+  public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo,$clasificacion = 1 ){
     $query =  Movimiento::with('negocio','cuenta.banco');
+    if($clasificacion){
+      $query->where('clasificacion', '=',$clasificacion);
+    }
+
     if($desde){
       $query->where('fecha', '>=',$desde);
     }

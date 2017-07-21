@@ -80,7 +80,8 @@ class CuentasController extends Controller {
 	{
 		$this->authorize('B01');
 		$cuenta = Cuenta::findOrFail($id);
-		return view('cuentas.show', compact('cuenta'));
+		$movimientos = $cuenta->movimientos()->paginate(15);
+		return view('cuentas.show', compact('cuenta','movimientos'));
 	}
 
 	/**
