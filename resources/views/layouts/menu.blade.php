@@ -81,36 +81,6 @@
         <!-- /.nav-second-level -->
       </li>
 
-      <li class="{{ Welcome::collapseActive(array('negocios*','movimientos*','gastos*')) }}" >
-        <a href="#"><i class="fa  fa-folder "></i> Movimientos <span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level">
-          <li>
-            <a
-              href="{{ route('negocios.index') }}"
-              class="{{ Welcome::linkActive('negocios*') }}">
-                Negocios o socios
-            </a>
-          </li>
-          <li>
-            <a 
-              href="{{ route('movimientos.index') }}" 
-              class="{{ Welcome::linkActive('movimientos*') }}">
-              Transferencias
-            </a>
-          </li>
-
-          <li>
-            <a 
-              href="{{ route('gastos.index') }}" 
-              class="{{ Welcome::linkActive('gastos*') }}">
-              Gastos
-            </a>
-          </li>
-
-
-        </ul>
-      </li>
-
       <li class="{{ Welcome::collapseActive(array('reporte*')) }}" >
         <a href="#"><i class="fa  fa-folder "></i> Reporte <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
