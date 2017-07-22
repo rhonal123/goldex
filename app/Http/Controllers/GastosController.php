@@ -19,7 +19,7 @@ use DB;
 use App;
 use View;
 
-use App\Http\Pdfs\MovimientoPdf;
+use App\Http\Pdfs\GastoPdf;
 
 /*
   ['codigo' => 'F01' , 'accion' => 'gastoController@show'],
@@ -27,6 +27,7 @@ use App\Http\Pdfs\MovimientoPdf;
   ['codigo' => 'F03' , 'accion' => 'gastoController@update'],
   ['codigo' => 'F04' , 'accion' => 'gastoController@create'],
   ['codigo' => 'F05' , 'accion' => 'gastoController@index'],
+
 */
 
 class GastosController extends Controller {
@@ -151,5 +152,25 @@ class GastosController extends Controller {
 		return redirect()->route('gastos.index')->with('success', 'Gasto Elminado.');
 
 	}
+
+	public function reporte_edit(Request $request){
+		$this->authorize('F05');
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		return view('gastos.reporte',compact('cuentas'));
+	}
+
+  public function reporte(Request $request) 
+  {
+		$this->authorize('F05');
+		$pdf = new GastoPdf();
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
+		$ordenar  = $request->input('ordenar');  
+		$ordenarTipo  = $request->input('ordenarTipo'); 
+   	$pdf->generar($desde,$hasta,$cuenta_id,$ordenar,$ordenarTipo);
+
+  }
+
 
 }

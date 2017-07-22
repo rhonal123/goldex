@@ -105,7 +105,7 @@ class MovimientoPdf extends \TCPDF {
 		  }
 		  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
 		  $this->ln();
-      Log::info("ID ".$value->id." X-->".$this->GetX()." Y-->".$this->GetY());
+      //Log::info("ID ".$value->id." X-->".$this->GetX()." Y-->".$this->GetY());
       if($this->checkPageBreak($this->lasth)){
       	$header = true;
       }

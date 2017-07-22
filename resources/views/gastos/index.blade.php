@@ -7,9 +7,11 @@
       Gatos
     </h3>
   </div>
-
     <a class="btn btn-sm btn-success" href="{{ route('gastos.create') }}">
       <i class="glyphicon glyphicon-plus"></i>
+    </a>
+    <a class="btn btn-sm btn-success" href="{{ route('gastos.reporte') }}">
+      <i class="glyphicon glyphicon-print"></i>
     </a>
     @include('gastos/search')
 </div>

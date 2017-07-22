@@ -73,10 +73,10 @@ class Movimiento extends Model
     if($ordenar){
       if($ordenar =="fecha"){
         if($ordenarTipo =="desc"){
-          $query->orderBy('fecha','desc');
+          $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
         }
         else{
-          $query->orderBy('fecha','asc');
+          $query->orderBy('fecha','asc')->orderBy('descripcion','desc');;
         }
       }else{
         if($ordenarTipo =="desc"){
