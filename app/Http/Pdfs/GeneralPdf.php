@@ -113,16 +113,16 @@ class GeneralPdf extends \TCPDF {
       	$header = true;
       }
 		}
-    $totalEfectivo= number_format($this->totalEfectivo($movimientos), 2);
-		$totalTransferencia= number_format($this->totalTransferencia($movimientos), 2);
-		$totalComision = number_format($this->totalComision($movimientos), 2);
+    $totaldebe= number_format($this->totaldebe($movimientos), 2);
+		$totalhaber= number_format($this->totalhaber($movimientos), 2);
+		$balance = number_format($totaldebe-$totalhaber, 2);
     $this->SetFont('helvetica', 'N', 11);
     $this->Ln();
-		$this->Cell(0, 0, 'TOTAL EFECTIVO : '.$totalEfectivo.' Bs', 0, 0, 'R');
+		$this->Cell(0, 0, 'TOTAL DEBE : '.$totaldebe.' Bs', 0, 0, 'R');
     $this->Ln();
-		$this->Cell(0, 0, 'TOTAL COMISION : '.$totalComision.' Bs', 0, 0, 'R');
+		$this->Cell(0, 0, 'TOTAL HABER : '.$totalhaber.' Bs', 0, 0, 'R');
 	  $this->Ln();
-		$this->Cell(0, 0, 'TOTAL TRANSFERENCIA : '.$totalTransferencia.' Bs', 0, 0, 'R');
+		$this->Cell(0, 0, 'BALANCE: '.$balance.' Bs', 0, 0, 'R');
     $this->Output();
     ///exit;
 	}
@@ -136,10 +136,10 @@ class GeneralPdf extends \TCPDF {
 		return $i*$this->rowPerPage+$this->rowPerPage;
 	}
 
-	private function totalEfectivo($movimientos){
+	private function totaldebe($movimientos){
 		$total= 0.0;
 		foreach ($movimientos as $key => $value) {
-			if($value->tipo == "EFECTIVO"){
+			if($value->clasificacion == 2){
 				$total += $value->saldo;
 			}
 		}
@@ -147,24 +147,14 @@ class GeneralPdf extends \TCPDF {
 	}
 
 
-	private function totalComision($movimientos){
+	private function totalhaber($movimientos){
 		$total= 0.0;
 		foreach ($movimientos as $key => $value) {
-			if($value->tipo == "EFECTIVO"){
-				$total += $value->monto * ($value->comision / 100);
-			}
-		}
-		return $total;
-	}
-
-	private function totalTransferencia($movimientos){
-		$total= 0.0;
-		foreach ($movimientos as $key => $value) {
-			if($value->tipo == "TRANSFERENCIA"){
+			if($value->clasificacion != 2){
 				$total += $value->saldo;
 			}
 		}
 		return $total;
 	}
-
+ 
 }
