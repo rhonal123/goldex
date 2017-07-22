@@ -96,7 +96,12 @@ class GeneralPdf extends \TCPDF {
 	    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
-      $this->Cell(40, $height,$value->negocio->nombre, 1, 0, 'C');
+      if($value->clasificacion == 3){
+  	    $this->Cell(40, $height,"GASTO", 1, 0, 'C');
+      }
+      else{
+  	    $this->Cell(40, $height,$value->negocio->nombre, 1, 0, 'C');
+      }
 
 		  if($value->clasificacion == 2){ // abono 
 			  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
