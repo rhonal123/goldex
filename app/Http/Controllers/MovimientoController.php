@@ -175,7 +175,6 @@ class MovimientoController extends Controller {
 		$ordenar  = $request->input('ordenar');  
 		$ordenarTipo  = $request->input('ordenarTipo'); 
    	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
-
   }
   
 }

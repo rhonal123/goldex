@@ -21,6 +21,15 @@ Route::group(array('middleware' => 'auth'), function() {
     Route::post('/password', 'HomeController@password')->name('password');
 
 
+    Route::get('reportegeneral',
+            ['as' => 'reportegeneral', 
+                'uses' => 'HomeController@reporte_edit']);
+    Route::post('reportegeneral',
+            ['as' => 'reportegeneral', 
+            'uses' => 'HomeController@reporte']);
+
+
+
     Route::resource('bancos', 'BancosController');
     Route::resource('cuentas', 'CuentasController');
     Route::resource('negocios', 'NegociosController');
