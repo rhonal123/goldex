@@ -8,7 +8,7 @@ use App\Movimiento;
 use App\Negocio;
 use View;
 use Illuminate\Support\Facades\Log;
-class MovimientoPdf extends \TCPDF {
+class AbonoPdf extends \TCPDF {
 
     public $desde = null; 
     public $hasta = null; 
@@ -25,7 +25,7 @@ class MovimientoPdf extends \TCPDF {
         $this->Cell(0, 0, 'Inversiones Goldex ', 0,0 , 'C', 0, '', 0, false, 'C', 'C');
         $this->Ln();
         $this->SetFont('helvetica', 'B', 11);
-        $this->Cell(0,0, 'Lista de Transferencias', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0,0, 'Lista de Abonos', 0, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln();
 
         if(!empty($this->negocio)) {
@@ -50,7 +50,7 @@ class MovimientoPdf extends \TCPDF {
 	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo) {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
-   	$movimientos = Movimiento::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+   	$movimientos = Movimiento::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo,2);
    	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);

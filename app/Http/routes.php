@@ -29,18 +29,23 @@ Route::group(array('middleware' => 'auth'), function() {
     Route::get('movimientos/reportes',
             ['as' => 'movimientos.reporte', 
                 'uses' => 'MovimientoController@reporte_edit']);
-
     Route::post('movimientos/reportes',
             ['as' => 'movimientos.reporte', 
             'uses' => 'MovimientoController@reporte']);
-
     Route::resource("movimientos","MovimientoController");
+
+
+    Route::get('abonos/reportes',
+            ['as' => 'abonos.reporte', 
+                'uses' => 'AbonosController@reporte_edit']);
+    Route::post('abonos/reportes',
+            ['as' => 'abonos.reporte', 
+            'uses' => 'AbonosController@reporte']);
     Route::resource("abonos","AbonosController");
 
     Route::get('gastos/reportes',
             ['as' => 'gastos.reporte', 
                 'uses' => 'GastosController@reporte_edit']);
-
     Route::post('gastos/reportes',
             ['as' => 'gastos.reporte', 
             'uses' => 'GastosController@reporte']);

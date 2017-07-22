@@ -19,7 +19,7 @@ use DB;
 use App;
 use View;
 
-use App\Http\Pdfs\MovimientoPdf;
+use App\Http\Pdfs\AbonoPdf;
 
 /*
   ['codigo' => 'F01' , 'accion' => 'AbonoController@show'],
@@ -151,7 +151,31 @@ class AbonosController extends Controller {
 			return redirect()->route('abonos.show',['id' => $abono->id ])->with('danger', 'Este abono esta siendo utilizado.');
 		}
 		return redirect()->route('abonos.index')->with('success', 'Abono Elminado.');
-
 	}
+
+
+
+	public function reporte_edit(Request $request){
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
+		return view('abonos.reporte',compact('negocios','cuentas','tipos'));
+	}
+
+  public function reporte(Request $request) 
+  {
+		$this->authorize('I07');
+		$pdf = new AbonoPdf();
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
+		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
+		$ordenar  = $request->input('ordenar');  
+		$ordenarTipo  = $request->input('ordenarTipo'); 
+   	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+
+  }
+  
+
 
 }

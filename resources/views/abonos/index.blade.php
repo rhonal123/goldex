@@ -11,6 +11,9 @@
     <a class="btn btn-sm btn-success" href="{{ route('abonos.create') }}">
       <i class="glyphicon glyphicon-plus"></i>
     </a>
+    <a class="btn btn-sm btn-success" href="{{ route('abonos.reporte') }}">
+      <i class="glyphicon glyphicon-print"></i>
+    </a>
     @include('abonos/search')
 </div>
 @endsection
