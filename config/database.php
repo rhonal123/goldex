@@ -75,7 +75,8 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-        ],
+        ]
+        ,
         'heroku' => [
             'driver'   => 'pgsql',
             'host'     => parse_url(getenv("DATABASE_URL"))["host"],
@@ -86,6 +87,7 @@ return [
             'prefix'   => '',
             'schema'   => 'public',
         ],
+        
     ],
 
     /*

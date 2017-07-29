@@ -208,12 +208,36 @@ class Movimiento extends Model
 		];
 
   	$v =  Validator::make($values,$validator,$message);
-  	$v->after(function ($validator)  use ($movimiento)  {
-    	if ($movimiento != null && $movimiento->estado != 'CREADO') {
-        $validator->errors()->add('estado',
-        	'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
-    	}
-		});
+  	$v->after(
+      function ($validator)  use ($movimiento, $clasificacion,$values) {
+      	if ($movimiento != null && $movimiento->estado != 'CREADO') {
+          $validator->errors()->add('estado',
+          	'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
+      	}
+
+          $encontrado = null;
+          if($clasificacion == 1 || $clasificacion == 2 ) {
+            if($values['tipo'] === "TRANSFERENCIA") {
+              $query = Movimiento::where('referencia',$values['referencia'])->where('tipo','TRANSFERENCIA')->where('cuenta_id',$values['cuenta_id']);
+              if($movimiento != null)
+                $query->where('id','!=',$movimiento->id);
+              $encontrado = $query->first();
+              if ($encontrado != null ) {
+                $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
+              }
+            }
+          }
+          else {
+            $query  = Movimiento::where('referencia',$values['referencia'])->where('cuenta_id',$values['cuenta_id']);
+            if($movimiento != null)
+              $query->where('id','!=',$movimiento->id);
+            $encontrado = $query->first();
+            if ($encontrado != null ) {
+              $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
+            }
+          }
+
+  	});
   	return $v;
   }
 
