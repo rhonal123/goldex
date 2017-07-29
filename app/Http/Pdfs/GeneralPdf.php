@@ -118,14 +118,16 @@ class GeneralPdf extends \TCPDF {
       	$header = true;
       }
 		}
-    $totaldebe= number_format($this->totaldebe($movimientos), 2);
-		$totalhaber= number_format($this->totalhaber($movimientos), 2);
+
+    $totaldebe= $this->totaldebe($movimientos);
+		$totalhaber=$this->totalhaber($movimientos);
 		$balance = number_format($totaldebe-$totalhaber, 2);
+
     $this->SetFont('helvetica', 'N', 11);
     $this->Ln();
-		$this->Cell(0, 0, 'TOTAL DEBE : '.$totaldebe.' Bs', 0, 0, 'R');
+		$this->Cell(0, 0, 'TOTAL DEBE : '.number_format($totaldebe,2).' Bs', 0, 0, 'R');
     $this->Ln();
-		$this->Cell(0, 0, 'TOTAL HABER : '.$totalhaber.' Bs', 0, 0, 'R');
+		$this->Cell(0, 0, 'TOTAL HABER : '.number_format($totalhaber,2).' Bs', 0, 0, 'R');
 	  $this->Ln();
 		$this->Cell(0, 0, 'BALANCE: '.$balance.' Bs', 0, 0, 'R');
     $this->Output();
