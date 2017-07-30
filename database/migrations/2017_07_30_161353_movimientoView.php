@@ -25,6 +25,7 @@ class MovimientoView extends Migration
                m.cuenta_id as cuenta_id,
                m.negocio_id as negocio_id,
                m.clasificacion as clasificacion,
+               m.tipo as tipo,
                c.numero as cuenta,
                n.nombre as negocio 
                FROM movimientos m
