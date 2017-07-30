@@ -45,6 +45,7 @@ class CreateMovimientosTable extends Migration
 		 * @return void
 		 */
 	public function down() {
+    DB::statement( 'DROP VIEW movimiento_views' );
 		Schema::dropIfExists('movimientos');
 	}
 }
