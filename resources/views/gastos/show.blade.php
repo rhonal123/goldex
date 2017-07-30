@@ -12,6 +12,11 @@
           href="{{ route('gastos.index') }}">
           <i class="glyphicon glyphicon-backward"></i>
           Regresar</a>
+        <a class="btn btn-default" 
+          href="{{ route('gastos.create') }}">
+        <i class="glyphicon glyphicon-plus"></i>
+        Nuevo
+        </a>
         <a class="btn btn-default" role="group" 
           href="{{ route('gastos.edit', $gasto->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 

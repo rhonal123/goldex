@@ -32,7 +32,7 @@
                 <th>Fecha</th>
                 <th>Tipo</th>
                 <th>Saldo</th>
-                <th>Estado</th>
+                <th>Referencia</th>
                 <th class="text-right">OPTIONS</th>
             </tr>
           </thead>

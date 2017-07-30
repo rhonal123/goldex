@@ -51,69 +51,7 @@ class Movimiento extends Model
 
     return $query->paginate(15);
   }
-/*
-  public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo,$clasificacion = 1 ){
-    $query =  Movimiento::with('negocio','cuenta.banco');
-    if($clasificacion){
-      $query->where('clasificacion', '=',$clasificacion);
-    }
 
-    if($desde){
-      $query->where('fecha', '>=',$desde);
-    }
-    if($hasta){
-      $query->where('fecha', '<=',$hasta);
-    }
-    if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
-    }
-    if($cuenta_id){
-      $query->where('cuenta_id', '=',$cuenta_id);
-    }
-    if($ordenar){
-      if($ordenar =="fecha"){
-        if($ordenarTipo =="desc"){
-          $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
-        }
-        else{
-          $query->orderBy('fecha','asc')->orderBy('descripcion','desc');;
-        }
-      }else{
-        if($ordenarTipo =="desc"){
-          $query->orderBy('id','desc');
-        }
-        else{
-          $query->orderBy('id','asc');
-        }
-      }
-    }
-    return $query->get();
-  }
-*/
-/*
-  public static function afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
-    $query = DB::table('movimientos_view');
-    if($desde){
-      $query->where('fecha', '>=',$desde);
-    }
-    if($hasta){
-      $query->where('fecha', '<=',$hasta);
-    }
-    if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
-    }
-    if($cuenta_id){
-      $query->where('cuenta_id', '=',$cuenta_id);
-    }
-    if($ordenar and $ordenarTipo =="desc"){
-      $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
-    }
-    else{
-      $query->orderBy('fecha','asc')->orderBy('descripcion','desc');
-    }
-    return $query->get();
-  }
-*/
   public static function crearMovimiento($values,$clasificacion= 1){
   	$movimiento = new Movimiento($values);
     if($clasificacion == 3){
@@ -202,11 +140,14 @@ class Movimiento extends Model
           $validator->errors()->add('estado',
           	'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
       	}
-
-          $encontrado = null;
-          if($clasificacion == 1 || $clasificacion == 2 ) {
+        $encontrado = null;
+        if($clasificacion == 1 || $clasificacion == 2 ) {
             if($values['tipo'] === "TRANSFERENCIA") {
-              $query = Movimiento::where('referencia',$values['referencia'])->where('tipo','TRANSFERENCIA')->where('cuenta_id',$values['cuenta_id']);
+              $query = Movimiento::where('referencia',$values['referencia'])
+                ->where('tipo','TRANSFERENCIA')
+                ->where('cuenta_id',$values['cuenta_id'])
+                ->where('fecha',$values['fecha']);
+
               if($movimiento != null)
                 $query->where('id','!=',$movimiento->id);
               $encontrado = $query->first();
@@ -216,10 +157,15 @@ class Movimiento extends Model
             }
           }
           else {
-            $query  = Movimiento::where('referencia',$values['referencia'])->where('cuenta_id',$values['cuenta_id']);
+            $query  = Movimiento::where('referencia',$values['referencia'])
+              ->where('cuenta_id',$values['cuenta_id'])
+              ->where('fecha',$values['fecha']);
+            
             if($movimiento != null)
               $query->where('id','!=',$movimiento->id);
+
             $encontrado = $query->first();
+
             if ($encontrado != null ) {
               $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
             }

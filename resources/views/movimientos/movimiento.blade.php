@@ -5,7 +5,7 @@
   <td><span>{{$movimiento->fecha}}</span></td>
   <td><span>{{$movimiento->tipo}}</span></td>
   <td><span>{{number_format( $movimiento->saldo, 2)}}</span></td>
-  <td><span>{{$movimiento->estado}}</span></td>
+  <td><span>{{$movimiento->referencia}}</span></td>
   <td align="right">
     <span class="dropdown" >
       <button 

@@ -12,6 +12,11 @@
           href="{{ route('movimientos.index') }}">
           <i class="glyphicon glyphicon-backward"></i>
           Regresar</a>
+        <a class="btn btn-default" 
+          href="{{ route('movimientos.create') }}">
+          <i class="glyphicon glyphicon-plus"></i>
+          Nuevo
+        </a>
         <a class="btn btn-default" role="group" 
           href="{{ route('movimientos.edit', $movimiento->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 
