@@ -41,6 +41,7 @@ class MovimientoView extends Migration
      */
     public function down()
     {
-        //
+         DB::statement( 'DROP VIEW movimiento_views' );
+
     }
 }
