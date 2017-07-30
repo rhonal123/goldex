@@ -20,6 +20,7 @@ use App;
 use View;
 
 use App\Http\Pdfs\GastoPdf;
+use App\Http\Pdfs\GastoExcel;
 
 /*
   ['codigo' => 'F01' , 'accion' => 'gastoController@show'],
@@ -162,15 +163,20 @@ class GastosController extends Controller {
   public function reporte(Request $request) 
   {
 		$this->authorize('F05');
-		$pdf = new GastoPdf();
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
-		$ordenar  = $request->input('ordenar');  
 		$ordenarTipo  = $request->input('ordenarTipo'); 
-   	$pdf->generar($desde,$hasta,$cuenta_id,$ordenar,$ordenarTipo);
+    $tipo = $request->input('tipo');
+
+    if($tipo === "pdf"){
+			$pdf = new GastoPdf();
+	   	$pdf->generar($desde,$hasta,$cuenta_id,$ordenarTipo);
+    }
+    else{
+      $excel = new GastoExcel();
+      $excel->generar($desde,$hasta,$cuenta_id,$ordenarTipo);
+    }
 
   }
-
-
 }

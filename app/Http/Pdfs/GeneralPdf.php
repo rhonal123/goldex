@@ -4,7 +4,7 @@ namespace App\Http\Pdfs;
  
 use Elibyy\TCPDF\Facades\TCPDF;
 
-use App\Movimiento;
+use App\MovimientoView;
 use App\Negocio;
 use View;
 use Illuminate\Support\Facades\Log;
@@ -47,10 +47,10 @@ class GeneralPdf extends \TCPDF {
     }
 
 	// Colored table
-	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo) {
+	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo) {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
-   	$movimientos = Movimiento::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+   	$movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
    	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
@@ -92,7 +92,7 @@ class GeneralPdf extends \TCPDF {
 		    $header = false;
 		  }
 		  $height =ceil(strlen($value->descripcion) / 76.0) * 6;
-      $this->Cell(20, $height,$value->fecha, 1, 0, 'C');
+      $this->Cell(20, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
 	    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
@@ -100,20 +100,19 @@ class GeneralPdf extends \TCPDF {
   	    $this->Cell(40, $height,"GASTO", 1, 0, 'C');
       }
       else{
-  	    $this->Cell(40, $height,$value->negocio->nombre, 1, 0, 'C');
+  	    $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
       }
 
 		  if($value->clasificacion == 2){ // abono 
 			  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
-			  $this->Cell(30,$height,"",1, 0, 'C');
+			  $this->Cell(30,$height,"0",1, 0, 'C');
 		  }
 		  else{
-			  $this->Cell(30, $height,"", 1, 0, 'C');
+			  $this->Cell(30, $height,"0", 1, 0, 'C');
 			  $this->Cell(30, $height,number_format($value->saldo, 2), 1, 0, 'C');
 			}
 
 		  $this->ln();
-      //Log::info("ID ".$value->id." X-->".$this->GetX()." Y-->".$this->GetY());
       if($this->checkPageBreak($this->lasth)){
       	$header = true;
       }

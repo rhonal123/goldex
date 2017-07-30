@@ -42,8 +42,6 @@ class MovimientoModelTest extends TestCase
     $this->validarformulario($valid);
 
 
-
-
     $value = [
 			'monto' => 4500,
 			'fecha' =>  '26/08/2017',

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
 
-    use DatabaseMigrations;
+    #use DatabaseMigrations;
     use DatabaseTransactions;
     use WithoutMiddleware;
     /**

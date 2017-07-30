@@ -13,6 +13,7 @@ use App\Negocio;
 use App\User;
 
 use App\Http\Pdfs\GeneralPdf;
+use App\Http\Pdfs\GeneralExcel;
 
 class HomeController extends Controller
 {
@@ -69,14 +70,23 @@ class HomeController extends Controller
   public function reporte(Request $request) 
   {
     $this->authorize('I07');
-    $pdf = new GeneralPdf();
     $desde = $request->input('desde');
     $hasta = $request->input('hasta');
+    $tipo = $request->input('tipo');
     $negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
     $cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
-    $ordenar  = $request->input('ordenar');  
     $ordenarTipo  = $request->input('ordenarTipo'); 
-    $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+
+    if($tipo === "pdf"){
+      $pdf = new GeneralPdf();
+      $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
+    else{
+      $excel = new GeneralExcel();
+      $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
   }
+
+
 
 }

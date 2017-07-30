@@ -163,6 +163,7 @@ return [
         ///  Anouar\Fpdf\FpdfServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
         //Laralib\L5scaffold\GeneratorsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -216,6 +217,7 @@ return [
         'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
         //'MyFuncs' => App\Helpers\MyFuncs::class,
         'Welcome' => App\Http\Helpers\WelcomeHelper::class,
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
  

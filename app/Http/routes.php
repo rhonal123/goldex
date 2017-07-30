@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 Route::auth();
 Route::get('/', 'HomeController@index')->name('root');
 
+Route::get('/prueba', 'HomeController@prueba')->name('prueba');
+
 Route::group(array('middleware' => 'auth'), function() {
 
     Route::get('/password', 'HomeController@password_edit')->name('password');
@@ -74,3 +76,5 @@ Route::group(array('middleware' => 'auth'), function() {
          ['as' => 'users.permisos_rm', 
         'uses' => 'UserController@quitarPermiso'])->middleware('auth');
 });
+
+

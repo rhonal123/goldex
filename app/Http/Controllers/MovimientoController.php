@@ -20,6 +20,7 @@ use App;
 use View;
 
 use App\Http\Pdfs\MovimientoPdf;
+use App\Http\Pdfs\MovimientoExcel;
 
 
 /*
@@ -167,14 +168,22 @@ class MovimientoController extends Controller {
   public function reporte(Request $request) 
   {
 		$this->authorize('I07');
-		$pdf = new MovimientoPdf();
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
 		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
-		$ordenar  = $request->input('ordenar');  
 		$ordenarTipo  = $request->input('ordenarTipo'); 
-   	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+    $tipo = $request->input('tipo');
+
+    if($tipo === "pdf"){
+			$pdf = new MovimientoPdf();
+	   	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
+    else{
+      $excel = new MovimientoExcel();
+      $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }		
+
   }
   
 }

@@ -51,7 +51,7 @@ class Movimiento extends Model
 
     return $query->paginate(15);
   }
-
+/*
   public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo,$clasificacion = 1 ){
     $query =  Movimiento::with('negocio','cuenta.banco');
     if($clasificacion){
@@ -89,11 +89,10 @@ class Movimiento extends Model
     }
     return $query->get();
   }
-
-
-
+*/
+/*
   public static function afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo){
-    $query =  Movimiento::with('negocio','cuenta.banco');
+    $query = DB::table('movimientos_view');
     if($desde){
       $query->where('fecha', '>=',$desde);
     }
@@ -106,26 +105,15 @@ class Movimiento extends Model
     if($cuenta_id){
       $query->where('cuenta_id', '=',$cuenta_id);
     }
-    if($ordenar){
-      if($ordenar =="fecha"){
-        if($ordenarTipo =="desc"){
-          $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
-        }
-        else{
-          $query->orderBy('fecha','asc')->orderBy('descripcion','desc');;
-        }
-      }else{
-        if($ordenarTipo =="desc"){
-          $query->orderBy('id','desc');
-        }
-        else{
-          $query->orderBy('id','asc');
-        }
-      }
+    if($ordenar and $ordenarTipo =="desc"){
+      $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
+    }
+    else{
+      $query->orderBy('fecha','asc')->orderBy('descripcion','desc');
     }
     return $query->get();
   }
-
+*/
   public static function crearMovimiento($values,$clasificacion= 1){
   	$movimiento = new Movimiento($values);
     if($clasificacion == 3){

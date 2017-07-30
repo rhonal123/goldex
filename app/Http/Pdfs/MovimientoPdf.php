@@ -4,7 +4,7 @@ namespace App\Http\Pdfs;
  
 use Elibyy\TCPDF\Facades\TCPDF;
 
-use App\Movimiento;
+use App\MovimientoView;
 use App\Negocio;
 use View;
 use Illuminate\Support\Facades\Log;
@@ -47,10 +47,10 @@ class MovimientoPdf extends \TCPDF {
     }
 
 	// Colored table
-	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo) {
+	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo) {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
-   	$movimientos = Movimiento::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenar,$ordenarTipo);
+   	$movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
    	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
@@ -93,10 +93,10 @@ class MovimientoPdf extends \TCPDF {
 		  $height =ceil(strlen($value->descripcion) / 76.0) * 6;
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
-      $this->Cell(40, $height,$value->negocio->nombre, 1, 0, 'C');
-      $this->Cell(20, $height,$value->fecha, 1, 0, 'C');
+      $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
+      $this->Cell(20, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
 		  if($value->tipo == "TRANSFERENCIA"){
-		    $this->Cell(30, $height,$value->cuenta->numero, 1, 0, 'C');
+		    $this->Cell(30, $height,$value->cuenta, 1, 0, 'C');
 		    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
 		  }
 		  else{
