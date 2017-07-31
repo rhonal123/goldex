@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Elibyy\TCPDF\Facades\TCPDF;
 
-use App\Movimiento;
+use App\MovimientoView;
 use App\Cuenta;
 use App\Negocio;
 use App\User;
@@ -43,7 +43,7 @@ class GastosController extends Controller {
 	{
 		$this->authorize('F05');
 		$descripcion = $request->input('descripcion');
-		$gastos = Movimiento::buscar($descripcion,self::$GASTO_PERSONAL);
+		$gastos = MovimientoView::buscar($descripcion,self::$GASTO_PERSONAL);
 		return view('gastos.index', compact('gastos'));
 	}
 

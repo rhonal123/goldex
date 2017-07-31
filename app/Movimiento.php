@@ -40,18 +40,6 @@ class Movimiento extends Model
       'TRANSFERENCIA_ENTRADA' => 2,
       'GASTO_PERSONAL' => 3);
 
- 	public static function buscar($descripcion,$clasificacion=1) {
-		$query =  Movimiento::with('negocio','cuenta.banco')->orderBy('id','desc');
-    if($descripcion) {
-      $query->where('descripcion', 'like',"%".$descripcion."%");
-    }
-    if($clasificacion) {
-      $query->where('clasificacion',$clasificacion);
-    }
-
-    return $query->paginate(15);
-  }
-
   public static function crearMovimiento($values,$clasificacion= 1){
   	$movimiento = new Movimiento($values);
     if($clasificacion == 3){
@@ -114,7 +102,7 @@ class Movimiento extends Model
       $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
     }
     elseif ($clasificacion == 2) {
-      $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
+      //$validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
       $validator['tipo']= 'required|in:TRANSFERENCIA,EFECTIVO';
       $validator['cuenta_id']= 'required_if:tipo,TRANSFERENCIA';
       $validator['referencia']= 'required_if:tipo,TRANSFERENCIA';

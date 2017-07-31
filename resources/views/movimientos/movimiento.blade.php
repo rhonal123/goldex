@@ -1,6 +1,6 @@
 <tr>
   <td><span>{{$movimiento->id}}</span></td>
-  <td><span>{{$movimiento->negocio->nombre}}</span></td>
+  <td><span>{{$movimiento->negocio}}</span></td>
   <td><span>{{$movimiento->descripcion}}</span></td>
   <td><span>{{$movimiento->fecha}}</span></td>
   <td><span>{{$movimiento->tipo}}</span></td>

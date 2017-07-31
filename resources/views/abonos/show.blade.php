@@ -12,6 +12,11 @@
           href="{{ route('abonos.index') }}">
           <i class="glyphicon glyphicon-backward"></i>
           Regresar</a>
+        <a  class="btn btn-default"
+           href="{{ route('abonos.create') }}">
+              <i class="glyphicon glyphicon-plus"></i>
+              Nuevo
+        </a>
         <a class="btn btn-default" role="group" 
           href="{{ route('abonos.edit', $abono->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 
@@ -50,14 +55,6 @@
             <p class="form-control-static">{{$abono->descripcion}}</p>
           </blockquote>
         </div>
-
-        <div class="form-group col-md-4">
-          <blockquote>
-            <label for="nome">NEGOCIO</label> 
-            <p class="form-control-static">{{$abono->negocio->nombre}}</p>
-          </blockquote>
-        </div>
- 
 
         @if ($abono->tipo == "TRANSFERENCIA")
  

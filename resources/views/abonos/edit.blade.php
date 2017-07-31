@@ -29,21 +29,7 @@
             @endif
          </div>
         </div>  
-
-        <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
-          <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
-          <div class="col-sm-4">
-            {{ Form::select('negocio_id',
-              $negocios,
-              is_null(old("negocio_id")) ? $abono->negocio_id : old("negocio_id"),
-              ['class' => 'form-control','id'=>'negocio_id-field']) }}
-            @if($errors->has("negocio_id"))
-              <span class="help-block">{{ $errors->first("negocio_id") }}</span>
-            @endif
-         </div>
-        </div> 
- 
-
+        
         <div class="form-group @if($errors->has('monto')) has-error @endif">
           <label for="monto-field" class="col-sm-2 control-label">Monto</label>
           <div class="col-sm-2">

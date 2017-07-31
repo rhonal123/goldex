@@ -30,8 +30,7 @@
                 <th>Descripcion</th>
                 <th>Fecha</th>
                 <th>Saldo</th>
-                <th>Estado</th>
-                <th class="text-right">OPTIONS</th>
+                 <th class="text-right">OPTIONS</th>
             </tr>
           </thead>
           <tbody>

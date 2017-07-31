@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Elibyy\TCPDF\Facades\TCPDF;
 
-use App\Movimiento;
+use App\MovimientoView;
 use App\Cuenta;
 use App\Negocio;
 use App\User;
@@ -41,7 +41,7 @@ class AbonosController extends Controller {
 	{
 		$this->authorize('F05');
 		$descripcion = $request->input('descripcion');
-		$abonos = Movimiento::buscar($descripcion,self::$TRANSFERENCIA_ENTRADA);
+		$abonos = MovimientoView::buscar($descripcion,self::$TRANSFERENCIA_ENTRADA);
 		return view('abonos.index', compact('abonos'));
 	}
 

@@ -1,11 +1,10 @@
 <tr>
   <td><span>{{$abono->id}}</span></td>
-  <td><span>{{$abono->negocio->nombre}}</span></td>
+  <td><span>{{$abono->cuenta}}</span></td>
   <td><span>{{$abono->descripcion}}</span></td>
   <td><span>{{$abono->fecha}}</span></td>
   <td><span>{{$abono->tipo}}</span></td>
   <td><span>{{number_format( $abono->saldo, 2)}}</span></td>
-  <td><span>{{$abono->estado}}</span></td>
   <td align="right">
     <span class="dropdown" >
       <button 

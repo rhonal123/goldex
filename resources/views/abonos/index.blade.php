@@ -28,12 +28,11 @@
           <thead>
             <tr>
                 <th>Id</th>
-                <th>Negocio o Socio</th>
+                <th>Cuenta</th>
                 <th>Descripcion</th>
                 <th>Fecha</th>
                 <th>Tipo</th>
                 <th>Saldo</th>
-                <th>Estado</th>
                 <th class="text-right">OPTIONS</th>
             </tr>
           </thead>

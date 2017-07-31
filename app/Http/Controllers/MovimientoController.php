@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use Elibyy\TCPDF\Facades\TCPDF;
 
 use App\Movimiento;
+use App\MovimientoView;
 use App\Cuenta;
 use App\Negocio;
 use App\User;
@@ -43,7 +44,7 @@ class MovimientoController extends Controller {
 	{
 		$this->authorize('I05');
 		$descripcion = $request->input('descripcion');
-		$movimientos = Movimiento::buscar($descripcion);
+		$movimientos = MovimientoView::buscar($descripcion);
 		return view('movimientos.index', compact('movimientos'));
 	}
 

@@ -3,8 +3,7 @@
   <td><span>{{$gasto->descripcion}}</span></td>
   <td><span>{{$gasto->fecha}}</span></td>
   <td><span>{{number_format( $gasto->saldo, 2)}}</span></td>
-  <td><span>{{$gasto->estado}}</span></td>
-  <td align="right">
+   <td align="right">
     <span class="dropdown" >
       <button 
           class="btn btn-default btn-xs" type="button" 

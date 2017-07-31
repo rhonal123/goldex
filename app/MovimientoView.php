@@ -95,4 +95,19 @@ class MovimientoView extends Model
   }
 
 
+  public static function buscar($descripcion,$clasificacion=1) {
+    $query =  MovimientoView::orderBy('id','desc');
+    if($descripcion) {
+      $query->where('descripcion','like',"%".$descripcion."%")
+            ->orWhere('referencia','like',"%".$descripcion."%")
+            ->orWhere('negocio','like',"%".$descripcion."%");
+    }
+    if($clasificacion) {
+      $query->where('clasificacion',$clasificacion);
+    }
+
+    return $query->paginate(15);
+  }
+
+
 }
