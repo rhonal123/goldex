@@ -67,7 +67,6 @@
             <tr>
               <th>CODIGO</th>
               <th>PERMISO</th>
-              <th>ESTADO</th>
               <th class="text-right">OPTIONS</th>
             </tr>
           </thead>
@@ -76,30 +75,27 @@
             <tr>
               <td>{{$clave}}</td>
               <td>{{$valor}}</td>
-              <td>{{ $user->hasPermiso($clave)? "ACTIVO": "INACTIVO" }}</td>
               <td align="right">
                 <div>
                 @if ($user->hasPermiso($clave))
-                  <form action="{{ route('users.permisos_rm', ['id'=> $user->id, 'permiso_id' => $clave ]) }}" 
-                    method="POST" style="display: inline;"    
-                    onsubmit="if(confirm('Quites Inactivar este permiso?')) { return true } else {return false };">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <button type="submit" class="eliminar">
-                    <i class="glyphicon glyphicon-minus"></i>INACTIVAR
+                  <button type="button" 
+                    data-url="{{ route('users.permisos', ['id'=> $user->id, 'permiso_id' => $clave ]) }}"
+                    data-estado="INACTIVAR"
+                    data-value="{{ csrf_token() }}"
+                    class="btn btn-primary permisos" > 
+                    INACTIVAR?
                   </button>
-                  </form>
                 @else
-                  <form action="{{ route('users.permisos_add', ['id'=> $user->id, 'permiso_id' => $clave ]) }}"  
-                    method="POST" style="display: inline;"    
-                    onsubmit="if(confirm('Quires Activar este Permiso?')) { return true } else {return false };">
-                  <input type="hidden" name="_method" value="PATCH">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <button type="submit" class="eliminar">
-                    <i class="glyphicon glyphicon-plus"></i>ACTIVAR
+                  <button type="button" 
+                    data-url="{{ route('users.permisos', ['id'=> $user->id, 'permiso_id' => $clave ]) }}"
+                    data-estado="ACTIVAR"
+                    data-value="{{ csrf_token() }}"
+                    class="btn btn-primary permisos"> 
+                    ACTIVAR?
                   </button>
-                  </form>
                 @endif 
+                </button>
+
                 </div>
               </td>
             </tr>
@@ -109,6 +105,46 @@
     </div>
   </div>
  
+
+
+
+<script>
+
+
+$(document).on('click','.permisos',function(){
+  var url     =  $(this).data('url');
+  var estado  =  $(this).data('estado');
+  var value   =  $(this).data('value');
+  var btn     = $(this).button('procesando');
+  var _this = this;
+  var request = $.ajax({
+    url: url,
+    method: "POST",
+    data: {
+      _method: "PATCH",
+      _token : value,
+      tipo: estado
+    },
+    dataType: "json",
+    beforeSend: function(){
+      $(_this).empty().append("procesando...");
+    }
+  });
+  request.done(function( ) {
+    ///btn.button('reset');
+    if(estado === "ACTIVAR") {
+      $(_this).data('estado',"INACTIVAR");
+      $(_this).empty().append("INACTIVAR?");
+    }
+    else{
+      $(_this).data('estado',"ACTIVAR");
+      $(_this).empty().append("ACTIVAR?");
+    }
+  });
+
+});
+
+</script>
 
 @endsection
 

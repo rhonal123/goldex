@@ -143,30 +143,30 @@ class UserController extends Controller {
 	}
 
 
-	public function agregarPermiso(Request $request,$id,$permiso_id){
+	public function permisos(Request $request,$id,$permiso_id){
 		$this->authorize('E07');
+		$tipo = $request->input('tipo');
 		$user = User::findOrFail($id); 
-  	///$values = $request->all(); 
-		//$validator = Permiso::validador($values);
-		//if ($validator->fails()) {
-		//}
-		//else {
-		//$codigo = $values['codigo'];
-		$user->agregarPermiso($permiso_id);
-		return redirect()->route('users.show',['id' => $user->id ])->with('success', 'Permiso Activado correctamente');
-		//}
+		if($tipo == 'ACTIVAR'){
+			$user->agregarPermiso($permiso_id);
+		} 
+		else{
+			$user->quitarPermiso($permiso_id);
+		}
+//		return redirect()->route('users.show',['id' => $user->id ])->with('success', 'Permiso Inactivado correctamente');
+		return response()->json(['ok' => 'OK']);
+
 	}
 
-
-
+/*
 	public function quitarPermiso(Request $request,$id,$permiso_id){
 		$this->authorize('E07');
 		$user = User::findOrFail($id); 
 		$user->quitarPermiso($permiso_id);
 		return redirect()->route('users.show',['id' => $user->id ])->with('success', 'Permiso Inactivado correctamente');
-
 	}
 
+*/
 
 	/**
 	 * Show the form for editing the specified resource.

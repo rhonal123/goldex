@@ -82,12 +82,15 @@ Route::group(array('middleware' => 'auth'), function() {
                 'uses' => 'UserController@password_edit'])->middleware('auth');
 
     Route::patch('users/{id}/permisos/{permiso_id}',
-        ['as' => 'users.permisos_add', 
-        'uses' => 'UserController@agregarPermiso'])->middleware('auth');
+        ['as' => 'users.permisos', 
+        'uses' => 'UserController@permisos'])->middleware('auth');
 
+/*
     Route::delete('users/{id}/permisos/{permiso_id}',
          ['as' => 'users.permisos_rm', 
         'uses' => 'UserController@quitarPermiso'])->middleware('auth');
+*/
+
 });
 
 
