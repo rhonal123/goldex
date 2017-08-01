@@ -9,12 +9,10 @@ use Validator;
 class Cuenta extends Model
 {
 
-  protected $fillable = ['numero','banco_id'];
+  protected $fillable = ['numero','banco_id','saldo'];
   protected $guarded = ['id'];
   protected $hidden = ['created_at','updated_at'];
-
-
-  private $banco; 
+  protected $casts = ['saldo' => 'double'];
 
  	public static function buscar($numero) {
     $query =  Cuenta::with('banco')->orderBy('cuentas.id','desc');;
@@ -81,11 +79,50 @@ class Cuenta extends Model
     return $this->gastos()->sum("saldo");
   }
 
-
-  public function saldo() {
-    return  $this->abonos_saldo() - ($this->transferencias_saldo() + $this->gastos_saldo());
+  public function procesarMovimiento(&$movimiento){
+      if($movimiento->clasificacion == 2){
+        $this->saldo += $movimiento->saldo;
+      }
+      else {
+        $this->saldo -= $movimiento->saldo;
+      }
   }
 
+
+  public function totalAbono($desde = null, $hasta=null){
+    $query =  $this->abonos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
+  }
+
+  public function totalTransferencia($desde = null, $hasta=null){
+     $query =  $this->transferencias();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
+     
+  }
+
+  public function totalGasto($desde = null, $hasta=null){
+    $query =  $this->gastos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
   
+  }
+
 
 }

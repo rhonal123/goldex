@@ -51,9 +51,15 @@ class Movimiento extends Model
     $movimiento->clasificacion = $clasificacion;
   	$movimiento->estado = "CREADO";
     $movimiento->saldo = (1 + ($movimiento->comision/100)) * $movimiento->monto;
-  	$movimiento->save();
+    DB::transaction(function () use($values,$movimiento) {
+      $cuenta = Cuenta::lockForUpdate()->findOrFail($values['cuenta_id']);
+      $cuenta->procesarMovimiento($movimiento);
+      $cuenta->save();
+      $movimiento->save();
+    });
   	return $movimiento;
   }
+
 
   public function actualizar($values){
   	if($this->attributes['estado'] == 'CREADO') {
@@ -66,6 +72,7 @@ class Movimiento extends Model
   		throw new Exception("No Puedes actualizar este Movimiento", 1);
   	}
   }
+
 
   public function anular($values){
   	if($this->attributes['estado'] == 'CREADO') {

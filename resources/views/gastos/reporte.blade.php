@@ -23,12 +23,12 @@
        <div class="form-group">
           <label for="search_desde" class="col-md-2 control-label">Desde</label>
           <div class="col-md-4">
-            <input id="search_desde" name="desde" type="text"  class="form-control input-sm" >
+            <input id="search_desde" name="desde" type="text"  class="form-control input-sm" required>
           </div>
  
           <label for="search_hasta" class="col-md-2 control-label">Hasta</label>
           <div class="col-md-4">
-            <input id="search_hasta" name="hasta" type="text" data-provide="datepicker" class="form-control input-sm" >
+            <input id="search_hasta" name="hasta" type="text" data-provide="datepicker" class="form-control input-sm" required>
           </div>
         </div>
  

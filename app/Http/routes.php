@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 Route::auth();
 Route::get('/', 'HomeController@index')->name('root');
 
-Route::get('/prueba', 'HomeController@prueba')->name('prueba');
 
 Route::group(array('middleware' => 'auth'), function() {
 
@@ -34,6 +33,20 @@ Route::group(array('middleware' => 'auth'), function() {
 
     Route::resource('bancos', 'BancosController');
     Route::resource('cuentas', 'CuentasController');
+
+    Route::get('cuentas/{id}/transferencias',
+          ['as' => 'cuentas.transferencias', 
+        'uses' => 'CuentasController@transferencias']);
+
+    Route::get('cuentas/{id}/gastos',
+          ['as' => 'cuentas.gastos', 
+        'uses' => 'CuentasController@gastos']);
+    
+    Route::get('cuentas/{id}/abonos',
+          ['as' => 'cuentas.abonos', 
+        'uses' => 'CuentasController@abonos']);
+     
+
     Route::resource('negocios', 'NegociosController');
     Route::resource("users","UserController");  
 

@@ -80,8 +80,72 @@ class CuentasController extends Controller {
 	{
 		$this->authorize('B01');
 		$cuenta = Cuenta::findOrFail($id);
-		$movimientos = $cuenta->movimientos()->paginate(15);
 		return view('cuentas.show', compact('cuenta','movimientos'));
+	}
+
+
+	public function transferencias($id,Request $request){
+		$this->authorize('B01');
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$cuenta = Cuenta::findOrFail($id);
+
+		$query =  $cuenta->transferencias();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    $totalAbono = $cuenta->totalAbono($desde,$hasta);
+    $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
+    $totalGasto= $cuenta->totalGasto($desde,$hasta);
+		$transferencias =$query->paginate(10);
+		return view('cuentas.transferencias',
+				compact('cuenta','transferencias','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
+	}
+
+
+	public function gastos($id,Request $request){
+		$this->authorize('B01');
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$cuenta = Cuenta::findOrFail($id);
+
+		$query =  $cuenta->gastos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    $totalAbono = $cuenta->totalAbono($desde,$hasta);
+    $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
+    $totalGasto= $cuenta->totalGasto($desde,$hasta);
+		$gastos =$query->paginate(10);
+		return view('cuentas.gastos', 
+			     compact('cuenta','gastos','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
+	}
+
+
+	public function abonos($id,Request $request){
+		$this->authorize('B01');
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$cuenta = Cuenta::findOrFail($id);
+
+		$query =  $cuenta->abonos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    $totalAbono = $cuenta->totalAbono($desde,$hasta);
+    $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
+    $totalGasto= $cuenta->totalGasto($desde,$hasta);		$abonos =$query->paginate(10);
+		return view('cuentas.abonos',
+			      compact('cuenta','abonos','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
 	}
 
 	/**

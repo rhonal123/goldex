@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Elibyy\TCPDF\Facades\TCPDF;
 
+use App\Movimiento;
 use App\MovimientoView;
 use App\Cuenta;
 use App\Negocio;

@@ -23,27 +23,14 @@
        <div class="form-group">
           <label for="search_desde" class="col-md-2 control-label">Desde</label>
           <div class="col-md-4">
-            <input id="search_desde" name="desde" type="text"  class="form-control input-sm" >
+            <input id="search_desde" name="desde" type="text"  class="form-control input-sm" required>
           </div>
  
           <label for="search_hasta" class="col-md-2 control-label">Hasta</label>
           <div class="col-md-4">
-            <input id="search_hasta" name="hasta" type="text" data-provide="datepicker" class="form-control input-sm" >
+            <input id="search_hasta" name="hasta" type="text" data-provide="datepicker" class="form-control input-sm" required >
           </div>
         </div>
-
-        <div  class="form-group">
-          <label for="negocio_id" class="col-sm-2 control-label" for="estado">Negocio</label>
-          <div class="col-sm-10">
-            {{
-              Form::select('negocio_id', 
-               array('' => 'Seleccione un negocio') + $negocios,
-               old("negocio_id"),
-               ['class' => 'form-control','id'=>'negocio_id-field'] )
-            }}
-          </div> 
-        </div>
-
 
         <div  class="form-group">
           <label for="cuenta_id" class="col-sm-2 control-label" for="estado">Cuenta</label>
@@ -52,7 +39,7 @@
               Form::select('cuenta_id', 
                array('' => 'Seleccione una cuenta ') +$cuentas,
                old("cuenta_id"),
-               ['class' => 'form-control','id'=>'cuenta_id-field']) 
+               ['class' => 'form-control','id'=>'cuenta_id-field','required']) 
             }}
           </div> 
         </div>
