@@ -33,9 +33,6 @@ class UserController extends Controller {
 		return view('users.index', compact('users'));
 	}
 
- 
-
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -153,20 +150,9 @@ class UserController extends Controller {
 		else{
 			$user->quitarPermiso($permiso_id);
 		}
-//		return redirect()->route('users.show',['id' => $user->id ])->with('success', 'Permiso Inactivado correctamente');
 		return response()->json(['ok' => 'OK']);
 
 	}
-
-/*
-	public function quitarPermiso(Request $request,$id,$permiso_id){
-		$this->authorize('E07');
-		$user = User::findOrFail($id); 
-		$user->quitarPermiso($permiso_id);
-		return redirect()->route('users.show',['id' => $user->id ])->with('success', 'Permiso Inactivado correctamente');
-	}
-
-*/
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -206,10 +192,5 @@ class UserController extends Controller {
 			         ->with('success', 'Contraseña correctamente creada.');
 		}
 	}
-
-
-
-
-
 
 }
