@@ -94,13 +94,23 @@ class MovimientoView extends Model
     return $query->get();
   }
 
-
-  public static function buscar($descripcion,$clasificacion=1) {
+  public static function buscar($desde,$hasta,$negocio_id,$cuenta_id,$descripcion,$clasificacion=1) {
     $query =  MovimientoView::orderBy('id','desc');
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    if($negocio_id){
+      $query->where('negocio_id',$negocio_id);
+    }
+    if($cuenta_id){
+      $query->where('cuenta_id',$cuenta_id);
+    }
     if($descripcion) {
       $query->where('descripcion','like',"%".$descripcion."%")
-            ->orWhere('referencia','like',"%".$descripcion."%")
-            ->orWhere('negocio','like',"%".$descripcion."%");
+            ->orWhere('referencia','like',"%".$descripcion."%");
     }
     if($clasificacion) {
       $query->where('clasificacion',$clasificacion);

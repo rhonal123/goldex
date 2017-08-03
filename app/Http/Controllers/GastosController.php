@@ -43,8 +43,13 @@ class GastosController extends Controller {
 	{
 		$this->authorize('F05');
 		$descripcion = $request->input('descripcion');
-		$gastos = MovimientoView::buscar($descripcion,self::$GASTO_PERSONAL);
-		return view('gastos.index', compact('gastos'));
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$negocio_id = $request->input('negocio_id');
+		$cuenta_id =  $request->input('cuenta_id');
+		$gastos = MovimientoView::buscar($desde,$hasta,$negocio_id,$cuenta_id,$descripcion,self::$GASTO_PERSONAL);
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		return view('gastos.index', compact('gastos','cuentas','desde','hasta','negocio_id','cuenta_id','descripcion'));
 	}
 
 	/**

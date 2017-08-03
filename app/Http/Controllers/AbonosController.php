@@ -42,8 +42,13 @@ class AbonosController extends Controller {
 	{
 		$this->authorize('F05');
 		$descripcion = $request->input('descripcion');
-		$abonos = MovimientoView::buscar($descripcion,self::$TRANSFERENCIA_ENTRADA);
-		return view('abonos.index', compact('abonos'));
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$negocio_id = $request->input('negocio_id');
+		$cuenta_id =  $request->input('cuenta_id');
+		$abonos = MovimientoView::buscar($desde,$hasta,$negocio_id,$cuenta_id,$descripcion,self::$TRANSFERENCIA_ENTRADA);
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		return view('abonos.index', compact('abonos','cuentas','desde','hasta','negocio_id','cuenta_id','descripcion'));
 	}
 
 	/**

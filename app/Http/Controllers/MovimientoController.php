@@ -44,8 +44,14 @@ class MovimientoController extends Controller {
 	{
 		$this->authorize('I05');
 		$descripcion = $request->input('descripcion');
-		$movimientos = MovimientoView::buscar($descripcion);
-		return view('movimientos.index', compact('movimientos'));
+		$desde = $request->input('desde');
+		$hasta = $request->input('hasta');
+		$negocio_id = $request->input('negocio_id');
+		$cuenta_id =  $request->input('cuenta_id');
+		$movimientos = MovimientoView::buscar($desde,$hasta,$negocio_id,$cuenta_id,$descripcion);
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		return view('movimientos.index', compact('movimientos','negocios','cuentas','desde','hasta','negocio_id','cuenta_id','descripcion'));
 	}
 
 

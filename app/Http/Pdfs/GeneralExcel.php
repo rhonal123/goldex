@@ -54,11 +54,14 @@ class GeneralExcel{
         $sheet->setCellValue('E3',"CUENTA");
         $sheet->setCellValue('F3',"DEBE");
         $sheet->setCellValue('G3',"HABER");
-
+        $sheet->setCellValue('H3',"BALANCE");
+        
         $sheet->getStyle('A:A')->getNumberFormat()->setFormatCode('dd/mm/yyyy');
         $sheet->getStyle('F:F')->getNumberFormat()->setFormatCode('#,##0.00');
         $sheet->getStyle('G:G')->getNumberFormat()->setFormatCode('#,##0.00');
+        $sheet->getStyle('H:H')->getNumberFormat()->setFormatCode('#,##0.00');
 
+        $balance = 0.0;
         foreach ($movimientos as $key => $value) {
           $celda = 'A' . (string)($i);
           $sheet->setCellValue($celda,PHPExcel_Shared_Date::PHPToExcel( $value->fecha));
@@ -79,14 +82,19 @@ class GeneralExcel{
 
           $celda = 'F' . (string)($i);
           $_otraCelda = 'G' . (string)($i);
+
           if($value->clasificacion == 2){ 
+            $balance += $value->saldo;
             $sheet->setCellValue($celda, $value->saldo);
             $sheet->setCellValue($_otraCelda, 0);
           }
           else{
+            $balance -= $value->saldo;
             $sheet->setCellValue($celda, 0);
             $sheet->setCellValue($_otraCelda, $value->saldo);
           }
+          $celda = 'H' . (string)($i);
+          $sheet->setCellValue($celda, $balance);
           $i++;
         }
 	    });
