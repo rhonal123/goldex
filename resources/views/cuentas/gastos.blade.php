@@ -90,6 +90,7 @@
           <p><b>Gasto : </b>{{number_format($totalTransferencia,2)}}</p> 
           <p><b>Abono : </b>{{number_format($totalAbono,2)}}</p>
           <p><b>Transferencia : </b>{{number_format($totalGasto,2)}}</p>
+          <p><b>Balance :</b> {{number_format($balance,2)}} </p>
         </div>
         <div class="col-md-8" align="right">
           <div class="paginador">

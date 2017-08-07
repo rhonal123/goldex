@@ -124,5 +124,12 @@ class Cuenta extends Model
   
   }
 
+  public function balance(){
+    $totalAbono = $this->totalAbono(null,null);
+    $totalTransferencia = $this->totalTransferencia(null,null);
+    $totalGasto= $this->totalGasto(null,null);
+    return $totalAbono - $totalTransferencia - $totalGasto;
+  }
+
 
 }

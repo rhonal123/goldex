@@ -80,7 +80,8 @@ class CuentasController extends Controller {
 	{
 		$this->authorize('B01');
 		$cuenta = Cuenta::findOrFail($id);
-		return view('cuentas.show', compact('cuenta','movimientos'));
+    $balance = $cuenta->balance();
+		return view('cuentas.show', compact('cuenta','movimientos','balance'));
 	}
 
 
@@ -101,8 +102,9 @@ class CuentasController extends Controller {
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);
 		$transferencias =$query->paginate(10);
+    $balance = $cuenta->balance();
 		return view('cuentas.transferencias',
-				compact('cuenta','transferencias','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
+				compact('cuenta','transferencias','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
 	}
 
 
@@ -122,9 +124,10 @@ class CuentasController extends Controller {
     $totalAbono = $cuenta->totalAbono($desde,$hasta);
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);
+    $balance = $cuenta->balance();
 		$gastos =$query->paginate(10);
 		return view('cuentas.gastos', 
-			     compact('cuenta','gastos','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
+			     compact('cuenta','gastos','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
 	}
 
 
@@ -144,8 +147,9 @@ class CuentasController extends Controller {
     $totalAbono = $cuenta->totalAbono($desde,$hasta);
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);		$abonos =$query->paginate(10);
+    $balance = $cuenta->balance();
 		return view('cuentas.abonos',
-			      compact('cuenta','abonos','totalAbono','totalTransferencia','totalGasto','desde','hasta'));
+			      compact('cuenta','abonos','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
 	}
 
 	/**

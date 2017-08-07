@@ -65,7 +65,7 @@
   <div class="form-group col-md-4">
     <blockquote>
       <label for="nome">SALDO</label> 
-      <p class="form-control-static">{{number_format($cuenta->saldo,2)}}</p>
+      <p class="form-control-static">{{number_format($balance,2)}}</p>
     </blockquote>
   </div>
 
