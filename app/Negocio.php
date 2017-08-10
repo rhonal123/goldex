@@ -57,4 +57,30 @@ class Negocio extends Model
     return Movimiento::with('cuenta.banco')->where("negocio_id",$id)->get();
   }
 
+
+  public function movimientos(){
+    return $this->hasMany('App\Movimiento');
+  }
+
+
+  public function transferencias(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',1)->where('estado','CREADO');
+  }
+
+  public function abonos(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',2)->where('estado','CREADO');
+  }
+
+
+  public function transferencias_saldo() {
+    return $this->transferencias()->sum("saldo");
+  }
+
+
+  public function abonos_saldo() {
+    return $this->abonos()->sum("saldo");
+  }
+
+
+
  }
