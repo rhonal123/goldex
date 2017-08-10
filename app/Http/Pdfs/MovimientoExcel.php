@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use PHPExcel_Style_NumberFormat;
 use PHPExcel_Shared_Date;
 use PHPExcel_Calculation;
-
+use PHPExcel_Style_Alignment; 
 class MovimientoExcel{
 
 
@@ -46,7 +46,6 @@ class MovimientoExcel{
     $excel->setDescription('reporte general de movimientos asociados a cuenta');
     $self = $this;
     $excel->sheet('movimientos', function($sheet) use($movimientos,$self) {
-        //$sheet->fromArray($movimientos);
         $i = 4;
         $self->header($sheet);
         $sheet->setCellValue('A3',"FECHA"); 
@@ -59,6 +58,21 @@ class MovimientoExcel{
         $sheet->getStyle('A:A')->getNumberFormat()->setFormatCode('dd/mm/yyyy');
         $sheet->getStyle('E:E')->getNumberFormat()->setFormatCode('#,##0.00');
         $sheet->getStyle('F:F')->getNumberFormat()->setFormatCode('#,##0.00');
+
+         $style = array(
+          'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+          )
+        );
+        $sheet->getStyle("D:D")->applyFromArray($style);
+ 
+         $style = array(
+          'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+          )
+        );
+        $sheet->getStyle("E:E")->applyFromArray($style);
+ 
 
         foreach ($movimientos as $key => $value) {
           $celda = 'A' . (string)($i);

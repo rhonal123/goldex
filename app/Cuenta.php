@@ -54,17 +54,16 @@ class Cuenta extends Model
 
 
   public function transferencias(){
-    return $this->hasMany('App\Movimiento')->where('clasificacion',1);
+    return $this->hasMany('App\Movimiento')->where('clasificacion',1)->where('estado','CREADO');
   }
 
   public function abonos(){
-    return $this->hasMany('App\Movimiento')->where('clasificacion',2);
+    return $this->hasMany('App\Movimiento')->where('clasificacion',2)->where('estado','CREADO');
   }
 
   public function gastos(){
-    return $this->hasMany('App\Movimiento')->where('clasificacion',3);
+    return $this->hasMany('App\Movimiento')->where('clasificacion',3)->where('estado','CREADO');
   }
-
 
   public function transferencias_saldo() {
     return $this->transferencias()->sum("saldo");

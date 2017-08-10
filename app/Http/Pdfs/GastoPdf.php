@@ -63,20 +63,20 @@ class GastoPdf extends \TCPDF {
 				$this->Ln();
 				$this->SetFont('times', null, 9);
 				$this->SetFillColor(243, 255, 166);
+		 		$this->Cell(30,7,"Fecha", 1, 0, 'C', 1);
 		 		$this->Cell(100,7,"Descripcion", 1, 0, 'C', 1);
 		 		$this->Cell(40,7,"Cuenta", 1, 0, 'C', 1);
 		 		$this->Cell(40,7,"Referencia", 1, 0, 'C', 1);
-		 		$this->Cell(30,7,"Fecha", 1, 0, 'C', 1);
 		 		$this->Cell(40,7,"Monto", 1, 0, 'C', 1);
 		    $this->Ln();
 		    $header = false;
 		  }
 		  $height =ceil(strlen($value->descripcion) / 76.0) * 6;
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
+      $this->Cell(30, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
       $this->Cell(40, $height,$value->cuenta, 1, 0, 'C');
 	    $this->Cell(40, $height,$value->referencia, 1, 0, 'C');
-      $this->Cell(30, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
 		  $this->Cell(40, $height,number_format($value->saldo, 2) , 1, 0, 'C');
 		  $this->ln();
 

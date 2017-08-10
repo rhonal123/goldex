@@ -81,9 +81,9 @@ class MovimientoPdf extends \TCPDF {
 				$this->Ln();
 				$this->SetFont('times', null, 9);
 				$this->SetFillColor(243, 255, 166);
-		 		$this->Cell(100,7,"Descripcion", 1, 0, 'C', 1);
-		 		$this->Cell(40,7,"Negocio", 1, 0, 'C', 1);
 		 		$this->Cell(20,7,"Fecha", 1, 0, 'C', 1);
+		 		$this->Cell(40,7,"Negocio", 1, 0, 'C', 1);
+		 		$this->Cell(100,7,"Descripcion", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Cuenta", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"REF ó COMI", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Monto", 1, 0, 'C', 1);
@@ -92,9 +92,9 @@ class MovimientoPdf extends \TCPDF {
 		  }
 		  $height =ceil(strlen($value->descripcion) / 76.0) * 6;
  	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
-	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
-      $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
       $this->Cell(20, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
+      $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
+	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
 		  if($value->tipo == "TRANSFERENCIA"){
 		    $this->Cell(30, $height,$value->cuenta, 1, 0, 'C');
 		    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
@@ -105,7 +105,6 @@ class MovimientoPdf extends \TCPDF {
 		  }
 		  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
 		  $this->ln();
-      //Log::info("ID ".$value->id." X-->".$this->GetX()." Y-->".$this->GetY());
       if($this->checkPageBreak($this->lasth)){
       	$header = true;
       }
@@ -113,6 +112,7 @@ class MovimientoPdf extends \TCPDF {
     $totalEfectivo= number_format($this->totalEfectivo($movimientos), 2);
 		$totalTransferencia= number_format($this->totalTransferencia($movimientos), 2);
 		$totalComision = number_format($this->totalComision($movimientos), 2);
+		$totalGeneral =  number_format($this->totalTransferencia($movimientos)+$this->totalEfectivo($movimientos), 2);
     $this->SetFont('helvetica', 'N', 11);
     $this->Ln();
 		$this->Cell(0, 0, 'TOTAL EFECTIVO : '.$totalEfectivo.' Bs', 0, 0, 'R');
@@ -120,6 +120,9 @@ class MovimientoPdf extends \TCPDF {
 		$this->Cell(0, 0, 'TOTAL COMISION : '.$totalComision.' Bs', 0, 0, 'R');
 	  $this->Ln();
 		$this->Cell(0, 0, 'TOTAL TRANSFERENCIA : '.$totalTransferencia.' Bs', 0, 0, 'R');
+	  $this->Ln();
+		$this->Cell(0, 0, 'TOTAL General : '.$totalGeneral.' Bs', 0, 0, 'R');
+
     $this->Output();
     ///exit;
 	}

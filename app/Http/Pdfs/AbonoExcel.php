@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use PHPExcel_Style_NumberFormat;
 use PHPExcel_Shared_Date;
 use PHPExcel_Calculation;
+use PHPExcel_Style_Alignment; 
 
 class AbonoExcel {
 
@@ -59,6 +60,14 @@ class AbonoExcel {
         $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('#,##0.00');
         $sheet->getStyle('E:E')->getNumberFormat()->setFormatCode('#,##0.00');
 
+         $style = array(
+          'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+          )
+        );
+        $sheet->getStyle("D:D")->applyFromArray($style);
+ 
+ 
         foreach ($movimientos as $key => $value) {
           $celda = 'A' . (string)($i);
           $sheet->setCellValue($celda,PHPExcel_Shared_Date::PHPToExcel( $value->fecha));

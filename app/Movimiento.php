@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Validator;
 
 /*
-	Estados -> CREADO, ASOCIADO, ANULADO, SALDADO
+	Estados -> CREADO, ANOPASADO
   Tipo -> 
     TRANSFERENCIA 
     EFECTIVO 
