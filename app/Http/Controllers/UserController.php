@@ -140,6 +140,18 @@ class UserController extends Controller {
 	}
 
 
+
+
+
+	public function permisos_edit($id)
+	{
+		$this->authorize('E07');
+		$user = User::findOrFail($id);
+		$permisos = Permiso::$PERMISOS;
+		return view('users.permisos_edit', compact('user','permisos'));
+	}
+
+
 	public function permisos(Request $request,$id,$permiso_id){
 		$this->authorize('E07');
 		$tipo = $request->input('tipo');

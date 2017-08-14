@@ -23,11 +23,12 @@ use App\Http\Pdfs\GastoPdf;
 use App\Http\Pdfs\GastoExcel;
 
 /*
-  ['codigo' => 'F01' , 'accion' => 'gastoController@show'],
-  ['codigo' => 'F02' , 'accion' => 'gastoController@delete'],
-  ['codigo' => 'F03' , 'accion' => 'gastoController@update'],
-  ['codigo' => 'F04' , 'accion' => 'gastoController@create'],
-  ['codigo' => 'F05' , 'accion' => 'gastoController@index'],
+  ['codigo' => 'J01' , 'accion' => 'gastoController@show'],
+  ['codigo' => 'J02' , 'accion' => 'gastoController@delete'],
+  ['codigo' => 'J03' , 'accion' => 'gastoController@update'],
+  ['codigo' => 'J04' , 'accion' => 'gastoController@create'],
+  ['codigo' => 'J05' , 'accion' => 'gastoController@index'],
+  ['codigo' => 'J07' , 'accion' => 'gastoController@index'],
 
 */
 
@@ -41,7 +42,7 @@ class GastosController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		$this->authorize('F05');
+		$this->authorize('J05');
 		$descripcion = $request->input('descripcion');
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
@@ -59,7 +60,7 @@ class GastosController extends Controller {
 	 */
 	public function create()
 	{
-		$this->authorize('F04');
+		$this->authorize('J04');
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
 		return view('gastos.create',compact('cuentas','tipos'));
 	}
@@ -72,7 +73,7 @@ class GastosController extends Controller {
 	 */
 	public function store(Request $request)
 	{ 
-		$this->authorize('F04');
+		$this->authorize('J04');
   	$values = $request->all(); 
 		$validator = Movimiento::validador($values,self::$GASTO_PERSONAL);
 		if ($validator->fails()) {
@@ -95,7 +96,7 @@ class GastosController extends Controller {
 	 */
 	public function show($id)
 	{
-		$this->authorize('F01');
+		$this->authorize('J01');
 		$gasto = Movimiento::findOrFail($id);
 		return view('gastos.show', compact('gasto'));
 	}
@@ -108,7 +109,7 @@ class GastosController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$this->authorize('F03');
+		$this->authorize('J03');
 		$gasto = Movimiento::findOrFail($id);
 		$negocios = Negocio::pluck('nombre', 'id')->toArray();
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
@@ -125,7 +126,7 @@ class GastosController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$this->authorize('F03');
+		$this->authorize('J03');
 		$gasto = Movimiento::findOrFail($id); 
   	$values = $request->all(); 
 		$validator = Movimiento::validador($values,self::$GASTO_PERSONAL,$gasto);
@@ -148,7 +149,7 @@ class GastosController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$this->authorize('F02');
+		$this->authorize('J02');
 		$gasto = Movimiento::findOrFail($id);
 		try {
 			$gasto->delete();
@@ -160,14 +161,14 @@ class GastosController extends Controller {
 	}
 
 	public function reporte_edit(Request $request){
-		$this->authorize('F05');
+		$this->authorize('J07');
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
 		return view('gastos.reporte',compact('cuentas'));
 	}
 
   public function reporte(Request $request) 
   {
-		$this->authorize('F05');
+		$this->authorize('J07');
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');

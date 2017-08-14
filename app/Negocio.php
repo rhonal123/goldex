@@ -57,12 +57,6 @@ class Negocio extends Model
     return Movimiento::with('cuenta.banco')->where("negocio_id",$id)->get();
   }
 
-
-  public function movimientos(){
-    return $this->hasMany('App\Movimiento');
-  }
-
-
   public function transferencias(){
     return $this->hasMany('App\Movimiento')->where('clasificacion',1)->where('estado','CREADO');
   }

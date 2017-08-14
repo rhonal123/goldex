@@ -82,8 +82,14 @@ Route::group(array('middleware' => 'auth'), function() {
                 'uses' => 'UserController@password_edit'])->middleware('auth');
 
     Route::patch('users/{id}/permisos/{permiso_id}',
-        ['as' => 'users.permisos', 
+        ['as' => 'users.permisos_change', 
         'uses' => 'UserController@permisos'])->middleware('auth');
+
+
+    Route::get('users/{id}/permisos/',
+        ['as' => 'users.permisos', 
+        'uses' => 'UserController@permisos_edit'])->middleware('auth');
+
 
 /*
     Route::delete('users/{id}/permisos/{permiso_id}',
