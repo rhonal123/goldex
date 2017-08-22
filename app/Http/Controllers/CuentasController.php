@@ -102,7 +102,7 @@ class CuentasController extends Controller {
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);
 		$transferencias =$query->paginate(10);
-    $balance = $cuenta->balance();
+    $balance = $totalAbono - $totalTransferencia -  $totalGasto;
 		return view('cuentas.transferencias',
 				compact('cuenta','transferencias','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
 	}
@@ -124,7 +124,7 @@ class CuentasController extends Controller {
     $totalAbono = $cuenta->totalAbono($desde,$hasta);
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);
-    $balance = $cuenta->balance();
+    $balance = $totalAbono - $totalTransferencia -  $totalGasto;
 		$gastos =$query->paginate(10);
 		return view('cuentas.gastos', 
 			     compact('cuenta','gastos','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
@@ -147,7 +147,7 @@ class CuentasController extends Controller {
     $totalAbono = $cuenta->totalAbono($desde,$hasta);
     $totalTransferencia = $cuenta->totalTransferencia($desde,$hasta);
     $totalGasto= $cuenta->totalGasto($desde,$hasta);		$abonos =$query->paginate(10);
-    $balance = $cuenta->balance();
+    $balance = $totalAbono - $totalTransferencia -  $totalGasto;
 		return view('cuentas.abonos',
 			      compact('cuenta','abonos','totalAbono','totalTransferencia','totalGasto','desde','hasta','balance'));
 	}

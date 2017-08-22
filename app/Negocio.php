@@ -53,10 +53,6 @@ class Negocio extends Model
   	return Validator::make($values,self::$val,self::$message);
   }
 
-  public static function movimientos($id,$estado="CREADO"){
-    return Movimiento::with('cuenta.banco')->where("negocio_id",$id)->get();
-  }
-
 
   public function movimientos(){
     return $this->hasMany('App\Movimiento');
