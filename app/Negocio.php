@@ -53,7 +53,6 @@ class Negocio extends Model
   	return Validator::make($values,self::$val,self::$message);
   }
 
-
   public function movimientos(){
     return $this->hasMany('App\Movimiento');
   }

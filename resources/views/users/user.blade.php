@@ -23,6 +23,11 @@
              <i class="glyphicon glyphicon-edit"></i>  Editar
           </a>
         </li>
+        <li role="menuitem">
+          <a href="{{ route('users.permisos', $user->id) }}">
+             <i class="glyphicon glyphicon-edit"></i>  Permisos
+          </a>
+        </li>
         <li role="menuitem" (click)="onEliminar(abono)">
           <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;"    
             onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">

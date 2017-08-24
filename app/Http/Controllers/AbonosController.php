@@ -28,6 +28,7 @@ use App\Http\Pdfs\AbonoExcel;
   ['codigo' => 'F03' , 'accion' => 'AbonoController@update'],
   ['codigo' => 'F04' , 'accion' => 'AbonoController@create'],
   ['codigo' => 'F05' , 'accion' => 'AbonoController@index'],
+  ['codigo' => 'F07' , 'accion' => 'AbonoController@reporte'],
 */
 
 class AbonosController extends Controller {
@@ -162,6 +163,7 @@ class AbonosController extends Controller {
 
 
 	public function reporte_edit(Request $request){
+		$this->authorize('F07');
 		$negocios = Negocio::pluck('nombre', 'id')->toArray();
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
 		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
@@ -170,7 +172,7 @@ class AbonosController extends Controller {
 
   public function reporte(Request $request) 
   {
-		$this->authorize('I07');
+		$this->authorize('F07');
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
