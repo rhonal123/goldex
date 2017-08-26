@@ -13,6 +13,8 @@ use App\Negocio;
 use App\User;
 
 use App\Http\Pdfs\GeneralPdf;
+use App\Http\Pdfs\CuentaPdf;
+use App\Http\Pdfs\CuentaExcel;
 use App\Http\Pdfs\GeneralExcel;
 
 class HomeController extends Controller
@@ -84,6 +86,27 @@ class HomeController extends Controller
     else{
       $excel = new GeneralExcel();
       $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
+  }
+
+  public function reporte_cuenta_edit(Request $request){
+    return view('home.reporte_negocios');
+  }
+
+
+  public function reporte_cuenta(Request $request) 
+  {
+    $this->authorize('I07');
+    $desde = $request->input('desde');
+    $hasta = $request->input('hasta');
+    $tipo = $request->input('tipo');
+    if($tipo === "pdf"){
+      $pdf = new CuentaPdf();
+      $pdf->generar($desde,$hasta);
+    }
+    else{
+      $excel = new CuentaExcel();
+      $excel->generar($desde,$hasta);
     }
   }
 

@@ -57,7 +57,6 @@ class Negocio extends Model
     return $this->hasMany('App\Movimiento');
   }
 
-
   public function transferencias(){
     return $this->hasMany('App\Movimiento')->where('clasificacion',1)->where('estado','CREADO');
   }
@@ -66,16 +65,8 @@ class Negocio extends Model
     return $this->hasMany('App\Movimiento')->where('clasificacion',2)->where('estado','CREADO');
   }
 
-
-  public function transferencias_saldo() {
-    return $this->transferencias()->sum("saldo");
+  public function gastos(){
+    return $this->hasMany('App\Movimiento')->where('clasificacion',3)->where('estado','CREADO');
   }
-
-
-  public function abonos_saldo() {
-    return $this->abonos()->sum("saldo");
-  }
-
-
 
  }

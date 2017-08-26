@@ -91,6 +91,13 @@
                 Reporte General
             </a>
           </li>
+          <li>
+            <a
+              href="{{ route('reportecuenta') }}"
+              class="{{ Welcome::linkActive('cuenta*') }}">
+                Balance de cuentas
+            </a>
+          </li>
         </ul>
 
       </li>
