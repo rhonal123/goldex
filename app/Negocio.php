@@ -69,4 +69,40 @@ class Negocio extends Model
     return $this->hasMany('App\Movimiento')->where('clasificacion',3)->where('estado','CREADO');
   }
 
+
+  public function totalAbono($desde = null, $hasta=null){
+    $query =  $this->abonos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
+  }
+
+  public function totalTransferencia($desde = null, $hasta=null){
+     $query =  $this->transferencias();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
+     
+  }
+
+  public function totalGasto($desde = null, $hasta=null){
+    $query =  $this->gastos();
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    return $query->sum('saldo');
+  }
+
+
  }

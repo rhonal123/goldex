@@ -14,7 +14,7 @@
     <div class="col-md-8">
 
       <form id="form-reporte" 
-        action="{{ route('reportenegocio') }}" 
+        action="{{ route('reportecuenta') }}" 
         method="POST" 
         target="_blank"
         class="form-horizontal">

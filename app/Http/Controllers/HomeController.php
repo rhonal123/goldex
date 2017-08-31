@@ -17,6 +17,9 @@ use App\Http\Pdfs\CuentaPdf;
 use App\Http\Pdfs\CuentaExcel;
 use App\Http\Pdfs\GeneralExcel;
 
+use App\Http\Pdfs\NegocioPdf;
+use App\Http\Pdfs\NegocioExcel;
+
 class HomeController extends Controller
 {
   /**
@@ -90,7 +93,7 @@ class HomeController extends Controller
   }
 
   public function reporte_cuenta_edit(Request $request){
-    return view('home.reporte_negocios');
+    return view('home.reporte_cuentas');
   }
 
 
@@ -110,6 +113,24 @@ class HomeController extends Controller
     }
   }
 
+  public function reporte_negocio_edit(Request $request){
+    return view('home.reporte_negocios');
+  }
 
-
+  public function reporte_negocio(Request $request) 
+  {
+    $this->authorize('I07');
+    $desde = $request->input('desde');
+    $hasta = $request->input('hasta');
+    $tipo = $request->input('tipo');
+    if($tipo === "pdf"){
+      $pdf = new NegocioPdf();
+      $pdf->generar($desde,$hasta);
+    }
+    else{
+      $excel = new NegocioExcel();
+      $excel->generar($desde,$hasta);
+    }
+  }
+ 
 }

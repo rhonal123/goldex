@@ -40,6 +40,14 @@ Route::group(array('middleware' => 'auth'), function() {
             'uses' => 'HomeController@reporte_cuenta']);
 
 
+    Route::get('reportenegocio',
+            ['as' => 'reportenegocio', 
+                'uses' => 'HomeController@reporte_negocio_edit']);
+    
+    Route::post('reportenegocio',
+            ['as' => 'reportenegocio', 
+            'uses' => 'HomeController@reporte_negocio']);
+
 
 
     Route::resource('bancos', 'BancosController');

@@ -94,10 +94,21 @@
           <li>
             <a
               href="{{ route('reportecuenta') }}"
-              class="{{ Welcome::linkActive('cuenta*') }}">
-                Balance de cuentas
+              class="{{ Welcome::linkActive('reportecuenta*') }}">
+                Balance de Cuentas
             </a>
           </li>
+
+
+          <li>
+            <a
+              href="{{ route('reportenegocio') }}"
+              class="{{ Welcome::linkActive('reportenegocio*') }}">
+                Balance de Negocio
+            </a>
+          </li>
+
+
         </ul>
 
       </li>
