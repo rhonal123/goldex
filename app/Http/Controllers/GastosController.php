@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use Elibyy\TCPDF\Facades\TCPDF;
 
 use App\MovimientoView;
+use App\Movimiento;
 use App\Cuenta;
 use App\Negocio;
 use App\User;
