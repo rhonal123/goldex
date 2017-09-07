@@ -85,8 +85,8 @@ class GeneralPdf extends \TCPDF {
 				$this->SetFillColor(243, 255, 166);
 		 		$this->Cell(20,7,"Fecha", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"REFERENCIA", 1, 0, 'C', 1);
-		 		$this->Cell(70,7,"Descripcion", 1, 0, 'C', 1);
 		 		$this->Cell(40,7,"Negocio", 1, 0, 'C', 1);
+		 		$this->Cell(70,7,"Descripcion", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Debe", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Haber", 1, 0, 'C', 1);
 		 		$this->Cell(30,7,"Balance", 1, 0, 'C', 1);
@@ -96,8 +96,6 @@ class GeneralPdf extends \TCPDF {
 		  $height =ceil(strlen($value->descripcion) / 50.0) * 6;
       $this->Cell(20, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
 	    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
- 	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
-	 		$this->MultiCell(70, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
 
       if($value->clasificacion == 3){
   	    $this->Cell(40, $height,"GASTO", 1, 0, 'C');
@@ -105,6 +103,10 @@ class GeneralPdf extends \TCPDF {
       else{
   	    $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
       }
+
+ 	    $descripcion = str_replace("/\r\n|\r|\n/"," ",$value->descripcion);
+	 		$this->MultiCell(70, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
+
 
 		  if($value->clasificacion == 2){ // abono 
 		  	$balance += $value->saldo;
