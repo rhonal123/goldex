@@ -11,8 +11,13 @@ $(window).on('load', function() {
   $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
 
   $("#cuenta_id-field").select2({
+    placeholder: 'Seleccione una Cuenta',
+    minimumInputLength: 0});
+
+  $("#negocio_id-field").select2({
     placeholder: 'Seleccione un Negocio',
     minimumInputLength: 0});
+
 }); 
 
 $(document).on('keydown','#monto-field',function(){

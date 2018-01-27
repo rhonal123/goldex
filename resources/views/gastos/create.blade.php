@@ -43,6 +43,17 @@
          </div>
         </div> 
 
+
+        <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
+          <label for="negocio-field" class="col-sm-2 control-label">Negocio</label>
+          <div class="col-sm-4">
+            {{ Form::select('negocio_id', $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
+            @if($errors->has("negocio_id"))
+              <span class="help-block">{{ $errors->first("negocio_id") }}</span>
+            @endif
+         </div>
+        </div> 
+        
         <div id="form-referencia" class="form-group @if($errors->has('referencia')) has-error @endif">
           <label for="referencia-field" class="col-sm-2 control-label">Referencia</label>
           <div class="col-sm-4">

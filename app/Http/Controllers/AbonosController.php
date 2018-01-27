@@ -19,7 +19,6 @@ use App\User;
 use DB;
 use App;
 use View;
-
 use App\Http\Pdfs\AbonoPdf;
 use App\Http\Pdfs\AbonoExcel;
 /*
@@ -57,13 +56,15 @@ class AbonosController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
 		$this->authorize('F04');
 		$negocios = Negocio::pluck('nombre', 'id')->toArray();
-		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
+		$cuentas = Cuenta::pluck('numero', 'id')->toArray(); 
+		$transferencia_id = $request->input('transferencia_id');
+		$transferencia = Movimiento::find($transferencia_id);
 		$tipos = array('TRANSFERENCIA' => 'TRANSFERENCIA', 'EFECTIVO' => 'EFECTIVO' );
-		return view('abonos.create',compact('negocios','cuentas','tipos'));
+		return view('abonos.create',compact('negocios','cuentas','tipos','transferencia_id','transferencia'));
 	}
 
 	/**
@@ -77,14 +78,21 @@ class AbonosController extends Controller {
 		$this->authorize('F04');
   	$values = $request->all(); 
 		$validator = Movimiento::validador($values,self::$TRANSFERENCIA_ENTRADA);
+		$transferencia_id = $request->input('transferencia_id');
+		$transferencia = Movimiento::find($transferencia_id);
+		Log::info($transferencia_id);
 		if ($validator->fails()) {
-		 Log::info($values);
-			return redirect('abonos/create')
+			return redirect()->route('abonos.create',['transferencia_id' => $transferencia_id ])
           ->withErrors($validator)
           ->withInput();
     }
 		else {
 			$abono = Movimiento::crearMovimiento($values,self::$TRANSFERENCIA_ENTRADA);
+			if(!is_null($transferencia)){
+				$transferencia->detalles()->create([
+					'abono_id' => $abono->id
+				]);
+			}
 			return redirect()->route('abonos.show',['id' => $abono->id ])->with('success', 'Abono correctamente creado.');			
 		}
 	}

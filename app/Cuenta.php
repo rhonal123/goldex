@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
- 
+use App\Configuration;
 
 class Cuenta extends Model
 {
@@ -124,9 +124,10 @@ class Cuenta extends Model
   }
 
   public function balance(){
-    $totalAbono = $this->totalAbono(null,null);
-    $totalTransferencia = $this->totalTransferencia(null,null);
-    $totalGasto= $this->totalGasto(null,null);
+    $fecha = Configuration::find(0)->anoTransito->format('Y/m/d');
+    $totalAbono = $this->totalAbono($fecha,null);
+    $totalTransferencia = $this->totalTransferencia($fecha,null);
+    $totalGasto= $this->totalGasto($fecha,null);
     return $totalAbono - $totalTransferencia - $totalGasto;
   }
 

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 Route::auth();
 Route::get('/', 'HomeController@index')->name('root');
 
+Route::get('configuracion', 'HomeController@configuracion_edit')->name('configuracion');
+Route::post('configuracion', 'HomeController@configuracion');
+
 
 Route::group(array('middleware' => 'auth'), function() {
 
@@ -108,13 +111,6 @@ Route::group(array('middleware' => 'auth'), function() {
     Route::get('users/{id}/permisos/',
         ['as' => 'users.permisos', 
         'uses' => 'UserController@permisos_edit'])->middleware('auth');
-
-
-/*
-    Route::delete('users/{id}/permisos/{permiso_id}',
-         ['as' => 'users.permisos_rm', 
-        'uses' => 'UserController@quitarPermiso'])->middleware('auth');
-*/
 
 });
 

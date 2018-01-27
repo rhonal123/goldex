@@ -51,7 +51,8 @@ class GastosController extends Controller {
 		$cuenta_id =  $request->input('cuenta_id');
 		$gastos = MovimientoView::buscar($desde,$hasta,$negocio_id,$cuenta_id,$descripcion,self::$GASTO_PERSONAL);
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
-		return view('gastos.index', compact('gastos','cuentas','desde','hasta','negocio_id','cuenta_id','descripcion'));
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		return view('gastos.index', compact('gastos','cuentas','desde','hasta','negocio_id','cuenta_id','descripcion','negocios'));
 	}
 
 	/**
@@ -63,7 +64,8 @@ class GastosController extends Controller {
 	{
 		$this->authorize('J04');
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
-		return view('gastos.create',compact('cuentas','tipos'));
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		return view('gastos.create',compact('cuentas','tipos','negocios'));
 	}
 
 	/**
@@ -164,7 +166,8 @@ class GastosController extends Controller {
 	public function reporte_edit(Request $request){
 		$this->authorize('J07');
 		$cuentas = Cuenta::pluck('numero', 'id')->toArray();
-		return view('gastos.reporte',compact('cuentas'));
+		$negocios = Negocio::pluck('nombre', 'id')->toArray();
+		return view('gastos.reporte',compact('cuentas','negocios'));
 	}
 
   public function reporte(Request $request) 
@@ -173,16 +176,17 @@ class GastosController extends Controller {
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
 		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
+		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
 		$ordenarTipo  = $request->input('ordenarTipo'); 
     $tipo = $request->input('tipo');
 
     if($tipo === "pdf"){
 			$pdf = new GastoPdf();
-	   	$pdf->generar($desde,$hasta,$cuenta_id,$ordenarTipo);
+	   	$pdf->generar($desde,$hasta,$cuenta_id,$negocio_id,$ordenarTipo);
     }
     else{
       $excel = new GastoExcel();
-      $excel->generar($desde,$hasta,$cuenta_id,$ordenarTipo);
+      $excel->generar($desde,$hasta,$cuenta_id,$negocio_id,$ordenarTipo);
     }
 
   }

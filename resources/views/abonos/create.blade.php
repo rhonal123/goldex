@@ -31,7 +31,28 @@
             @endif
          </div>
         </div>  
-        
+
+        @if(!is_null($transferencia))
+          <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
+            <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
+            <div class="col-sm-4">
+              <input type="hidden" name="negocio_id" value="{{ is_null(old("negocio_id")) ? $transferencia->negocio_id : old("negocio_id") }}">
+              <input type="hidden" name="transferencia_id" value="{{ is_null(old("transferencia_id")) ? $transferencia->id : old("transferencia_id") }}">
+              <input type="text" name="" class="form-control"  value="{{ $transferencia->negocio->nombre }}" disabled>
+           </div>
+          </div> 
+        @else 
+          <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
+            <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
+            <div class="col-sm-4">
+              {{ Form::select('negocio_id', $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
+              @if($errors->has("negocio_id"))
+                <span class="help-block">{{ $errors->first("negocio_id") }}</span>
+              @endif
+           </div>
+          </div> 
+        @endif
+
         <div class="form-group @if($errors->has('monto')) has-error @endif">
           <label for="monto-field" class="col-sm-2 control-label">Monto</label>
           <div class="col-sm-2">

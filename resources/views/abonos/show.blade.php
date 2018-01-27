@@ -73,14 +73,27 @@
         </div>
         @endif      
 
-       <div class="form-group col-md-4">
-          <blockquote>
-            <label for="nome">SALDO</label> 
-            <p class="form-control-static">{{ number_format( $abono->saldo, 2) }} Bs.</p>
-          </blockquote>
+        <div class="form-group col-md-4">
+            <blockquote>
+              <label for="nome">SALDO</label> 
+              <p class="form-control-static">{{ number_format( $abono->saldo, 2) }} Bs.</p>
+            </blockquote>
         </div>
 
+        @if($abono->transferencia)
+        <div class="form-group col-md-4">
+            <blockquote>
+              <label for="nome">Abono Asociado a una Devolucion </label> 
+              <p>
+                <a role="group" class="btn btn-default btn-sm" href="{{ route('movimientos.show', $abono->transferencia->transferencia_id) }}">
+                  {{ $abono->transferencia->transferencia->id }} - {{ $abono->transferencia->transferencia->referencia  }}
+                </a>                
+              </p>  
+            </blockquote>
+        </div>
+        @endif 
       </form>
+
     </div>
 
 

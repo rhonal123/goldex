@@ -29,11 +29,11 @@ class GastoExcel{
   }
 
 
-	public function generar($desde,$hasta,$cuenta_id,$ordenarTipo){
+	public function generar($desde,$hasta,$cuenta_id,$negocio_id,$ordenarTipo){
 
     $this->desde = $desde;
     $this->hasta = $hasta;
-    $movimientos = MovimientoView::gastos($desde,$hasta,$cuenta_id,$ordenarTipo);
+    $movimientos = MovimientoView::gastos($desde,$hasta,$cuenta_id,$negocio_id,$ordenarTipo);
     $excel = \Excel::create('Filename', function($excel) use($movimientos) {
     $excel->setTitle('Reporte Gastos ');
     $excel->setCreator('Goldex');
@@ -47,10 +47,11 @@ class GastoExcel{
         $sheet->setCellValue('B3',"REFERENCIA");
         $sheet->setCellValue('C3',"DESCRIPCION");
         $sheet->setCellValue('D3',"CUENTA");
-        $sheet->setCellValue('E3',"MONTO");
+        $sheet->setCellValue('E3',"NEGOCIO");
+        $sheet->setCellValue('F3',"MONTO");
 
         $sheet->getStyle('A:A')->getNumberFormat()->setFormatCode('dd/mm/yyyy');
-        $sheet->getStyle('E:E')->getNumberFormat()->setFormatCode('#,##0.00');
+        $sheet->getStyle('F:F')->getNumberFormat()->setFormatCode('#,##0.00');
  
         foreach ($movimientos as $key => $value) {
           $celda = 'A' . (string)($i);
@@ -62,6 +63,8 @@ class GastoExcel{
           $celda = 'D' . (string)($i);
           $sheet->setCellValue($celda,$value->cuenta);
           $celda = 'E' . (string)($i);
+          $sheet->setCellValue($celda, $value->negocio);
+          $celda = 'F' . (string)($i);
           $sheet->setCellValue($celda, $value->saldo);
           $i++;
         }

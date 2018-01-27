@@ -48,6 +48,9 @@ class Movimiento extends Model
     if($movimiento->tipo == "TRANSFERENCIA"){
       $movimiento->comision = 0;
     }
+    else{
+      $movimiento->cuenta_id = 31;
+    }
     $movimiento->clasificacion = $clasificacion;
   	$movimiento->estado = "CREADO";
     $movimiento->saldo = (1 + ($movimiento->comision/100)) * $movimiento->monto;
@@ -91,6 +94,18 @@ class Movimiento extends Model
 
 	public function cuenta() {
     return $this->belongsTo('App\Cuenta');
+  }
+
+  public function transferencia(){ // si es una devolucion
+    return $this->hasOne('App\DetalleTransferencia','abono_id');
+  }
+
+  public function detalles(){
+    return $this->hasMany('App\DetalleTransferencia', 'transferencia_id');
+  }
+
+  public function devoluciones(){
+    return $this->detalles()->join('movimientos','detalle_movimiento.abono_id','=','movimientos.id');
   }
 
   public static function validador($values,$clasificacion=1,$movimiento = null){
@@ -170,5 +185,7 @@ class Movimiento extends Model
   	return $v;
   }
 
-
+  public function totalDevoluciones() {
+   return  $this->devoluciones()->sum('monto');
+  }
 }

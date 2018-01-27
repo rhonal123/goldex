@@ -60,7 +60,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="filterModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="filterModalLabel">Filtro Gastos</h4>
       </div>
       <div class="modal-body">
         <input type="hidden" name="ordenar" value="fecha" >
@@ -95,7 +95,20 @@
             }}
           </div> 
         </div>
+      
+        <div  class="form-group">
+          <label for="negocio_id" class="col-sm-2 control-label" for="estado">Negocio</label>
+          <div class="col-sm-10">
+            {{
+              Form::select('negocio_id', 
+               array('' => 'Seleccione un negocio') + $negocios,
+               $negocio_id,
+               ['class' => 'form-control','id'=>'negocio_id-field', 'style' => 'width: 100%'] )
+            }}
+            </div> 
+        </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-default">Filtrar</button>
@@ -116,6 +129,7 @@
     $('#search_hasta').datepicker({format: "yyyy/mm/dd",language: 'es'})
     $('#search_hasta').datepicker('setDate', new Date('{{$hasta}}'));
 
+    $("#negocio_id-field").select2();
     $("#cuenta_id-field").select2();
   });
 </script>

@@ -5,12 +5,14 @@ use Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
 use Hash;
 
 use App\Movimiento;
 use App\Cuenta;
 use App\Negocio;
 use App\User;
+use App\Configuration;
 
 use App\Http\Pdfs\GeneralPdf;
 use App\Http\Pdfs\CuentaPdf;
@@ -133,4 +135,19 @@ class HomeController extends Controller
     }
   }
  
+  public function configuracion_edit()
+  {
+    $configuracion = Configuration::find(0);
+    return view('home.configuracion',compact('configuracion'));
+  }
+
+  public function configuracion(Request $request)
+  {
+    $configuracion = Configuration::find(0);
+    $operacion = $configuracion->update([
+     'anoTransito' => Carbon::createFromFormat("yy/m/d",$request->anoTransito)
+    ]);
+    return view('home.configuracion',compact('configuracion','operacion'));
+  }
+
 }

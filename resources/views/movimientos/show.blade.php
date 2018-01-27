@@ -18,6 +18,10 @@
           Nuevo
         </a>
         <a class="btn btn-default" role="group" 
+          href="{{ route('abonos.create', [ 'transferencia_id' => $movimiento->id]) }}">
+          <i class="glyphicon glyphicon-plus"></i> 
+          Agregar Devolucion </a>
+        <a class="btn btn-default" role="group" 
           href="{{ route('movimientos.edit', $movimiento->id) }}">
           <i class="glyphicon glyphicon-edit"></i> 
           Editar</a>
@@ -97,20 +101,65 @@
         </div>
         @endif      
 
-
-       <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">SALDO</label> 
             <p class="form-control-static">{{ number_format( $movimiento->saldo, 2) }} Bs.</p>
           </blockquote>
         </div>
- 
- 
 
+        @if($movimiento->devoluciones()->count()) 
+        <div class="form-group col-md-4">
+          <blockquote>
+            <label for="nome">MONTO DEUDA </label> 
+            <p class="form-control-static">{{ number_format( $movimiento->saldo - $movimiento->totalDevoluciones(), 2) }} Bs.</p>
+          </blockquote>
+        </div>
+        @endif 
       </form>
+
     </div>
-
-
+    <div class="col-md-12">
+    @if($movimiento->devoluciones()->count()) 
+      <div class="table-responsive">
+      <h3>Devoluciones</h3>
+        <table class="table table-condensed table-striped" style="font-size: 12px">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Cuenta</th>
+              <th>Descripcion</th>
+              <th>Referencia</th>
+              <th>Fecha</th>
+              <th>Tipo</th>
+              <th>Saldo</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach ($movimiento->devoluciones()->get() as $detalle)
+          <tr>
+            <td><span>{{$detalle->id }}</span></td>
+            <td>
+              <span>{{ $detalle->tipo == "EFECTIVO" ? "---" : Welcome::cuentaStr($detalle->cuenta_id) }}</span>
+            </td>
+            <td><span>{{$detalle->descripcion }}</span></td>
+            <td><span>{{$detalle->referencia }}</span></td>
+            <td><span>{{$detalle->fecha }}</span></td>
+            <td><span>{{$detalle->tipo }}</span></td>
+            <td><span>{{number_format( $detalle->saldo, 2) }}</span></td>
+            <td><span><a class="btn btn-default btn-sm" href=" {{ route('abonos.show', $detalle->id)  }}  ">detalle</a></span></td>
+          </tr>
+        @endforeach
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="8" style="text-align: right;"> <strong>Total devoluciones : {{ number_format( $movimiento->totalDevoluciones(), 2) }}</strong> </td>
+          </tr>
+        </tfoot>
+      </table>
+    @endif      
+    </div>
 @endsection
 
 

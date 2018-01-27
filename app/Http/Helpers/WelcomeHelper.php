@@ -2,6 +2,7 @@
 
 namespace App\Http\Helpers;
 use Illuminate\Support\Facades\Request;
+use App\Cuenta;
 
 class WelcomeHelper {
 
@@ -31,7 +32,8 @@ class WelcomeHelper {
 
     }
 
-  
-
+    public static function cuentaStr($cuenta_id){
+        return Cuenta::find($cuenta_id)->numero;
+    }
 
 }  

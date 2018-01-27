@@ -74,13 +74,16 @@ class MovimientoView extends Model
     return $query->get();
   }
 
- public static function gastos($desde,$hasta,$cuenta_id,$ordenarTipo){
+ public static function gastos($desde,$hasta,$cuenta_id,$negocio_id,$ordenarTipo){
     $query =  MovimientoView::where('clasificacion',3);
     if($desde){
       $query->where('fecha', '>=',$desde);
     }
     if($hasta){
       $query->where('fecha', '<=',$hasta);
+    }
+    if($negocio_id){
+      $query->where('negocio_id', '=',$negocio_id);
     }
     if($cuenta_id){
       $query->where('cuenta_id', '=',$cuenta_id);

@@ -81,7 +81,6 @@ class MovimientoController extends Controller {
   	$values = $request->all(); 
 		$validator = Movimiento::validador($values);
 		if ($validator->fails()) {
-		 Log::info($values);
 			return redirect('movimientos/create')
           ->withErrors($validator)
           ->withInput();
@@ -103,7 +102,10 @@ class MovimientoController extends Controller {
 	{
 		$this->authorize('I01');
 		$movimiento = movimiento::findOrFail($id);
-		return view('movimientos.show', compact('movimiento'));
+		$detalles = $movimiento->detalles()->get();
+		$total = count($detalles);
+		echo count($detalles);
+		return view('movimientos.show', compact('movimiento','detalles','total'));
 	}
 
 	/**
