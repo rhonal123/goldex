@@ -124,7 +124,7 @@ class Cuenta extends Model
   }
 
   public function balance(){
-    $fecha = Configuration::find(0)->anoTransito->format('Y/m/d');
+    $fecha = Configuration::find(1)->anoTransito->format('Y/m/d');
     $totalAbono = $this->totalAbono($fecha,null);
     $totalTransferencia = $this->totalTransferencia($fecha,null);
     $totalGasto= $this->totalGasto($fecha,null);

@@ -137,13 +137,13 @@ class HomeController extends Controller
  
   public function configuracion_edit()
   {
-    $configuracion = Configuration::find(0);
+    $configuracion = Configuration::find(1);
     return view('home.configuracion',compact('configuracion'));
   }
 
   public function configuracion(Request $request)
   {
-    $configuracion = Configuration::find(0);
+    $configuracion = Configuration::find(1);
     $operacion = $configuracion->update([
      'anoTransito' => Carbon::createFromFormat("yy/m/d",$request->anoTransito)
     ]);
