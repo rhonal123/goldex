@@ -37,7 +37,7 @@ class MovimientoView extends Model
       $query->where('negocio_id', '=',$negocio_id);
     }
     if($cuenta_id){
-      $query->where('cuenta_id', '=',$cuenta_id);
+      $query->whereIn('cuenta_id',$cuenta_id);
     }
     if($ordenarTipo =="desc"){
       $query->orderBy('fecha','desc')->orderBy('descripcion','desc');

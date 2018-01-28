@@ -34,12 +34,13 @@
 
         <div  class="form-group">
           <label for="cuenta_id" class="col-sm-2 control-label" for="estado">Cuenta</label>
+          <input type="hidden" name="cuenta_id" id="cuenta_id-field" value="">
           <div class="col-sm-10">
             {{
-              Form::select('cuenta_id', 
+              Form::select('cuenta_id2', 
                array('' => 'Seleccione una cuenta ') +$cuentas,
                old("cuenta_id"),
-               ['class' => 'form-control','id'=>'cuenta_id-field','required']) 
+               ['class' => 'form-control','id'=>'cuenta_id2-field','required', 'multiple' => 'multiple']) 
             }}
           </div> 
         </div>
@@ -84,7 +85,19 @@
 
     $("#tipo-field").select2();
     $("#negocio_id-field").select2();
-    $("#cuenta_id-field").select2();
+    $("#cuenta_id2-field").select2();
+    
+    $("#cuenta_id2-field").on('change',function(e){
+      $("#cuenta_id-field").val($("#cuenta_id2-field").val());
+    });
+/*
+    $("#form-reporte").on("submit",function(e){
+      //e.preventDefault();
+      console.log($("#cuenta_id-field").val());
+      $("#cuenta_id-field").val($("#cuenta_id-field").val());
+      ///$("#form-reporte").submit();
+    });
+*/
   });
 </script>
 

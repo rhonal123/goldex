@@ -29,11 +29,13 @@ class GeneralPdf extends \TCPDF {
         $this->Cell(0,0, 'Movimientos', 0, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln();
 
-        if(!empty($this->cuenta)) {
-	       	$this->Cell( 0, 0,
-	       			' Cuenta : '. $this->cuenta->numero,
-	       			0, false, 'C', 0, '', 0, false, 'M', 'M');
-      	}
+       	$texto = "";
+       	foreach ($this->cuenta as $cuenta) {
+       		$texto = $texto ." ".$cuenta->numero;
+       	}
+       	$this->Cell( 0, 0,
+     			' Cuenta : '. $texto,
+     			0, false, 'C', 0, '', 0, false, 'M', 'M');
 
         if(!empty($this->desde)) {
 	        $this->Ln();

@@ -81,9 +81,8 @@ class HomeController extends Controller
     $hasta = $request->input('hasta');
     $tipo = $request->input('tipo');
     $negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
-    $cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
+    $cuenta_id = explode(",",empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id'));
     $ordenarTipo  = $request->input('ordenarTipo'); 
-
     if($tipo === "pdf"){
       $pdf = new GeneralPdf();
       $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
