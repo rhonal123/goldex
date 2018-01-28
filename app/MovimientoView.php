@@ -43,7 +43,7 @@ class MovimientoView extends Model
       $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
     }
     else{
-      $query->orderBy('fecha','asc')->orderBy('descripcion','desc');
+      $query->orderBy('clasificacion','desc')->orderBy('fecha','asc')->orderBy('descripcion','desc');
     }
     return $query->get();
   }
