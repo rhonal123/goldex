@@ -28,7 +28,9 @@ total = function(){
 
 $(window).on('load', function() {
   opcionesTipo($("#tipo-field").val());
-  $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+  //$("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+    $('#fecha').datetimepicker({ format: "YYYY-MM-DD hh:mm a"});
+
   $("#negocio_id-field").select2({
     placeholder: 'Seleccione un Negocio',
     minimumInputLength: 0});

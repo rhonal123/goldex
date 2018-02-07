@@ -33,6 +33,9 @@ Route::group(array('middleware' => 'auth'), function() {
             ['as' => 'reportegeneral', 
             'uses' => 'HomeController@reporte']);
 
+    Route::post('reportegeneral/negocio',
+            ['as' => 'reportegeneral.negocio', 
+            'uses' => 'HomeController@reporteGeneralNegocio']);
 
     Route::get('reportecuenta',
             ['as' => 'reportecuenta', 

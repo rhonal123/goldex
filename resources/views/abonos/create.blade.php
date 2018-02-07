@@ -34,11 +34,22 @@
 
         @if(!is_null($transferencia))
           <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
-            <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
+            <label for="banco-field" class="col-sm-2 control-label">Negocio Origen </label>
             <div class="col-sm-4">
               <input type="hidden" name="negocio_id" value="{{ is_null(old("negocio_id")) ? $transferencia->negocio_id : old("negocio_id") }}">
               <input type="hidden" name="transferencia_id" value="{{ is_null(old("transferencia_id")) ? $transferencia->id : old("transferencia_id") }}">
               <input type="text" name="" class="form-control"  value="{{ $transferencia->negocio->nombre }}" disabled>
+           </div>
+          </div> 
+
+          <div class="form-group @if($errors->has('negocio_destino_id')) has-error @endif">
+            <label for="banco-field" class="col-sm-2 control-label">Negocio Destino</label>
+            <div class="col-sm-4">
+              {{ Form::select('negocio_destino_id', [null=>'Please Select']+ $negocios, old("negocio_destino_id"),['class' => 'form-control','id'=>'negocio_destino_id-field']) }}
+             <span class="help-block">si no se seleciona un negocio, no se registrada como un pase de dinero a otro negocio. </span>
+              @if($errors->has("negocio_destino_id"))
+                <span class="help-block">{{ $errors->first("negocio_destino_id") }} si no se seleciona un negocio, no se registrada como un pase de dinero a otro negocio. </span>
+              @endif
            </div>
           </div> 
         @else 
@@ -80,7 +91,7 @@
         <div id="form-referencia" class="form-group @if($errors->has('referencia')) has-error @endif">
           <label for="referencia-field" class="col-sm-2 control-label">Referencia</label>
           <div class="col-sm-4">
-            <input type="text" id="referencia-field" name="referencia" class="form-control" value="{{ old("referencia") }}"/>
+            <input type="text" id="referencia-field" name="referencia" class="form-control" value="{{ is_null($transferencia) ? old("referencia") : $transferencia->referencia }}"/>
             @if($errors->has("referencia"))
               <span class="help-block">{{ $errors->first("referencia") }}</span>
             @endif
@@ -90,7 +101,12 @@
         <div class="form-group @if($errors->has('fecha')) has-error @endif">
           <label for="fecha-field" class="col-sm-2 control-label">Fecha</label>
           <div class="col-sm-4">
-            <input type="text" id="fecha-field" name="fecha" class="form-control" value="{{ old("fecha") }}"/>
+                <div class='input-group date' id='fecha'>
+                    <input type="text" id="fecha-field" name="fecha" class="form-control" value="{{ old("fecha") }}" />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             @if($errors->has("fecha"))
               <span class="help-block">{{ $errors->first("fecha") }}</span>
             @endif
@@ -106,7 +122,7 @@
             @endif
          </div>
         </div>
- 
+
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Guardar</button>
@@ -114,7 +130,7 @@
         </div>
       </form>
     </div>
-
-  @include('movimientos.form_script')
+    
+  @include('abonos.form_script')
 @endsection
  

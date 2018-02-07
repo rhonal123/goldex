@@ -89,8 +89,11 @@ class AbonosController extends Controller {
 		else {
 			$abono = Movimiento::crearMovimiento($values,self::$TRANSFERENCIA_ENTRADA);
 			if(!is_null($transferencia)){
+				$values['negocio_id'] = $values['negocio_destino_id'];
+				$transferenciaAsociada = Movimiento::crearMovimiento($values,1);
 				$transferencia->detalles()->create([
-					'abono_id' => $abono->id
+					'abono_id' => $abono->id,
+					'destino_id' => $transferenciaAsociada->id
 				]);
 			}
 			return redirect()->route('abonos.show',['id' => $abono->id ])->with('success', 'Abono correctamente creado.');			

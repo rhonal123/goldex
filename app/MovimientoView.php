@@ -34,7 +34,7 @@ class MovimientoView extends Model
       $query->where('fecha', '<=',$hasta);
     }
     if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
+      $query->whereIn('negocio_id',$negocio_id);
     }
     if($cuenta_id){
       $query->whereIn('cuenta_id',$cuenta_id);
@@ -43,7 +43,7 @@ class MovimientoView extends Model
       $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
     }
     else{
-      $query->orderBy('clasificacion','desc')->orderBy('fecha','asc')->orderBy('descripcion','desc');
+      $query->orderBy('fecha','asc')->orderBy('descripcion','desc');
     }
     return $query->get();
   }

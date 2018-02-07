@@ -91,15 +91,22 @@
          </div>
         </div>
 
+
         <div class="form-group @if($errors->has('fecha')) has-error @endif">
           <label for="fecha-field" class="col-sm-2 control-label">Fecha</label>
           <div class="col-sm-4">
-            <input type="text" id="fecha-field" name="fecha" class="form-control" value="{{ old("fecha") }}"/>
+                <div class='input-group date' id='fecha'>
+                    <input type="text" id="fecha-field" name="fecha" class="form-control" value="{{ old("fecha") }}" />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             @if($errors->has("fecha"))
               <span class="help-block">{{ $errors->first("fecha") }}</span>
             @endif
          </div>
         </div>
+        
 
         <div class="form-group @if($errors->has('descripcion')) has-error @endif">
           <label for="descripcion-field" class="col-sm-2 control-label">Descripción</label>

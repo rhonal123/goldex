@@ -38,7 +38,7 @@
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">FECHA</label> 
-            <p class="form-control-static">{{$gasto->fecha}}</p>
+            <p class="form-control-static">{{$gasto->fecha->format('Y-m-d h:i a')}}</p>
           </blockquote>
         </div>
 

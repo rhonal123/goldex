@@ -5,7 +5,7 @@ namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
-
+use Carbon\Carbon;
 /*
 	Estados -> CREADO, ANOPASADO
   Tipo -> 
@@ -25,7 +25,7 @@ class Movimiento extends Model
     'negocio_id' 			=> 'integer',
     'cuenta_id' 			=> 'integer',
     'clasificacion'   => 'integer',
-    'fecha' 					=> 'string',
+    'fecha' 					=> 'date',
     'comision' 				=> 'double',
     'monto' 					=> 'double',
     'precio_puro'     => 'double',
@@ -35,12 +35,14 @@ class Movimiento extends Model
     'tipo' 						=> 'string'
   ];
 
+
   public static $CLASIFICACION_TYPE = array(
       'TRANSFERENCIA_SALIDA' => 1,
       'TRANSFERENCIA_ENTRADA' => 2,
       'GASTO_PERSONAL' => 3);
 
   public static function crearMovimiento($values,$clasificacion= 1){
+    $values['fecha'] = Carbon::createFromFormat('Y-m-d h:i a',$values['fecha']);
   	$movimiento = new Movimiento($values);
     if($clasificacion == 3){
       $movimiento->tipo = 'TRANSFERENCIA';
@@ -49,7 +51,7 @@ class Movimiento extends Model
       $movimiento->comision = 0;
     }
     else{
-      $movimiento->cuenta_id = 31;
+      $movimiento->cuenta_id = 32;
     }
     $movimiento->clasificacion = $clasificacion;
   	$movimiento->estado = "CREADO";
@@ -66,6 +68,7 @@ class Movimiento extends Model
 
   public function actualizar($values){
   	if($this->attributes['estado'] == 'CREADO') {
+      $values['fecha'] = Carbon::createFromFormat('Y-m-d h:i a',$values['fecha']);
     	$this->update($values);
       $this->attributes['saldo'] = (1 + ($this->attributes['comision']/100)) * $this->attributes['monto'];
       $this->save();

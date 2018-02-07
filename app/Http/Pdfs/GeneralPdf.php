@@ -30,13 +30,14 @@ class GeneralPdf extends \TCPDF {
         $this->Ln();
 
        	$texto = "";
-       	foreach ($this->cuenta as $cuenta) {
-       		$texto = $texto ." ".$cuenta->numero;
-       	}
-       	$this->Cell( 0, 0,
-     			' Cuenta : '. $texto,
-     			0, false, 'C', 0, '', 0, false, 'M', 'M');
-
+       	if($this->cuenta != null){
+	       	foreach ($this->cuenta as $cuenta) {
+	       		$texto = $texto ." ".$cuenta->numero;
+	       	}
+	       	$this->Cell( 0, 0,
+	     			' Cuenta : '. $texto,
+	     			0, false, 'C', 0, '', 0, false, 'M', 'M');
+	       }
         if(!empty($this->desde)) {
 	        $this->Ln();
 					$this->SetXY(220,20);
@@ -55,6 +56,7 @@ class GeneralPdf extends \TCPDF {
    	$this->hasta = $hasta;
    	$movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
    	$this->cuenta = Cuenta::find($cuenta_id);
+   	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
 		$this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);

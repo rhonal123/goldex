@@ -49,7 +49,7 @@
         <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">FECHA</label> 
-            <p class="form-control-static">{{$movimiento->fecha}}</p>
+            <p class="form-control-static">{{$movimiento->fecha->format('Y-m-d h:i a')}}</p>
           </blockquote>
         </div>
 
@@ -133,6 +133,7 @@
               <th>Fecha</th>
               <th>Tipo</th>
               <th>Saldo</th>
+              <th>Negocio<th>
               <th></th>
           </tr>
         </thead>
@@ -148,6 +149,7 @@
             <td><span>{{$detalle->fecha }}</span></td>
             <td><span>{{$detalle->tipo }}</span></td>
             <td><span>{{number_format( $detalle->saldo, 2) }}</span></td>
+            <td><span>{{ is_null($detalle->destino) ?  "" : $detalle->destino->negocio->nombre }} </span></td>
             <td><span><a class="btn btn-default btn-sm" href=" {{ route('abonos.show', $detalle->id)  }}  ">detalle</a></span></td>
           </tr>
         @endforeach

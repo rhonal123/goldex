@@ -8,7 +8,8 @@ total = function(){
 }
 
 $(window).on('load', function() {
-  $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+  //$("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+  $('#fecha').datetimepicker({ format: "YYYY-MM-DD hh:mm a"});
 
   $("#cuenta_id-field").select2({
     placeholder: 'Seleccione una Cuenta',

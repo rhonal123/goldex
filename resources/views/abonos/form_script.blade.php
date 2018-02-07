@@ -28,10 +28,17 @@ total = function(){
 
 $(window).on('load', function() {
   opcionesTipo($("#tipo-field").val());
-  $("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+  //$("#fecha-field").datepicker({format: "yyyy/mm/dd",language: 'es'});
+  $('#fecha').datetimepicker({ format: "YYYY-MM-DD hh:mm a"});
+
+  $("#negocio_destino_id-field").select2({
+    placeholder: 'Seleccione un Negocio',
+    minimumInputLength: 0});
+
   $("#negocio_id-field").select2({
     placeholder: 'Seleccione un Negocio',
     minimumInputLength: 0});
+      
   $("#cuenta_id-field").select2({
     placeholder: 'Seleccione un Negocio',
     minimumInputLength: 0});
@@ -61,5 +68,6 @@ $(document).on('keyup','#comision-field',function(){
 $(document).on('keydown','#comision-field',function(){
   total();
 });
+
 
 </script>

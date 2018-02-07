@@ -80,8 +80,17 @@ class HomeController extends Controller
     $desde = $request->input('desde');
     $hasta = $request->input('hasta');
     $tipo = $request->input('tipo');
-    $negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
-    $cuenta_id = explode(",",empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id'));
+    $negocio_id = explode(",",$request->input('negocio_id'));
+    $cuenta_id =  explode(",",$request->input('cuenta_id'));
+    if( empty($cuenta_id[0]))
+    {
+      $cuenta_id = null;
+    }
+    if(empty($negocio_id[0]))
+    {
+      $negocio_id = null;
+    }
+
     $ordenarTipo  = $request->input('ordenarTipo'); 
     if($tipo === "pdf"){
       $pdf = new GeneralPdf();
@@ -92,6 +101,8 @@ class HomeController extends Controller
       $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
     }
   }
+
+
 
   public function reporte_cuenta_edit(Request $request){
     return view('home.reporte_cuentas');
