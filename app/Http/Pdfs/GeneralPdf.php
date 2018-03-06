@@ -51,10 +51,18 @@ class GeneralPdf extends \TCPDF {
     }
 
 	// Colored table
-	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo) {
+	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja) {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
-   	$movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+   	if(is_null($caja))
+   	{
+   		$movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
+    else
+    {
+    	$movimientos = MovimientoView::cajaChica($desde,$hasta,$ordenarTipo);
+    }
+    
    	$this->cuenta = Cuenta::find($cuenta_id);
    	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);

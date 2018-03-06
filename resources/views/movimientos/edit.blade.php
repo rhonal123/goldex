@@ -11,7 +11,14 @@
 </div>
 @endsection
 
+
+
 @section('content')
+  @if($errors->has("estado"))
+  <div class="col-md-12">
+    <div class="alert alert-danger">{{ $errors->first("estado") }}</div>
+  </div>
+  @endif
     <div class="col-md-12">
       <form action="{{ route('movimientos.update', $movimiento->id) }}" method="POST" class="form-horizontal">
         <input type="hidden" name="_method" value="PUT">

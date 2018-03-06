@@ -22,7 +22,7 @@ class Banco extends Model
 
   	if($nombre) {
 			/*Log::info(Banco::where('nombre','like',$nombre)->toSql());*/
-	    $query->where('nombre', 'ilike',"%".$nombre."%");
+	    $query->where('nombre', 'like',"%".$nombre."%");
 		}
     return $query->paginate(15);
   }

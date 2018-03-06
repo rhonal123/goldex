@@ -36,7 +36,7 @@
         <div id="form-cuenta" class="form-group @if($errors->has('cuenta_id')) has-error @endif">
           <label for="banco-field" class="col-sm-2 control-label">Cuenta</label>
           <div class="col-sm-4">
-            {{ Form::select('cuenta_id', $cuentas, old("cuenta_id"),['class' => 'form-control','id'=>'cuenta_id-field']) }}
+            {{ Form::select('cuenta_id', array('' => 'Seleccione un negocio') + $cuentas, old("cuenta_id"),['class' => 'form-control','id'=>'cuenta_id-field']) }}
             @if($errors->has("cuenta_id"))
               <span class="help-block">{{ $errors->first("cuenta_id") }}</span>
             @endif
@@ -47,7 +47,7 @@
         <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
           <label for="negocio-field" class="col-sm-2 control-label">Negocio</label>
           <div class="col-sm-4">
-            {{ Form::select('negocio_id', $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
+            {{ Form::select('negocio_id', array('' => 'Seleccione un negocio') + $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
             @if($errors->has("negocio_id"))
               <span class="help-block">{{ $errors->first("negocio_id") }}</span>
             @endif

@@ -33,8 +33,9 @@
         </div>  
 
         @if(!is_null($transferencia))
+
           <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
-            <label for="banco-field" class="col-sm-2 control-label">Negocio Origen </label>
+            <label for="negocio_id-field" class="col-sm-2 control-label">Negocio Origen </label>
             <div class="col-sm-4">
               <input type="hidden" name="negocio_id" value="{{ is_null(old("negocio_id")) ? $transferencia->negocio_id : old("negocio_id") }}">
               <input type="hidden" name="transferencia_id" value="{{ is_null(old("transferencia_id")) ? $transferencia->id : old("transferencia_id") }}">
@@ -42,21 +43,22 @@
            </div>
           </div> 
 
-          <div class="form-group @if($errors->has('negocio_destino_id')) has-error @endif">
+          <div id="form-negocio-destino" class="form-group @if($errors->has('negocio_destino_id')) has-error @endif">
             <label for="banco-field" class="col-sm-2 control-label">Negocio Destino</label>
             <div class="col-sm-4">
-              {{ Form::select('negocio_destino_id', [null=>'Please Select']+ $negocios, old("negocio_destino_id"),['class' => 'form-control','id'=>'negocio_destino_id-field']) }}
+              {{ Form::select('negocio_destino_id', [null=>'Please Select']+ $negocios, old("negocio_destino_id"),['class' => 'form-control','id'=>'negocio_destino_id-field', 'style' => 'width: 100%' ]) }}
              <span class="help-block">si no se seleciona un negocio, no se registrada como un pase de dinero a otro negocio. </span>
               @if($errors->has("negocio_destino_id"))
                 <span class="help-block">{{ $errors->first("negocio_destino_id") }} si no se seleciona un negocio, no se registrada como un pase de dinero a otro negocio. </span>
               @endif
            </div>
           </div> 
+
         @else 
           <div class="form-group @if($errors->has('negocio_id')) has-error @endif">
             <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
             <div class="col-sm-4">
-              {{ Form::select('negocio_id', $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
+              {{ Form::select('negocio_id',  array('' => 'Seleccione un negocio') + $negocios, old("negocio_id"),['class' => 'form-control','id'=>'negocio_id-field']) }}
               @if($errors->has("negocio_id"))
                 <span class="help-block">{{ $errors->first("negocio_id") }}</span>
               @endif
@@ -78,15 +80,17 @@
           <label id="total" class="col-sm-2 control-label" style="text-align: left;" > Total: 0.00 BS </label>
         </div>
 
-        <div id="form-cuenta" class="form-group @if($errors->has('cuenta_id')) has-error @endif">
-          <label for="banco-field" class="col-sm-2 control-label">Cuenta</label>
-          <div class="col-sm-4">
-            {{ Form::select('cuenta_id', $cuentas, old("cuenta_id"),['class' => 'form-control','id'=>'cuenta_id-field']) }}
-            @if($errors->has("cuenta_id"))
-              <span class="help-block">{{ $errors->first("cuenta_id") }}</span>
-            @endif
-         </div>
-        </div> 
+        @if(is_null($transferencia))
+          <div id="form-cuenta" class="form-group hidden @if($errors->has('cuenta_id')) has-error @endif">
+            <label for="banco-field" class="col-sm-2 control-label">Cuenta</label>
+            <div class="col-sm-4">
+              {{ Form::select('cuenta_id',  array('' => 'Seleccione un negocio') + $cuentas, old("cuenta_id"),['class' => 'form-control','id'=>'cuenta_id-field' , 'style' => 'width: 100%' ]) }}
+              @if($errors->has("cuenta_id"))
+                <span class="help-block">{{ $errors->first("cuenta_id") }}</span>
+              @endif
+           </div>
+          </div> 
+        @endif 
 
         <div id="form-referencia" class="form-group @if($errors->has('referencia')) has-error @endif">
           <label for="referencia-field" class="col-sm-2 control-label">Referencia</label>

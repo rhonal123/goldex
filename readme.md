@@ -67,3 +67,44 @@ ADD COLUMN `destino_id`  int(10) UNSIGNED DEFAULT NULL;
 
 ALTER TABLE `detalle_movimiento`
   ADD CONSTRAINT `detalle_movimiento_transferencia_destino_id_foreign` FOREIGN KEY (`destino_id`) REFERENCES `movimientos` (`id`);
+
+
+
+ALTER TABLE `movimientos` DROP FOREIGN KEY `movimientos_negocio_id_foreign`;
+
+ALTER TABLE `movimientos` DROP FOREIGN KEY `movimientos_cuenta_id_foreign`;
+
+
+Procedimiento para cargar Caja chica 
+   1 ir a abono
+   2 agregar un nuevo abono
+   3 seleccionar efectivo
+   4 No seleccionar negocio
+   5 guardar 
+
+Transferir de caja chica a un negocio o cuenta
+  1 ir a transferencias
+  2 agregar una transferencia 
+  3 seleccionar efectivo 
+  4 seleccionar negocio
+  4 ingresas comision, monto y fecha del movimiento
+  5 guardar 
+
+Reporte de Efectivo 
+  1 ir a Reporte
+  2 en la seccion de reporte efectivo llenar el rango de fecha 
+  3 generar reporte 
+
+Devboluciones
+  1 ir a transferencias 
+  2 seleccionar una transferencia 
+  3 hacer click en el boton de devoluciones
+  4 ingresar Tipo, negocio destino, monto, fecha, descipcion.
+  5 guardar 
+  Nota: se generar un abono asociado al negocio origen y una transferencia al negocio destino, por lo cual se genera una deuda al negocio seleccionado, en caso de no selecciona un negocio, solo se genera una abono contra el monto de la transferencia. 
+
+Abonos:
+  los abonos peden ser contra un negocio o cuenta cuenta, son saldos que descrementan el monto de la deuda "son una entrada de dinero", si haces un abono a un negocio debes seleecionar la cuenta en la cual entrara el dinero, en caso de hacer el abono a una cuenta no es necesario seleccionar el negocio. 
+  
+
+

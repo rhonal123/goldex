@@ -77,9 +77,13 @@ class AbonosController extends Controller {
 	{ 
 		$this->authorize('F04');
   	$values = $request->all(); 
-		$validator = Movimiento::validador($values,self::$TRANSFERENCIA_ENTRADA);
 		$transferencia_id = $request->input('transferencia_id');
 		$transferencia = Movimiento::find($transferencia_id);
+		if($transferencia != null)
+		{
+			$values['cuenta_id'] = $transferencia->cuenta_id;
+		}
+		$validator = Movimiento::validador($values,self::$TRANSFERENCIA_ENTRADA);
 		Log::info($transferencia_id);
 		if ($validator->fails()) {
 			return redirect()->route('abonos.create',['transferencia_id' => $transferencia_id ])
@@ -88,13 +92,24 @@ class AbonosController extends Controller {
     }
 		else {
 			$abono = Movimiento::crearMovimiento($values,self::$TRANSFERENCIA_ENTRADA);
-			if(!is_null($transferencia)){
-				$values['negocio_id'] = $values['negocio_destino_id'];
-				$transferenciaAsociada = Movimiento::crearMovimiento($values,1);
-				$transferencia->detalles()->create([
-					'abono_id' => $abono->id,
-					'destino_id' => $transferenciaAsociada->id
-				]);
+			if(!is_null($transferencia))
+			{
+				if($values['negocio_destino_id'] != null )
+				{
+					$values['negocio_id'] = $values['negocio_destino_id'];
+					$transferenciaAsociada = Movimiento::crearMovimiento($values,1);
+					$transferencia->detalles()->create([
+						'abono_id' => $abono->id,
+						'destino_id' => $transferenciaAsociada->id
+					]);
+				}
+				else
+				{
+					$transferencia->detalles()->create([
+						'abono_id' => $abono->id,
+						'destino_id' => null 
+					]);
+				}
 			}
 			return redirect()->route('abonos.show',['id' => $abono->id ])->with('success', 'Abono correctamente creado.');			
 		}

@@ -149,7 +149,11 @@
             <td><span>{{$detalle->fecha }}</span></td>
             <td><span>{{$detalle->tipo }}</span></td>
             <td><span>{{number_format( $detalle->saldo, 2) }}</span></td>
-            <td><span>{{ is_null($detalle->destino) ?  "" : $detalle->destino->negocio->nombre }} </span></td>
+            <td><span> @if(is_null($detalle->destino))
+            --
+            @else
+               {{ is_null($detalle->destino->negocio) ?  "N/D": $detalle->destino->negocio->nombre}} 
+            @endif </span></td>
             <td><span><a class="btn btn-default btn-sm" href=" {{ route('abonos.show', $detalle->id)  }}  ">detalle</a></span></td>
           </tr>
         @endforeach

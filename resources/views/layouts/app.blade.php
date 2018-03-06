@@ -20,8 +20,15 @@
 
     {{ Html::style('assets/stylesheets/bootstrap-datetimepicker.min.css?fecha=06010218') }}
     {{ Html::style('assets/stylesheets/bootstrap-datetimepicker-standalone.css?fecha=06010218') }}
- 
+
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+    <style type="text/css">
+        .dropdown-menu {
+            left: -70px;
+        }        
+
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

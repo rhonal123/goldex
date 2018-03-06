@@ -49,13 +49,15 @@
           </blockquote>
         </div>
 
+       @if ($gasto->negocio != null )
        <div class="form-group col-md-4">
           <blockquote>
             <label for="nome">NEGOCIO</label> 
             <p class="form-control-static">{{$gasto->negocio->nombre }}</p>
           </blockquote>
         </div>
-
+        @endif 
+        
         @if ($gasto->tipo == "TRANSFERENCIA")
  
        <div class="form-group col-md-4">

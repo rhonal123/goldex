@@ -38,7 +38,8 @@ class MovimientoExcel{
 
     $this->desde = $desde;
     $this->hasta = $hasta;
-    $movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+//    $movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    $movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,[1,2,3]);
     $this->negocio = Negocio::find($negocio_id);
     $excel = \Excel::create('Filename', function($excel) use($movimientos) {
     $excel->setTitle('Reporte transferencias ');

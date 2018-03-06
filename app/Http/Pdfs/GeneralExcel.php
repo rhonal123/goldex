@@ -21,7 +21,7 @@ class GeneralExcel{
     $sheet->setCellValue('A2',"General"); 
 
     if(!empty($this->negocio)) {
-      $sheet->setCellValue('C1','Socio o Negocio : '.$this->negocio->nombre .' '. $this->negocio->rif); 
+    //  $sheet->setCellValue('C1','Socio o Negocio : '.$this->negocio->nombre .' '. $this->negocio->rif); 
     }
     if(!empty($this->desde)) {
       $sheet->setCellValue('C1','DESDE :'. $this->desde); 
@@ -32,11 +32,20 @@ class GeneralExcel{
   }
 
 
-	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo){
+	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja){
 
     $this->desde = $desde;
     $this->hasta = $hasta;
-    $movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    ///$movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    if(is_null($caja))
+    {
+      $movimientos = MovimientoView::afectabanco($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+    }
+    else
+    {
+      $movimientos = MovimientoView::cajaChica($desde,$hasta,$ordenarTipo);
+    }
+    
     $this->negocio = Negocio::find($negocio_id);
     $excel = \Excel::create('Filename', function($excel) use($movimientos) {
     $excel->setTitle('Reporte General ');

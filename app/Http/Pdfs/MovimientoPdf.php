@@ -50,7 +50,8 @@ class MovimientoPdf extends \TCPDF {
 	public function generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo) {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
-   	$movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+   	$movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,[1,2,3]);
+   	///echo json_encode($movimientos);
    	$this->negocio = Negocio::find($negocio_id);
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
@@ -95,7 +96,9 @@ class MovimientoPdf extends \TCPDF {
       $this->Cell(20, $height,$value->fecha->format('d/m/Y'), 1, 0, 'C');
       $this->Cell(40, $height,$value->negocio, 1, 0, 'C');
 	 		$this->MultiCell(100, $height,$descripcion, 1, '', 0, 0, '', '', true, 0, false, true);
-		  if($value->tipo == "TRANSFERENCIA"){
+		  
+		  if($value->tipo == "TRANSFERENCIA")
+		  {
 		    $this->Cell(30, $height,$value->cuenta, 1, 0, 'C');
 		    $this->Cell(30, $height,$value->referencia, 1, 0, 'C');
 		  }
@@ -103,7 +106,14 @@ class MovimientoPdf extends \TCPDF {
 		    $this->Cell(30, $height,'EFECTIVO '.$value->comision.' %', 1, 0, 'C');
 		    $this->Cell(30, $height,number_format($value->monto * ($value->comision /100),2), 1, 0, 'C');
 		  }
-		  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
+		  if($value->clasificacion == 3 || $value->clasificacion == 2 ) // gasto o abono 
+		  {
+			  $this->Cell(30, $height,number_format(-$value->saldo, 2), 1, 0, 'C');
+		  }
+		  else
+		  {
+			  $this->Cell(30, $height,number_format($value->saldo, 2) , 1, 0, 'C');
+			}
 		  $this->ln();
       if($this->checkPageBreak($this->lasth)){
       	$header = true;
@@ -112,7 +122,13 @@ class MovimientoPdf extends \TCPDF {
     $totalEfectivo= number_format($this->totalEfectivo($movimientos), 2);
 		$totalTransferencia= number_format($this->totalTransferencia($movimientos), 2);
 		$totalComision = number_format($this->totalComision($movimientos), 2);
-		$totalGeneral =  number_format($this->totalTransferencia($movimientos)+$this->totalEfectivo($movimientos), 2);
+		$totalGeneral =  number_format( 
+					$this->totalTransferencia($movimientos)+
+					$this->totalEfectivo($movimientos) +  
+					$this->gastos($movimientos) - 
+					$this->abonos($movimientos)
+					, 2);
+
     $this->SetFont('helvetica', 'N', 11);
     $this->Ln();
 		$this->Cell(0, 0, 'TOTAL EFECTIVO : '.$totalEfectivo.' Bs', 0, 0, 'R');
@@ -120,6 +136,10 @@ class MovimientoPdf extends \TCPDF {
 		$this->Cell(0, 0, 'TOTAL COMISION : '.$totalComision.' Bs', 0, 0, 'R');
 	  $this->Ln();
 		$this->Cell(0, 0, 'TOTAL TRANSFERENCIA : '.$totalTransferencia.' Bs', 0, 0, 'R');
+	  $this->Ln();
+		$this->Cell(0, 0, 'TOTAL GASTOS : '. $this->gastos($movimientos).' Bs', 0, 0, 'R');
+	  $this->Ln();
+		$this->Cell(0, 0, 'TOTAL ABONOS & DEVOLUCIONES : '. $this->abonos($movimientos).' Bs', 0, 0, 'R');
 	  $this->Ln();
 		$this->Cell(0, 0, 'TOTAL General : '.$totalGeneral.' Bs', 0, 0, 'R');
 
@@ -147,10 +167,32 @@ class MovimientoPdf extends \TCPDF {
 	}
 
 
+	private function abonos($movimientos){
+		$total= 0.0;
+		foreach ($movimientos as $key => $value) {
+			if( $value->clasificacion == 2  ){
+				$total += $value->saldo;
+			}
+		}
+		return $total;
+	}
+
+	private function gastos($movimientos){
+		$total= 0.0;
+		foreach ($movimientos as $key => $value) {
+			if($value->clasificacion == 3   ){
+				$total += $value->saldo;
+			}
+		}
+		return $total;
+	}
+
+
+
 	private function totalComision($movimientos){
 		$total= 0.0;
 		foreach ($movimientos as $key => $value) {
-			if($value->tipo == "EFECTIVO"){
+			if($value->tipo == "EFECTIVO" && $value->clasificacion != 3){
 				$total += $value->monto * ($value->comision / 100);
 			}
 		}
@@ -160,7 +202,7 @@ class MovimientoPdf extends \TCPDF {
 	private function totalTransferencia($movimientos){
 		$total= 0.0;
 		foreach ($movimientos as $key => $value) {
-			if($value->tipo == "TRANSFERENCIA"){
+			if($value->tipo == "TRANSFERENCIA" && $value->clasificacion == 1  ){
 				$total += $value->saldo;
 			}
 		}

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Validator;
-
+use App\Configuration;
 class MovimientoView extends Model
 {
 
@@ -48,10 +48,83 @@ class MovimientoView extends Model
     return $query->get();
   }
 
+  public static function cajaChica($desde,$hasta,$ordenarTipo)
+  {
+    $query = MovimientoView::where('tipo', 'EFECTIVO')->where('cuenta_id',32);
+    if($desde){
+      $query->where('fecha', '>=',$desde);
+    }
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    
+    if($ordenarTipo =="desc"){
+      $query->orderBy('fecha','desc')->orderBy('descripcion','desc');
+    }
+    else{
+      $query->orderBy('fecha','asc')->orderBy('descripcion','desc');
+    }
+    return $query->get();
+  }
+
+  public static function abonoCaja($hasta)
+  {
+    $configuracion = Configuration::find(1);
+    $query = Movimiento::where('tipo', 'EFECTIVO')->where('cuenta_id',32)->where('clasificacion',2);
+    $query->where('fecha', '>=',$configuracion->anoTransito);
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    $resultado = $query->sum('monto');
+    return $resultado == null ? 0: $resultado;
+  }
+
+  public static function salidaEfectivo($hasta)
+  {
+    $configuracion = Configuration::find(1);
+    $query = Movimiento::where('tipo', 'EFECTIVO')->where('cuenta_id',32)->where('clasificacion',1); /// salida o gasto de efectivo 
+    $query->where('fecha', '>=',$configuracion->anoTransito);
+    if($hasta){
+      $query->where('fecha', '<=',$hasta);
+    }
+    $resultado = $query->sum('monto');
+    return $resultado == null ? 0: $resultado;
+  }
+
+  public static function abonoCajaDiaAnterior($hasta)
+  {
+    $configuracion = Configuration::find(1);
+    $query = Movimiento::where('tipo', 'EFECTIVO')->where('cuenta_id',32)->where('clasificacion',2);
+    $query->where('fecha', '>=',$configuracion->anoTransito);
+    if($hasta){
+      $query->where('fecha', '<',$hasta);
+    }
+    $resultado = $query->sum('monto');
+    return $resultado == null ? 0: $resultado;
+  }
+
+  public static function salidaEfectivoDiaAnterior($hasta)
+  {
+    $configuracion = Configuration::find(1);
+    $query = Movimiento::where('tipo', 'EFECTIVO')->where('cuenta_id',32)->where('clasificacion',1); /// salida o gasto de efectivo 
+    $query->where('fecha', '>=',$configuracion->anoTransito);
+    if($hasta){
+      $query->where('fecha', '<',$hasta);
+    }
+    $resultado = $query->sum('monto');
+    return $resultado == null ? 0: $resultado;
+  }
+
+
   public static function movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$clasificacion = 1 ){
     $query =  MovimientoView::select();
     if($clasificacion){
-      $query->where('clasificacion', '=',$clasificacion);
+      if(is_array($clasificacion)) {
+        $query->whereIn('clasificacion',$clasificacion);
+      }
+      else{
+        $query->where('clasificacion', '=',$clasificacion);
+      }
     }
     if($desde){
       $query->where('fecha', '>=',$desde);

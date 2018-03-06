@@ -57,9 +57,9 @@ class Movimiento extends Model
   	$movimiento->estado = "CREADO";
     $movimiento->saldo = (1 + ($movimiento->comision/100)) * $movimiento->monto;
     DB::transaction(function () use($values,$movimiento) {
-      $cuenta = Cuenta::lockForUpdate()->findOrFail($values['cuenta_id']);
-      $cuenta->procesarMovimiento($movimiento);
-      $cuenta->save();
+      //$cuenta = Cuenta::lockForUpdate()->findOrFail($values['cuenta_id']);
+      ///$cuenta->procesarMovimiento($movimiento);
+      ///$cuenta->save();
       $movimiento->save();
     });
   	return $movimiento;
@@ -126,7 +126,8 @@ class Movimiento extends Model
       $validator['referencia']= 'required_if:tipo,TRANSFERENCIA';
       $validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
     }
-    elseif ($clasificacion == 2) {
+    elseif ($clasificacion == 2)
+    {
       //$validator['negocio_id'] = 'required_if:tipo,TRANSFERENCIA';
       $validator['tipo']= 'required|in:TRANSFERENCIA,EFECTIVO';
       $validator['cuenta_id']= 'required_if:tipo,TRANSFERENCIA';
@@ -147,39 +148,50 @@ class Movimiento extends Model
 		];
 
   	$v =  Validator::make($values,$validator,$message);
-  	$v->after(
-      function ($validator)  use ($movimiento, $clasificacion,$values) {
-      	if ($movimiento != null && $movimiento->estado != 'CREADO') {
-          $validator->errors()->add('estado',
-          	'No Puedes Actualizar este Movimiento, puesto que su estdo es '.$movimiento->estado);
+  	$v->after( function ($validator)  use ($movimiento, $clasificacion,$values) 
+    {
+      	if ($movimiento != null && $movimiento->estado != 'CREADO')
+        {
+          $validator->errors()->add('estado', 'No Puedes Actualizar este Movimiento, es del año pasado');
       	}
         $encontrado = null;
-        if($clasificacion == 1 || $clasificacion == 2 ) {
-            if($values['tipo'] === "TRANSFERENCIA") {
+
+        if($clasificacion == 1 || $clasificacion == 2 )
+        {
+            if($values['tipo'] === "TRANSFERENCIA")
+            {
               $query = Movimiento::where('referencia',$values['referencia'])
                 ->where('tipo','TRANSFERENCIA')
                 ->where('cuenta_id',$values['cuenta_id'])
                 ->where('fecha',$values['fecha']);
-
+              
               if($movimiento != null)
+              {
                 $query->where('id','!=',$movimiento->id);
+              }
               $encontrado = $query->first();
-              if ($encontrado != null ) {
+              
+              if ($encontrado != null )
+              {
                 $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
               }
+
             }
-          }
-          else {
+        }
+        else
+        {
             $query  = Movimiento::where('referencia',$values['referencia'])
               ->where('cuenta_id',$values['cuenta_id'])
               ->where('fecha',$values['fecha']);
             
             if($movimiento != null)
-              $query->where('id','!=',$movimiento->id);
-
+            {
+               $query->where('id','!=',$movimiento->id);              
+            } 
             $encontrado = $query->first();
-
-            if ($encontrado != null ) {
+            
+            if ($encontrado != null )
+            {
               $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
             }
           }

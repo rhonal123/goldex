@@ -37,7 +37,7 @@
           <label for="banco-field" class="col-sm-2 control-label">Cuenta</label>
           <div class="col-sm-4">
             {{ Form::select('cuenta_id', 
-              $cuentas,
+               array('' => 'Seleccione un negocio') + $cuentas,
               is_null(old("cuenta_id")) ? $gasto->cuenta_id : old("cuenta_id") ,
               ['class' => 'form-control','id'=>'cuenta_id-field']) }}
             @if($errors->has("cuenta_id"))
@@ -51,7 +51,7 @@
           <label for="banco-field" class="col-sm-2 control-label">Negocio</label>
           <div class="col-sm-4">
             {{ Form::select('negocio_id', 
-              $cuentas,
+               array('' => 'Seleccione un negocio') + $negocios,
               is_null(old("negocio_id")) ? $gasto->negocio_id : old("negocio_id") ,
               ['class' => 'form-control','id'=>'negocio_id-field']) }}
             @if($errors->has("negocio_id"))

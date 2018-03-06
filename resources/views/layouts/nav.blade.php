@@ -17,6 +17,7 @@
       </a>
       <ul class="dropdown-menu dropdown-user">
         <li><a href="{{route('password')}}"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña </a></li>
+        <li><a href="{{route('help')}}"><i class="fa fa-gear fa-fw"></i> Help </a></li>
         <li class="divider"></li>
         <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
       </ul>  

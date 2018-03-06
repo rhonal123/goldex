@@ -39,7 +39,7 @@ class Negocio extends Model
 	{
 
   	if($nombre) {
-	    $negocios = Negocio::where('nombre', 'ilike',"%".$nombre."%")->orderBy('id','desc')->paginate(15);
+	    $negocios = Negocio::where('nombre', 'like',"%".$nombre."%")->orderBy('id','desc')->paginate(15);
 		}
 		else{
 	    $negocios = Negocio::orderBy('id','desc')->paginate(15);

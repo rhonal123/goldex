@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::auth();
 Route::get('/', 'HomeController@index')->name('root');
+Route::get('help',function(){
+    return view('help');
+})->name('help');
 
 Route::get('configuracion', 'HomeController@configuracion_edit')->name('configuracion');
 Route::post('configuracion', 'HomeController@configuracion');
@@ -36,6 +39,13 @@ Route::group(array('middleware' => 'auth'), function() {
     Route::post('reportegeneral/negocio',
             ['as' => 'reportegeneral.negocio', 
             'uses' => 'HomeController@reporteGeneralNegocio']);
+
+
+    Route::get('reportegeneral/efectivo',
+            ['as' => 'reportegeneral.efectivo', 
+            'uses' => 'HomeController@reporteGeneralEfectivo']);
+
+
 
     Route::get('reportecuenta',
             ['as' => 'reportecuenta', 

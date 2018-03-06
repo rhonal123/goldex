@@ -17,7 +17,7 @@ class Cuenta extends Model
  	public static function buscar($numero) {
     $query =  Cuenta::with('banco')->orderBy('cuentas.id','desc');;
     if($numero){
-      $query->join('bancos', 'bancos.id', '=', 'banco_id')->where('numero', 'ilike',"%".$numero."%")->orWhere('bancos.nombre', 'ilike',"%".$numero."%");
+      $query->join('bancos', 'bancos.id', '=', 'banco_id')->where('numero', 'like',"%".$numero."%")->orWhere('bancos.nombre', 'like',"%".$numero."%")->select('cuentas.*');
     }
     return $query->paginate(15);
   }

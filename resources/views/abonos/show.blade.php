@@ -86,7 +86,13 @@
               <label for="nome">Abono Asociado a una Devolucion </label> 
               <p>
                 <a role="group" class="btn btn-default btn-sm" href="{{ route('movimientos.show', $abono->transferencia->transferencia_id) }}">
-                  {{ $abono->transferencia->transferencia->id }} - {{ $abono->transferencia->transferencia->referencia  }}
+                  @if($abono->transferencia->transferencia->cuenta)
+                   {{ $abono->transferencia->transferencia->cuenta->numero }}
+                  @endif 
+                  -- 
+                  @if($abono->transferencia->transferencia->negocio)
+                   {{ $abono->transferencia->transferencia->negocio->nombre }}
+                  @endif 
                 </a>                
               </p>  
             </blockquote>

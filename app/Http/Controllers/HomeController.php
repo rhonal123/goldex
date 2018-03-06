@@ -15,6 +15,7 @@ use App\User;
 use App\Configuration;
 
 use App\Http\Pdfs\GeneralPdf;
+use App\Http\Pdfs\EfectivoPdf;
 use App\Http\Pdfs\CuentaPdf;
 use App\Http\Pdfs\CuentaExcel;
 use App\Http\Pdfs\GeneralExcel;
@@ -74,6 +75,41 @@ class HomeController extends Controller
     return view('home.reporte',compact('negocios','cuentas','tipos'));
   }
 
+  public function reporteGeneralEfectivo(Request $request)
+  {
+    $this->authorize('I07');
+    $desde = $request->input('desde');
+    $hasta = $request->input('hasta');
+    $tipo = $request->input('tipo');
+    $negocio_id = explode(",",$request->input('negocio_id'));
+    $cuenta_id =  explode(",",$request->input('cuenta_id'));
+    if(empty($cuenta_id[0]))
+    {
+      $cuenta_id = null;
+    }
+    if(empty($negocio_id[0]))
+    {
+      $negocio_id = null;
+    }
+    $caja = $request->input("cajachica");
+    if(!is_null($caja))
+    {
+      $negocio_id = null;
+      $cuenta_id = null;
+    }
+
+    $ordenarTipo  = $request->input('ordenarTipo'); 
+    if($tipo === "pdf"){
+      $pdf = new EfectivoPdf();
+      $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja);
+    }
+    else{
+      $excel = new GeneralExcel();
+      $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja);
+    }
+  }
+
+
   public function reporte(Request $request) 
   {
     $this->authorize('I07');
@@ -82,7 +118,7 @@ class HomeController extends Controller
     $tipo = $request->input('tipo');
     $negocio_id = explode(",",$request->input('negocio_id'));
     $cuenta_id =  explode(",",$request->input('cuenta_id'));
-    if( empty($cuenta_id[0]))
+    if(empty($cuenta_id[0]))
     {
       $cuenta_id = null;
     }
@@ -90,15 +126,21 @@ class HomeController extends Controller
     {
       $negocio_id = null;
     }
+    $caja = $request->input("cajachica");
+    if(!is_null($caja))
+    {
+      $negocio_id = null;
+      $cuenta_id = null;
+    }
 
     $ordenarTipo  = $request->input('ordenarTipo'); 
     if($tipo === "pdf"){
       $pdf = new GeneralPdf();
-      $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+      $pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja);
     }
     else{
       $excel = new GeneralExcel();
-      $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);
+      $excel->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,$caja);
     }
   }
 
@@ -147,12 +189,14 @@ class HomeController extends Controller
  
   public function configuracion_edit()
   {
+    $this->authorize('Z01');
     $configuracion = Configuration::find(1);
     return view('home.configuracion',compact('configuracion'));
   }
 
   public function configuracion(Request $request)
   {
+    $this->authorize('Z01');
     $configuracion = Configuration::find(1);
     $operacion = $configuracion->update([
      'anoTransito' => Carbon::createFromFormat("yy/m/d",$request->anoTransito)
