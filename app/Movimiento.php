@@ -160,37 +160,38 @@ class Movimiento extends Model
         {
             if($values['tipo'] === "TRANSFERENCIA")
             {
+              $date =  new Carbon($values['fecha']);
               $query = Movimiento::where('referencia',$values['referencia'])
                 ->where('tipo','TRANSFERENCIA')
                 ->where('cuenta_id',$values['cuenta_id'])
-                ->where('fecha',$values['fecha']);
-              
+                ->whereYear('fecha','=',$date->year)
+                ->whereMonth('fecha','=',$date->month)
+                ->whereDay('fecha','=',$date->day);
               if($movimiento != null)
               {
                 $query->where('id','!=',$movimiento->id);
               }
               $encontrado = $query->first();
-              
-              if ($encontrado != null )
+              if (!is_null($encontrado))
               {
                 $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
               }
-
             }
         }
         else
         {
+            $date =  new Carbon($values['fecha']);
             $query  = Movimiento::where('referencia',$values['referencia'])
               ->where('cuenta_id',$values['cuenta_id'])
-              ->where('fecha',$values['fecha']);
-            
+                ->whereYear('fecha','=',$date->year)
+                ->whereMonth('fecha','=',$date->month)
+                ->whereDay('fecha','=',$date->day);
             if($movimiento != null)
             {
                $query->where('id','!=',$movimiento->id);              
             } 
             $encontrado = $query->first();
-            
-            if ($encontrado != null )
+            if (!is_null($encontrado))
             {
               $validator->errors()->add('referencia','Esta referencia esta siendo utilizada');
             }
