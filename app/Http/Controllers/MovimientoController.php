@@ -179,11 +179,10 @@ class MovimientoController extends Controller {
 		$this->authorize('I07');
 		$desde = $request->input('desde');
 		$hasta = $request->input('hasta');
-		$negocio_id = empty($request->input('negocio_id')) ? null: $request->input('negocio_id');
+    $negocio_id = explode(",",$request->input('negocio_id'));
 		$cuenta_id = empty($request->input('cuenta_id')) ? null: $request->input('cuenta_id');
 		$ordenarTipo  = $request->input('ordenarTipo'); 
     $tipo = $request->input('tipo');
-
     if($tipo === "pdf"){
 			$pdf = new MovimientoPdf();
 	   	$pdf->generar($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo);

@@ -133,7 +133,7 @@ class MovimientoView extends Model
       $query->where('fecha', '<=',$hasta);
     }
     if($negocio_id){
-      $query->where('negocio_id', '=',$negocio_id);
+      $query->whereIn('negocio_id',$negocio_id);
     }
     if($cuenta_id){
       $query->where('cuenta_id', '=',$cuenta_id);

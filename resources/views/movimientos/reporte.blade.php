@@ -34,12 +34,13 @@
 
         <div  class="form-group">
           <label for="negocio_id" class="col-sm-2 control-label" for="estado">Negocio</label>
+          <input type="hidden" name="negocio_id" id="negocio_id-field" value="">
           <div class="col-sm-10">
             {{
-              Form::select('negocio_id', 
-               array('' => 'Seleccione un negocio') + $negocios,
+              Form::select('negocio_id2', 
+               $negocios,
                old("negocio_id"),
-               ['class' => 'form-control','id'=>'negocio_id-field'] )
+               ['class' => 'form-control','id'=>'negocio_id2-field', 'multiple' => 'multiple'] )
             }}
           </div> 
         </div>
@@ -100,7 +101,12 @@
     $('#search_hasta').datepicker('setDate', new Date(ano,mes+1,0));
 
     $("#tipo-field").select2();
-    $("#negocio_id-field").select2();
+
+    $("#negocio_id2-field").select2();
+    $("#negocio_id2-field").on('change',function(e){
+      $("#negocio_id-field").val($("#negocio_id2-field").val());
+    });
+
     $("#cuenta_id-field").select2();
   });
 </script>

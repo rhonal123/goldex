@@ -17,13 +17,20 @@ class MovimientoExcel{
   public $hasta = null; 
   public $negocio;
 
+   public function negocios_datos()
+   {
+      $elements =  array_map(function($element){ return $element['nombre']; },$this->negocio->toArray());
+      return implode(",", $elements); 
+   }
+
+
   public function header($sheet){
     
     $sheet->setCellValue('A1','Inversiones Goldex '); 
     $sheet->setCellValue('A2',"Transferencias"); 
 
     if(!empty($this->negocio)) {
-      $sheet->setCellValue('C1','Socio o Negocio : '.$this->negocio->nombre .' '. $this->negocio->rif); 
+      $sheet->setCellValue('C1','Socio o Negocio : '.$this->negocios_datos()); 
     }
     if(!empty($this->desde)) {
       $sheet->setCellValue('C1','DESDE :'. $this->desde); 

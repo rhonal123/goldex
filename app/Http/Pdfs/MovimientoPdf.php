@@ -15,6 +15,13 @@ class MovimientoPdf extends \TCPDF {
     public $rowPerPage = 23.0;
     public $negocio;
 
+
+   public function negocios_datos()
+   {
+			$elements =  array_map(function($element){ return $element['nombre']; },$this->negocio->toArray());
+			return implode(",", $elements); 
+   }
+
   public function Header() {
         // Logo
         $image_file = public_path('assets/images/goldex310x310.jpg');
@@ -30,7 +37,7 @@ class MovimientoPdf extends \TCPDF {
 
         if(!empty($this->negocio)) {
 	       	$this->Cell( 0, 0,
-	       			' Socio o Negocio : '. $this->negocio->nombre .' '. $this->negocio->rif,
+	       			' Socio o Negocio : '. $this->negocios_datos(),
 	       			0, false, 'C', 0, '', 0, false, 'M', 'M');
       	}
 
@@ -51,8 +58,7 @@ class MovimientoPdf extends \TCPDF {
    	$this->desde = $desde;
    	$this->hasta = $hasta;
    	$movimientos = MovimientoView::movimientos($desde,$hasta,$negocio_id,$cuenta_id,$ordenarTipo,[1,2,3]);
-   	///echo json_encode($movimientos);
-   	$this->negocio = Negocio::find($negocio_id);
+   	$this->negocio = Negocio::whereIn('id',$negocio_id)->get();
 		$this->SetFont('times', null, 12);
 		$this->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
 		$this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
